@@ -1,0 +1,90 @@
+/* ====================  FORMS  ==================== */
+input[placeholder],
+textarea[placeholder] {
+  @include input-placeholder {
+    color: #afafaf;
+    text-overflow: ellipsis;
+  }
+}
+
+form {
+  max-width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+fieldset {}
+
+legend {}
+
+label {}
+
+input[type='text'],
+input[type='password'],
+input[type='email'],
+input[type='search'],
+input[type='tel'],
+input[type='url'],
+input[type='number'],
+input[type='file'],
+textarea,
+select {
+  //width: 100%;
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+
+  &:hover {}
+
+  &:focus {}
+}
+
+input,
+textarea {
+  &:focus {
+    &:invalid {}
+  }
+
+  &:required {
+    &:valid {}
+  }
+}
+
+button[type='submit'],
+input[type='submit'] {
+
+  &:hover {}
+
+  &:focus {}
+}
+
+button[type='button'],
+button[type='reset'],
+input[type='button'],
+input[type='reset'] {
+
+  &:hover {}
+
+  &:focus {}
+}
+
+input[type='file'] {}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+input,
+textarea,
+select {
+  &.error {
+
+  }
+}
+
+select {}
+
+optgroup {}
+
+option {}

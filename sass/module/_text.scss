@@ -1,0 +1,108 @@
+/* ====================  TEXT  ==================== */
+.text {
+  &-left {
+    text-align: left;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-justify {
+    text-align: justify;
+  }
+
+  &-nowrap {
+    white-space: nowrap;
+  }
+
+  &-pre {
+    white-space: pre;
+  }
+
+  &-pre-line {
+    white-space: pre-line;
+  }
+
+  &-pre-wrap {
+    white-space: pre-wrap;
+  }
+
+  &-capitalize {
+    text-transform: capitalize;
+  }
+
+  &-lowercase {
+    text-transform: lowercase;
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
+  }
+
+  &-no-transform {
+    text-transform: none;
+  }
+
+  &-underline {
+    text-decoration: underline;
+  }
+
+  &-overline {
+    text-decoration: overline;
+  }
+
+  &-line-through {
+    text-decoration: line-through;
+  }
+
+  &-no-decoration {
+    text-decoration: none;
+  }
+
+  &-align-baseline {
+    vertical-align: baseline;
+  }
+
+  &-align-top {
+    vertical-align: top;
+  }
+
+  &-align-middle {
+    vertical-align: middle;
+  }
+
+  &-align-bottom {
+    vertical-align: bottom;
+  }
+
+  &-align-sub {
+    vertical-align: sub;
+  }
+
+  &-align-super {
+    vertical-align: super;
+  }
+
+  &-bold {
+    font-weight: bold;
+  }
+
+  &-italic {
+    font-style: italic;
+  }
+
+  &-small-caps {
+    font-variant: small-caps;
+  }
+
+  &-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

@@ -1,0 +1,87 @@
+/* ====================  ACCORDION  ==================== */
+.accordion {
+  border-bottom: 12px solid #e9e9e9;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  max-width: 100%;
+  //padding-bottom: 12px;
+  //@include box-shadow(0 -12px 0 #e9e9e9 inset);
+  &.js-opened {
+    //padding-bottom: 0;
+    border-bottom: 0;
+
+    .accordion-content {
+      display: block;
+    }
+
+    .accordion-switch {
+      background-color: #6bc15f;
+
+      &:after {
+        border: 5px solid transparent;
+        border-top: 8px solid #fff;
+        bottom: 0;
+        margin-top: -4px;
+      }
+    }
+  }
+}
+
+.accordion-header {
+  background-color: #f5f5f5;
+  min-height: 79px;
+  overflow: hidden;
+  padding: 15px 15px 15px 45px;
+  position: relative;
+}
+
+.accordion-title {
+  color: #6bc15f;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.accordion-desc {
+  color: #055555;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 0;
+  max-width: 570px;
+}
+
+.accordion-switch {
+  @include border-radius(50%);
+  @include box-shadow(2px 2px 4px rgba(0, 0, 0, .22) inset);
+  background-color: #ccc;
+  cursor: pointer;
+  display: block;
+  height: 52px;
+  left: -26px;
+  margin-top: -26px;
+  position: absolute;
+  top: 50%;
+  width: 52px;
+
+  &:after {
+    border: 5px solid transparent;
+    border-left: 8px solid #fff;
+    border-right: 0;
+    content: '';
+    display: block;
+    height: 0;
+    margin-top: -5px;
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    width: 0;
+  }
+}
+
+.accordion-content {
+  background-color: #e9e9e9;
+  display: none;
+  padding: 15px;
+  //@extend %clearfix;
+}

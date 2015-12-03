@@ -1,0 +1,9 @@
+/* ====================  FK GRID  ==================== */
+$grid-columns: 12 !default;
+$grid-width: 100% / $grid-columns;
+
+@for $i from 1 through $grid-columns {
+  .col-lg-#{$i} {
+    width: percentage($i / $grid-columns);
+  }
+}

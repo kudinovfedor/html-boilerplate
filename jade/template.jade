@@ -1,0 +1,122 @@
+doctype html
+<!--[if lt IE 7 ]><html lang="de" class="ie ie6 no-js"><![endif]-->
+<!--[if IE 7 ]><html lang="de" class="ie ie7 no-js"><![endif]-->
+<!--[if IE 8 ]><html lang="de" class="ie ie8 no-js"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="de" class="no-js"><!--<![endif]-->
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Home
+  meta(name='description', content='')
+  meta(name='keywords', content='')
+  meta(name='format-detection', content='telephone=no')
+  meta(name='format-detection', content='address=no')
+  meta(name='x-rim-auto-match', content='none')
+  link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+  link(rel='stylesheet', href='css/main.css', media='screen')
+  script(src='libs/modernizr/modernizr.js')
+  <!--[if lt IE 9]>
+  script(src='libs/html5shiv/html5shiv.js')
+  script(src='libs/respond/respond.js')
+  <![endif]-->
+body
+  h1 Test
+  h2 Test
+  h3 Test
+  h4 Test
+  h5 Test
+  h6 Test
+  p.
+    Test test test test test test test test test test test test test test test test test test test test test test test
+    test test
+  p. 
+    Test test test test test test test test test test test <a href='#'>test</a> test test test test test test test test
+    test test test test test
+  ul
+    li: a(href='#') test
+    li test
+    li test
+  table
+    caption Test title
+    thead
+      tr
+        th test
+        th test
+        th test
+    tbody
+      tr
+        td test
+        td test
+        td test
+    tfoot
+      tr
+        td test
+        td test
+        td test
+  p.
+    Test test test test test test test test test test test test test test test test test test test test test test test
+    test test
+  ol 
+    li test
+    li test
+    li test
+  form(action='./', method='post')
+    fieldset
+      legend Test title
+      label Test 1
+      br
+      input(type='text', placeholder='text', required)
+      br
+      input(type='password', placeholder='password')
+      br
+      input(type='email', placeholder='email' required)
+      br
+      input(type='search', placeholder='search')
+      br
+      input(type='tel', placeholder='tel')
+      br
+      input(type='url', placeholder='url')
+      br
+      input(type='number', placeholder='number')
+      br
+      input(type='file', name='' id='' value='test')
+      br
+      textarea(placeholder='textarea')
+      br
+      select
+        option(value='') Test 1
+        option(value='') Test 2
+        option(value='') Test 3
+      br
+      input(type='submit', value='input type=submit')
+      br
+      button(type='submit') button type=submit
+  p.
+    Test test test test test test test test test <a href='#' class='btn'>test</a> test test test test test test test test test test test test test
+    test test
+  .accordion
+    .accordion-header
+      strong.accordion-title Save time! Fast order!
+      p.accordion-desc.
+        Please enter your phone number and name, and just in 10 minutes our manager will call back you to make a quick order.
+      span.accordion-switch
+    .accordion-content
+  script(src='libs/jquery/jquery-1.11.3.js')
+  script(src='libs/device/device.js')
+  script(src='js/common.js')
+  script(src='libs/pixlayout/pixlayout.js')
+  //-script.
+    $(function () {
+      $.pixlayout({
+        src: 'libs/pixlayout/layout-home.jpg',
+        //src: 'libs/pixlayout/layout-home-mob.jpg',
+        opacity: 0.6,
+        top: 0,
+        center: true,
+        clip: false,
+        show: true,
+        pervious: true
+      });
+    });
+</html>

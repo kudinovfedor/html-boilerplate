@@ -1,0 +1,15 @@
+.idea/
+.sass-cache/
+node_modules/
+copy_root/
+build/
+/*.cmd
+/*.zip
+/*.rar
+/config.rb
+/lint.yml
+/package.json
+/gulpfile.js
+/cdn-link.html
+/libs/cdn-link.html
+/libs/pixlayout

@@ -1,0 +1,17 @@
+// FUNCTIONS
+@function line-height($line-height, $font-size, $unit: multiplier) {
+  @if $unit == multiplier {
+    @return #{round(percentage($line-height / $font-size)) / 100%};
+  }
+  @if $unit == '%' {
+    @return #{round(percentage($line-height / $font-size))};
+  }
+  @if $unit == no-round {
+    @return #{$line-height / $font-size};
+  }
+}
+
+@function margin-right-px-to-percent($container-width-px, $margin-right-px) {
+  $result: 100% * $margin-right-px / $container-width-px;
+  @return $result;
+}
