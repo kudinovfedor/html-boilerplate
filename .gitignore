@@ -11,3 +11,4 @@ build/
 /gulpfile.js
 /sass/layout/_fk-grid.scss
 /libs/pixlayout/*.jpg
+/README.md
