@@ -1,0 +1,47 @@
+doctype html
+<!--[if lt IE 7 ]><html lang="de" class="ie ie6 no-js"><![endif]-->
+<!--[if IE 7 ]><html lang="de" class="ie ie7 no-js"><![endif]-->
+<!--[if IE 8 ]><html lang="de" class="ie ie8 no-js"><![endif]-->
+<!--[if (gte IE 9)|!(IE)]><html lang="de" class="not-ie no-js"><![endif]-->
+head
+  meta(charset='utf-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0')
+  title Template jade
+  meta(name='description', content='')
+  meta(name='keywords', content='')
+  meta(name='author', content='')
+  meta(name='format-detection', content='telephone=no')
+  meta(name='format-detection', content='address=no')
+  meta(name='x-rim-auto-match', content='none')
+  link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
+  link(rel='stylesheet', href='css/main.css', media='screen')
+  script(src='libs/modernizr/modernizr.js')
+  <!--[if lt IE 9]>
+  script(src='libs/html5shiv/html5shiv.js')
+  script(src='libs/respond/respond.js')
+  <![endif]-->
+body
+  include include/header
+  include include/main
+    include include/content
+    include include/aside
+  include include/footer
+  script(src='libs/jquery/jquery-1.11.3.js')
+  script(src='libs/device/device.js')
+  script(src='js/common.js')
+  script(src='libs/pixlayout/pixlayout.js')
+  //-script.
+    $(function () {
+      $.pixlayout({
+        src: 'libs/pixlayout/layout-home.jpg',
+        //src: 'libs/pixlayout/layout-home-mob.jpg',
+        opacity: 0.6,
+        top: 0,
+        center: true,
+        clip: false,
+        show: true,
+        pervious: true
+      });
+    });
+</html>
