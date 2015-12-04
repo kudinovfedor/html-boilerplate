@@ -6,9 +6,6 @@ build/
 /*.cmd
 /*.zip
 /*.rar
-/lint.yml
-/config.rb
-/gulpfile.js
 /sass/layout/_fk-grid.scss
 /libs/pixlayout/*.jpg
 /README.md
