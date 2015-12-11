@@ -179,3 +179,39 @@
     clear: both;
   }
 }
+
+//@mixin box-sizing($box-model: border-box) {
+//  -webkit-box-sizing: $box-model;
+//  -moz-box-sizing: $box-model;
+//  box-sizing: $box-model;
+//}
+//
+//@mixin appearance($appearance) {
+//  -webkit-appearance: $appearance;
+//  -moz-appearance: $appearance;
+//  appearance: $appearance;
+//}
+//
+//@mixin border-radius($radius...) {
+//  -webkit-border-radius: $radius;
+//  -moz-border-radius: $radius;
+//  border-radius: $radius;
+//}
+//
+//@mixin box-shadow($shadow...) {
+//  -webkit-box-shadow: $shadow;
+//  -moz-box-shadow: $shadow;
+//  box-shadow: $shadow;
+//}
+//
+//@mixin selection($background-color, $color) {
+//  &::-moz-selection {
+//    background-color: $background-color;
+//    color: $color;
+//  }
+//
+//  &::selection {
+//    background-color: $background-color;
+//    color: $color;
+//  }
+//}
