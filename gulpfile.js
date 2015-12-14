@@ -4,6 +4,7 @@ var gulp = require('gulp'),
   notify = require("gulp-notify"), // event notification -- .pipe(notify("Minification css finished!"))
   plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber())
   compass = require('gulp-compass'), // compass + sass -- style: nested, expanded, compact, compressed
+  htmlhint = require("gulp-htmlhint"),// Validate .html
   scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint
   concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js'))
   uglify = require('gulp-uglify'), // min js
@@ -12,6 +13,37 @@ var gulp = require('gulp'),
 //imagemin = require('gulp-imagemin'), // image optimization
 //jshint = require('gulp-jshint'), // validate js
 //jade = require('jade'), // Jade
+
+gulp.task('html', function () {
+  gulp.src("*.html")
+    .pipe(htmlhint({
+      "tagname-lowercase": true,
+      "attr-lowercase": true,
+      "attr-value-double-quotes": true,
+      "attt-value-not-empty": true,
+      "attr-no-duplication": true,
+      "doctype-first": true,
+      "tag-pair": true,
+      "tag-self-close": false,
+      "spec-char-escape": true,
+      "id-unique": true,
+      "src-not-empty": true,
+      "title-require": true,
+      "head-script-disabled": false,
+      "alt-require": true,
+      "doctype-html5": true,
+      "id-class-value": "dash",
+      "style-disabled": true,
+      "inline-style-disabled": true,
+      "inline-script-disabled": true,
+      "space-tab-mixed-disabled": "space", //space: only space for indentation, tab: only tab for indentation, false: disable rule
+      "id-class-ad-disabled": true,
+      "href-abs-or-rel": "rel", // abs: absolute mode, rel: relative mode, false: disable rule
+      "attr-unsafe-chars": true
+    }))
+    .pipe(htmlhint.reporter());
+    //.pipe(htmlhint.failReporter({ supress: true }));
+});
 
 gulp.task('compass', function () {
   gulp.src('sass/**/*.scss')
@@ -106,6 +138,10 @@ gulp.task('scss-lint', function () {
 //    .pipe(jshint.reporter('default'));
 //});
 
+gulp.task('html-watch', function () {
+  gulp.watch('*.html', ['html']);
+});
+
 gulp.task('jade-watch', ['jade'], function () {
   gulp.watch('jade/*.jade', ['jade']);
 });
@@ -118,9 +154,10 @@ gulp.task('compass-watch', ['compass'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
 });
 
-gulp.task('watch', ['compass', 'jade'], function () {
+gulp.task('watch', ['compass', 'jade', 'html'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
   gulp.watch('jade/*.jade', ['jade']);
+  gulp.watch('*.html', ['html']);
   //gulp.watch('css/main.css', ['css']);
   //gulp.watch('js/common.js', ['js']);
 });
