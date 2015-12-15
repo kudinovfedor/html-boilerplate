@@ -1,0 +1,11 @@
+@mixin line-height($line-height, $font-size, $unit: multiplier) {
+  @if $unit == multiplier {
+    line-height: round(percentage($line-height / $font-size)) / 100%;
+  }
+  @if $unit == '%' {
+    line-height: round(percentage($line-height / $font-size));
+  }
+  @if $unit == no-round {
+    line-height: $line-height / $font-size;
+  }
+}

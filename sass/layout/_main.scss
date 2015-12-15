@@ -1,13 +1,1 @@
 /* ====================  MAIN  ==================== */
-.table {
-  width: 100%;
-
-  &-separate {
-    border-collapse: separate;
-    border-spacing: 0 1px;
-  }
-
-  &-fixed {
-    table-layout: fixed;
-  }
-}

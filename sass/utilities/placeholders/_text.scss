@@ -1,0 +1,106 @@
+// TEXT PLACEHOLDER
+%text-bold {
+  font-weight: bold;
+}
+
+%text-italic {
+  font-style: italic;
+}
+
+%text-small-caps {
+  font-variant: small-caps;
+}
+
+%text-left {
+  text-align: left;
+}
+
+%text-right {
+  text-align: right;
+}
+
+%text-center {
+  text-align: center;
+}
+
+%text-justify {
+  text-align: justify;
+}
+
+%text-nowrap {
+  white-space: nowrap;
+}
+
+%text-pre {
+  white-space: pre;
+}
+
+%text-pre-line {
+  white-space: pre-line;
+}
+
+%text-pre-wrap {
+  white-space: pre-wrap;
+}
+
+%text-capitalize {
+  text-transform: capitalize;
+}
+
+%text-lowercase {
+  text-transform: lowercase;
+}
+
+%text-uppercase {
+  text-transform: uppercase;
+}
+
+%text-no-transform {
+  text-transform: none;
+}
+
+%text-underline {
+  text-decoration: underline;
+}
+
+%text-overline {
+  text-decoration: overline;
+}
+
+%text-line-through {
+  text-decoration: line-through;
+}
+
+%text-no-decoration {
+  text-decoration: none;
+}
+
+%text-align-baseline {
+  vertical-align: baseline;
+}
+
+%text-align-top {
+  vertical-align: top;
+}
+
+%text-align-middle {
+  vertical-align: middle;
+}
+
+%text-align-bottom {
+  vertical-align: bottom;
+}
+
+%text-align-sub {
+  vertical-align: sub;
+}
+
+%text-align-super {
+  vertical-align: super;
+}
+
+%text-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

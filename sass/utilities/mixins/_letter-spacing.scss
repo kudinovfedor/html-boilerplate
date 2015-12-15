@@ -1,0 +1,8 @@
+@mixin letter-spacing($val-spacing, $font-size, $units: px) {
+  @if $units == px {
+    letter-spacing: ($val-spacing * $font-size / 1000) + $units;
+  }
+  @if $units == em {
+    letter-spacing: ($val-spacing / 1000) + $units;
+  }
+}

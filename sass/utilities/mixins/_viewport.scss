@@ -1,0 +1,7 @@
+@mixin viewport($value:device-width) {
+  //@-moz-viewport { width: $value; }
+  //@-webkit-viewport { width: $value; }
+  @-ms-viewport { width: $value; }
+  @-o-viewport { width: $value; }
+  @viewport { width: $value; }
+}
