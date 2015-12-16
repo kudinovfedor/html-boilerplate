@@ -1,4 +1,4 @@
-# Clear HTML Template 8in1
+# Clean HTML Template 8in1
 This project uses the Jade for HTML, Sass + Compass for CSS, SMACSS structure with additions, Gulp - the streaming build system
 ### Installing Sass+Compass, Jade on Windows
 1. **[Installing Ruby](http://rubyinstaller.org/downloads/)**
