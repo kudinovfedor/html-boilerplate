@@ -7,6 +7,7 @@ var gulp = require('gulp'),
   htmlhint = require("gulp-htmlhint"),// Validate .html
   scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint
   concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js'))
+  autoprefixer = require('gulp-autoprefixer'), // add vendor prefix -webkit, -moz, -ms, -o
   uglify = require('gulp-uglify'), // min js
   minifyCss = require('gulp-minify-css'); // min css
 //sass = require('gulp-sass'), // sass compile to css (node sass)
@@ -103,6 +104,32 @@ gulp.task('css', function () {
     .pipe(gulp.dest('css/'));
 });
 
+gulp.task('autoprefixer', function () {
+  return gulp.src('css/main.css')
+    .pipe(autoprefixer({
+      browsers: [
+        'Explorer >= 6',
+        'Edge >= 12',
+        'Firefox >= 2',
+        'Chrome >= 4',
+        'Safari >= 3.1',
+        'Opera >= 10.1',
+        'iOS >= 3.2',
+        'OperaMini >= 8',
+        'Android >= 2.1',
+        'BlackBerry >= 7',
+        'OperaMobile >= 12',
+        'ChromeAndroid >= 47',
+        'FirefoxAndroid >= 42',
+        'ExplorerMobile >= 10'
+      ],
+      cascade: false,
+      add: true,
+      remove: false
+    }))
+    .pipe(gulp.dest('css/'));
+});
+
 gulp.task('js', function () {
   return gulp.src('js/common.js')
     .pipe(plumber())
@@ -150,6 +177,10 @@ gulp.task('jade-watch', ['jade'], function () {
 //  gulp.watch('sass/**/*.scss', ['sass']);
 //});
 
+gulp.task('autoprefixer-watch', ['autoprefixer'], function () {
+  gulp.watch('css/main.css', ['autoprefixer']);
+});
+
 gulp.task('compass-watch', ['compass'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
 });
@@ -158,6 +189,7 @@ gulp.task('watch', ['compass', 'jade', 'html'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
   gulp.watch('jade/*.jade', ['jade']);
   gulp.watch('*.html', ['html']);
+  //gulp.watch('css/main.css', ['autoprefixer']);
   //gulp.watch('css/main.css', ['css']);
   //gulp.watch('js/common.js', ['js']);
 });
