@@ -302,8 +302,7 @@ body {
 body {
   background-color: #fff;
   color: #000;
-  font: normal 14px "Arial", sans-serif;
-  line-height: 1.42857;
+  font: normal 14px/1.42857 "Arial", sans-serif;
   min-width: 320px;
   overflow-x: hidden;
   position: relative;

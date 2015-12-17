@@ -1,17 +1,17 @@
 // IMAGE PLACEHOLDER
 %img-left {
   float: left;
-  margin: 0 $img-margin-right $img-margin-bottom 0;
+  margin: 0 $default-img-margin-right $default-img-margin-bottom 0;
 }
 
 %img-center {
   display: block;
-  margin: 0 auto $img-margin-bottom;
+  margin: 0 auto $default-img-margin-bottom;
 }
 
 %img-right {
   float: right;
-  margin: 0 0 $img-margin-bottom $img-margin-left;
+  margin: 0 0 $default-img-margin-bottom $default-img-margin-left;
 }
 
 %img-responsive {
@@ -29,5 +29,5 @@
 }
 
 %img-rounded {
-  @include border-radius($img-rounded-radius);
+  @include border-radius();
 }

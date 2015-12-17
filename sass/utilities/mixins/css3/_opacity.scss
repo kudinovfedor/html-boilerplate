@@ -1,7 +1,5 @@
-$default-old-browser: false;
-
 @mixin opacity($opacity) {
-  @if ($default-old-browser) {
+  @if ($default-support-opacity-old-browsers) {
     -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(opacity=#{round($opacity * 100)})";
     filter: progid:DXImageTransform.Microsoft.Alpha(opacity=#{round($opacity * 100)});
     -moz-opacity: $opacity;

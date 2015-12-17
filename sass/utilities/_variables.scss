@@ -1,20 +1,30 @@
 // VARIABLES
-$basic-font-family: 'Arial', sans-serif !default;
-$basic-font-size: 14 !default;
-$basic-photoshop-line-height: 20 !default;
+$default-support-opacity-old-browsers: false !default;
+$default-border-radius: 5px !default;
 
-$basic-link-color: #000 !default;
-$basic-link-color-hover: #555 !default;
+$prefix-for-webkit:    true !default;
+$prefix-for-mozilla:   true !default;
+$prefix-for-microsoft: true !default;
+$prefix-for-opera:     true !default;
+$prefix-for-spec:      true !default;
 
-$img-margin-bottom: 10px !default;
-$img-margin-left: 10px !default;
-$img-margin-right: $img-margin-left !default;
+$em-base: 16px !default;
 
-$font-size-h1: 36px !default;
-$font-size-h2: 30px !default;
-$font-size-h3: 24px !default;
-$font-size-h4: 18px !default;
-$font-size-h5: 14px !default;
-$font-size-h6: 12px !default;
+$default-font-family: 'Arial', sans-serif !default;
+$default-font-size: 14 !default;
+$default-photoshop-line-height: 20 !default;
+$default-line-height: ($default-photoshop-line-height / $default-font-size) !default;
 
-$img-rounded-radius: 6px !default;
+$default-link-color: #000 !default;
+$default-link-color-hover: #555 !default;
+
+$default-img-margin-bottom: 10px !default;
+$default-img-margin-left: 10px !default;
+$default-img-margin-right: $default-img-margin-left !default;
+
+$default-font-size-h1: 36px !default;
+$default-font-size-h2: 30px !default;
+$default-font-size-h3: 24px !default;
+$default-font-size-h4: 18px !default;
+$default-font-size-h5: 14px !default;
+$default-font-size-h6: 12px !default;
