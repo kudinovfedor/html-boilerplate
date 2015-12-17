@@ -3,8 +3,8 @@
 node_modules/
 copy_root/
 build/
-/*.cmd
-/*.zip
-/*.rar
-/sass/layout/_fk-grid.scss
-/libs/pixlayout/*.jpg
+*.cmd
+*.zip
+*.rar
+sass/layout/_fk-grid.scss
+libs/pixlayout/*.jpg
