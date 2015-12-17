@@ -1,9 +1,13 @@
 /* ====================  FORMS  ==================== */
-input[placeholder],
-textarea[placeholder] {
-  @include input-placeholder {
-    color: #afafaf;
-    text-overflow: ellipsis;
+@include placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+};
+
+:focus {
+  @include placeholder(true) {
+    color: transparent;
+    @include opacity(0);
   }
 }
 

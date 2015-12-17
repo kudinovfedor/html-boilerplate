@@ -1,5 +1,7 @@
 // MIXINS
+@import 'mixins/clearfix';
 @import 'mixins/css3';
+@import 'mixins/ellipsis';
 @import 'mixins/font-smoothing';
 @import 'mixins/grid-column';
 @import 'mixins/letter-spacing';
@@ -9,3 +11,4 @@
 @import 'mixins/touch-action';
 @import 'mixins/triangle';
 @import 'mixins/viewport';
+@import 'mixins/word-wrap';

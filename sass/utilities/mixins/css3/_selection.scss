@@ -1,11 +1,19 @@
-@mixin selection($background-color, $color) {
-  &::-moz-selection {
-    background-color: $background-color;
-    color: $color;
-  }
+@mixin selection($current-selector: false) {
+  @if $current-selector {
+    &::-moz-selection {
+      @content;
+    }
 
-  &::selection {
-    background-color: $background-color;
-    color: $color;
+    &::selection {
+      @content;
+    }
+  } @else {
+    ::-moz-selection {
+      @content;
+    }
+
+    ::selection {
+      @content;
+    }
   }
 }

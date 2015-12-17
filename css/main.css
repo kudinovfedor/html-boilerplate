@@ -110,8 +110,8 @@ figure {
 }
 
 hr {
-  -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
+  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
 }
@@ -152,8 +152,9 @@ button,
 html input[type='button'],
 input[type='reset'],
 input[type='submit'] {
-  -moz-appearance: button;
   -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
   cursor: pointer;
 }
 
@@ -174,8 +175,8 @@ input {
 
 input[type='checkbox'],
 input[type='radio'] {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
 }
@@ -186,17 +187,19 @@ input[type='number']::-webkit-outer-spin-button {
 }
 
 input[type='search'] {
-  -moz-appearance: textfield;
   -webkit-appearance: textfield;
-  -moz-box-sizing: border-box;
+  -moz-appearance: textfield;
+  appearance: textfield;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-decoration {
-  -moz-appearance: none;
   -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 fieldset {
@@ -251,13 +254,14 @@ input[type='number'],
 input[type='tel'],
 input[type='url'],
 textarea {
-  -moz-appearance: none;
   -webkit-appearance: none;
-  -moz-border-radius: 0;
+  -moz-appearance: none;
+  appearance: none;
   -webkit-border-radius: 0;
+  -moz-border-radius: 0;
   border-radius: 0;
-  -moz-box-shadow: none;
   -webkit-box-shadow: none;
+  -moz-box-shadow: none;
   box-shadow: none;
 }
 
@@ -265,23 +269,24 @@ textarea {
 *,
 *:before,
 *:after {
-  -moz-box-sizing: inherit;
   -webkit-box-sizing: inherit;
+  -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
 
-*::-moz-selection {
-  color: #fff;
+::-moz-selection {
   background-color: #338fff;
+  color: #fff;
 }
-*::selection {
-  color: #fff;
+
+::selection {
   background-color: #338fff;
+  color: #fff;
 }
 
 html {
-  -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 

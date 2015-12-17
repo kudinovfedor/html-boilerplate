@@ -1,0 +1,11 @@
+@mixin perspective($depth: none) {
+  -webkit-perspective: $depth;
+  -moz-perspective: $depth;
+  perspective: $depth;
+}
+
+@mixin perspective-origin($value: 50% 50%) {
+  -webkit-perspective-origin: $value;
+  -moz-perspective-origin: $value;
+  perspective-origin: $value;
+}

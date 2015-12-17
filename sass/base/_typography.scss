@@ -5,9 +5,10 @@
   @include box-sizing(inherit);
 }
 
-* {
-  @include selection(#338fff, #fff);
-}
+@include selection {
+  background-color: #338fff;
+  color: #fff;
+};
 
 html {
   @include box-sizing(border-box);
@@ -18,7 +19,7 @@ body {
   height: 100%;
 }
 
-@include viewport;
+@include viewport(device-width);
 
 body {
   background-color: #fff;
