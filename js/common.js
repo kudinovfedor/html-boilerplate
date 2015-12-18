@@ -6,6 +6,10 @@
 
     $("html").removeClass("no-js").addClass("js");
 
+    $('.error').on('focus', function() {
+      $(this).removeClass('error');
+    });
+
     $('.accordion-switch').on('click', function () {
 
       var accordion = $('.accordion'),
