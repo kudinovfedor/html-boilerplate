@@ -63,7 +63,7 @@ gulp.task('compass', function () {
       time: true,
       relative: true,
       comments: false,
-      sourcemap: false,
+      sourcemap: true,
       debug: false
     }))
     .pipe(notify('Compiling sass in css is successfully completed!'))
