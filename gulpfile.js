@@ -6,6 +6,7 @@ var gulp = require('gulp'),
   notify = require("gulp-notify"), // event notification -- .pipe(notify("Minification css finished!"))
   plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber())
   compass = require('gulp-compass'), // compass + sass -- style: nested, expanded, compact, compressed
+  sourcemaps = require('gulp-sourcemaps'), // Source map
   htmlhint = require("gulp-htmlhint"),// Validate .html
   scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint
   concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js'))
@@ -118,6 +119,7 @@ gulp.task('jade', function () {
 gulp.task('css', function () {
   return gulp.src(['css/main.css'])
     .pipe(plumber())
+    .pipe(sourcemaps.init())
     .pipe(autoprefixer({
       browsers: [
         'Explorer >= 6',
@@ -142,6 +144,7 @@ gulp.task('css', function () {
     .pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(rename("main.min.css"))
     .pipe(notify('Minify css completed successfully!'))
+    .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
     .pipe(connect.reload());
 });
