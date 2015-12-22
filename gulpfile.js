@@ -1,3 +1,5 @@
+'use strict';
+
 var gulp = require('gulp'),
   gulpJade = require('gulp-jade'), // jade gulp
   rename = require("gulp-rename"), // rename files -- .pipe(rename("all.min.css"))
@@ -8,6 +10,8 @@ var gulp = require('gulp'),
   scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint
   concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js'))
   autoprefixer = require('gulp-autoprefixer'), // add vendor prefix -webkit, -moz, -ms, -o
+  connect = require('gulp-connect'), // run a webserver (with LiveReload)
+  livereload = require('gulp-livereload'), // livereload
   uglify = require('gulp-uglify'), // min js
   minifyCss = require('gulp-minify-css'); // min css
 //sass = require('gulp-sass'), // sass compile to css (node sass)
@@ -15,8 +19,19 @@ var gulp = require('gulp'),
 //jshint = require('gulp-jshint'), // validate js
 //jade = require('jade'), // Jade
 
+gulp.task('connect', function () {
+  connect.server({
+    root: '',
+    port: '8080',
+    host: 'localhost',
+    livereload: true,
+    debug: false
+  });
+});
+
 gulp.task('html', function () {
   gulp.src("*.html")
+    .pipe(plumber())
     .pipe(htmlhint({
       "tagname-lowercase": true,
       "attr-lowercase": true,
@@ -42,8 +57,10 @@ gulp.task('html', function () {
       "href-abs-or-rel": "rel", // abs: absolute mode, rel: relative mode, false: disable rule
       "attr-unsafe-chars": true
     }))
-    .pipe(htmlhint.reporter());
+    .pipe(notify('Checking html file is successfully completed!'))
+    .pipe(htmlhint.reporter())
     //.pipe(htmlhint.failReporter({ supress: true }));
+    .pipe(connect.reload());
 });
 
 gulp.task('compass', function () {
@@ -67,7 +84,8 @@ gulp.task('compass', function () {
       debug: false
     }))
     .pipe(notify('Compiling sass in css is successfully completed!'))
-    .pipe(gulp.dest('css/'));
+    .pipe(gulp.dest('css/'))
+    .pipe(connect.reload());
 });
 
 //gulp.task('sass', function () {
@@ -81,7 +99,8 @@ gulp.task('compass', function () {
 //      sourceComments: false
 //    }))
 //    .pipe(notify('Compiling sass in css is successfully completed!'))
-//    .pipe(gulp.dest('css/'));
+//    .pipe(gulp.dest('css/'))
+//    .pipe(connect.reload());
 //});
 
 gulp.task('jade', function () {
@@ -92,20 +111,44 @@ gulp.task('jade', function () {
       pretty: true
     }))
     .pipe(notify('Compiling jade in html is successfully completed!'))
-    .pipe(gulp.dest('./'));
+    .pipe(gulp.dest('./'))
+    .pipe(connect.reload());
 });
 
 gulp.task('css', function () {
   return gulp.src(['css/main.css'])
     .pipe(plumber())
+    .pipe(autoprefixer({
+      browsers: [
+        'Explorer >= 6',
+        'Edge >= 12',
+        'Firefox >= 2',
+        'Chrome >= 4',
+        'Safari >= 3.1',
+        'Opera >= 10.1',
+        'iOS >= 3.2',
+        'OperaMini >= 8',
+        'Android >= 2.1',
+        'BlackBerry >= 7',
+        'OperaMobile >= 12',
+        'ChromeAndroid >= 47',
+        'FirefoxAndroid >= 42',
+        'ExplorerMobile >= 10'
+      ],
+      cascade: false,
+      add: false,
+      remove: false
+    }))
     .pipe(minifyCss({compatibility: 'ie8'}))
     .pipe(rename("main.min.css"))
     .pipe(notify('Minify css completed successfully!'))
-    .pipe(gulp.dest('css/'));
+    .pipe(gulp.dest('css/'))
+    .pipe(connect.reload());
 });
 
 gulp.task('autoprefixer', function () {
   return gulp.src('css/main.css')
+    .pipe(plumber())
     .pipe(autoprefixer({
       browsers: [
         'Explorer >= 6',
@@ -138,7 +181,8 @@ gulp.task('js', function () {
     .pipe(uglify())
     .pipe(rename("common.min.js"))
     .pipe(notify('Minify js completed successfully!'))
-    .pipe(gulp.dest('js/'));
+    .pipe(gulp.dest('js/'))
+    .pipe(connect.reload());
 });
 
 //gulp.task('img', function () {
@@ -153,6 +197,7 @@ gulp.task('js', function () {
 
 gulp.task('scss-lint', function () {
   return gulp.src('sass/**/*.scss')
+    .pipe(plumber())
     .pipe(scsslint({
       'config': 'sass/lint.yml'
     }));
@@ -165,7 +210,7 @@ gulp.task('scss-lint', function () {
 //    .pipe(jshint.reporter('default'));
 //});
 
-gulp.task('html-watch', function () {
+gulp.task('html-watch', ['html'], function () {
   gulp.watch('*.html', ['html']);
 });
 
@@ -185,13 +230,12 @@ gulp.task('compass-watch', ['compass'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
 });
 
-gulp.task('watch', ['compass', 'jade', 'html'], function () {
-  gulp.watch('sass/**/*.scss', ['compass']);
+gulp.task('watch', ['connect', 'jade', 'html', 'compass', 'js'], function () {
   gulp.watch('jade/*.jade', ['jade']);
   gulp.watch('*.html', ['html']);
-  //gulp.watch('css/main.css', ['autoprefixer']);
-  //gulp.watch('css/main.css', ['css']);
-  //gulp.watch('js/common.js', ['js']);
+  gulp.watch('sass/**/*.scss', ['compass']);
+  gulp.watch('css/main.css', ['css']);
+  gulp.watch('js/common.js', ['js']);
 });
 
 gulp.task('css-build', function () {
