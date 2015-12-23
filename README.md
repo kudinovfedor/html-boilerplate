@@ -9,9 +9,14 @@ This project uses the Jade for HTML, Sass + Compass for CSS, SMACSS structure wi
   * `gem install sass`
 4. **[Install Node.js](https://nodejs.org/dist/latest-v0.12.x/)** `v0.12.8`
 5. Install Jade
-  * `npm install jade`
+  * `npm install --global jade`
 
 ### Installing Gulp
 * `npm install --global gulp`
+
+### Installing htmlhint, scss_lint, jshint
+* `npm install --global htmlhint`
+* `gem install scss_lint`
+* `npm install --global jshint`
 
 For installation all dependencies from a file package.json **`npm install`**
