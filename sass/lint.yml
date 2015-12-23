@@ -138,7 +138,7 @@ linters:
     properties: {}
 
   PseudoElement:
-    enabled: true
+    enabled: false #edit
 
   QualifyingElement:
     enabled: false #edit
