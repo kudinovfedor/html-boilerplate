@@ -1,7 +1,7 @@
 {
-  "name": "tpl(8in1)",
+  "name": "clean-html-template-8in1",
   "version": "1.0.0",
-  "description": "Clean html template",
+  "description": "Workpieces code and structure that I use in every project",
   "main": "gulpfile.js",
   "dependencies": {
     "gulp": "^3.9.0",
@@ -28,13 +28,31 @@
     "jshint": "^2.8.0",
     "jshint-stylish": "^2.1.0"
   },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/kudinovfedor/clear-html-template-8in1.git"
-  },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kudinovfedor/clean-html-template-8in1.git"
+  },
+  "keywords": [
+    "HTML5",
+    "CSS3",
+    "JS",
+    "jQuery",
+    "Jade",
+    "Compass+Sass",
+    "Sprites",
+    "SMACSS",
+    "Ruby",
+    "Node",
+    "Gulp",
+    "Modernizr"
+  ],
   "author": "Kudinov Fedor",
-  "license": "ISC"
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kudinovfedor/clean-html-template-8in1/issues"
+  },
+  "homepage": "https://github.com/kudinovfedor/clean-html-template-8in1#readme"
 }
