@@ -11,12 +11,15 @@ This project uses the Jade for HTML, Sass + Compass for CSS, SMACSS structure wi
 5. Install Jade
   * `npm install --global jade`
 
-### Installing Gulp
+### Install Gulp
 * `npm install --global gulp`
 
-### Installing htmlhint, scss_lint, jshint
+### Install htmlhint, scss_lint, jshint
 * `npm install --global htmlhint`
 * `gem install scss_lint`
 * `npm install --global jshint`
+ 
+### Install Bower
+* `npm install --global bower`
 
-For installation all dependencies from a file package.json **`npm install`**
+For installation all dependencies from a file bower.json **`bower install`**, from a file package.json **`npm install`**
