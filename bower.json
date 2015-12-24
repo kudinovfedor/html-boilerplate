@@ -1,0 +1,53 @@
+{
+  "name": "clean-html-template-8in1",
+  "version": "1.0.0",
+  "description": "Workpieces code and structure that I use in every project",
+  "main": "gulpfile.js",
+  "authors": [
+    "Kudinov Fedor"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "HTML5",
+    "CSS3",
+    "JS",
+    "jQuery",
+    "Jade",
+    "Compass+Sass",
+    "Sprites",
+    "SMACSS",
+    "Ruby",
+    "Node",
+    "Gulp",
+    "Modernizr",
+    "Bower"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kudinovfedor/clean-html-template-8in1.git"
+  },
+  "homepage": "https://github.com/kudinovfedor/clean-html-template-8in1",
+  "moduleType": [
+    "amd",
+    "es6",
+    "globals",
+    "node",
+    "yui"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components"
+  ],
+  "dependencies": {
+    "device.js": "devicejs#~0.2.7",
+    "html5shiv": "~3.7.3",
+    "jquery-form-styler": "jquery.form-styler#~1.7.4",
+    "jquery": "~1.11.3",
+    "raty.js": "~2.7.0",
+    "respond": "~1.4.2",
+    "modernizr": "~3.2.0",
+    "pixlayout": "~0.9.7"
+  }
+}

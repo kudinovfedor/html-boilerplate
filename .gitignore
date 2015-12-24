@@ -1,8 +1,9 @@
-.idea/
-.sass-cache/
-node_modules/
-copy_root/
-build/
+.idea
+.sass-cache
+bower_components
+node_modules
+copy_root
+build
 *.cmd
 *.zip
 *.rar

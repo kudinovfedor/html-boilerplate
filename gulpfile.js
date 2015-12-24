@@ -1,24 +1,26 @@
 'use strict';
 
 var gulp = require('gulp'),
-  gulpJade = require('gulp-jade'), // jade gulp
-  rename = require("gulp-rename"), // rename files -- .pipe(rename("all.min.css"))
-  notify = require("gulp-notify"), // event notification -- .pipe(notify("Minification css finished!"))
-  plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber())
-  compass = require('gulp-compass'), // compass + sass -- style: nested, expanded, compact, compressed
-  sourcemaps = require('gulp-sourcemaps'), // Source map
-  htmlhint = require("gulp-htmlhint"),// Validate .html
-  scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint
-  concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js'))
-  autoprefixer = require('gulp-autoprefixer'), // add vendor prefix -webkit, -moz, -ms, -o
-  connect = require('gulp-connect'), // run a webserver (with LiveReload)
-  livereload = require('gulp-livereload'), // livereload
-  uglify = require('gulp-uglify'), // min js
-  minifyCss = require('gulp-minify-css'); // min css
-//sass = require('gulp-sass'), // sass compile to css (node sass)
-//imagemin = require('gulp-imagemin'), // image optimization
-//jshint = require('gulp-jshint'), // validate js
-//jade = require('jade'), // Jade
+  jade = require('jade'), // Jade [npm install --save jade]
+  gulpJade = require('gulp-jade'), // jade gulp [npm install --save-dev gulp-jade]
+  rename = require('gulp-rename'), // rename files -- .pipe(rename('all.min.css')) [npm install --save-dev gulp-rename]
+  notify = require('gulp-notify'), // event notification -- .pipe(notify('Minification css finished!')) [npm install --save-dev gulp-notify]
+  plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber()) [npm install --save-dev gulp-plumber]
+  compass = require('gulp-compass'), // compass + sass -- style: nested, expanded, compact, compressed [npm install --save-dev gulp-compass] [gem update --system] [gem install compass]
+  sass = require('gulp-sass'), // sass compile to css (node sass) [npm install --save-dev gulp-sass] [npm install --save node-sass]
+  sourcemaps = require('gulp-sourcemaps'), // Source map [npm install --save-dev gulp-sourcemaps]
+  htmlhint = require('gulp-htmlhint'),// Validate .html [npm install --save-dev gulp-htmlhint]
+  scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint [npm install --save-dev gulp-scss-lint] [gem install scss_lint]
+  concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js')) [npm install --save-dev gulp-concat]
+  autoprefixer = require('gulp-autoprefixer'), // add vendor prefix -webkit, -moz, -ms, -o [npm install --save-dev gulp-autoprefixer]
+  connect = require('gulp-connect'), // run a webserver (with LiveReload) [npm install --save-dev gulp-connect]
+  livereload = require('gulp-livereload'), // livereload [npm install --save-dev gulp-livereload]
+  jshint = require('gulp-jshint'),// validate js. Reporter: default, checkstyle, jslint_xml, non_error, unix; [npm install --save-dev jshint gulp-jshint]
+  stylish = require('jshint-stylish'), // Stylish reporter for JSHint (jshint-stylish) [npm install --save-dev jshint-stylish]
+  //stylish_ex = require('jshint-stylish-ex'), // Stylish reporter for JSHint (jshint-stylish-ex) [npm install --save-dev jshint-stylish-ex]
+  uglify = require('gulp-uglify'), // min js [npm install --save-dev gulp-uglify]
+  minifyCss = require('gulp-minify-css'); // min css [npm install --save-dev gulp-minify-css]
+  //imagemin = require('gulp-imagemin'), // image optimization [npm install --save imagemin]
 
 gulp.task('connect', function () {
   connect.server({
@@ -30,37 +32,15 @@ gulp.task('connect', function () {
   });
 });
 
-gulp.task('html', function () {
-  gulp.src("*.html")
+gulp.task('jade', function () {
+  return gulp.src('jade/*.jade')
     .pipe(plumber())
-    .pipe(htmlhint({
-      "tagname-lowercase": true,
-      "attr-lowercase": true,
-      "attr-value-double-quotes": true,
-      "attt-value-not-empty": true,
-      "attr-no-duplication": true,
-      "doctype-first": true,
-      "tag-pair": true,
-      "tag-self-close": false,
-      "spec-char-escape": true,
-      "id-unique": true,
-      "src-not-empty": true,
-      "title-require": true,
-      "head-script-disabled": false,
-      "alt-require": true,
-      "doctype-html5": true,
-      "id-class-value": "dash",
-      "style-disabled": true,
-      "inline-style-disabled": true,
-      "inline-script-disabled": true,
-      "space-tab-mixed-disabled": "space", //space: only space for indentation, tab: only tab for indentation, false: disable rule
-      "id-class-ad-disabled": true,
-      "href-abs-or-rel": "rel", // abs: absolute mode, rel: relative mode, false: disable rule
-      "attr-unsafe-chars": true
+    .pipe(gulpJade({
+      jade: jade,
+      pretty: true
     }))
-    .pipe(notify('Checking html file is successfully completed!'))
-    .pipe(htmlhint.reporter())
-    //.pipe(htmlhint.failReporter({ supress: true }));
+    .pipe(notify('Compiling jade in html is successfully completed!'))
+    .pipe(gulp.dest('./'))
     .pipe(connect.reload());
 });
 
@@ -89,30 +69,20 @@ gulp.task('compass', function () {
     .pipe(connect.reload());
 });
 
-//gulp.task('sass', function () {
-//  gulp.src('sass/**/*.scss')
-//    .pipe(plumber())
-//    .pipe(scsslint({
-//      'config': 'sass/lint.yml'
-//    }))
-//    .pipe(sass({
-//      outputStyle: 'expanded',
-//      sourceComments: false
-//    }))
-//    .pipe(notify('Compiling sass in css is successfully completed!'))
-//    .pipe(gulp.dest('css/'))
-//    .pipe(connect.reload());
-//});
-
-gulp.task('jade', function () {
-  return gulp.src('jade/*.jade')
+gulp.task('sass', function () {
+  gulp.src('sass/**/*.scss')
     .pipe(plumber())
-    .pipe(gulpJade({
-      //jade: jade,
-      pretty: true
+    .pipe(sourcemaps.init())
+    .pipe(scsslint({
+      'config': 'sass/lint.yml'
     }))
-    .pipe(notify('Compiling jade in html is successfully completed!'))
-    .pipe(gulp.dest('./'))
+    .pipe(sass({
+      outputStyle: 'expanded',
+      sourceComments: false
+    }))
+    .pipe(sourcemaps.write('./'))
+    .pipe(notify('Compiling sass in css is successfully completed!'))
+    .pipe(gulp.dest('css/'))
     .pipe(connect.reload());
 });
 
@@ -142,7 +112,7 @@ gulp.task('css', function () {
       remove: false
     }))
     .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(rename("main.min.css"))
+    .pipe(rename('main.min.css'))
     .pipe(notify('Minify css completed successfully!'))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
@@ -179,10 +149,12 @@ gulp.task('autoprefixer', function () {
 gulp.task('js', function () {
   return gulp.src('js/common.js')
     .pipe(plumber())
-    //.pipe(jshint())
-    //.pipe(jshint.reporter('default'))
+    .pipe(sourcemaps.init())
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'))
     .pipe(uglify())
-    .pipe(rename("common.min.js"))
+    .pipe(rename('common.min.js'))
+    .pipe(sourcemaps.write('/'))
     .pipe(notify('Minify js completed successfully!'))
     .pipe(gulp.dest('js/'))
     .pipe(connect.reload());
@@ -198,6 +170,40 @@ gulp.task('js', function () {
 //    .pipe(gulp.dest('img/build/'));
 //});
 
+gulp.task('html-hint', function () {
+  gulp.src('*.html')
+    .pipe(plumber())
+    .pipe(htmlhint({
+      'tagname-lowercase': true,
+      'attr-lowercase': true,
+      'attr-value-double-quotes': true,
+      'attt-value-not-empty': true,
+      'attr-no-duplication': true,
+      'doctype-first': true,
+      'tag-pair': true,
+      'tag-self-close': false,
+      'spec-char-escape': true,
+      'id-unique': true,
+      'src-not-empty': true,
+      'title-require': true,
+      'head-script-disabled': false,
+      'alt-require': true,
+      'doctype-html5': true,
+      'id-class-value': 'dash',
+      'style-disabled': true,
+      'inline-style-disabled': true,
+      'inline-script-disabled': true,
+      'space-tab-mixed-disabled': 'space', //space: only space for indentation, tab: only tab for indentation, false: disable rule
+      'id-class-ad-disabled': true,
+      'href-abs-or-rel': 'rel', // abs: absolute mode, rel: relative mode, false: disable rule
+      'attr-unsafe-chars': true
+    }))
+    .pipe(notify('Checking html file is successfully completed!'))
+    .pipe(htmlhint.reporter())
+    //.pipe(htmlhint.failReporter({ supress: true }));
+    .pipe(connect.reload());
+});
+
 gulp.task('scss-lint', function () {
   return gulp.src('sass/**/*.scss')
     .pipe(plumber())
@@ -206,36 +212,28 @@ gulp.task('scss-lint', function () {
     }));
 });
 
-//gulp.task('js-lint', function () {
-//  gulp.src('js/*.js')
-//    .pipe(plumber())
-//    .pipe(jshint())
-//    .pipe(jshint.reporter('default'));
-//});
-
-gulp.task('html-watch', ['html'], function () {
-  gulp.watch('*.html', ['html']);
+gulp.task('js-lint', function () {
+  gulp.src('js/*.js')
+    .pipe(plumber())
+    .pipe(jshint())
+    .pipe(jshint.reporter('jshint-stylish'));
 });
 
 gulp.task('jade-watch', ['jade'], function () {
   gulp.watch('jade/*.jade', ['jade']);
 });
 
-//gulp.task('sass-watch', ['sass'], function () {
-//  gulp.watch('sass/**/*.scss', ['sass']);
-//});
-
-gulp.task('autoprefixer-watch', ['autoprefixer'], function () {
-  gulp.watch('css/main.css', ['autoprefixer']);
-});
-
 gulp.task('compass-watch', ['compass'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
 });
 
-gulp.task('watch', ['connect', 'jade', 'html', 'compass', 'js'], function () {
+gulp.task('sass-watch', ['sass'], function () {
+  gulp.watch('sass/**/*.scss', ['sass']);
+});
+
+gulp.task('watch', ['connect', 'jade', 'html-hint', 'compass', 'js'], function () {
   gulp.watch('jade/*.jade', ['jade']);
-  gulp.watch('*.html', ['html']);
+  gulp.watch('*.html', ['html-hint']);
   gulp.watch('sass/**/*.scss', ['compass']);
   gulp.watch('css/main.css', ['css']);
   gulp.watch('js/common.js', ['js']);
@@ -245,7 +243,7 @@ gulp.task('css-build', function () {
   return gulp.src(['css/main.css'])
     .pipe(plumber())
     .pipe(minifyCss({compatibility: 'ie8'}))
-    .pipe(rename("main.min.css"))
+    .pipe(rename('main.min.css'))
     .pipe(notify('Minify css completed successfully!'))
     .pipe(gulp.dest('build/css/'));
 });
@@ -254,7 +252,7 @@ gulp.task('js-build', function () {
   return gulp.src('js/common.js')
     .pipe(plumber())
     .pipe(uglify())
-    .pipe(rename("common.min.js"))
+    .pipe(rename('common.min.js'))
     .pipe(notify('Minify js completed successfully!'))
     .pipe(gulp.dest('build/js/'));
 });

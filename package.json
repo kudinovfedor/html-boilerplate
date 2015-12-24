@@ -47,7 +47,8 @@
     "Ruby",
     "Node",
     "Gulp",
-    "Modernizr"
+    "Modernizr",
+    "Bower"
   ],
   "author": "Kudinov Fedor",
   "license": "ISC",
