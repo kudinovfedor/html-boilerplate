@@ -44,8 +44,7 @@ gulp.task('libsBower', function () {
       bowerJson: 'bower.json'
     },
     checkExistence: true,
-    includeDev: true,
-    group: 'compressed'
+    includeDev: true
   }))
     .pipe(gulp.dest('libs-bower/'));
 });
