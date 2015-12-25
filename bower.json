@@ -43,11 +43,56 @@
   "dependencies": {
     "device.js": "devicejs#~0.2.7",
     "html5shiv": "~3.7.3",
-    "jquery-form-styler": "jquery.form-styler#~1.7.4",
     "jquery": "~1.11.3",
-    "raty.js": "~2.7.0",
-    "respond": "~1.4.2",
+    "jquery-form-styler": "jquery.form-styler#~1.7.4",
     "modernizr": "~3.2.0",
-    "pixlayout": "~0.9.7"
+    "pixlayout": "~0.9.7",
+    "raty.js": "~2.7.0",
+    "respond": "~1.4.2"
+  },
+  "devDependencies": {},
+  "group": {
+    "uncompressed": [],
+    "compressed": []
+  },
+  "overrides": {
+    "device.js": {
+      "main": [
+        "./lib/device.min.js"
+      ]
+    },
+    "html5shiv": {
+      "main": [
+        "./dist/html5shiv.min.js"
+      ]
+    },
+    "jquery": {
+      "main": [
+        "./dist/jquery.min.js"
+      ]
+    },
+    "jquery-form-styler": {
+      "main": [
+        "./jquery.formstyler.min.js"
+      ]
+    },
+    "modernizr": {
+      "ignore": true
+    },
+    "pixlayput": {
+      "main": [
+        "./jquery.pixlayout.min.js"
+      ]
+    },
+    "raty.js": {
+      "main": [
+        "./lib/jquery.raty.js"
+      ]
+    },
+    "respond": {
+      "main": [
+        "./dest/respond.min.js"
+      ]
+    }
   }
 }

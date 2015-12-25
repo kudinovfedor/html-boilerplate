@@ -4,6 +4,7 @@
   "description": "Workpieces code and structure that I use in every project",
   "main": "gulpfile.js",
   "dependencies": {
+    "bower": "^1.7.1",
     "gulp": "^3.9.0",
     "jade": "^1.11.0",
     "node-sass": "^3.4.2"
@@ -23,10 +24,12 @@
     "gulp-rename": "^1.2.2",
     "gulp-sass": "^2.1.1",
     "gulp-scss-lint": "^0.3.8",
+    "gulp-scss-lint-stylish2": "^2.0.2",
     "gulp-sourcemaps": "^1.6.0",
     "gulp-uglify": "^1.5.1",
     "jshint": "^2.8.0",
-    "jshint-stylish": "^2.1.0"
+    "jshint-stylish": "^2.1.0",
+    "main-bower-files": "^2.11.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
