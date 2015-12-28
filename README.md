@@ -5,7 +5,7 @@ This project uses the Jade for HTML, Sass + Compass for CSS, SMACSS structure wi
 **[Install Node.js](https://nodejs.org/dist/latest-v0.12.x/)** `v0.12.8`
 
 ```sh
-# install Compass, Sass, scss_lint, Jade, Gulp, Bower, htmlhint, jshint, dependencies from package.json, bower.json
+# install Compass, Sass, scss_lint, Jade, Gulp, Bower, htmlhint, jshint, dependencies
 $ npm run set-all
 # IF AN ERROR OCCURS, TRY THE CODE BELOW
 
