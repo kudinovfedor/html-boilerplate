@@ -16,10 +16,10 @@ head
   meta(name='x-rim-auto-match', content='none')
   link(rel='shortcut icon', href='favicon.ico', type='image/x-icon')
   link(rel='stylesheet', href='css/main.css', media='screen')
-  script(src='libs/modernizr/modernizr.js')
+  script(src='libs/modernizr.min.js')
   <!--[if lt IE 9]>
-  script(src='libs/html5shiv/html5shiv.js')
-  script(src='libs/respond/respond.js')
+  script(src='libs/html5shiv.min.js')
+  script(src='libs/respond.min.js')
   <![endif]-->
 body
   include include/header
@@ -27,15 +27,15 @@ body
     include include/article
     include include/aside
   include include/footer
-  script(src='libs/jquery/jquery-1.11.3.js')
-  script(src='libs/device/device.js')
+  script(src='libs/jquery.min.js')
+  script(src='libs/device.min.js')
   script(src='js/common.js')
-  script(src='libs/pixlayout/pixlayout.js')
+  script(src='libs/jquery.pixlayout.minpixlayout.js')
   //-script.
     $(function () {
       $.pixlayout({
-        src: 'libs/pixlayout/layout-home.jpg',
-        //src: 'libs/pixlayout/layout-home-mob.jpg',
+        src: 'img/layout-home.jpg',
+        //src: 'img/layout-home-mob.jpg',
         opacity: 0.6,
         top: 0,
         center: true,

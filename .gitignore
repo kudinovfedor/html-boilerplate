@@ -1,11 +1,13 @@
+.git
 .idea
 .sass-cache
 bower_components
-node_modules
-copy_root
 build
+copy_root
+node_modules
 *.cmd
-*.zip
 *.rar
+*.zip
 sass/layout/_fk-grid.scss
-libs/pixlayout/*.jpg
+img/layout-home.jpg
+img/layout-home-mob.jpg

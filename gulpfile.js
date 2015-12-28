@@ -65,7 +65,7 @@ gulp.task('libsBower', function () {
     }))
     .pipe(uglify())
     .pipe(filter.restore)
-    .pipe(gulp.dest('libs-bower/'));
+    .pipe(gulp.dest('libs/'));
 });
 
 gulp.task('jade', function () {
