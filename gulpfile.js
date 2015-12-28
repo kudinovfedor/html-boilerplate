@@ -1,8 +1,10 @@
 'use strict';
 
 var gulp = require('gulp'),
+  del = require('del'), // Delete files/folders using globs
   jade = require('jade'), // Jade [npm install --save jade]
   gulpJade = require('gulp-jade'), // jade gulp [npm install --save-dev gulp-jade]
+  gulpFilter = require('gulp-filter'), // Filter files in a vinyl stream [npm install --save-dev gulp-filter]
   rename = require('gulp-rename'), // rename files -- .pipe(rename('all.min.css')) [npm install --save-dev gulp-rename]
   notify = require('gulp-notify'), // event notification -- .pipe(notify('Minification css finished!')) [npm install --save-dev gulp-notify]
   plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber()) [npm install --save-dev gulp-plumber]
@@ -23,39 +25,53 @@ var gulp = require('gulp'),
   minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
 //imagemin = require('gulp-imagemin'), // image optimization [npm install --save imagemin]
   mainBowerFiles = require('main-bower-files'),
-  reporter = scsslintStylish({errorsOnly: false});
+  reporter = scsslintStylish({errorsOnly: false}),
+  config = {
+    connect: {root: '', port: '8080', host: 'localhost', livereload: true, debug: false},
+    bower: {
+      paths: {bowerDirectory: 'bower_components', bowerrc: '.bowerrc', bowerJson: 'bower.json'},
+      debugging: false, checkExistence: true, includeDev: true
+    },
+    jade: {jade: jade, pretty: true},
+    compass: {
+      style: 'expanded', css: 'css', sass: 'sass', javascript: 'js', font: 'fonts', image: 'img',
+      logging: true, time: true, relative: true, comments: false, sourcemap: true, debug: false
+    },
+    sass: {outputStyle: 'expanded', sourceComments: false},
+    autoprefixer: {
+      browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
+      cascade: false, add: true, remove: false
+    },
+    minifyCss: {compatibility: 'ie7', debug: true},
+    scsslint: {config: 'sass/lint.yml', customReport: reporter.issues},
+    jshint: {lookup: true, linter: 'jshint'},
+    filter: {restore: true, passthrough: true}
+  };
 
 gulp.task('connect', function () {
-  connect.server({
-    root: '',
-    port: '8080',
-    host: 'localhost',
-    livereload: true,
-    debug: false
-  });
+  connect.server(config.connect);
 });
 
 gulp.task('libsBower', function () {
-  return gulp.src(mainBowerFiles({
-    debugging: false,
-    paths: {
-      bowerDirectory: 'bower_components',
-      bowerrc: '.bowerrc',
-      bowerJson: 'bower.json'
-    },
-    checkExistence: true,
-    includeDev: true
-  }))
+  var filter = gulpFilter(['jquery.raty.js'], config.filter);
+  return gulp.src(mainBowerFiles(config.bower))
+    .pipe(plumber())
+    .pipe(filter)
+    .pipe(rename({
+      basename: "raty",
+      prefix: "jquery.",
+      suffix: ".min",
+      extname: ".js"
+    }))
+    .pipe(uglify())
+    .pipe(filter.restore)
     .pipe(gulp.dest('libs-bower/'));
 });
 
 gulp.task('jade', function () {
   return gulp.src('jade/*.jade')
     .pipe(plumber())
-    .pipe(gulpJade({
-      jade: jade,
-      pretty: true
-    }))
+    .pipe(gulpJade(config.jade))
     .pipe(notify('Compiling jade in html is successfully completed!'))
     .pipe(gulp.dest('./'))
     .pipe(connect.reload());
@@ -64,24 +80,8 @@ gulp.task('jade', function () {
 gulp.task('compass', function () {
   gulp.src('sass/**/*.scss')
     .pipe(plumber())
-    .pipe(scsslint({
-      config: 'sass/lint.yml',
-      customReport: reporter.issues
-    }))
-    .pipe(compass({
-      style: 'expanded',
-      css: 'css',
-      sass: 'sass',
-      javascript: 'js',
-      font: 'fonts',
-      image: 'img',
-      logging: true,
-      time: true,
-      relative: true,
-      comments: false,
-      sourcemap: true,
-      debug: false
-    }))
+    .pipe(scsslint(config.scsslint))
+    .pipe(compass(config.compass))
     .pipe(notify('Compiling sass in css is successfully completed!'))
     .pipe(gulp.dest('css/'))
     //.pipe(reporter.printSummary)
@@ -92,15 +92,9 @@ gulp.task('sass', function () {
   gulp.src('sass/**/*.scss')
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(scsslint({
-      config: 'sass/lint.yml',
-      customReport: reporter.issues
-    }))
-    .pipe(sass({
-      outputStyle: 'expanded',
-      sourceComments: false
-    }))
-    .pipe(sourcemaps.write('./'))
+    .pipe(scsslint(config.scsslint))
+    .pipe(sass(config.sass))
+    .pipe(sourcemaps.write('/'))
     .pipe(notify('Compiling sass in css is successfully completed!'))
     .pipe(gulp.dest('css/'))
     .pipe(connect.reload());
@@ -110,28 +104,8 @@ gulp.task('css', function () {
   return gulp.src(['css/main.css'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(autoprefixer({
-      browsers: [
-        'Explorer >= 6',
-        'Edge >= 12',
-        'Firefox >= 2',
-        'Chrome >= 4',
-        'Safari >= 3.1',
-        'Opera >= 10.1',
-        'iOS >= 3.2',
-        'OperaMini >= 8',
-        'Android >= 2.1',
-        'BlackBerry >= 7',
-        'OperaMobile >= 12',
-        'ChromeAndroid >= 47',
-        'FirefoxAndroid >= 42',
-        'ExplorerMobile >= 10'
-      ],
-      cascade: false,
-      add: false,
-      remove: false
-    }))
-    .pipe(minifyCss({compatibility: 'ie8'}))
+    //.pipe(autoprefixer(config.autoprefixer))
+    .pipe(minifyCss(config.minifyCss))
     .pipe(rename({
       basename: "main",
       prefix: "",
@@ -147,27 +121,7 @@ gulp.task('css', function () {
 gulp.task('autoprefixer', function () {
   return gulp.src('css/main.css')
     .pipe(plumber())
-    .pipe(autoprefixer({
-      browsers: [
-        'Explorer >= 6',
-        'Edge >= 12',
-        'Firefox >= 2',
-        'Chrome >= 4',
-        'Safari >= 3.1',
-        'Opera >= 10.1',
-        'iOS >= 3.2',
-        'OperaMini >= 8',
-        'Android >= 2.1',
-        'BlackBerry >= 7',
-        'OperaMobile >= 12',
-        'ChromeAndroid >= 47',
-        'FirefoxAndroid >= 42',
-        'ExplorerMobile >= 10'
-      ],
-      cascade: false,
-      add: true,
-      remove: false
-    }))
+    .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest('css/'));
 });
 
@@ -175,10 +129,7 @@ gulp.task('js', function () {
   return gulp.src('js/common.js')
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(jshint({
-      lookup: true,
-      linter: 'jshint'
-    }))
+    .pipe(jshint(config.jshint))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(uglify())
     .pipe(rename({
@@ -223,20 +174,14 @@ gulp.task('html-hint', function () {
 gulp.task('scss-lint', function () {
   return gulp.src('sass/**/*.scss')
     .pipe(plumber())
-    .pipe(scsslint({
-      config: 'sass/lint.yml',
-      customReport: reporter.issues
-    }))
+    .pipe(scsslint(config.scsslint))
     .pipe(reporter.printSummary);
 });
 
 gulp.task('js-hint', function () {
   return gulp.src('js/*.js')
     .pipe(plumber())
-    .pipe(jshint({
-      lookup: true,
-      linter: 'jshint'
-    }))
+    .pipe(jshint(config.jshint))
     .pipe(jshint.reporter('jshint-stylish'));
 });
 
@@ -260,10 +205,14 @@ gulp.task('watch', ['connect', 'jade', 'html-hint', 'compass', 'js'], function (
   gulp.watch('js/common.js', ['js']);
 });
 
+gulp.task('clean', function () {
+  return del(['build/css', 'build/js', 'build/img' ]);
+});
+
 gulp.task('css-build', function () {
   return gulp.src(['css/main.css'])
     .pipe(plumber())
-    .pipe(minifyCss({compatibility: 'ie8'}))
+    .pipe(minifyCss(config.minifyCss))
     .pipe(rename({
       basename: "main",
       prefix: "",
@@ -298,6 +247,6 @@ gulp.task('js-build', function () {
 //    .pipe(gulp.dest('build/img'));
 //});
 
-gulp.task('build', ['css-build', 'js-build'/*, 'img-build'*/]);
+gulp.task('build', ['clean', 'css-build', 'js-build'/*, 'img-build'*/]);
 
-gulp.task('default', ['watch'], function () {});
+gulp.task('default', ['watch']);
