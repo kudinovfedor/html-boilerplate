@@ -5,7 +5,7 @@ var gulp = require('gulp'),
   jade = require('jade'), // Jade [npm install --save jade]
   gulpJade = require('gulp-jade'), // jade gulp [npm install --save-dev gulp-jade]
   gulpFilter = require('gulp-filter'), // Filter files in a vinyl stream [npm install --save-dev gulp-filter]
-  rename = require('gulp-rename'), // rename files -- .pipe(rename('all.min.css')) [npm install --save-dev gulp-rename]
+  rename = require('gulp-rename'),// rename files {basename:'scripts',prefix:'jquery.',suffix:'.min',extname:'.js'} [npm install --save-dev gulp-rename]
   notify = require('gulp-notify'), // event notification -- .pipe(notify('Minification css finished!')) [npm install --save-dev gulp-notify]
   plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber()) [npm install --save-dev gulp-plumber]
   compass = require('gulp-compass'), // compass + sass -- style: nested, expanded, compact, compressed [npm install --save-dev gulp-compass] [gem update --system] [gem install compass]
@@ -55,12 +55,7 @@ gulp.task('libsBower', function () {
   return gulp.src(mainBowerFiles(config.bower))
     .pipe(plumber())
     .pipe(filter)
-    .pipe(rename({
-      basename: 'raty',
-      prefix: 'jquery.',
-      suffix: '.min',
-      extname: '.js'
-    }))
+    .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(filter.restore)
     .pipe(gulp.dest('libs/'));
@@ -92,12 +87,7 @@ gulp.task('css', function () {
     .pipe(sourcemaps.init())
     //.pipe(autoprefixer(config.autoprefixer))
     .pipe(minifyCss(config.minifyCss))
-    .pipe(rename({
-      basename: 'main',
-      prefix: '',
-      suffix: '.min',
-      extname: '.css'
-    }))
+    .pipe(rename({suffix: '.min'}))
     .pipe(notify('Minify css completed successfully!'))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
@@ -118,12 +108,7 @@ gulp.task('js', function () {
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(uglify())
-    .pipe(rename({
-      basename: 'common',
-      prefix: '',
-      suffix: '.min',
-      extname: '.js'
-    }))
+    .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
     .pipe(notify({
       title: '',
@@ -192,19 +177,14 @@ gulp.task('watch', ['connect', 'jade', 'compass', 'js'], function () {
 });
 
 gulp.task('clean', function () {
-  return del(['build/css', 'build/js', 'build/img' ]);
+  return del(['build/css', 'build/js', 'build/img']);
 });
 
 gulp.task('css-build', function () {
   return gulp.src(['css/main.css'])
     .pipe(plumber())
     .pipe(minifyCss(config.minifyCss))
-    .pipe(rename({
-      basename: 'main',
-      prefix: '',
-      suffix: '.min',
-      extname: '.css'
-    }))
+    .pipe(rename({suffix: '.min'}))
     .pipe(notify('Minify css completed successfully!'))
     .pipe(gulp.dest('build/css/'));
 });
@@ -213,12 +193,7 @@ gulp.task('js-build', function () {
   return gulp.src('js/common.js')
     .pipe(plumber())
     .pipe(uglify())
-    .pipe(rename({
-      basename: 'common',
-      prefix: '',
-      suffix: '.min',
-      extname: '.js'
-    }))
+    .pipe(rename({suffix: '.min'}))
     .pipe(notify('Minify js completed successfully!'))
     .pipe(gulp.dest('build/js/'));
 });
