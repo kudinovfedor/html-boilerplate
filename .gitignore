@@ -8,6 +8,8 @@ node_modules
 *.cmd
 *.rar
 *.zip
+*.css.map
+*.js.map
 sass/layout/_fk-grid.scss
 img/layout-home.jpg
 img/layout-home-mob.jpg

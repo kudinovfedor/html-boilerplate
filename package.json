@@ -6,8 +6,7 @@
   "dependencies": {
     "bower": "^1.7.1",
     "gulp": "^3.9.0",
-    "jade": "^1.11.0",
-    "node-sass": "^3.4.2"
+    "jade": "^1.11.0"
   },
   "devDependencies": {
     "del": "^2.2.0",
@@ -24,7 +23,6 @@
     "gulp-notify": "^2.2.0",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.1.1",
     "gulp-scss-lint": "^0.3.8",
     "gulp-scss-lint-stylish2": "^2.0.2",
     "gulp-sourcemaps": "^1.6.0",
@@ -37,7 +35,7 @@
     "set-all": "npm run gem-install && npm run npm-install && npm run gulp-install && npm run bower-install",
     "gem-install": "gem update --system && gem install compass sass scss_lint",
     "npm-install": "npm install --global jade gulp bower htmlhint jshint",
-    "gulp-install": "npm install --save bower gulp jade node-sass && npm install --save-dev jshint gulp-jshint && npm install --save-dev",
+    "gulp-install": "npm install --save bower gulp jade && npm install --save-dev jshint gulp-jshint && npm install --save-dev",
     "bower-install": "bower install && gulp libsBower"
   },
   "repository": {
