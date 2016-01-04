@@ -1,4 +1,35 @@
-AddDefaultCharset UTF-8
+# Charset of files
+AddDefaultCharset utf-8
+
+# Don't show a list of files in a directory
 Options -Indexes
+
+# DirectoryIndex - override the default file
 DirectoryIndex index.html
+
+# Bad Rquest
+#ErrorDocument 400 /400.html
+# Authorization Required
+#ErrorDocument 401 /401.html
+# Forbidden
+#ErrorDocument 403 /403.html
+# Not found
+#ErrorDocument 404 /404.html
+# Method Not Allowed
+#ErrorDocument 405 /405.html
+# Request Timed Out
+#ErrorDocument 408 /408.html
+# Request URI Too Long
+#ErrorDocument 414 /414.html
+# Internal Server Error
+#ErrorDocument 500 /500.html
+# Not Implemented
+#ErrorDocument 501 /501.html
+# Bad Gateway
+#ErrorDocument 502 /502.html
+# Service Unavailable
+#ErrorDocument 503 /503.html
+# Gateway Timeout
+#ErrorDocument 504 /504.html
+
 #deny from all
