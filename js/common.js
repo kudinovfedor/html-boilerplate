@@ -14,6 +14,11 @@
       $(this).removeClass('error');
     });
 
+    // Verification of support autofocus
+    if (!("autofocus" in document.createElement("input"))) {
+      $(".autofocus").focus();
+    }
+
     // JS for working with accordion
     $('.fk-accordion-switch').on('click', function () {
 
