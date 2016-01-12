@@ -1,9 +1,10 @@
 //- template.jade
 doctype html
-<!--[if lt IE 7 ]><html lang="en" class="ie ie6 no-js"><![endif]-->
-<!--[if IE 7 ]><html lang="en" class="ie ie7 no-js"><![endif]-->
-<!--[if IE 8 ]><html lang="en" class="ie ie8 no-js"><![endif]-->
-<!--[if (gte IE 9)|!(IE)]--><html lang="en" class="not-ie no-js"><!--<![endif]-->
+<!--[if lt IE 7 ]><html lang="en" class="ie6 no-js"><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="ie7 no-js"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie8 no-js"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie9 no-js"><![endif]-->
+<!--[if (gt IE 9)|!(IE)]<!--><html lang="en" class="no-js"><!--<![endif]-->
 head
   meta(charset='utf-8')
   meta(http-equiv='X-UA-Compatible', content='IE=edge')
@@ -19,8 +20,8 @@ head
   link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
   link(rel='stylesheet', href='css/main.css', media='screen')
   script(src='libs/modernizr.min.js')
-  //- <!--[if (lt IE 9)&(!IEMobile)]><![endif]-->
-  <!--[if lt IE 9]>
+  //- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
+  <!--[if (lt IE 9)&(!IEMobile)]>
   script(src='libs/html5shiv.min.js')
   script(src='libs/respond.min.js')
   <![endif]-->

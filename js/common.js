@@ -7,7 +7,7 @@
   $(function () {
 
     // If JavaScript enabled
-    $("html").removeClass("no-js").addClass("js");
+    $('html').removeClass('no-js').addClass('js');
 
     // Remove class .error when receives focus
     $('.error').on('focus', function () {
@@ -15,8 +15,8 @@
     });
 
     // Verification of support autofocus
-    if (!("autofocus" in document.createElement("input"))) {
-      $(".autofocus").focus();
+    if (!('autofocus' in document.createElement('input'))) {
+      $('.autofocus').focus();
     }
 
     // JS for working with accordion

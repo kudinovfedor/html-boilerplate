@@ -13,7 +13,7 @@ $ npm run set-all
 $ gem update --system && gem install compass sass scss_lint
 
 # install Jade, Gulp, Bower, htmlhint, jshint
-$ npm install --global jade gulp bower htmlhint jshint
+$ npm install --global jade gulp bower htmlhint jshint bower-update npm-check-updates
 
 # install dependencies listed in package.json
 $ npm install
