@@ -1,4 +1,12 @@
 // VARIABLES
+$default-support-pie: true !default;
+$enable-pie-absolute-path: true !default;
+$pie-absolute-path: 'http://site_url/css/pie.htc' !default;
+$pie-path-ie9: 'css/pie.htc' !default;
+$pie-path-ie8: 'css/pie.htc' !default;
+$pie-path-ie7: 'css/pie.htc' !default;
+$pie-path-ie6: 'css/pie.htc' !default;
+
 $default-support-opacity-old-browsers: false !default;
 $default-border-radius: 5px !default;
 

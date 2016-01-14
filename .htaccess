@@ -1,6 +1,8 @@
 # Charset of files
 AddDefaultCharset utf-8
 
+AddType text/x-component .htc
+
 # Don't show a list of files in a directory
 Options -Indexes
 

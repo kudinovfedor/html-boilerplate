@@ -1,0 +1,8 @@
+.ie9,
+.ie8,
+.ie7,
+.ie6 {
+  behavior: url("http://site_url/css/pie.htc");
+  position: relative;
+  zoom: 1;
+}

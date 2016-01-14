@@ -19,16 +19,22 @@ head
   meta(name='x-rim-auto-match', content='none')
   link(rel='shortcut icon', href='img/favicon.ico', type='image/x-icon')
   link(rel='stylesheet', href='css/main.css', media='screen')
-  script(src='libs/modernizr.min.js')
   //- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
   <!--[if (lt IE 9)&(!IEMobile)]>
   script(src='libs/html5shiv.min.js')
   script(src='libs/respond.min.js')
   <![endif]-->
+  <!--[if (gte IE 6)&(lte IE 8)]>
+  script(src='libs/selectivizr.min.js')
+  <![endif]-->
+  <!--[if (lte IE 9)&(!IEMobile)]>
+  link(rel='stylesheet', href='css/ie.css')
+  <![endif]-->
 body
   block content
-  script(src='libs/jquery.min.js')
   script(src='libs/device.min.js')
+  script(src='libs/modernizr.min.js')
+  script(src='libs/jquery.min.js')
   script(src='js/common.js')
   script(src='libs/jquery.pixlayout.min.js')
   //

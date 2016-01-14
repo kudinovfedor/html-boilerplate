@@ -1,0 +1,31 @@
+@charset 'UTF-8';
+@import 'compass/css3';
+@import 'utilities/variables';
+@import 'utilities/mixins';
+@import 'utilities/functions';
+@import 'utilities/placeholders';
+
+.ie9,
+.ie8,
+.ie7,
+.ie6 {
+  @extend %pie !optional;
+}
+
+@if ($enable-pie-absolute-path == false) {
+  .ie9 {
+    @extend %pie-ie9 !optional;
+  }
+
+  .ie8 {
+    @extend %pie-ie8 !optional;
+  }
+
+  .ie7 {
+    @extend %pie-ie7 !optional;
+  }
+
+  .ie6 {
+    @extend %pie-ie6 !optional;
+  }
+}

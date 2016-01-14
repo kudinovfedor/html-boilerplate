@@ -82,7 +82,7 @@ gulp.task('compass', function () {
 });
 
 gulp.task('css', function () {
-  return gulp.src(['css/main.css'])
+  return gulp.src(['css/main.css', 'css/ie.css'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
     //.pipe(autoprefixer(config.autoprefixer))
@@ -172,7 +172,7 @@ gulp.task('watch', ['connect', 'jade', 'compass', 'js'], function () {
   gulp.watch('jade/*.jade', ['jade']);
   gulp.watch('*.html', ['html-hint']);
   gulp.watch('sass/**/*.scss', ['compass']);
-  gulp.watch('css/main.css', ['css']);
+  gulp.watch(['css/main.css', 'css/ie.css'], ['css']);
   gulp.watch('js/common.js', ['js']);
 });
 
@@ -181,7 +181,7 @@ gulp.task('clean', function () {
 });
 
 gulp.task('css-build', function () {
-  return gulp.src(['css/main.css'])
+  return gulp.src(['css/main.css', 'css/ie.css'])
     .pipe(plumber())
     .pipe(minifyCss(config.minifyCss))
     .pipe(rename({suffix: '.min'}))

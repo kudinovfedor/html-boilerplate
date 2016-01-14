@@ -48,7 +48,8 @@
     "modernizr": "~3.3.0",
     "pixlayout": "~0.9.7",
     "raty.js": "~2.7.0",
-    "respond": "~1.4.2"
+    "respond": "~1.4.2",
+    "selectivizr": "~1.0.2"
   },
   "overrides": {
     "device.js": {
@@ -87,6 +88,11 @@
     "respond": {
       "main": [
         "./dest/respond.min.js"
+      ]
+    },
+    "selectivizr": {
+      "main": [
+        "selectivizr.js"
       ]
     }
   }
