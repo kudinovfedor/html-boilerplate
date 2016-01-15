@@ -9,23 +9,29 @@
 .ie8,
 .ie7,
 .ie6 {
-  @extend %pie !optional;
+  //List of selectors here. Uncomment the lines from 7 to 9 order to use PIE
+  //.css3-pie,
+  //.css3-pie-gradient {
+  //  @extend %pie !optional;
+  //}
 }
 
-@if ($enable-pie-absolute-path == false) {
-  .ie9 {
-    @extend %pie-ie9 !optional;
-  }
-
-  .ie8 {
-    @extend %pie-ie8 !optional;
-  }
-
-  .ie7 {
-    @extend %pie-ie7 !optional;
-  }
-
-  .ie6 {
-    @extend %pie-ie6 !optional;
-  }
-}
+// Example
+//.css3-pie,
+//.css3-pie-gradient {
+//  width: 200px;
+//  height: 200px;
+//  margin: 10px auto;
+//  background-color: #f2f2f2;
+//}
+//
+//.css3-pie {
+//  @include border-radius(5px);
+//  @include box-shadow(2px 2px 5px #000);
+//}
+//
+//.css3-pie-gradient {
+//  background: #f2f2f2;
+//  background: linear-gradient(-90deg, #ccc, #c2e8fa);
+//  @include pie-background(linear-gradient(-90deg, #ccc, #c2e8fa));
+//}

@@ -65,48 +65,48 @@ gulp.task('jade', function () {
   return gulp.src(['jade/*.jade', '!jade/template.jade'])
     .pipe(plumber())
     .pipe(gulpJade(config.jade))
-    .pipe(notify('Compiling jade in html is successfully completed!'))
+    .pipe(notify({message: 'Compiling jade in html is successfully completed!', onLast: true}))
     .pipe(gulp.dest('./'))
     .pipe(connect.reload());
 });
 
 gulp.task('compass', function () {
-  gulp.src('sass/**/*.scss')
+  gulp.src(['sass/**/*.scss'])
     .pipe(plumber())
     .pipe(scsslint(config.scsslint))
     .pipe(compass(config.compass))
-    .pipe(notify('Compiling sass in css is successfully completed!'))
+    .pipe(notify({message: 'Compiling sass in css is successfully completed!'}))
     .pipe(gulp.dest('css/'))
     //.pipe(reporter.printSummary)
     .pipe(connect.reload());
 });
 
 gulp.task('css', function () {
-  return gulp.src(['css/main.css', 'css/ie.css'])
+  return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
     //.pipe(autoprefixer(config.autoprefixer))
     .pipe(minifyCss(config.minifyCss))
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify('Minify css completed successfully!'))
+    .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
     .pipe(connect.reload());
 });
 
 gulp.task('autoprefixer', function () {
-  return gulp.src('css/main.css')
+  return gulp.src(['css/main.css'])
     .pipe(plumber())
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest('css/'));
 });
 
 gulp.task('js', function () {
-  return gulp.src('js/common.js')
+  return gulp.src(['js/common.js'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
-    .pipe(jshint.reporter('jshint-stylish'))
+    .pipe(jshint.reporter(stylish))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
@@ -133,27 +133,27 @@ gulp.task('js', function () {
 //});
 
 gulp.task('html-hint', function () {
-  gulp.src('*.html')
+  gulp.src(['*.html'])
     .pipe(plumber())
     .pipe(htmlhint('.htmlhintrc'))
-    .pipe(notify('Checking html file is successfully completed!'))
+    .pipe(notify({message: 'Checking html file is successfully completed!'}))
     .pipe(htmlhint.reporter())
     //.pipe(htmlhint.failReporter({ supress: true }));
     .pipe(connect.reload());
 });
 
 gulp.task('scss-lint', function () {
-  return gulp.src('sass/**/*.scss')
+  return gulp.src(['sass/**/*.scss'])
     .pipe(plumber())
     .pipe(scsslint(config.scsslint))
     .pipe(reporter.printSummary);
 });
 
 gulp.task('js-hint', function () {
-  return gulp.src('js/*.js')
+  return gulp.src(['js/*.js'])
     .pipe(plumber())
     .pipe(jshint(config.jshint))
-    .pipe(jshint.reporter('jshint-stylish'));
+    .pipe(jshint.reporter(stylish));
 });
 
 gulp.task('jade-watch', ['jade'], function () {
@@ -164,15 +164,11 @@ gulp.task('compass-watch', ['compass'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
 });
 
-gulp.task('sass-watch', ['sass'], function () {
-  gulp.watch('sass/**/*.scss', ['sass']);
-});
-
-gulp.task('watch', ['connect', 'jade', 'compass', 'js'], function () {
+gulp.task('watch', ['connect', 'jade', 'js', 'compass'], function () {
   gulp.watch('jade/*.jade', ['jade']);
   gulp.watch('*.html', ['html-hint']);
   gulp.watch('sass/**/*.scss', ['compass']);
-  gulp.watch(['css/main.css', 'css/ie.css'], ['css']);
+  gulp.watch(['css/*.css', '!css/*.min.css'], ['css']);
   gulp.watch('js/common.js', ['js']);
 });
 
@@ -181,20 +177,20 @@ gulp.task('clean', function () {
 });
 
 gulp.task('css-build', function () {
-  return gulp.src(['css/main.css', 'css/ie.css'])
+  return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber())
     .pipe(minifyCss(config.minifyCss))
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify('Minify css completed successfully!'))
+    .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
     .pipe(gulp.dest('build/css/'));
 });
 
 gulp.task('js-build', function () {
-  return gulp.src('js/common.js')
+  return gulp.src(['js/common.js'])
     .pipe(plumber())
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify('Minify js completed successfully!'))
+    .pipe(notify({message: 'Minify js completed successfully!', onLast: true}))
     .pipe(gulp.dest('build/js/'));
 });
 

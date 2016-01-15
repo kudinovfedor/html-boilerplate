@@ -1,6 +1,5 @@
 @mixin pie-background($background...) {
   @if ($default-support-pie) {
     -pie-background: $background;
-    @extend %pie !optional;
   }
 }

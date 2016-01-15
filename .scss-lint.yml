@@ -122,7 +122,9 @@ linters:
 
   PropertySpelling:
     enabled: true
-    extra_properties: []
+    extra_properties: [
+      'behavior' # css3 pie
+    ]
 
   PropertyUnits:
     enabled: true
@@ -235,3 +237,13 @@ linters:
 
   Compass::*:
     enabled: false
+
+  #Compass::PropertyWithMixin:
+  #  enabled: true #edit
+  #  ignore:
+  #    - 'inline-block'
+  #    - 'text-shadow'
+  #    - 'border-radius'
+  #    - 'box-shadow'
+  #    - 'box-sizing'
+  #    - 'opacity'
