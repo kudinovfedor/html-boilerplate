@@ -277,11 +277,13 @@ textarea {
 ::-moz-selection {
   background-color: #338fff;
   color: #fff;
+  text-shadow: none;
 }
 
 ::selection {
   background-color: #338fff;
   color: #fff;
+  text-shadow: none;
 }
 
 html {

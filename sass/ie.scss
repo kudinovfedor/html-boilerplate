@@ -5,6 +5,32 @@
 @import 'utilities/functions';
 @import 'utilities/placeholders';
 
+.lt-ie10 {}
+
+.lt-ie9 {}
+
+.lt-ie8 {}
+
+.lt-ie7 {
+  .chromeframe {
+    background-color: #ccc;
+    color: #000;
+    margin: 0;
+    padding: .5em 0;
+    text-align: center;
+  }
+}
+
+.ie9 {}
+
+.ie8 {}
+
+.ie7 {}
+
+.ie6 {}
+
+.ie {}
+
 .ie9,
 .ie8,
 .ie7,
