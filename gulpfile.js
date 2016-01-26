@@ -24,6 +24,9 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'), // min js [npm install --save-dev gulp-uglify]
   minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
   realFavicon = require ('gulp-real-favicon'), // Generate a multiplatform favicon with RealFaviconGenerator
+  svgstore = require('gulp-svgstore'), // Combine svg files into one with <symbol> elements [npm install --save-dev gulp-svgstore]
+  svgmin = require('gulp-svgmin'), // Minify SVG files [npm install --save-dev gulp-svgmin]
+  raster = require('gulp-raster'), // svg to png, for retina @2x [npm install --save-dev gulp-raster]
 //imagemin = require('gulp-imagemin'), // image optimization [npm install --save imagemin]
   mainBowerFiles = require('main-bower-files'),
   FAVICON_DATA_FILE = 'faviconData.json', // File where the favicon markups are stored
@@ -64,8 +67,32 @@ gulp.task('libsBower', function () {
     .pipe(gulp.dest('libs/'));
 });
 
+gulp.task('svg-sprite', function () {
+  return gulp.src(['img/svg/*.svg', '!img/svg/*_hover.svg'])
+    .pipe(svgmin({js2svg: {pretty: false}}))
+    .pipe(svgstore({inlineSvg: true}))
+    .pipe(rename({basename: "svg", prefix: "", suffix: "-sprite", extname: ".svg"}))
+    .pipe(gulp.dest('img/'));
+});
+
+gulp.task('retina1dppx', function () {
+  gulp.src('img/svg/*.svg')
+    .pipe(raster({format: 'png', scale: 1}))
+    .pipe(rename({extname: '.png'}))
+    .pipe(gulp.dest('img/svgfallback'));
+});
+
+gulp.task('retina2dppx', function () {
+  gulp.src('img/svg/*.svg')
+    .pipe(raster({format: 'png', scale: 2}))
+    .pipe(rename({extname: '.png', suffix: '@2x'}))
+    .pipe(gulp.dest('img/svgfallback'));
+});
+
+gulp.task('svg', ['svg-sprite', 'retina1dppx', 'retina2dppx'], function () {});
+
 gulp.task('jade', function () {
-  return gulp.src(['jade/*.jade', '!jade/template.jade'])
+  return gulp.src(['jade/**/*.jade', '!jade/template.jade'])
     .pipe(plumber())
     .pipe(gulpJade(config.jade))
     .pipe(notify({message: 'Compiling jade in html is successfully completed!', onLast: true}))
@@ -168,11 +195,12 @@ gulp.task('compass-watch', ['compass'], function () {
 });
 
 gulp.task('watch', ['connect', 'jade', 'js', 'compass'], function () {
-  gulp.watch('jade/*.jade', ['jade']);
+  gulp.watch('jade/**/*.jade', ['jade']);
   gulp.watch('*.html', ['html-hint']);
   gulp.watch('sass/**/*.scss', ['compass']);
   gulp.watch(['css/*.css', '!css/*.min.css'], ['css']);
   gulp.watch('js/common.js', ['js']);
+  gulp.watch('img/svg/*.svg', ['svg']);
 });
 
 gulp.task('clean', function () {

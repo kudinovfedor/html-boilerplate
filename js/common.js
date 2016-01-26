@@ -6,8 +6,11 @@
   // Function to execute when the DOM is fully loaded.
   $(function () {
 
+    // dppx value of retina display
+    var dppx = window.devicePixelRatio + 'dppx';
+
     // If JavaScript enabled
-    $('html').removeClass('no-js').addClass('js');
+    $('html').removeClass('no-js').addClass('js ' + dppx);
 
     // Remove class .error when receives focus
     $('.error').on('focus', function () {

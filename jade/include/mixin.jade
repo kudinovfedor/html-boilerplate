@@ -1,0 +1,9 @@
+mixin list(ul_class, ...items)
+  ul(class=ul_class)
+    each item in items
+      li= item
+mixin list-link(ul_class, ...items)
+  ul(class=ul_class)
+    each item in items
+      li
+        a(href="#")= item

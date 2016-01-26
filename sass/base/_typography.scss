@@ -124,3 +124,9 @@ caption {
 th {
   text-align: left;
 }
+
+svg {
+  @include transition(fill .2s ease-in);
+}
+
+/* ====================  END TYPOGRAPHY  ==================== */

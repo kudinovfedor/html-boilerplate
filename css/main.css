@@ -265,6 +265,7 @@ textarea {
   box-shadow: none;
 }
 
+/* ====================  END NORMALIZE  ==================== */
 /* ====================  TYPOGRAPHY  ==================== */
 *,
 *:before,
@@ -403,3 +404,12 @@ caption {
 th {
   text-align: left;
 }
+
+svg {
+  -moz-transition: fill 0.2s ease-in;
+  -o-transition: fill 0.2s ease-in;
+  -webkit-transition: fill 0.2s ease-in;
+  transition: fill 0.2s ease-in;
+}
+
+/* ====================  END TYPOGRAPHY  ==================== */
