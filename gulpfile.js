@@ -92,7 +92,7 @@ gulp.task('retina2dppx', function () {
 gulp.task('svg', ['svg-sprite', 'retina1dppx', 'retina2dppx'], function () {});
 
 gulp.task('jade', function () {
-  return gulp.src(['jade/**/*.jade', '!jade/template.jade'])
+  return gulp.src(['jade/*.jade', '!jade/template.jade'])
     .pipe(plumber())
     .pipe(gulpJade(config.jade))
     .pipe(notify({message: 'Compiling jade in html is successfully completed!', onLast: true}))
