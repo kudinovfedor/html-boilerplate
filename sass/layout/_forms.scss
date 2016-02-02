@@ -45,12 +45,15 @@ select {
 
 input,
 textarea {
-  &:focus {
-    &:invalid {}
-  }
 
   &:required {
+    &:invalid {}
+
     &:valid {}
+  }
+
+  &:focus {
+    &:invalid {}
   }
 }
 
