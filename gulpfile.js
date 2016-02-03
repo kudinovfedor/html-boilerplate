@@ -39,8 +39,9 @@ var gulp = require('gulp'),
     },
     jade: {jade: jade, pretty: true},
     compass: {
-      style: 'expanded', css: 'css', sass: 'sass', javascript: 'js', font: 'fonts', image: 'img',
-      logging: true, time: true, relative: true, comments: false, sourcemap: false, debug: false
+      config_file: 'config.rb', require: false, environment: 'development', http_path: '/',
+      css: 'css', font: 'fonts', image: 'img', javascript: 'js', sass: 'sass', style: 'expanded',
+      relative: true, comments: false, logging: true, time: true, sourcemap: false, debug: false, task: 'compile' /*watch*/
     },
     autoprefixer: {
       browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
