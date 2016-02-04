@@ -19,6 +19,9 @@ images_dir = "img"
 javascripts_dir = "js"
 # The directory where the sass stylesheets are kept.
 sass_dir = "sass"
+# The directory where generated images are kept. It is relative to the project_path.
+# Defaults to the value of images_dir.
+generated_images_dir = images_dir + "/sprite"
 
 # You can select your preferred output style here (can be overridden via the command line):
 # output_style = :expanded or :nested or :compact or :compressed
