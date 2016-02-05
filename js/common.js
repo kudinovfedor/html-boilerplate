@@ -6,7 +6,6 @@
   // Preloader
   $(window).on('load', function () {
     $('.preloader').delay(350).fadeOut('slow');
-    console.log("window loaded");
   });
 
   // Function to execute when the DOM is fully loaded.
