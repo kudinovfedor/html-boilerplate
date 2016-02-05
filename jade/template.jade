@@ -65,6 +65,7 @@ body
     a(href='http://browsehappy.com/?locale=en', target='_blank') Upgrade your browser today.
   <![endif]-->
   block content
+  //-.preloader
   script(src='libs/device.min.js')
   script(src='libs/modernizr.min.js')
   script(src='libs/jquery.min.js')
@@ -83,4 +84,5 @@ body
         pervious: true
       });
     });
+  //-include include/svg
 </html>

@@ -3,11 +3,22 @@
   // Mode of the modern standard
   'use strict';
 
+  // Preloader
+  $(window).on('load', function () {
+    $('.preloader').delay(350).fadeOut('slow');
+    console.log("window loaded");
+  });
+
   // Function to execute when the DOM is fully loaded.
   $(function () {
 
+    // Variables
+    var dppx ='';
+
     // dppx value of retina display
-    var dppx = window.devicePixelRatio + 'dppx';
+    if (window.devicePixelRatio !== undefined) {
+      dppx = window.devicePixelRatio + 'dppx';
+    }
 
     // If JavaScript enabled
     $('html').removeClass('no-js').addClass('js ' + dppx);
