@@ -5,12 +5,13 @@
     display: -webkit-box;
     display: -moz-box;
     display: -ms-flexbox;
+    display: -webkit-#{$flexbox};
   } @else if ($flexbox == inline-flex) {
     display: -webkit-inline-box;
     display: -moz-inline-box;
     display: -ms-inline-flexbox;
+    display: -webkit-#{$flexbox};
   }
-  display: -webkit-#{$flexbox};
   display: $flexbox;
 }
 
