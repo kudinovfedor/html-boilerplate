@@ -48,11 +48,17 @@
     });
 
     // Universal JavaScript for blocks with tabs
-    $('.fk-tabs-list').on('click', 'li:not(.active)', function () {
-      $(this)
-        .addClass('active').siblings().removeClass('active')
-        .closest('.fk-tabs').find('.fk-tab-item').removeClass('active').eq($(this).index()).addClass('active');
-    });
+    var tabs_ul = $('.fk-tabs-list'), tabs_parent = $('.fk-tabs'), tabs_child = $('.fk-tab-item');
+
+    tabs(tabs_ul, tabs_parent, tabs_child);
+
+    function tabs(ul, parent, child){
+      ul.on('click', 'li:not(.active)', function () {
+        $(this)
+          .addClass('active').siblings().removeClass('active')
+          .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
+      });
+    }
 
   });
 
