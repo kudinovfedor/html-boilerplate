@@ -1,16 +1,4 @@
 /* ====================  FORMS  ==================== */
-@include placeholder {
-  color: #afafaf;
-  text-overflow: ellipsis;
-};
-
-:focus {
-  @include placeholder(true) {
-    color: transparent;
-    @include opacity(0);
-  }
-}
-
 form {
   max-width: 100%;
   margin-bottom: 10px;
@@ -23,16 +11,16 @@ legend {}
 
 label {}
 
+select,
+textarea,
 input[type='text'],
-input[type='password'],
-input[type='email'],
-input[type='search'],
 input[type='tel'],
 input[type='url'],
-input[type='number'],
 input[type='file'],
-textarea,
-select {
+input[type='email'],
+input[type='search'],
+input[type='number'],
+input[type='password'] {
   //width: 100%;
   border: 1px solid #ccc;
   margin-bottom: 10px;
@@ -45,30 +33,37 @@ select {
 
 input,
 textarea {
-
-  &:required {
-    &:invalid {}
-
-    &:valid {}
+  @include input-placeholder {
+    color: #afafaf;
+    text-overflow: ellipsis;
   }
 
   &:focus {
-    &:invalid {}
+    @include input-placeholder {
+      color: transparent;
+      @include opacity(0);
+    }
   }
+
+  &.invalid,
+  &:required:invalid {}
+
+  &.valid,
+  &:required:valid {}
 }
 
-button[type='submit'],
-input[type='submit'] {
+input[type='submit'],
+button[type='submit'] {
 
   &:hover {}
 
   &:focus {}
 }
 
-button[type='button'],
-button[type='reset'],
+input[type='reset'],
 input[type='button'],
-input[type='reset'] {
+button[type='reset'],
+button[type='button'] {
 
   &:hover {}
 
@@ -83,11 +78,9 @@ textarea {
 }
 
 input,
-textarea,
-select {
-  &.error {
-
-  }
+select,
+textarea {
+  &.error {}
 }
 
 select {}

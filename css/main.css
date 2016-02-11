@@ -362,11 +362,9 @@ p {
 }
 
 a {
-  color: #000;
   text-decoration: underline;
 }
 a:hover {
-  color: #555;
   text-decoration: none;
 }
 
@@ -401,7 +399,8 @@ caption {
   text-align: left;
 }
 
-th {
+th,
+td {
   text-align: left;
 }
 
@@ -413,3 +412,72 @@ svg {
 }
 
 /* ====================  END TYPOGRAPHY  ==================== */
+/* ====================  FORMS  ==================== */
+form {
+  max-width: 100%;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+select,
+textarea,
+input[type='text'],
+input[type='tel'],
+input[type='url'],
+input[type='file'],
+input[type='email'],
+input[type='search'],
+input[type='number'],
+input[type='password'] {
+  border: 1px solid #ccc;
+  margin-bottom: 10px;
+  padding: 8px 10px;
+}
+
+input:-moz-placeholder,
+textarea:-moz-placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+}
+input::-moz-placeholder,
+textarea::-moz-placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+}
+input:-ms-input-placeholder,
+textarea:-ms-input-placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+}
+input::-webkit-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+}
+input:focus:-moz-placeholder,
+textarea:focus:-moz-placeholder {
+  color: transparent;
+  opacity: 0;
+}
+input:focus::-moz-placeholder,
+textarea:focus::-moz-placeholder {
+  color: transparent;
+  opacity: 0;
+}
+input:focus:-ms-input-placeholder,
+textarea:focus:-ms-input-placeholder {
+  color: transparent;
+  opacity: 0;
+}
+input:focus::-webkit-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+  color: transparent;
+  opacity: 0;
+}
+
+textarea {
+  min-height: 100px;
+  resize: vertical;
+}
+
+/* ====================  END FORMS  ==================== */

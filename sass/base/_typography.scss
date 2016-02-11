@@ -76,17 +76,17 @@ p {
 }
 
 a {
-  color: $default-link-color;
   text-decoration: underline;
   &:link {}
+
   &:visited {}
 
   &:hover {
-    color: $default-link-color-hover;
     text-decoration: none;
   }
 
   &:active {}
+
   &:focus {}
 }
 
@@ -121,7 +121,8 @@ caption {
   text-align: left;
 }
 
-th {
+th,
+td {
   text-align: left;
 }
 

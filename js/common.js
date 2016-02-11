@@ -12,7 +12,7 @@
   $(function () {
 
     // Variables
-    var dppx ='';
+    var dppx = '';
 
     // dppx value of retina display
     if (window.devicePixelRatio !== undefined) {
@@ -52,13 +52,20 @@
 
     tabs(tabs_ul, tabs_parent, tabs_child);
 
-    function tabs(ul, parent, child){
+    function tabs(ul, parent, child) {
       ul.on('click', 'li:not(.active)', function () {
         $(this)
           .addClass('active').siblings().removeClass('active')
           .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
       });
     }
+
+    // Make something with an element when clicked beyond its borders
+    $(document).click(function (e) {
+      if (!($(e.target).closest('').length)) {
+        console.log('An event click occurred after clicking by tag body');
+      }
+    });
 
   });
 
