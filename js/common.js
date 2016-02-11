@@ -61,8 +61,8 @@
     }
 
     // Make something with an element when clicked beyond its borders
-    $(document).click(function (e) {
-      if (!($(e.target).closest('').length)) {
+    $(document).on('click', function (e) {
+      if (!$(e.target).closest('').length) {
         console.log('An event click occurred after clicking by tag body');
       }
     });
