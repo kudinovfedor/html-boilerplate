@@ -103,7 +103,7 @@ gulp.task('ie8', ['ie8-concat'], function () {
   return gulp.src(['js/ie8.js'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(rename({basename: 'ie8', suffix: '.min', extname: '.js'}))
+    .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('js/'));
@@ -120,7 +120,7 @@ gulp.task('all-js-in-one', ['all-js-concat'], function () {
   return gulp.src(['js/all.js'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
-    .pipe(rename({basename: 'all', suffix: '.min', extname: '.js'}))
+    .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('js/'));
