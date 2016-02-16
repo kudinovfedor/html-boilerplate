@@ -48,8 +48,10 @@ head
   meta(name='msapplication-config', content='img/favicon/browserconfig.xml')
   meta(name='theme-color', content='#ffffff')
   link(rel='stylesheet', href='css/main.css', media='screen')
+  //-link(rel='stylesheet', href='css/main.min.css', media='screen')
   <!--[if (lte IE 9)&(!IEMobile)]>
   link(rel='stylesheet', href='css/ie.css', media='screen')
+  //-link(rel='stylesheet', href='css/ie.min.css', media='screen')
   <![endif]-->
   //- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
   <!--[if (lt IE 9)&(!IEMobile)]>
@@ -65,10 +67,15 @@ body
   <![endif]-->
   block content
   //-.preloader
-  script(src='libs/device.min.js')
-  script(src='libs/modernizr.min.js')
-  script(src='libs/jquery.min.js')
+  // all.min.js include device.js, modernizr.js, jquery.js libraries
+  script(src='js/all.min.js')
+  //-script(src='js/common.min.js')
+
+  //-script(src='libs/device.min.js')
+  //-script(src='libs/modernizr.min.js')
+  //-script(src='libs/jquery.min.js')
   script(src='js/common.js')
+
   script(src='libs/jquery.pixlayout.min.js')
   //-script.
     $(function () {

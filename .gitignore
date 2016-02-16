@@ -10,5 +10,6 @@ node_modules
 *.css.map
 *.js.map
 !js/ie8.min.js.map
+!js/all.min.js.map
 img/layout-home.jpg
 img/layout-home-mob.jpg
