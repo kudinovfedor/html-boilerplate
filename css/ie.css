@@ -5,3 +5,8 @@
   padding: .3em 0;
   text-align: center;
 }
+
+.lt-ie9 svg,
+.no-svg svg {
+  display: none;
+}

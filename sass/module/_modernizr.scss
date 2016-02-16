@@ -10,10 +10,7 @@
 
 .no-csstransforms {}
 
-.no-svg {
-  svg {
-    display: none;
-  }
-}
+// ie below 9 version does not support svg
+// .no-svg styles transferred to ie.sass
 
 /* ====================  END MODERNIZR  ==================== */

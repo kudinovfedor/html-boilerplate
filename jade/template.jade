@@ -48,16 +48,15 @@ head
   meta(name='msapplication-config', content='img/favicon/browserconfig.xml')
   meta(name='theme-color', content='#ffffff')
   link(rel='stylesheet', href='css/main.css', media='screen')
+  <!--[if (lte IE 9)&(!IEMobile)]>
+  link(rel='stylesheet', href='css/ie.css', media='screen')
+  <![endif]-->
   //- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
   <!--[if (lt IE 9)&(!IEMobile)]>
-  script(src='libs/html5shiv.min.js')
-  script(src='libs/respond.min.js')
+  script(src='js/ie8.min.js')
   <![endif]-->
   <!--[if (gte IE 6)&(lte IE 8)]>
   script(src='libs/selectivizr.min.js')
-  <![endif]-->
-  <!--[if (lte IE 9)&(!IEMobile)]>
-  link(rel='stylesheet', href='css/ie.css')
   <![endif]-->
 body
   <!--[if lt IE 7]>
@@ -71,7 +70,7 @@ body
   script(src='libs/jquery.min.js')
   script(src='js/common.js')
   script(src='libs/jquery.pixlayout.min.js')
-  //
+  //-script.
     $(function () {
       $.pixlayout({
         src: 'img/layout-home.jpg',
@@ -84,5 +83,6 @@ body
         pervious: true
       });
     });
+  //-noscript Your browser does not support JavaScript!
   //-include include/svg
 </html>

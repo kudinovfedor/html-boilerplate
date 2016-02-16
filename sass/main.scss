@@ -18,21 +18,20 @@
 @import 'base/normalize';
 @import 'base/typography';
 
-//@import 'layout/grid';
 @import 'layout/forms';
-//@import 'layout/header';
-//@import 'layout/nav';
-//@import 'layout/main';
-//@import 'layout/sidebar';
-//@import 'layout/footer';
-
+//@import 'layout/grid';
 //@import 'module/buttons';
 //@import 'module/tabs';
 //@import 'module/accordion';
 //@import 'module/breadcrumbs';
 //@import 'module/preloader';
 //@import 'module/sprites';
-//@import 'module/modernizr';
+
+//@import 'layout/header';
+//@import 'layout/nav';
+//@import 'layout/main';
+//@import 'layout/sidebar';
+//@import 'layout/footer';
 
 //@import 'page/home';
 //@import 'page/category';
@@ -40,6 +39,8 @@
 //@import 'page/cart';
 //@import 'page/checkout';
 //@import 'page/contact';
+
+//@import 'module/modernizr';
 
 //@import 'state/state';
 

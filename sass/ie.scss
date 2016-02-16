@@ -61,3 +61,15 @@
 //  background: linear-gradient(-90deg, #ccc, #c2e8fa);
 //  @include pie-background(linear-gradient(-90deg, #ccc, #c2e8fa));
 //}
+
+// .no-svg
+// SVG (basic support)
+// 1 Partial support in Android 3 & 4 refers to not supporting masking.
+// 2 IE9-11 desktop & mobile don't properly scale SVG files. Adding height, width, viewBox, and CSS rules seem to be the best workaround.
+
+.lt-ie9,
+.no-svg {
+  svg {
+    display: none;
+  }
+}

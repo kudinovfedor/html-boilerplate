@@ -3,13 +3,12 @@
 .sass-cache
 bower_components
 build
-copy_root
 node_modules
 *.cmd
 *.rar
 *.zip
 *.css.map
 *.js.map
-sass/layout/_fk-grid.scss
+!js/ie8.min.js.map
 img/layout-home.jpg
 img/layout-home-mob.jpg

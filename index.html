@@ -41,13 +41,11 @@
   <meta name="msapplication-TileImage" content="img/favicon/mstile-144x144.png">
   <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
-  <link rel="stylesheet" href="css/main.css" media="screen"><!--[if (lt IE 9)&(!IEMobile)]>
-  <script src="libs/html5shiv.min.js"></script>
-  <script src="libs/respond.min.js"></script><![endif]-->
+  <link rel="stylesheet" href="css/main.css" media="screen"><!--[if (lte IE 9)&(!IEMobile)]>
+  <link rel="stylesheet" href="css/ie.css" media="screen"><![endif]--><!--[if (lt IE 9)&(!IEMobile)]>
+  <script src="js/ie8.min.js"></script><![endif]-->
   <!--[if (gte IE 6)&(lte IE 8)]>
   <script src="libs/selectivizr.min.js"></script><![endif]-->
-  <!--[if (lte IE 9)&(!IEMobile)]>
-  <link rel="stylesheet" href="css/ie.css"><![endif]-->
 </head>
 <body><!--[if lt IE 7]>
   <p class="chromeframe">You are using an outdated browser.&nbsp;<a href="http://browsehappy.com/?locale=en" target="_blank">Upgrade your browser today.</a></p><![endif]-->
@@ -56,18 +54,4 @@
   <script src="libs/jquery.min.js"></script>
   <script src="js/common.js"></script>
   <script src="libs/jquery.pixlayout.min.js"></script>
-  <!--
-  $(function () {
-    $.pixlayout({
-      src: 'img/layout-home.jpg',
-      //src: 'img/layout-home-mob.jpg',
-      opacity: 0.6,
-      top: 0,
-      center: true,
-      clip: false,
-      show: true,
-      pervious: true
-    });
-  });
-  -->
 </body></html>

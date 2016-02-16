@@ -12,7 +12,8 @@
   $(function () {
 
     // Variables
-    var dppx = '';
+    var w = $(window).width(),
+      dppx = '';
 
     // dppx value of retina display
     if (window.devicePixelRatio !== undefined) {
@@ -65,6 +66,11 @@
       if (!$(e.target).closest('').length) {
         console.log('An event click occurred after clicking by tag body');
       }
+    });
+
+    // The resize event occurs when the browser window changes size.
+    $(window).on('resize',function() {
+      w =  $(window).width();
     });
 
   });

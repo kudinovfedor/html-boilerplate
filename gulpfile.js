@@ -92,6 +92,23 @@ gulp.task('retina2dppx', function () {
 
 gulp.task('svg', ['svg-sprite', 'retina1dppx', 'retina2dppx'], function () {});
 
+gulp.task('ie8-concat', function () {
+  return gulp.src(['libs/html5shiv.min.js', 'libs/respond.min.js'])
+    .pipe(plumber())
+    .pipe(concat('ie8.js'/*, {newLine: ';'}*/))
+    .pipe(gulp.dest('js/'));
+});
+
+gulp.task('ie8', ['ie8-concat'], function () {
+  return gulp.src(['js/ie8.js'])
+    .pipe(plumber())
+    .pipe(sourcemaps.init())
+    .pipe(rename({basename: 'ie8', suffix: '.min', extname: '.js'}))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('js/'));
+});
+
 gulp.task('jade', function () {
   return gulp.src(['jade/*.jade', '!jade/template.jade'])
     .pipe(plumber())
