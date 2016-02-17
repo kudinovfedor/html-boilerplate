@@ -92,34 +92,22 @@ gulp.task('retina2dppx', function () {
 
 gulp.task('svg', ['svg-sprite', 'retina1dppx', 'retina2dppx'], function () {});
 
-gulp.task('ie8-concat', function () {
+gulp.task('ie8', function () {
   return gulp.src(['libs/html5shiv.min.js', 'libs/respond.min.js'])
     .pipe(plumber())
-    .pipe(concat('ie8.js'/*, {newLine: ';'}*/))
-    .pipe(gulp.dest('js/'));
-});
-
-gulp.task('ie8', ['ie8-concat'], function () {
-  return gulp.src(['js/ie8.js'])
-    .pipe(plumber())
     .pipe(sourcemaps.init())
+    .pipe(concat('ie8.js'/*, {newLine: ';'}*/))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('js/'));
 });
 
-gulp.task('all-js-concat', function () {
+gulp.task('all-js', function () {
   return gulp.src(['libs/device.min.js', 'libs/modernizr.min.js', 'libs/jquery.min.js'])
     .pipe(plumber())
-    .pipe(concat('all.js'/*, {newLine: ';'}*/))
-    .pipe(gulp.dest('js/'));
-});
-
-gulp.task('all-js-in-one', ['all-js-concat'], function () {
-  return gulp.src(['js/all.js'])
-    .pipe(plumber())
     .pipe(sourcemaps.init())
+    .pipe(concat('all.js'/*, {newLine: ';'}*/))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(sourcemaps.write('./'))

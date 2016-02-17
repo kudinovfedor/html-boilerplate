@@ -21,7 +21,11 @@
   }
 }
 
-.ie9 {}
+.ie9 {
+  .gradient {
+    filter: none;
+  }
+}
 
 .ie8 {}
 

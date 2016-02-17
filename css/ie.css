@@ -6,6 +6,10 @@
   text-align: center;
 }
 
+.ie9 .gradient {
+  filter: none;
+}
+
 .lt-ie9 svg,
 .no-svg svg {
   display: none;

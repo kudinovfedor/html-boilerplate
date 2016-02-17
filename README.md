@@ -10,7 +10,10 @@ $ npm run set-all
 # IF AN ERROR OCCURS, TRY THE CODE BELOW
 
 # install Compass, Sass, scss_lint
-$ gem update --system && gem install compass sass scss_lint
+$ gem update && gem update --system && gem install compass sass
+
+# update npm
+$ npm install --global npm
 
 # install Jade, Gulp, Bower, htmlhint, jshint
 $ npm install --global jade gulp bower htmlhint jshint bower-update npm-check-updates
