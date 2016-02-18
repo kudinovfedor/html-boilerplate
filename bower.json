@@ -17,7 +17,9 @@
     "Sprites",
     "SMACSS",
     "Ruby",
+    "gem",
     "Node",
+    "npm",
     "Gulp",
     "Modernizr",
     "Bower"
@@ -43,7 +45,7 @@
   "dependencies": {
     "device.js": "devicejs#~0.2.7",
     "html5shiv": "~3.7.3",
-    "jquery": "~1.12.0 <2",
+    "jquery": "~1.12.0 < 2",
     "jquery-form-styler": "jquery.form-styler#~1.7.4",
     "modernizr": "~3.3.1",
     "pixlayout": "~0.9.7",

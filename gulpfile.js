@@ -1,9 +1,11 @@
 'use strict';
 
 var gulp = require('gulp'),
+  ncu = require('npm-check-updates'), //npm-check-updates is a command-line tool that allows you to upgrade your package.json or bower.json dependencies to the latest versions, regardless of existing version constraints.
   fs = require('fs'),
   del = require('del'), // Delete files/folders using globs
   jade = require('jade'), // Jade [npm install --save jade]
+  puglint = require('gulp-pug-lint'), // Gulp plugin for pug-lint [npm install --save-dev gulp-pug-lint]
   gulpJade = require('gulp-jade'), // jade gulp [npm install --save-dev gulp-jade]
   gulpFilter = require('gulp-filter'), // Filter files in a vinyl stream [npm install --save-dev gulp-filter]
   rename = require('gulp-rename'),// rename files {basename:'scripts',prefix:'jquery.',suffix:'.min',extname:'.js'} [npm install --save-dev gulp-rename]
@@ -23,6 +25,7 @@ var gulp = require('gulp'),
 //stylish_ex = require('jshint-stylish-ex'), // Stylish reporter for JSHint (jshint-stylish-ex) [npm install --save-dev jshint-stylish-ex]
   uglify = require('gulp-uglify'), // min js [npm install --save-dev gulp-uglify]
   minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
+  cssnano = require('gulp-cssnano'), // Minify CSS with cssnano [npm install --save-dev gulp-cssnano]
   realFavicon = require ('gulp-real-favicon'), // Generate a multiplatform favicon with RealFaviconGenerator
   svgstore = require('gulp-svgstore'), // Combine svg files into one with <symbol> elements [npm install --save-dev gulp-svgstore]
   svgmin = require('gulp-svgmin'), // Minify SVG files [npm install --save-dev gulp-svgmin]
@@ -55,6 +58,18 @@ var gulp = require('gulp'),
 
 gulp.task('connect', function () {
   connect.server(config.connect);
+});
+
+gulp.task('ncu', function () {
+  ncu.run({
+    packageFile: 'package.json'
+    // Any command-line option can be specified here.
+    // These are set by default:
+    // silent: true,
+    // jsonUpgraded: true
+  }).then(function (upgraded) {
+    console.log('dependencies to upgrade:', upgraded);
+  });
 });
 
 gulp.task('libsBower', function () {
@@ -117,6 +132,7 @@ gulp.task('all-js', function () {
 gulp.task('jade', function () {
   return gulp.src(['jade/*.jade', '!jade/template.jade'])
     .pipe(plumber())
+    //.pipe(puglint())
     .pipe(gulpJade(config.jade))
     .pipe(notify({message: 'Compiling jade in html is successfully completed!', onLast: true}))
     .pipe(gulp.dest('./'))
@@ -140,6 +156,7 @@ gulp.task('css', function () {
     .pipe(sourcemaps.init())
     //.pipe(autoprefixer(config.autoprefixer))
     .pipe(minifyCss(config.minifyCss))
+    //.pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
     .pipe(sourcemaps.write('/'))
@@ -234,6 +251,7 @@ gulp.task('css-build', function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber())
     .pipe(minifyCss(config.minifyCss))
+    //.pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
     .pipe(gulp.dest('build/css/'));
