@@ -1,9 +1,11 @@
 'use strict';
 
 var gulp = require('gulp'),
+  zip = require('gulp-zip'), // ZIP compress files [npm install --save-dev gulp-zip]
   ncu = require('npm-check-updates'), //npm-check-updates is a command-line tool that allows you to upgrade your package.json or bower.json dependencies to the latest versions, regardless of existing version constraints.
   fs = require('fs'),
   del = require('del'), // Delete files/folders using globs
+  size = require('gulp-size'), // isplay the size of your project [npm install --save-dev gulp-size]
   jade = require('jade'), // Jade [npm install --save jade]
   puglint = require('gulp-pug-lint'), // Gulp plugin for pug-lint [npm install --save-dev gulp-pug-lint]
   gulpJade = require('gulp-jade'), // jade gulp [npm install --save-dev gulp-jade]
@@ -50,6 +52,7 @@ var gulp = require('gulp'),
       browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
       cascade: false, add: true, remove: false
     },
+    fileSize: {showFiles: true, gzip: false, title: 'The size', pretty: true},
     minifyCss: {compatibility: 'ie7', debug: true},
     scsslint: {config: '.scss-lint.yml', customReport: reporter.issues},
     jshint: {lookup: true, linter: 'jshint'},
@@ -110,10 +113,12 @@ gulp.task('svg', ['svg-sprite', 'retina1dppx', 'retina2dppx'], function () {});
 gulp.task('ie8', function () {
   return gulp.src(['libs/html5shiv.min.js', 'libs/respond.min.js'])
     .pipe(plumber())
+    .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
     .pipe(concat('ie8.js'/*, {newLine: ';'}*/))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
+    .pipe(size(config.fileSize))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('js/'));
 });
@@ -121,10 +126,12 @@ gulp.task('ie8', function () {
 gulp.task('all-js', function () {
   return gulp.src(['libs/device.min.js', 'libs/modernizr.min.js', 'libs/jquery.min.js'])
     .pipe(plumber())
+    .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
     .pipe(concat('all.js'/*, {newLine: ';'}*/))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
+    .pipe(size(config.fileSize))
     .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('js/'));
 });
@@ -144,7 +151,7 @@ gulp.task('compass', function () {
     .pipe(plumber())
     .pipe(scsslint(config.scsslint))
     .pipe(compass(config.compass))
-    .pipe(notify({message: 'Compiling sass in css is successfully completed!'}))
+    .pipe(notify({message: 'Compiling sass in css is successfully completed!', onLast: true}))
     .pipe(gulp.dest('css/'))
     //.pipe(reporter.printSummary)
     .pipe(connect.reload());
@@ -159,6 +166,7 @@ gulp.task('css', function () {
     //.pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
+    .pipe(size(config.fileSize))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
     .pipe(connect.reload());
@@ -174,11 +182,13 @@ gulp.task('autoprefixer', function () {
 gulp.task('js', function () {
   return gulp.src(['js/common.js'])
     .pipe(plumber())
+    .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(stylish))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
+    .pipe(size(config.fileSize))
     .pipe(sourcemaps.write('/'))
     .pipe(notify({
       title: '',
@@ -206,7 +216,7 @@ gulp.task('html-hint', function () {
   gulp.src(['*.html'])
     .pipe(plumber())
     .pipe(htmlhint('.htmlhintrc'))
-    .pipe(notify({message: 'Checking html file is successfully completed!'}))
+    .pipe(notify({message: 'Checking html file is successfully completed!', onLast: true}))
     .pipe(htmlhint.reporter())
     //.pipe(htmlhint.failReporter({ supress: true }));
     .pipe(connect.reload());
@@ -277,6 +287,28 @@ gulp.task('js-build', function () {
 //});
 
 gulp.task('build', ['clean', 'css-build', 'js-build'/*, 'img-build'*/]);
+
+gulp.task("zip", function () {
+  return gulp.src([
+    'css/**',
+    'fonts/**',
+    'img/**',
+    'jade/**',
+    'js/**',
+    'libs/**',
+    'sass/**',
+    '!.git',
+    '!.idea',
+    '!.sass-cache',
+    '!bower_components',
+    '!node_modules',
+    '*.*',
+    '.*'
+  ], {base: "."})
+    .pipe(zip('archive.zip', {compress: true}))
+    .pipe(size(config.fileSize))
+    .pipe(gulp.dest('./'));
+});
 
 // Generate the icons. This task takes a few seconds to complete.
 // You should run it at least once to create the icons. Then,
