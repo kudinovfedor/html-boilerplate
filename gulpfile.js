@@ -166,7 +166,6 @@ gulp.task('css', function () {
     //.pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
-    .pipe(size(config.fileSize))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
     .pipe(connect.reload());
@@ -182,13 +181,11 @@ gulp.task('autoprefixer', function () {
 gulp.task('js', function () {
   return gulp.src(['js/common.js'])
     .pipe(plumber())
-    .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(stylish))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(size(config.fileSize))
     .pipe(sourcemaps.write('/'))
     .pipe(notify({
       title: '',
@@ -260,19 +257,23 @@ gulp.task('clean', function () {
 gulp.task('css-build', function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber())
+    .pipe(size(config.fileSize))
     .pipe(minifyCss(config.minifyCss))
     //.pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
+    .pipe(size(config.fileSize))
     .pipe(gulp.dest('build/css/'));
 });
 
 gulp.task('js-build', function () {
   return gulp.src(['js/common.js'])
     .pipe(plumber())
+    .pipe(size(config.fileSize))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(notify({message: 'Minify js completed successfully!', onLast: true}))
+    .pipe(size(config.fileSize))
     .pipe(gulp.dest('build/js/'));
 });
 
