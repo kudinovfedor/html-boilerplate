@@ -1,6 +1,7 @@
 'use strict';
 
 var gulp = require('gulp'),
+  modernizr = require('gulp-modernizr'), // Gulp wrapper for custom Modernizr builds [npm install --save-dev gulp-modernizr]
   zip = require('gulp-zip'), // ZIP compress files [npm install --save-dev gulp-zip]
   ncu = require('npm-check-updates'), //npm-check-updates is a command-line tool that allows you to upgrade your package.json or bower.json dependencies to the latest versions, regardless of existing version constraints.
   fs = require('fs'),
@@ -288,6 +289,87 @@ gulp.task('js-build', function () {
 //});
 
 gulp.task('build', ['clean', 'css-build', 'js-build'/*, 'img-build'*/]);
+
+gulp.task('modernizr', function() {
+  gulp.src('js/common.js')
+    .pipe(modernizr('modernizr.js', {
+      "devFile": false,
+      //"dest": "libs/modernizr.js",
+      "crawl": false,
+      "uglify": false,
+      "useBuffers" : false,
+      "customTests": [],
+      "tests": [
+        "input",
+        "inputtypes",
+        "svg",
+        "cssanimations",
+        "backdropfilter",
+        "borderradius",
+        "boxshadow",
+        "boxsizing",
+        "csscalc",
+        "checked",
+        "cubicbezierrange",
+        "ellipsis",
+        "cssfilters",
+        "flexbox",
+        "flexwrap",
+        "fontface",
+        "generatedcontent",
+        "cssgradients",
+        "csshairline",
+        "hsla",
+        "cssinvalid",
+        "lastchild",
+        "cssmask",
+        "mediaqueries",
+        "multiplebgs",
+        "nthchild",
+        "opacity",
+        "csspointerevents",
+        "cssreflections",
+        "regions",
+        "rgba",
+        "supports",
+        "csstransforms",
+        "csstransforms3d",
+        "preserve3d",
+        "csstransitions",
+        "cssvalid",
+        "placeholder",
+        "scriptasync",
+        "scriptdefer",
+        "svgasimg",
+        "svgclippaths",
+        "svgfilters",
+        "svgforeignobject",
+        "inlinesvg",
+        "smil",
+        "textareamaxlength"
+      ],
+      "options": [
+        "domPrefixes",
+        "prefixes",
+        "addTest",
+        "atRule",
+        "hasEvent",
+        "mq",
+        "prefixed",
+        "prefixedCSS",
+        "prefixedCSSValue",
+        "testAllProps",
+        "testProp",
+        "testStyles",
+        //"html5printshiv",
+        //"html5shiv",
+        "setClasses"
+      ]
+    }))
+    .pipe(uglify())
+    .pipe(rename({suffix: '.min'}))
+    .pipe(gulp.dest("libs/"));
+});
 
 gulp.task("zip", function () {
   return gulp.src([
