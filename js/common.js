@@ -63,9 +63,7 @@
 
     // Make something with an element when clicked beyond its borders
     $(document).on('click', function (e) {
-      if (!$(e.target).closest('').length) {
-        console.log('An event click occurred after clicking by tag body');
-      }
+      //if (!$(e.target).closest('').length) {}
     });
 
     // The resize event occurs when the browser window changes size.

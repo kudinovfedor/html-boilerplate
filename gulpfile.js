@@ -1,6 +1,8 @@
 'use strict';
 
 var gulp = require('gulp'),
+  browserSync = require('browser-sync').create(), // Live CSS Reload & Browser Syncing [npm install --save-dev browser-sync]
+  cmq = require('gulp-combine-media-queries'),
   modernizr = require('gulp-modernizr'), // Gulp wrapper for custom Modernizr builds [npm install --save-dev gulp-modernizr]
   zip = require('gulp-zip'), // ZIP compress files [npm install --save-dev gulp-zip]
   ncu = require('npm-check-updates'), //npm-check-updates is a command-line tool that allows you to upgrade your package.json or bower.json dependencies to the latest versions, regardless of existing version constraints.
@@ -8,7 +10,7 @@ var gulp = require('gulp'),
   del = require('del'), // Delete files/folders using globs
   size = require('gulp-size'), // isplay the size of your project [npm install --save-dev gulp-size]
   jade = require('jade'), // Jade [npm install --save jade]
-  puglint = require('gulp-pug-lint'), // Gulp plugin for pug-lint [npm install --save-dev gulp-pug-lint]
+  jadelint = require('gulp-pug-lint'), // Gulp plugin for pug-lint [npm install --save-dev gulp-pug-lint]
   gulpJade = require('gulp-jade'), // jade gulp [npm install --save-dev gulp-jade]
   gulpFilter = require('gulp-filter'), // Filter files in a vinyl stream [npm install --save-dev gulp-filter]
   rename = require('gulp-rename'),// rename files {basename:'scripts',prefix:'jquery.',suffix:'.min',extname:'.js'} [npm install --save-dev gulp-rename]
@@ -21,14 +23,13 @@ var gulp = require('gulp'),
   scsslintStylish = require('gulp-scss-lint-stylish2'), // Stylish reporter for gulp-scss-lint [npm install --save-dev gulp-scss-lint-stylish2]
   concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js')) [npm install --save-dev gulp-concat]
   autoprefixer = require('gulp-autoprefixer'), // add vendor prefix -webkit, -moz, -ms, -o [npm install --save-dev gulp-autoprefixer]
-  connect = require('gulp-connect'), // run a webserver (with LiveReload) [npm install --save-dev gulp-connect]
-  livereload = require('gulp-livereload'), // livereload [npm install --save-dev gulp-livereload]
   jshint = require('gulp-jshint'),// validate js. Reporter: default, checkstyle, jslint_xml, non_error, unix; [npm install --save-dev jshint gulp-jshint]
   stylish = require('jshint-stylish'), // Stylish reporter for JSHint (jshint-stylish) [npm install --save-dev jshint-stylish]
 //stylish_ex = require('jshint-stylish-ex'), // Stylish reporter for JSHint (jshint-stylish-ex) [npm install --save-dev jshint-stylish-ex]
   uglify = require('gulp-uglify'), // min js [npm install --save-dev gulp-uglify]
   minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
   cssnano = require('gulp-cssnano'), // Minify CSS with cssnano [npm install --save-dev gulp-cssnano]
+  cssBase64 = require('gulp-css-base64'), // Gulp's task for transform all resources found in a CSS into base64-encoded data URI strings [npm install --save-dev gulp-css-base64]
   realFavicon = require ('gulp-real-favicon'), // Generate a multiplatform favicon with RealFaviconGenerator
   svgstore = require('gulp-svgstore'), // Combine svg files into one with <symbol> elements [npm install --save-dev gulp-svgstore]
   svgmin = require('gulp-svgmin'), // Minify SVG files [npm install --save-dev gulp-svgmin]
@@ -38,7 +39,11 @@ var gulp = require('gulp'),
   FAVICON_DATA_FILE = 'faviconData.json', // File where the favicon markups are stored
   reporter = scsslintStylish({errorsOnly: false}),
   config = {
-    connect: {root: '', port: '8080', host: 'localhost', livereload: true, debug: false},
+    bs: {
+      ui: false, server: { baseDir: "./" }, port: 8080, ghostMode: { clicks: true, forms: true, scroll: true },
+      logLevel: 'info', logPrefix: 'Browsersync', logConnections: false, logFileChanges: false, online: false,
+      browser: ['google chrome', 'firefox'], reloadOnRestart: true, notify: true, host: '127.0.0.1'
+    },
     bower: {
       paths: {bowerDirectory: 'bower_components', bowerrc: '.bowerrc', bowerJson: 'bower.json'},
       debugging: false, checkExistence: true, includeDev: true
@@ -54,14 +59,16 @@ var gulp = require('gulp'),
       cascade: false, add: true, remove: false
     },
     fileSize: {showFiles: true, gzip: false, title: 'The size', pretty: true},
+    cmd: {log: false, use_external: false},
+    cssBase64: {baseDir: '../img/', maxWeightResource: 32*1024, extensionsAllowed: ['.svg', '.png', '.jpg', '.gif']}, /*base64:skip*/
     minifyCss: {compatibility: 'ie7', debug: true},
     scsslint: {config: '.scss-lint.yml', customReport: reporter.issues},
     jshint: {lookup: true, linter: 'jshint'},
     filter: {restore: true, passthrough: true}
   };
 
-gulp.task('connect', function () {
-  connect.server(config.connect);
+gulp.task('server', function() {
+  browserSync.init(config.bs);
 });
 
 gulp.task('ncu', function () {
@@ -140,11 +147,11 @@ gulp.task('all-js', function () {
 gulp.task('jade', function () {
   return gulp.src(['jade/*.jade', '!jade/template.jade'])
     .pipe(plumber())
-    //.pipe(puglint())
+    //.pipe(jadelint())
     .pipe(gulpJade(config.jade))
     .pipe(notify({message: 'Compiling jade in html is successfully completed!', onLast: true}))
     .pipe(gulp.dest('./'))
-    .pipe(connect.reload());
+    .pipe(browserSync.stream());
 });
 
 gulp.task('compass', function () {
@@ -155,7 +162,7 @@ gulp.task('compass', function () {
     .pipe(notify({message: 'Compiling sass in css is successfully completed!', onLast: true}))
     .pipe(gulp.dest('css/'))
     //.pipe(reporter.printSummary)
-    .pipe(connect.reload());
+    .pipe(browserSync.stream());
 });
 
 gulp.task('css', function () {
@@ -163,13 +170,15 @@ gulp.task('css', function () {
     .pipe(plumber())
     .pipe(sourcemaps.init())
     //.pipe(autoprefixer(config.autoprefixer))
+    .pipe(cmq(config.cmd))
+    .pipe(cssBase64(config.cssBase64))
     .pipe(minifyCss(config.minifyCss))
     //.pipe(cssnano())
     .pipe(rename({suffix: '.min'}))
     .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
-    .pipe(connect.reload());
+    .pipe(browserSync.stream());
 });
 
 gulp.task('autoprefixer', function () {
@@ -188,16 +197,9 @@ gulp.task('js', function () {
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
-    .pipe(notify({
-      title: '',
-      message: 'Minify js completed successfully!',
-      sound: false,
-      emitError: true,
-      onLast: true,
-      logLevel: 2
-    }))
+    .pipe(notify({message: 'Minify js completed successfully!', onLast: true}))
     .pipe(gulp.dest('js/'))
-    .pipe(connect.reload());
+    .pipe(browserSync.stream());
 });
 
 //gulp.task('img', function () {
@@ -215,9 +217,8 @@ gulp.task('html-hint', function () {
     .pipe(plumber())
     .pipe(htmlhint('.htmlhintrc'))
     .pipe(notify({message: 'Checking html file is successfully completed!', onLast: true}))
-    .pipe(htmlhint.reporter())
+    .pipe(htmlhint.reporter());
     //.pipe(htmlhint.failReporter({ supress: true }));
-    .pipe(connect.reload());
 });
 
 gulp.task('scss-lint', function () {
@@ -242,7 +243,7 @@ gulp.task('compass-watch', ['compass'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
 });
 
-gulp.task('watch', ['connect', 'jade', 'js', 'compass'], function () {
+gulp.task('watch', ['server', 'jade', 'js', 'compass'], function () {
   gulp.watch('jade/**/*.jade', ['jade']);
   gulp.watch('*.html', ['html-hint']);
   gulp.watch('sass/**/*.scss', ['compass']);
