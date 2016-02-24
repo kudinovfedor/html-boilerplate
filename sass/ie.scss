@@ -9,10 +9,8 @@
 
 .lt-ie9 {}
 
-.lt-ie8 {}
-
-.lt-ie7 {
-  .chromeframe {
+.lt-ie8 {
+  .browserupgrade {
     background-color: #ccc;
     color: #000;
     margin: 0;
@@ -20,6 +18,8 @@
     text-align: center;
   }
 }
+
+.lt-ie7 {}
 
 .ie9 {
   // Support for full multi-stop gradients with IE9 (using SVG).
