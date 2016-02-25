@@ -68,7 +68,13 @@ var gulp = require('gulp'),
     filter: {restore: true, passthrough: true}
   };
 
-gulp.task('server', function() {
+function errorAlert(error) {
+  notify.onError({title: "Error", message: "Check your terminal", sound: "Sosumi"})(error); //Error Notification
+  console.log(error.toString()); //Prints Error to Console
+  this.emit("end"); //End function
+}
+
+gulp.task('server', function () {
   browserSync.init(config.bs);
 });
 
@@ -87,7 +93,7 @@ gulp.task('ncu', function () {
 gulp.task('libsBower', function () {
   var filter = gulpFilter(['jquery.raty.js'], config.filter);
   return gulp.src(mainBowerFiles(config.bower))
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(filter)
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
@@ -97,6 +103,7 @@ gulp.task('libsBower', function () {
 
 gulp.task('svg-sprite', function () {
   return gulp.src(['img/svg/*.svg', '!img/svg/*_hover.svg'])
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(svgmin({js2svg: {pretty: false}}))
     .pipe(svgstore({inlineSvg: true}))
     .pipe(rename({basename: "svg", prefix: "", suffix: "-sprite", extname: ".svg"}))
@@ -104,14 +111,16 @@ gulp.task('svg-sprite', function () {
 });
 
 gulp.task('retina1dppx', function () {
-  gulp.src('img/svg/*.svg')
+  return gulp.src('img/svg/*.svg')
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(raster({format: 'png', scale: 1}))
     .pipe(rename({extname: '.png'}))
     .pipe(gulp.dest('img/svgfallback'));
 });
 
 gulp.task('retina2dppx', function () {
-  gulp.src('img/svg/*.svg')
+  return gulp.src('img/svg/*.svg')
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(raster({format: 'png', scale: 2}))
     .pipe(rename({extname: '.png', suffix: '@2x'}))
     .pipe(gulp.dest('img/svgfallback'));
@@ -121,7 +130,7 @@ gulp.task('svg', ['svg-sprite', 'retina1dppx', 'retina2dppx'], function () {});
 
 gulp.task('ie8', function () {
   return gulp.src(['libs/html5shiv.min.js', 'libs/respond.min.js'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
     .pipe(concat('ie8.js'/*, {newLine: ';'}*/))
@@ -134,7 +143,7 @@ gulp.task('ie8', function () {
 
 gulp.task('all-js', function () {
   return gulp.src(['libs/device.min.js', 'libs/modernizr.min.js', 'libs/jquery.min.js'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
     .pipe(concat('all.js'/*, {newLine: ';'}*/))
@@ -147,7 +156,7 @@ gulp.task('all-js', function () {
 
 gulp.task('jade', function () {
   return gulp.src(['jade/*.jade', '!jade/template.jade'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     //.pipe(jadelint())
     .pipe(gulpJade(config.jade))
     .pipe(notify({message: 'Compiling jade in html is successfully completed!', onLast: true}))
@@ -157,7 +166,7 @@ gulp.task('jade', function () {
 
 gulp.task('compass', function () {
   gulp.src(['sass/**/*.scss'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(scsslint(config.scsslint))
     .pipe(compass(config.compass))
     .pipe(notify({message: 'Compiling sass in css is successfully completed!', onLast: true}))
@@ -168,7 +177,7 @@ gulp.task('compass', function () {
 
 gulp.task('css', function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
     .pipe(cssShorthand())
     //.pipe(autoprefixer(config.autoprefixer))
@@ -185,14 +194,14 @@ gulp.task('css', function () {
 
 gulp.task('autoprefixer', function () {
   return gulp.src(['css/main.css'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest('css/'));
 });
 
 gulp.task('js', function () {
   return gulp.src(['js/common.js'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(stylish))
@@ -206,7 +215,7 @@ gulp.task('js', function () {
 
 //gulp.task('img', function () {
 //  gulp.src(['img/**/*', '!img/build/**/*'])
-//    .pipe(plumber())
+//    .pipe(plumber({errorHandler: errorAlert}))
 //    .pipe(imagemin({
 //      optimizationLevel: 3,
 //      progressive: true
@@ -216,7 +225,7 @@ gulp.task('js', function () {
 
 gulp.task('html-hint', function () {
   gulp.src(['*.html'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(htmlhint('.htmlhintrc'))
     .pipe(notify({message: 'Checking html file is successfully completed!', onLast: true}))
     .pipe(htmlhint.reporter());
@@ -225,14 +234,14 @@ gulp.task('html-hint', function () {
 
 gulp.task('scss-lint', function () {
   return gulp.src(['sass/**/*.scss'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(scsslint(config.scsslint))
     .pipe(reporter.printSummary);
 });
 
 gulp.task('js-hint', function () {
   return gulp.src(['js/*.js'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(stylish));
 });
@@ -260,7 +269,7 @@ gulp.task('clean', function () {
 
 gulp.task('css-build', function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
     .pipe(minifyCss(config.minifyCss))
     //.pipe(cssnano())
@@ -272,7 +281,7 @@ gulp.task('css-build', function () {
 
 gulp.task('js-build', function () {
   return gulp.src(['js/common.js'])
-    .pipe(plumber())
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
@@ -283,7 +292,7 @@ gulp.task('js-build', function () {
 
 //gulp.task('img-build', function () {
 //  gulp.src('img/**/*')
-//    .pipe(plumber())
+//    .pipe(plumber({errorHandler: errorAlert}))
 //    .pipe(imagemin({
 //      optimizationLevel: 3,
 //      progressive: true
@@ -295,6 +304,7 @@ gulp.task('build', ['clean', 'css-build', 'js-build'/*, 'img-build'*/]);
 
 gulp.task('modernizr', function() {
   gulp.src('js/common.js')
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(modernizr('modernizr.js', {
       "devFile": false,
       //"dest": "libs/modernizr.js",
@@ -391,6 +401,7 @@ gulp.task("zip", function () {
     '*.*',
     '.*'
   ], {base: "."})
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(zip('archive.zip', {compress: true}))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest('./'));
