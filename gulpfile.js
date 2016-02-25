@@ -2,7 +2,6 @@
 
 var gulp = require('gulp'),
   browserSync = require('browser-sync').create(), // Live CSS Reload & Browser Syncing [npm install --save-dev browser-sync]
-  cmq = require('gulp-combine-media-queries'),
   modernizr = require('gulp-modernizr'), // Gulp wrapper for custom Modernizr builds [npm install --save-dev gulp-modernizr]
   zip = require('gulp-zip'), // ZIP compress files [npm install --save-dev gulp-zip]
   ncu = require('npm-check-updates'), //npm-check-updates is a command-line tool that allows you to upgrade your package.json or bower.json dependencies to the latest versions, regardless of existing version constraints.
@@ -29,6 +28,8 @@ var gulp = require('gulp'),
   uglify = require('gulp-uglify'), // min js [npm install --save-dev gulp-uglify]
   minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
   cssnano = require('gulp-cssnano'), // Minify CSS with cssnano [npm install --save-dev gulp-cssnano]
+  cmq = require('gulp-combine-media-queries'), // Combine matching media queries into one media query definition [npm install --save-dev gulp-combine-media-queries]
+  cssShorthand = require('gulp-shorthand'), // Makes your CSS files lighter and more readable [npm install --save gulp-shorthand]
   cssBase64 = require('gulp-css-base64'), // Gulp's task for transform all resources found in a CSS into base64-encoded data URI strings [npm install --save-dev gulp-css-base64]
   realFavicon = require ('gulp-real-favicon'), // Generate a multiplatform favicon with RealFaviconGenerator
   svgstore = require('gulp-svgstore'), // Combine svg files into one with <symbol> elements [npm install --save-dev gulp-svgstore]
@@ -169,6 +170,7 @@ gulp.task('css', function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber())
     .pipe(sourcemaps.init())
+    .pipe(cssShorthand())
     //.pipe(autoprefixer(config.autoprefixer))
     .pipe(cmq(config.cmd))
     .pipe(cssBase64(config.cssBase64))
