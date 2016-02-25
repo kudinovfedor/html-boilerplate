@@ -41,7 +41,7 @@ var gulp = require('gulp'),
   reporter = scsslintStylish({errorsOnly: false}),
   config = {
     bs: {
-      ui: false, server: { baseDir: "./" }, port: 8080, ghostMode: { clicks: true, forms: true, scroll: true },
+      ui: false, server: { baseDir: './' }, port: 8080, ghostMode: { clicks: true, forms: true, scroll: true },
       logLevel: 'info', logPrefix: 'Browsersync', logConnections: false, logFileChanges: false, online: false,
       browser: ['google chrome', 'firefox'], reloadOnRestart: true, notify: true, host: '127.0.0.1'
     },
@@ -69,9 +69,9 @@ var gulp = require('gulp'),
   };
 
 function errorAlert(error) {
-  notify.onError({title: "Error", message: "Check your terminal", sound: "Sosumi"})(error); //Error Notification
-  console.log(error.toString()); //Prints Error to Console
-  this.emit("end"); //End function
+  notify.onError({title: 'Error', subtitle: 'Failure!', message: 'Check your terminal', sound: 'Sosumi'})(error); // Error Notification
+  console.log(error.toString()); // Prints Error to Console
+  this.emit('end'); // End function
 }
 
 gulp.task('server', function () {
@@ -106,7 +106,7 @@ gulp.task('svg-sprite', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(svgmin({js2svg: {pretty: false}}))
     .pipe(svgstore({inlineSvg: true}))
-    .pipe(rename({basename: "svg", prefix: "", suffix: "-sprite", extname: ".svg"}))
+    .pipe(rename({basename: 'svg', prefix: '', suffix: '-sprite', extname: '.svg'}))
     .pipe(gulp.dest('img/'));
 });
 
@@ -381,10 +381,10 @@ gulp.task('modernizr', function() {
     }))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest("libs/"));
+    .pipe(gulp.dest('libs/'));
 });
 
-gulp.task("zip", function () {
+gulp.task('zip', function () {
   return gulp.src([
     'css/**',
     'fonts/**',
@@ -400,7 +400,7 @@ gulp.task("zip", function () {
     '!node_modules',
     '*.*',
     '.*'
-  ], {base: "."})
+  ], {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(zip('archive.zip', {compress: true}))
     .pipe(size(config.fileSize))
