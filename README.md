@@ -18,7 +18,7 @@ $ ruby dk.rb install
 $ npm run set-all
 # IF AN ERROR OCCURS, TRY THE CODE BELOW
 
-# install Compass, Sass,  scss_lint
+# install Compass, Sass, scss_lint
 $ gem update && gem update --system && gem install compass scss_lint
 
 # install oily_png (must be installed DevKit) [optional]
