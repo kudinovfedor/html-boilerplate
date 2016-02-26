@@ -1,9 +1,4 @@
 {
-  "extends": [
-    "emarsys"
-  ],
-  "someSetting": true,
-  "someOtherSetting": true,
   "disallowAttributeConcatenation": true,
   "disallowAttributeInterpolation": true,
   "disallowBlockExpansion": true,
@@ -25,6 +20,7 @@
   "disallowStringInterpolation": true,
   "disallowTagInterpolation": true,
   "maximumNumberOfLines": 1000,
+  "requireClassLiteralsBeforeAttributes": true,
   "requireClassLiteralsBeforeIdLiterals": true,
   "requireIdLiteralsBeforeAttributes": true,
   "requireLineFeedAtFileEnd": true,

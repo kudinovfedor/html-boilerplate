@@ -5,10 +5,10 @@
   "main": "gulpfile.js",
   "dependencies": {
     "bower": "^1.7.7",
-    "bower-update": "^0.2.0",
     "browser-sync": "^2.11.1",
     "gulp": "^3.9.1",
     "jade": "^1.11.0",
+    "npm-check": "^4.1.4",
     "npm-check-updates": "^2.5.8"
   },
   "devDependencies": {
@@ -43,14 +43,13 @@
     "gulp-zip": "^3.2.0",
     "jshint": "^2.9.1",
     "jshint-stylish": "^2.1.0",
-    "main-bower-files": "^2.11.1",
-    "pug-lint-config-emarsys": "^2.0.1"
+    "main-bower-files": "^2.11.1"
   },
   "scripts": {
-    "set-all": "npm run gem-install && npm run npm-update && npm run npm-install && npm run gulp-install && npm run bower-install",
-    "gem-install": "gem update && gem update --system && gem install compass sass scss_lint",
-    "npm-update": "npm install --global npm",
-    "npm-install": "npm install --global jade gulp bower htmlhint jshint bower-update npm-check-updates",
+    "set-all": "npm run gem-install && npm run npm-update && npm run npm-install-g && npm run gulp-install && npm run bower-install",
+    "gem-install": "gem update && gem update --system && gem install compass scss_lint",
+    "npm-update": "npm install -g npm",
+    "npm-install-g": "npm install -g jade gulp bower htmlhint jshint npm-check npm-check-updates",
     "gulp-install": "npm install",
     "bower-install": "bower install && gulp libsBower && gulp ie8 && gulp modernizr && gulp all-js"
   },
@@ -66,6 +65,8 @@
     "Jade",
     "Compass+Sass",
     "Sprites",
+    "Favicon",
+    "SVG",
     "SMACSS",
     "Ruby",
     "gem",
@@ -73,7 +74,8 @@
     "npm",
     "Gulp",
     "Modernizr",
-    "Bower"
+    "Bower",
+    "Browsersync"
   ],
   "author": "Kudinov Fedor",
   "license": "ISC",

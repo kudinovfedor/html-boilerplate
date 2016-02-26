@@ -1,70 +1,102 @@
 'use strict';
 
-var gulp = require('gulp'),
-  browserSync = require('browser-sync').create(), // Live CSS Reload & Browser Syncing [npm install --save-dev browser-sync]
-  modernizr = require('gulp-modernizr'), // Gulp wrapper for custom Modernizr builds [npm install --save-dev gulp-modernizr]
-  zip = require('gulp-zip'), // ZIP compress files [npm install --save-dev gulp-zip]
-  ncu = require('npm-check-updates'), //npm-check-updates is a command-line tool that allows you to upgrade your package.json or bower.json dependencies to the latest versions, regardless of existing version constraints.
+var
+// System
   fs = require('fs'),
   del = require('del'), // Delete files/folders using globs
-  size = require('gulp-size'), // isplay the size of your project [npm install --save-dev gulp-size]
+// npm
+  ncu = require('npm-check-updates'), // Upgrade your package.json or bower.json dependencies to the latest versions.
+// HTML
+  htmlhint = require('gulp-htmlhint'),// Validate *.html [npm install --save-dev gulp-htmlhint]
+// Jade
   jade = require('jade'), // Jade [npm install --save jade]
-  jadelint = require('gulp-pug-lint'), // Gulp plugin for pug-lint [npm install --save-dev gulp-pug-lint]
-  gulpJade = require('gulp-jade'), // jade gulp [npm install --save-dev gulp-jade]
-  gulpFilter = require('gulp-filter'), // Filter files in a vinyl stream [npm install --save-dev gulp-filter]
-  rename = require('gulp-rename'),// rename files {basename:'scripts',prefix:'jquery.',suffix:'.min',extname:'.js'} [npm install --save-dev gulp-rename]
-  notify = require('gulp-notify'), // event notification -- .pipe(notify('Minification css finished!')) [npm install --save-dev gulp-notify]
-  plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber()) [npm install --save-dev gulp-plumber]
+  gulpJade = require('gulp-jade'), // Gulp Jade [npm install --save-dev gulp-jade]
+  jadelint = require('gulp-pug-lint'), // Validate *.jade [npm install --save-dev gulp-pug-lint]
+// CSS
+  cssShorthand = require('gulp-shorthand'), // Makes your CSS files lighter and more readable [npm install --save gulp-shorthand]
+  autoprefixer = require('gulp-autoprefixer'), // Add vendor prefix -webkit, -moz, -ms, -o [npm install --save-dev gulp-autoprefixer]
+  cmq = require('gulp-combine-media-queries'), // Combine matching media queries into one media query definition [npm install --save-dev gulp-combine-media-queries]
+  cssBase64 = require('gulp-css-base64'), // Gulp's task for transform all resources found in a CSS into base64-encoded data URI strings [npm install --save-dev gulp-css-base64]
+  minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
+// cssnano = require('gulp-cssnano'), // Minify CSS with cssnano [npm install --save-dev gulp-cssnano]
+// Compass + SCSS(SASS)
   compass = require('gulp-compass'), // compass + sass -- style: nested, expanded, compact, compressed [npm install --save-dev gulp-compass] [gem update --system] [gem install compass]
-  sourcemaps = require('gulp-sourcemaps'), // Source map [npm install --save-dev gulp-sourcemaps]
-  htmlhint = require('gulp-htmlhint'),// Validate .html [npm install --save-dev gulp-htmlhint]
   scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint [npm install --save-dev gulp-scss-lint] [gem install scss_lint]
   scsslintStylish = require('gulp-scss-lint-stylish2'), // Stylish reporter for gulp-scss-lint [npm install --save-dev gulp-scss-lint-stylish2]
-  concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js')) [npm install --save-dev gulp-concat]
-  autoprefixer = require('gulp-autoprefixer'), // add vendor prefix -webkit, -moz, -ms, -o [npm install --save-dev gulp-autoprefixer]
+  reporter = scsslintStylish({errorsOnly: false}),
+// Images
+// imagemin = require('gulp-imagemin'), // Image optimization [npm install --save imagemin]
+// Favicon.ico
+  realFavicon = require('gulp-real-favicon'), // Generate a multiplatform favicon with RealFaviconGenerator
+  FAVICON_DATA_FILE = 'faviconData.json', // File where the favicon markups are stored
+// SVG
+  svgmin = require('gulp-svgmin'), // Minify SVG files [npm install --save-dev gulp-svgmin]
+  svgstore = require('gulp-svgstore'), // Combine svg files into one with <symbol> elements [npm install --save-dev gulp-svgstore]
+  raster = require('gulp-raster'), // svg to png, for retina @2x [npm install --save-dev gulp-raster]
+// JS(jQuery)
   jshint = require('gulp-jshint'),// validate js. Reporter: default, checkstyle, jslint_xml, non_error, unix; [npm install --save-dev jshint gulp-jshint]
   stylish = require('jshint-stylish'), // Stylish reporter for JSHint (jshint-stylish) [npm install --save-dev jshint-stylish]
-//stylish_ex = require('jshint-stylish-ex'), // Stylish reporter for JSHint (jshint-stylish-ex) [npm install --save-dev jshint-stylish-ex]
+// stylish_ex = require('jshint-stylish-ex'), // Stylish reporter for JSHint (jshint-stylish-ex) [npm install --save-dev jshint-stylish-ex]
   uglify = require('gulp-uglify'), // min js [npm install --save-dev gulp-uglify]
-  minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
-  cssnano = require('gulp-cssnano'), // Minify CSS with cssnano [npm install --save-dev gulp-cssnano]
-  cmq = require('gulp-combine-media-queries'), // Combine matching media queries into one media query definition [npm install --save-dev gulp-combine-media-queries]
-  cssShorthand = require('gulp-shorthand'), // Makes your CSS files lighter and more readable [npm install --save gulp-shorthand]
-  cssBase64 = require('gulp-css-base64'), // Gulp's task for transform all resources found in a CSS into base64-encoded data URI strings [npm install --save-dev gulp-css-base64]
-  realFavicon = require ('gulp-real-favicon'), // Generate a multiplatform favicon with RealFaviconGenerator
-  svgstore = require('gulp-svgstore'), // Combine svg files into one with <symbol> elements [npm install --save-dev gulp-svgstore]
-  svgmin = require('gulp-svgmin'), // Minify SVG files [npm install --save-dev gulp-svgmin]
-  raster = require('gulp-raster'), // svg to png, for retina @2x [npm install --save-dev gulp-raster]
-//imagemin = require('gulp-imagemin'), // image optimization [npm install --save imagemin]
-  mainBowerFiles = require('main-bower-files'),
-  FAVICON_DATA_FILE = 'faviconData.json', // File where the favicon markups are stored
-  reporter = scsslintStylish({errorsOnly: false}),
+// Gulp
+  gulp = require('gulp'),
+// Gulp useful plugins
+  plumber = require('gulp-plumber'), // tracking error -- .pipe(plumber()) [npm install --save-dev gulp-plumber]
+  rename = require('gulp-rename'),// rename files {basename:'scripts',prefix:'jquery.',suffix:'.min',extname:'.js'} [npm install --save-dev gulp-rename]
+  notify = require('gulp-notify'), // event notification -- .pipe(notify('Minification css finished!')) [npm install --save-dev gulp-notify]
+  concat = require('gulp-concat'), // concat css, js files -- .pipe(concat('all.css-js')) [npm install --save-dev gulp-concat]
+  sourcemaps = require('gulp-sourcemaps'), // Source map [npm install --save-dev gulp-sourcemaps]
+  size = require('gulp-size'), // isplay the size of your project [npm install --save-dev gulp-size]
+  filter = require('gulp-filter'), // Filter files in a vinyl stream [npm install --save-dev gulp-filter]
+  zip = require('gulp-zip'), // ZIP compress files [npm install --save-dev gulp-zip]
+// LiveReload & Browser Syncing
+  browserSync = require('browser-sync').create(), // Live CSS Reload & Browser Syncing [npm install --save-dev browser-sync]
+// Bower
+  mainBowerFiles = require('main-bower-files'), // [npm install --save-dev main-bower-files]
+// Modernizr
+  modernizr = require('gulp-modernizr'), // Gulp wrapper for custom Modernizr builds [npm install --save-dev gulp-modernizr]
+// Config
   config = {
-    bs: {
-      ui: false, server: { baseDir: './' }, port: 8080, ghostMode: { clicks: true, forms: true, scroll: true },
-      logLevel: 'info', logPrefix: 'Browsersync', logConnections: false, logFileChanges: false, online: false,
-      browser: ['google chrome', 'firefox'], reloadOnRestart: true, notify: true, host: '127.0.0.1'
-    },
-    bower: {
-      paths: {bowerDirectory: 'bower_components', bowerrc: '.bowerrc', bowerJson: 'bower.json'},
-      debugging: false, checkExistence: true, includeDev: true
-    },
+    // Config Jade
     jade: {jade: jade, pretty: true},
-    compass: {
-      config_file: 'config.rb', require: false, environment: 'development', http_path: '/',
-      css: 'css', font: 'fonts', image: 'img', javascript: 'js', sass: 'sass', style: 'expanded',
-      relative: true, comments: false, logging: true, time: true, sourcemap: false, debug: false, task: 'compile' /*watch*/
-    },
+    // Config CSS Autoprefixer
     autoprefixer: {
       browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
       cascade: false, add: true, remove: false
     },
-    fileSize: {showFiles: true, gzip: false, title: 'The size', pretty: true},
+    // Config CSS Combine Media Queries
     cmd: {log: false, use_external: false},
-    cssBase64: {baseDir: '../img/', maxWeightResource: 32*1024, extensionsAllowed: ['.svg', '.png', '.jpg', '.gif']}, /*base64:skip*/
+    // Config CSS base64
+    cssBase64: {
+      baseDir: '../img/', maxWeightResource: 32 * 1024,
+      extensionsAllowed: ['.svg', '.png', '.jpg', '.gif'] /*base64:skip*/
+    },
+    // Config CSS minify
     minifyCss: {compatibility: 'ie7', debug: true},
+    // Config Compass + SCSS(SASS)
+    compass: {
+      config_file: 'config.rb', require: false, environment: 'development', http_path: '/',
+      css: 'css', font: 'fonts', image: 'img', javascript: 'js', sass: 'sass', style: 'expanded', relative: true,
+      comments: false, logging: true, time: true, sourcemap: false, debug: false, task: 'compile' /*watch*/
+    },
+    // Config SCSS(SASS) Lint
     scsslint: {config: '.scss-lint.yml', customReport: reporter.issues},
+    // Config JS Hint
     jshint: {lookup: true, linter: 'jshint'},
+    // Config BrowserSync
+    bs: {
+      ui: false, server: {baseDir: './'}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
+      logLevel: 'info', logPrefix: 'Browsersync', logConnections: false, logFileChanges: false, online: false,
+      browser: ['google chrome', 'firefox'], reloadOnRestart: true, notify: true, host: '127.0.0.1'
+    },
+    // Config Bower
+    bower: {
+      paths: {bowerDirectory: 'bower_components', bowerrc: '.bowerrc', bowerJson: 'bower.json'},
+      debugging: false, checkExistence: true, includeDev: true
+    },
+    // Config Gulp file size
+    fileSize: {showFiles: true, gzip: false, title: 'The size', pretty: true},
+    // Config Gulp filter
     filter: {restore: true, passthrough: true}
   };
 
@@ -91,13 +123,8 @@ gulp.task('ncu', function () {
 });
 
 gulp.task('libsBower', function () {
-  var filter = gulpFilter(['jquery.raty.js'], config.filter);
   return gulp.src(mainBowerFiles(config.bower))
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(filter)
-    .pipe(rename({suffix: '.min'}))
-    .pipe(uglify())
-    .pipe(filter.restore)
     .pipe(gulp.dest('libs/'));
 });
 
@@ -165,7 +192,7 @@ gulp.task('jade', function () {
 });
 
 gulp.task('compass', function () {
-  gulp.src(['sass/**/*.scss'])
+  return gulp.src(['sass/**/*.scss'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(scsslint(config.scsslint))
     .pipe(compass(config.compass))
@@ -193,14 +220,14 @@ gulp.task('css', function () {
 });
 
 gulp.task('autoprefixer', function () {
-  return gulp.src(['css/main.css'])
+  gulp.src(['css/main.css'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest('css/'));
 });
 
 gulp.task('js', function () {
-  return gulp.src(['js/common.js'])
+  gulp.src(['js/common.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
@@ -224,7 +251,7 @@ gulp.task('js', function () {
 //});
 
 gulp.task('html-hint', function () {
-  gulp.src(['*.html'])
+  return gulp.src(['*.html'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(htmlhint('.htmlhintrc'))
     .pipe(notify({message: 'Checking html file is successfully completed!', onLast: true}))
@@ -247,7 +274,7 @@ gulp.task('js-hint', function () {
 });
 
 gulp.task('jade-watch', ['jade'], function () {
-  gulp.watch('jade/*.jade', ['jade']);
+  gulp.watch('jade/**/*.jade', ['jade']);
 });
 
 gulp.task('compass-watch', ['compass'], function () {
@@ -280,7 +307,7 @@ gulp.task('css-build', function () {
 });
 
 gulp.task('js-build', function () {
-  return gulp.src(['js/common.js'])
+  gulp.src(['js/common.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
     .pipe(uglify())
@@ -302,7 +329,7 @@ gulp.task('js-build', function () {
 
 gulp.task('build', ['clean', 'css-build', 'js-build'/*, 'img-build'*/]);
 
-gulp.task('modernizr', function() {
+gulp.task('modernizr', function () {
   gulp.src('js/common.js')
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(modernizr('modernizr.js', {
@@ -310,7 +337,7 @@ gulp.task('modernizr', function() {
       //"dest": "libs/modernizr.js",
       "crawl": false,
       "uglify": false,
-      "useBuffers" : false,
+      "useBuffers": false,
       "customTests": [],
       "tests": [
         "input",
@@ -411,7 +438,7 @@ gulp.task('zip', function () {
 // You should run it at least once to create the icons. Then,
 // you should run it whenever RealFaviconGenerator updates its
 // package (see the check-for-favicon-update task below).
-gulp.task('generate-favicon', function(done) {
+gulp.task('generate-favicon', function (done) {
   realFavicon.generateFavicon({
     masterPicture: 'img/favicon.png', // 310x310 px
     dest: 'img/favicon',
@@ -451,7 +478,7 @@ gulp.task('generate-favicon', function(done) {
       errorOnImageTooSmall: false
     },
     markupFile: FAVICON_DATA_FILE
-  }, function() {
+  }, function () {
     done();
   });
 });
@@ -459,8 +486,8 @@ gulp.task('generate-favicon', function(done) {
 // Inject the favicon markups in your HTML pages. You should run
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
-gulp.task('inject-favicon-markups', function() {
-  gulp.src([ 'TODO: List of the HTML files where to inject favicon markups' ])
+gulp.task('inject-favicon-markups', function () {
+  gulp.src(['TODO: List of the HTML files where to inject favicon markups'])
     .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
     .pipe(gulp.dest('TODO: Path to the directory where to store the HTML files'));
 });
@@ -469,9 +496,9 @@ gulp.task('inject-favicon-markups', function() {
 // released a new Touch icon along with the latest version of iOS).
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
-gulp.task('check-for-favicon-update', function(done) {
+gulp.task('check-for-favicon-update', function (done) {
   var currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
-  realFavicon.checkForUpdates(currentVersion, function(err) {
+  realFavicon.checkForUpdates(currentVersion, function (err) {
     if (err) {
       throw err;
     }
