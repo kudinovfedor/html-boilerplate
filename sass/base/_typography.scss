@@ -11,7 +11,7 @@
   background-color: #338fff;
   color: #fff;
   text-shadow: none;
-};
+}
 
 html {
   @include box-sizing(border-box);
@@ -92,6 +92,11 @@ a {
   &:active {}
 
   &:focus {}
+
+  &[href^='http'],
+  &[href^='www.'] {
+    cursor: alias;
+  }
 }
 
 img {
@@ -115,7 +120,7 @@ ol {
 }
 
 table {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
   max-width: 100%;
 }
 
