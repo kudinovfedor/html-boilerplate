@@ -34,6 +34,7 @@ var
   svgstore = require('gulp-svgstore'), // Combine svg files into one with <symbol> elements [npm install --save-dev gulp-svgstore]
   raster = require('gulp-raster'), // svg to png, for retina @2x [npm install --save-dev gulp-raster]
 // JS(jQuery)
+  jscs = require('gulp-jscs'), // Check JavaScript code style with JSCS [npm install --save-dev gulp-jscs]
   jshint = require('gulp-jshint'),// validate js. Reporter: default, checkstyle, jslint_xml, non_error, unix; [npm install --save-dev jshint gulp-jshint]
   stylish = require('jshint-stylish'), // Stylish reporter for JSHint (jshint-stylish) [npm install --save-dev jshint-stylish]
 // stylish_ex = require('jshint-stylish-ex'), // Stylish reporter for JSHint (jshint-stylish-ex) [npm install --save-dev jshint-stylish-ex]
@@ -81,6 +82,8 @@ var
     },
     // Config SCSS(SASS) Lint
     scsslint: {config: '.scss-lint.yml', customReport: reporter.issues},
+    // Config jscs
+    jscs: {fix: false, configPath: '.jscsrc'},
     // Config JS Hint
     jshint: {lookup: true, linter: 'jshint'},
     // Config BrowserSync
@@ -230,6 +233,7 @@ gulp.task('js', function () {
   gulp.src(['js/common.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
+    //.pipe(jscs(config.jscs))
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(stylish))
     .pipe(uglify())
