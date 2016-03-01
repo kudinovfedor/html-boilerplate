@@ -8,22 +8,21 @@ var
   ncu = require('npm-check-updates'), // Upgrade your package.json or bower.json dependencies to the latest versions.
 // HTML
   htmlhint = require('gulp-htmlhint'),// Validate *.html [npm install --save-dev gulp-htmlhint]
+  html_stylish = require('htmlhint-stylish'), // A Stylish reporter for HTMLHint [npm install --save-dev htmlhint-stylish]
 // Jade
-  jade = require('jade'), // Jade [npm install --save jade]
-  gulpJade = require('gulp-jade'), // Gulp Jade [npm install --save-dev gulp-jade]
-  jadelint = require('gulp-pug-lint'), // Validate *.jade [npm install --save-dev gulp-pug-lint]
+  jade = require('gulp-jade'), // Gulp Jade [npm install --save-dev gulp-jade]
+  jade_lint = require('gulp-pug-lint'), // Validate *.jade [npm install --save-dev gulp-pug-lint]
 // CSS
   cssShorthand = require('gulp-shorthand'), // Makes your CSS files lighter and more readable [npm install --save gulp-shorthand]
   autoprefixer = require('gulp-autoprefixer'), // Add vendor prefix -webkit, -moz, -ms, -o [npm install --save-dev gulp-autoprefixer]
   cmq = require('gulp-combine-media-queries'), // Combine matching media queries into one media query definition [npm install --save-dev gulp-combine-media-queries]
   cssBase64 = require('gulp-css-base64'), // Gulp's task for transform all resources found in a CSS into base64-encoded data URI strings [npm install --save-dev gulp-css-base64]
-  minifyCss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
-// cssnano = require('gulp-cssnano'), // Minify CSS with cssnano [npm install --save-dev gulp-cssnano]
+  minifycss = require('gulp-minify-css'), // min css [npm install --save-dev gulp-minify-css]
 // Compass + SCSS(SASS)
   compass = require('gulp-compass'), // compass + sass -- style: nested, expanded, compact, compressed [npm install --save-dev gulp-compass] [gem update --system] [gem install compass]
   scsslint = require('gulp-scss-lint'), // Validate .scss files with scss-lint [npm install --save-dev gulp-scss-lint] [gem install scss_lint]
-  scsslintStylish = require('gulp-scss-lint-stylish2'), // Stylish reporter for gulp-scss-lint [npm install --save-dev gulp-scss-lint-stylish2]
-  reporter = scsslintStylish({errorsOnly: false}),
+  scss_stylish = require('gulp-scss-lint-stylish2'), // Stylish reporter for gulp-scss-lint [npm install --save-dev gulp-scss-lint-stylish2]
+  reporter = scss_stylish({errorsOnly: false}),
 // Images
 // imagemin = require('gulp-imagemin'), // Image optimization [npm install --save imagemin]
 // Favicon.ico
@@ -35,9 +34,9 @@ var
   raster = require('gulp-raster'), // svg to png, for retina @2x [npm install --save-dev gulp-raster]
 // JS(jQuery)
   jscs = require('gulp-jscs'), // Check JavaScript code style with JSCS [npm install --save-dev gulp-jscs]
+  cs_stylish = require('gulp-jscs-stylish'), // [npm install --save-dev gulp-jscs-stylish]
   jshint = require('gulp-jshint'),// validate js. Reporter: default, checkstyle, jslint_xml, non_error, unix; [npm install --save-dev jshint gulp-jshint]
-  stylish = require('jshint-stylish'), // Stylish reporter for JSHint (jshint-stylish) [npm install --save-dev jshint-stylish]
-// stylish_ex = require('jshint-stylish-ex'), // Stylish reporter for JSHint (jshint-stylish-ex) [npm install --save-dev jshint-stylish-ex]
+  hint_stylish = require('jshint-stylish'), // Stylish reporter for JSHint (jshint-stylish) [npm install --save-dev jshint-stylish]
   uglify = require('gulp-uglify'), // min js [npm install --save-dev gulp-uglify]
 // Gulp
   gulp = require('gulp'),
@@ -59,7 +58,7 @@ var
 // Config
   config = {
     // Config Jade
-    jade: {jade: jade, pretty: true},
+    jade: {pretty: true},
     // Config CSS Autoprefixer
     autoprefixer: {
       browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
@@ -73,7 +72,7 @@ var
       extensionsAllowed: ['.svg', '.png', '.jpg', '.gif'] /*base64:skip*/
     },
     // Config CSS minify
-    minifyCss: {compatibility: 'ie7', debug: true},
+    minifycss: {compatibility: 'ie7', debug: true},
     // Config Compass + SCSS(SASS)
     compass: {
       config_file: 'config.rb', require: false, environment: 'development', http_path: '/',
@@ -163,7 +162,7 @@ gulp.task('ie8', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
-    .pipe(concat('ie8.js'/*, {newLine: ';'}*/))
+    .pipe(concat('ie8.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(size(config.fileSize))
@@ -176,7 +175,7 @@ gulp.task('all-js', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
     .pipe(sourcemaps.init())
-    .pipe(concat('all.js'/*, {newLine: ';'}*/))
+    .pipe(concat('all.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(size(config.fileSize))
@@ -187,9 +186,9 @@ gulp.task('all-js', function () {
 gulp.task('jade', function () {
   return gulp.src(['jade/*.jade', '!jade/template.jade'])
     .pipe(plumber({errorHandler: errorAlert}))
-    //.pipe(jadelint())
-    .pipe(gulpJade(config.jade))
-    .pipe(notify({message: 'Compiling jade in html is successfully completed!', onLast: true}))
+    //.pipe(jade_lint())
+    .pipe(jade(config.jade))
+    .pipe(notify({title: 'Success', message: 'Compiling jade in html is successfully completed!', onLast: true}))
     .pipe(gulp.dest('./'))
     .pipe(browserSync.stream());
 });
@@ -199,7 +198,7 @@ gulp.task('compass', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(scsslint(config.scsslint))
     .pipe(compass(config.compass))
-    .pipe(notify({message: 'Compiling sass in css is successfully completed!', onLast: true}))
+    .pipe(notify({title: 'Success', message: 'Compiling sass in css is successfully completed!', onLast: true}))
     .pipe(gulp.dest('css/'))
     //.pipe(reporter.printSummary)
     .pipe(browserSync.stream());
@@ -213,10 +212,9 @@ gulp.task('css', function () {
     //.pipe(autoprefixer(config.autoprefixer))
     .pipe(cmq(config.cmd))
     .pipe(cssBase64(config.cssBase64))
-    .pipe(minifyCss(config.minifyCss))
-    //.pipe(cssnano())
+    .pipe(minifycss(config.minifycss))
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
+    .pipe(notify({title: 'Success', message: 'Minify css completed successfully!', onLast: true}))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
     .pipe(browserSync.stream());
@@ -233,13 +231,15 @@ gulp.task('js', function () {
   gulp.src(['js/common.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
-    //.pipe(jscs(config.jscs))
+    .pipe(jscs(config.jscs))
+    //.pipe(jscs.reporter())
+    .pipe(cs_stylish())
     .pipe(jshint(config.jshint))
-    .pipe(jshint.reporter(stylish))
+    .pipe(jshint.reporter(hint_stylish))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
-    .pipe(notify({message: 'Minify js completed successfully!', onLast: true}))
+    .pipe(notify({title: 'Success', message: 'Minify js completed successfully!', onLast: true}))
     .pipe(gulp.dest('js/'))
     .pipe(browserSync.stream());
 });
@@ -258,9 +258,9 @@ gulp.task('html-hint', function () {
   return gulp.src(['*.html'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(htmlhint('.htmlhintrc'))
-    .pipe(notify({message: 'Checking html file is successfully completed!', onLast: true}))
-    .pipe(htmlhint.reporter());
-    //.pipe(htmlhint.failReporter({ supress: true }));
+    .pipe(notify({title: 'Success', message: 'Checking html file is successfully completed!', onLast: true}))
+    //.pipe(htmlhint.reporter())
+    .pipe(htmlhint.reporter(html_stylish));
 });
 
 gulp.task('scss-lint', function () {
@@ -270,11 +270,19 @@ gulp.task('scss-lint', function () {
     .pipe(reporter.printSummary);
 });
 
-gulp.task('js-hint', function () {
-  return gulp.src(['js/*.js'])
+gulp.task('jscs', function () {
+  gulp.src(['js/common.js'])
+    .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(jscs(config.jscs))
+    //.pipe(jscs.reporter())
+    .pipe(cs_stylish());
+});
+
+gulp.task('jshint', function () {
+  gulp.src(['js/common.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(jshint(config.jshint))
-    .pipe(jshint.reporter(stylish));
+    .pipe(jshint.reporter(hint_stylish));
 });
 
 gulp.task('jade-watch', ['jade'], function () {
@@ -302,10 +310,9 @@ gulp.task('css-build', function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
-    .pipe(minifyCss(config.minifyCss))
-    //.pipe(cssnano())
+    .pipe(minifycss(config.minifycss))
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify({message: 'Minify css completed successfully!', onLast: true}))
+    .pipe(notify({title: 'Success', message: 'Minify css completed successfully!', onLast: true}))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest('build/css/'));
 });
@@ -316,7 +323,7 @@ gulp.task('js-build', function () {
     .pipe(size(config.fileSize))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify({message: 'Minify js completed successfully!', onLast: true}))
+    .pipe(notify({title: 'Success', message: 'Minify js completed successfully!', onLast: true}))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest('build/js/'));
 });

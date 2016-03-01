@@ -61,14 +61,14 @@
       });
     }
 
-    // Make something with an element when clicked beyond its borders
-    $(document).on('click', function (e) {
-      //if (!$(e.target).closest('').length) {}
-    });
+    // Make something with an element when clicked beyond its borders (uncomment for use)
+    //$(document).on('click', function (e) {
+    //  if (!$(e.target).closest('').length) {}
+    //});
 
     // The resize event occurs when the browser window changes size.
-    $(window).on('resize',function() {
-      w =  $(window).width();
+    $(window).on('resize', function () {
+      w = $(window).width();
     });
 
   });
