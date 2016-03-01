@@ -2,6 +2,9 @@
 AddDefaultCharset utf-8
 
 AddType text/x-component .htc
+AddType video/ogg .ogv
+AddType video/mp4 .mp4
+AddType video/webm .webm
 
 # Don't show a list of files in a directory
 Options -Indexes
