@@ -273,14 +273,6 @@ textarea {
 /* ====================================================== */
 /* ====================  TYPOGRAPHY  ==================== */
 /* ====================================================== */
-*,
-*:before,
-*:after {
-  -moz-box-sizing: inherit;
-  -webkit-box-sizing: inherit;
-  box-sizing: inherit;
-}
-
 ::-moz-selection {
   background-color: #338fff;
   color: #fff;
@@ -293,17 +285,6 @@ textarea {
   text-shadow: none;
 }
 
-html {
-  -moz-box-sizing: border-box;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-}
-
-html,
-body {
-  height: 100%;
-}
-
 @-ms-viewport {
   width: device-width;
 }
@@ -313,6 +294,25 @@ body {
 @viewport {
   width: device-width;
 }
+html {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -moz-box-sizing: inherit;
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html,
+body {
+  height: 100%;
+}
+
 body {
   background-color: #fff;
   color: #000;
@@ -378,9 +378,14 @@ a[href^='http'], a[href^='www.'] {
   cursor: alias;
 }
 
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
 img {
   height: auto;
-  max-width: 100%;
   vertical-align: middle;
 }
 

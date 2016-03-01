@@ -31,7 +31,11 @@
 
 .ie8 {}
 
-.ie7 {}
+.ie7 {
+  img {
+    -ms-interpolation-mode: bicubic;
+  }
+}
 
 .ie6 {}
 

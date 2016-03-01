@@ -1,28 +1,28 @@
 /* ====================================================== */
 /* ====================  TYPOGRAPHY  ==================== */
 /* ====================================================== */
-*,
-*:before,
-*:after {
-  @include box-sizing(inherit);
-}
-
 @include selection {
   background-color: #338fff;
   color: #fff;
   text-shadow: none;
 }
 
+@include viewport(device-width);
+
 html {
   @include box-sizing(border-box);
+}
+
+*,
+*:before,
+*:after {
+  @include box-sizing(inherit);
 }
 
 html,
 body {
   height: 100%;
 }
-
-@include viewport(device-width);
 
 body {
   background-color: #fff;
@@ -99,9 +99,14 @@ a {
   }
 }
 
+img,
+object,
+embed {
+  max-width: 100%;
+}
+
 img {
   height: auto;
-  max-width: 100%;
   vertical-align: middle;
 }
 

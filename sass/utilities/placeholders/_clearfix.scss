@@ -4,7 +4,7 @@
 
   &:before,
   &:after {
-    content: '';
+    content: ' ';
     display: table;
   }
 
@@ -16,7 +16,7 @@
 %clearfix {
   &:after {
     clear: both;
-    content: '';
+    content: ' ';
     display: table;
   }
 }

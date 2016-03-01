@@ -10,6 +10,10 @@
   filter: none;
 }
 
+.ie7 img {
+  -ms-interpolation-mode: bicubic;
+}
+
 .lt-ie9 svg,
 .no-svg svg {
   display: none;
