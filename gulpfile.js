@@ -161,12 +161,10 @@ gulp.task('ie8', function () {
   return gulp.src(['libs/html5shiv.min.js', 'libs/respond.min.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
-    .pipe(sourcemaps.init())
     .pipe(concat('ie8.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(size(config.fileSize))
-    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('js/'));
 });
 
@@ -174,12 +172,10 @@ gulp.task('all-js', function () {
   return gulp.src(['libs/device.min.js', 'libs/modernizr.min.js', 'libs/jquery.min.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(size(config.fileSize))
-    .pipe(sourcemaps.init())
     .pipe(concat('all.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
     .pipe(size(config.fileSize))
-    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest('js/'));
 });
 
