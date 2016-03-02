@@ -5,7 +5,13 @@
 
   // Preloader
   $(window).on('load', function () {
-    $('.preloader').delay(350).fadeOut('slow');
+
+    var preloader = $('.preloader');
+
+    if (preloader.length) {
+      preloader.delay(350).fadeOut('slow');
+    }
+
   });
 
   // Function to execute when the DOM is fully loaded.

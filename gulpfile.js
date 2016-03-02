@@ -68,7 +68,7 @@ var
     cmd: {log: false, use_external: false},
     // Config CSS base64
     cssBase64: {
-      baseDir: '../img/', maxWeightResource: 32 * 1024,
+      baseDir: '../img/', maxWeightResource: 10 * 1024,
       extensionsAllowed: ['.svg', '.png', '.jpg', '.gif'] /*base64:skip*/
     },
     // Config CSS minify
