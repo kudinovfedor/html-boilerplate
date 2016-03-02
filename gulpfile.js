@@ -88,8 +88,8 @@ var
     // Config BrowserSync
     bs: {
       ui: false, server: {baseDir: './'}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
-      logLevel: 'info', logPrefix: 'Browsersync', logConnections: false, logFileChanges: false, online: false,
-      browser: ['google chrome', 'firefox'], reloadOnRestart: true, notify: true, host: '127.0.0.1'
+      logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: false, online: false,
+      reloadOnRestart: true, notify: true
     },
     // Config Bower
     bower: {
