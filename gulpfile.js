@@ -204,7 +204,7 @@ gulp.task('css', function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
-    .pipe(cssShorthand())
+    //.pipe(cssShorthand()) // This plugin worked not very well
     //.pipe(autoprefixer(config.autoprefixer))
     .pipe(cmq(config.cmd))
     .pipe(cssBase64(config.cssBase64))
