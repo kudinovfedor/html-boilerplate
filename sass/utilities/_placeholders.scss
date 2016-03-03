@@ -1,9 +1,22 @@
 // PLACEHOLDERS
 @import 'placeholders/circle';
-@import 'placeholders/clearfix';
-@import 'placeholders/flexbox';
+@import 'placeholders/clear';
+@import 'placeholders/float';
+@import 'placeholders/font';
 @import 'placeholders/image';
-@import 'placeholders/list';
-@import 'placeholders/pie';
+@import 'placeholders/list-style';
+@import 'placeholders/margin';
+@import 'placeholders/padding';
+@import 'placeholders/pointer-events';
 @import 'placeholders/table';
-@import 'placeholders/text';
+@import 'placeholders/text-align';
+@import 'placeholders/text-decoration';
+@import 'placeholders/text-overflow';
+@import 'placeholders/text-transform';
+@import 'placeholders/vertical-align';
+@import 'placeholders/white-space';
+@import 'placeholders/flexbox'; // [Optional]
+@import 'placeholders/pie'; // [Optional]
+
+// Reset list
+%reset-list {list-style: none; margin: 0; padding-left: 0;}

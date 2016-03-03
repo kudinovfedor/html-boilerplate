@@ -1,20 +1,4 @@
 // TABLE PLACEHOLDER
-%table {
-  width: 100%;
-  max-width: 100%;
-  margin-bottom: $base-margin;
-}
-
-%table-collapse {
-  border-collapse: collapse;
-  border-spacing: 0;
-}
-
-%table-separate {
-  border-collapse: separate;
-  border-spacing: 0 1px;
-}
-
-%table-fixed {
-  table-layout: fixed;
-}
+%table-collapse {border-collapse: collapse; border-spacing: 0;}
+%table-separate {border-collapse: separate; border-spacing: 0 1px;}
+%table-fixed {table-layout: fixed;}

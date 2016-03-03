@@ -1,7 +1,5 @@
 // CLEARFIX PLACEHOLDER
 %clr {
-  zoom: 1;
-
   &:before,
   &:after {
     content: ' ';
@@ -12,6 +10,11 @@
     clear: both;
   }
 }
+
+%clr-left {clear: left;}
+%clr-right {clear: right;}
+%clr-both {clear: both;}
+%clr-none {clear: none;}
 
 %clearfix {
   &:after {
