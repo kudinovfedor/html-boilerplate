@@ -1,6 +1,8 @@
 // TABLE PLACEHOLDER
 %table {
   width: 100%;
+  max-width: 100%;
+  margin-bottom: $base-margin;
 }
 
 %table-collapse {

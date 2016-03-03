@@ -56,7 +56,7 @@ a:hover {
   outline: 0;
 }
 
-abbr {
+abbr[title] {
   border-bottom: 1px dotted;
 }
 
@@ -126,7 +126,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace;
+  font-family: monospace, monospace;
   font-size: 1em;
 }
 
@@ -336,7 +336,8 @@ h6 {
   font-family: inherit;
   font-weight: bold;
   line-height: 1.1;
-  margin: 0 0 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 h1 {
@@ -364,7 +365,8 @@ h6 {
 }
 
 p {
-  margin: 0 0 10px;
+  margin-top: 0;
+  margin-bottom: 10px;
 }
 
 a {
@@ -391,8 +393,14 @@ img {
 
 ul,
 ol {
-  margin: 10px 0;
+  margin: 0 0 10px;
   padding-left: 20px;
+}
+ul ul,
+ul ol,
+ol ul,
+ol ol {
+  margin-bottom: 0;
 }
 ul li,
 ol li {
@@ -403,9 +411,21 @@ ol a {
   color: inherit;
 }
 
+a,
+area,
+button,
+[role="button"],
+input,
+label,
+select,
+summary,
+textarea {
+  -ms-touch-action: manipulation;
+  touch-action: manipulation;
+}
+
 table {
-  margin-bottom: 20px;
-  max-width: 100%;
+  background-color: transparent;
 }
 
 caption {
@@ -434,8 +454,12 @@ svg {
 /* ================================================= */
 form {
   max-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
   position: relative;
+}
+
+label:empty {
+  display: none;
 }
 
 select,
@@ -451,6 +475,12 @@ input[type='password'] {
   border: 1px solid #ccc;
   margin-bottom: 10px;
   padding: 8px 10px;
+}
+
+input[type="radio"]:disabled, input[type="radio"].disabled,
+input[type="checkbox"]:disabled,
+input[type="checkbox"].disabled {
+  cursor: not-allowed;
 }
 
 input:-moz-placeholder,

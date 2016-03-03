@@ -53,8 +53,7 @@ a:hover {
   outline: 0;
 }
 
-//abbr[title] {
-abbr {
+abbr[title] {
   border-bottom: 1px dotted;
 }
 
@@ -122,7 +121,7 @@ code,
 kbd,
 pre,
 samp {
-  font-family: monospace;
+  font-family: monospace, monospace;
   font-size: 1em;
 }
 

@@ -1,17 +1,19 @@
 // IMAGE PLACEHOLDER
 %img-left {
   float: left;
-  margin: 0 $default-img-margin-right $default-img-margin-bottom 0;
+  margin-right: $base-margin;
+  margin-bottom: $base-margin;
 }
 
 %img-center {
   display: block;
-  margin: 0 auto $default-img-margin-bottom;
+  margin: $base-margin auto;
 }
 
 %img-right {
   float: right;
-  margin: 0 0 $default-img-margin-bottom $default-img-margin-left;
+  margin-bottom: $base-margin;
+  margin-left: $base-margin;
 }
 
 %img-responsive {

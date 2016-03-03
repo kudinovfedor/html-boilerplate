@@ -3,7 +3,7 @@
 /* ================================================= */
 form {
   max-width: 100%;
-  margin-bottom: 20px;
+  margin-bottom: $base-margin;
   position: relative;
 }
 
@@ -11,7 +11,11 @@ fieldset {}
 
 legend {}
 
-label {}
+label {
+  &:empty {
+    display: none;
+  }
+}
 
 select,
 textarea,
@@ -24,12 +28,21 @@ input[type='search'],
 input[type='number'],
 input[type='password'] {
   border: 1px solid #ccc;
-  margin-bottom: 10px;
+  margin-bottom: $base-margin;
   padding: 8px 10px;
 
   &:hover {}
 
   &:focus {}
+}
+
+input[type="radio"],
+input[type="checkbox"] {
+
+  &:disabled,
+  &.disabled {
+    cursor: not-allowed;
+  }
 }
 
 input,
