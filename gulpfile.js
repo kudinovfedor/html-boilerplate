@@ -97,7 +97,7 @@ var
       debugging: false, checkExistence: true, includeDev: true
     },
     // Config Gulp file size
-    fileSize: {showFiles: true, gzip: false, title: 'The size', pretty: true},
+    fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
     // Config Gulp filter
     filter: {restore: true, passthrough: true}
   };
