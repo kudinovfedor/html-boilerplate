@@ -8,9 +8,9 @@
   *:after,
   *:first-letter,
   *:first-line {
-    background: transparent;
+    background: none;
     color: #000;
-    @include box-shadow(none);
+    box-shadow: none;
     text-shadow: none;
   }
 

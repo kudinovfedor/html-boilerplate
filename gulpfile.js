@@ -190,7 +190,7 @@ gulp.task('jade', function () {
 });
 
 gulp.task('compass', function () {
-  return gulp.src(['sass/**/*.scss'])
+  gulp.src(['sass/**/*.scss'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(scsslint(config.scsslint))
     .pipe(compass(config.compass))
@@ -206,7 +206,7 @@ gulp.task('css', function () {
     .pipe(sourcemaps.init())
     //.pipe(cssShorthand()) // This plugin worked not very well
     //.pipe(autoprefixer(config.autoprefixer))
-    .pipe(cmq(config.cmd))
+    //.pipe(cmq(config.cmd)) // Give error buffer.js:148 throw new TypeError('must start with number, buffer, array or string');
     .pipe(cssBase64(config.cssBase64))
     .pipe(minifycss(config.minifycss))
     .pipe(rename({suffix: '.min'}))

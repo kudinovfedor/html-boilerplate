@@ -381,12 +381,14 @@ a[href^='http'], a[href^='www.'] {
 }
 
 img,
+video,
 object,
 embed {
   max-width: 100%;
 }
 
-img {
+img,
+video {
   height: auto;
   vertical-align: middle;
 }
