@@ -13,6 +13,7 @@ $preloader-size: 10px;
 .preloader {
   $size: $preloader-size;
   $bg-color: #000;
+  display: block; // If to use tag span
   background: rgba($bg-color, .95) url('../img/spin.gif') center center no-repeat;
   position: fixed;
   z-index: 9998;

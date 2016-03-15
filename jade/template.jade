@@ -1,27 +1,32 @@
 //- template.jade
+- var lang = 'en'
+- var ie_classes = true
 - var twitter = true
 - var facebook = true
-- var ie_classes = true
 - var favicon = true
 - var main_css_min = false
 - var ie_css_min = false
 - var selectivizr = true
+- var browser_upgrade = true
+- var preloader = false
 - var google_analytics = true
 doctype html
 if ie_classes && facebook
-  <!--[if lt IE 7 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
-  <!--[if IE 7 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
-  <!--[if IE 8 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie8 lt-ie9 no-js"><![endif]-->
-  <!--[if IE 9 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie9 lt-ie10 no-js"><![endif]-->
-  <!--[if (gte IE 10)|!(IE)]<!--><html lang="en" prefix="og: http://ogp.me/ns#" class="no-js"><!--<![endif]-->
+  <!--[if lt IE 7 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 7 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 8 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 9 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie9 lt-ie10 no-js"><![endif]-->
+  <!--[if (gte IE 10)|!(IE)]<!--><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="no-js"><!--<![endif]-->
 else if ie_classes && !facebook
-  <!--[if lt IE 7 ]><html lang="en" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
-  <!--[if IE 7 ]><html lang="en" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
-  <!--[if IE 8 ]><html lang="en" class="ie ie8 lt-ie9 no-js"><![endif]-->
-  <!--[if IE 9 ]><html lang="en" class="ie ie9 lt-ie10 no-js"><![endif]-->
-  <!--[if (gte IE 10)|!(IE)]<!--><html lang="en" class="no-js"><!--<![endif]-->
+  <!--[if lt IE 7 ]><html lang="#{lang}" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 7 ]><html lang="#{lang}" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 8 ]><html lang="#{lang}" class="ie ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 9 ]><html lang="#{lang}" class="ie ie9 lt-ie10 no-js"><![endif]-->
+  <!--[if (gte IE 10)|!(IE)]<!--><html lang="#{lang}" class="no-js"><!--<![endif]-->
+else if !ie_classes && facebook
+  <html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="no-js">
 else
-  <html lang="en" class="no-js">
+  <html lang="#{lang}" class="no-js">
 head
   meta(charset='utf-8')
   title Template
@@ -107,11 +112,13 @@ head
     script(src='libs/selectivizr.min.js')
     <![endif]-->
 body(itemscope=true, itemtype='http://schema.org/WebPage')
-  <!--[if lt IE 8]>
-  p.browserupgrade You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en" target="_blank">upgrade your browser</a>.
-  <![endif]-->
+  if browser_upgrade
+    <!--[if lt IE 8]>
+    p.browserupgrade You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en" target="_blank">upgrade your browser</a>.
+    <![endif]-->
   block content
-  //-.preloader
+  if preloader
+    .preloader
   // all.min.js include device.js, modernizr.js, jquery.js libraries
   script(src='js/all.min.js')
   //-script(src='js/common.min.js')
