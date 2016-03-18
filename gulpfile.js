@@ -423,6 +423,23 @@ gulp.task('zip', function () {
     'css/**',
     'fonts/**',
     'img/**',
+    'js/**',
+    'libs/**',
+    '*.html',
+    '.htaccess',
+    'favicon.ico'
+  ], {base: '.'})
+    .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(zip('archive.zip', {compress: true}))
+    .pipe(size(config.fileSize))
+    .pipe(gulp.dest('./'));
+});
+
+gulp.task('zip-all', function () {
+  return gulp.src([
+    'css/**',
+    'fonts/**',
+    'img/**',
     'jade/**',
     'js/**',
     'libs/**',
@@ -436,7 +453,7 @@ gulp.task('zip', function () {
     '.*'
   ], {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip('archive.zip', {compress: true}))
+    .pipe(zip('archive_all.zip', {compress: true}))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest('./'));
 });

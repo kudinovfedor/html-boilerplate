@@ -1,4 +1,4 @@
-;(function ($) {
+;(function ($, Modernizr) {
 
   // Mode of the modern standard
   'use strict';
@@ -19,6 +19,7 @@
 
     // Variables
     var w = $(window).width(),
+      scroll_top = $('.scroll-top'),
       dppx = '';
 
     // dppx value of retina display
@@ -37,6 +38,19 @@
     // Verification of support autofocus
     if (!('autofocus' in document.createElement('input'))) {
       $('.autofocus').focus();
+    }
+
+    // Modernizr support
+    if (Modernizr) {
+      console.log('Library Modernizr connected');
+    }
+
+    // Scroll To Top
+    if (scroll_top.length) {
+      scroll_top.on('click', function () {
+        $('html, body').animate({scrollTop: 0}, 'slow');
+        return false;
+      });
     }
 
     // JS for working with accordion
@@ -79,4 +93,4 @@
 
   });
 
-}(jQuery));
+}(jQuery, window.Modernizr));
