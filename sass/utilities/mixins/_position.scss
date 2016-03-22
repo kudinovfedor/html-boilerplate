@@ -38,4 +38,10 @@
   }
 }
 
-
+@mixin pos-abs ($top: 0, $right: null, $bottom: null, $left: 0) {
+  position: absolute;
+  top: $top;
+  right: $right;
+  bottom: $bottom;
+  left: $left;
+}
