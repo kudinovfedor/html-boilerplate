@@ -19,7 +19,9 @@
 
     // Variables
     var w = $(window).width(),
+      html_body = $('html, body'),
       scroll_top = $('.scroll-top'),
+      nav_menu = $('.nav-menu'),
       dppx = '';
 
     // dppx value of retina display
@@ -48,10 +50,18 @@
     // Scroll To Top
     if (scroll_top.length) {
       scroll_top.on('click', function () {
-        $('html, body').animate({scrollTop: 0}, 'slow');
+        html_body.animate({scrollTop: 0}, 'slow');
         return false;
       });
     }
+
+    // Smooth scrolling to anchor links
+    nav_menu.on('click', 'a', function () {
+      var id = $(this).attr('href'),
+        top = $(id).offset().top;
+      html_body.animate({scrollTop: top}, 1000);
+      return false;
+    });
 
     // JS for working with accordion
     $('.fk-accordion-switch').on('click', function () {

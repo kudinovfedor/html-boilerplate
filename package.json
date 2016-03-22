@@ -8,7 +8,7 @@
     "browser-sync": "^2.11.1",
     "gulp": "^3.9.1",
     "npm-check": "^4.1.4",
-    "npm-check-updates": "^2.5.8"
+    "npm-check-updates": "^2.6.1"
   },
   "devDependencies": {
     "del": "^2.2.0",

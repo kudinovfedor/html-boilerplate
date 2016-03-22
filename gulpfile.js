@@ -155,7 +155,7 @@ gulp.task('retina2dppx', function () {
     .pipe(gulp.dest('img/svgfallback'));
 });
 
-gulp.task('svg', ['svg-sprite', 'retina1dppx', 'retina2dppx'], function () {});
+gulp.task('svg', ['svg-sprite', 'retina1dppx'/*, 'retina2dppx'*/], function () {});
 
 gulp.task('ie8', function () {
   return gulp.src(['libs/html5shiv.min.js', 'libs/respond.min.js'])

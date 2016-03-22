@@ -4,7 +4,6 @@
 @import 'utilities/variables';
 @import 'utilities/mixins';
 @import 'utilities/functions';
-@import 'utilities/placeholders';
 
 // FORMSTYLER CSS
 //@import 'vendors/formstyler/formstyler-select';
@@ -17,6 +16,8 @@
 //@import 'base/reset';
 @import 'base/normalize';
 @import 'base/typography';
+
+@import 'utilities/placeholders';
 
 @import 'layout/forms';
 //@import 'layout/grid'; // [Optional]
