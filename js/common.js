@@ -45,6 +45,8 @@
     // Modernizr support
     if (Modernizr) {
       console.log('Library Modernizr connected');
+    } else {
+      console.log('Library Modernizr is not connected');
     }
 
     // Scroll To Top
