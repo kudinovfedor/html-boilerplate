@@ -15,6 +15,7 @@
 
 //@import 'base/reset';
 @import 'base/normalize';
+@import 'base/core';
 @import 'base/typography';
 
 @import 'utilities/placeholders';
@@ -48,3 +49,5 @@
 
 //@import 'theme/theme'; // [Optional]
 //@import 'theme/admin'; // [Optional]
+
+@import 'utilities/debug'; // [Optional]

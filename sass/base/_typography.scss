@@ -1,47 +1,8 @@
 /* ====================================================== */
 /* ====================  TYPOGRAPHY  ==================== */
 /* ====================================================== */
-$scroll-behavior: true;
-$font-smoothing: true;
 
-@include selection {
-  background-color: #338fff;
-  color: #fff;
-  text-shadow: none;
-}
-
-@include viewport(device-width);
-
-html {
-  @include box-sizing(border-box);
-}
-
-*,
-*:before,
-*:after {
-  @include box-sizing(inherit);
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  background-color: $body-bg;
-  color: $body-color;
-  font: normal $base-font-size/#{$base-line-height} $base-font-family;
-  min-width: 320px;
-  overflow-x: hidden;
-  position: relative;
-  @if ($scroll-behavior) {
-    scroll-behavior: smooth;
-  }
-  text-rendering: optimizeLegibility;
-  @if ($font-smoothing) {
-    @include font-smoothing(antialiased);
-  }
-}
+// Headings
 
 h1,
 h2,
@@ -81,10 +42,14 @@ h6 {
   font-size: $font-size-h6;
 }
 
+// Text elements
+
 p {
   margin-top: 0;
   margin-bottom: $base-margin;
 }
+
+small {}
 
 a {
   color: $link-color;
@@ -108,18 +73,34 @@ a {
   }
 }
 
-img,
-video,
-object,
-embed {
-  max-width: 100%;
+b,
+strong {
+  font-weight: bold;
 }
 
-img,
-video {
-  height: auto;
-  vertical-align: middle;
+i,
+em {
+  font-style: italic;
 }
+
+blockquote {
+  padding: 0 0 0 15px;
+  margin: 0 0 $base-margin;
+  border-left: 5px solid #eee;
+}
+
+abbr,
+acronym {
+  cursor: help;
+  border-bottom: 1px dotted #999;
+}
+
+address {
+  margin: 0 0 $base-margin;
+  font-style: italic;
+}
+
+// Lists
 
 ul,
 ol {
@@ -140,20 +121,24 @@ ol {
   }
 }
 
-a,
-area,
-button,
-[role="button"],
-input,
-label,
-select,
-summary,
-textarea {
-  @include touch-action(manipulation);
+dl {
+  margin: 0 0 $base-margin;
 }
 
+dt {
+  font-weight: bold;
+}
+
+dd {
+  margin-left: $base-margin;
+}
+
+// Tables
+
 table {
+  max-width: 100%;
   background-color: transparent;
+  margin-bottom: $base-margin;
 }
 
 caption {
@@ -162,13 +147,35 @@ caption {
   text-align: left;
 }
 
+th {
+  font-weight: bold;
+}
+
 th,
 td {
   text-align: left;
+  vertical-align: middle;
 }
 
-svg {
-  @include transition(fill .2s ease-in);
+thead {}
+
+tbody {}
+
+tfoot {}
+
+// Img, Video, Object, Embed
+
+img,
+video,
+object,
+embed {
+  max-width: 100%;
+}
+
+img,
+video {
+  height: auto;
+  vertical-align: middle;
 }
 
 /* ========================================================== */
