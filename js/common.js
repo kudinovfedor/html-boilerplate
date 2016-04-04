@@ -1,4 +1,4 @@
-;(function ($, Modernizr) {
+!(function ($, Modernizr) {
 
   // Mode of the modern standard
   'use strict';
@@ -6,11 +6,7 @@
   // Preloader
   $(window).on('load', function () {
 
-    var preloader = $('.preloader');
-
-    if (preloader.length) {
-      preloader.delay(350).fadeOut('slow');
-    }
+    preloader('.preloader');
 
   });
 
@@ -18,79 +14,37 @@
   $(function () {
 
     // Variables
-    var w = $(window).width(),
-      html_body = $('html, body'),
-      scroll_top = $('.scroll-top'),
-      nav_menu = $('.nav-menu'),
-      dppx = '';
-
-    // dppx value of retina display
-    if (window.devicePixelRatio !== undefined) {
-      dppx = window.devicePixelRatio + 'dppx';
-    }
+    var w = $(window).width();
 
     // If JavaScript enabled
-    $('html').removeClass('no-js').addClass('js ' + dppx);
+    jsEnable('html');
+
+    // dppx value of retina display
+    dppx();
 
     // Remove class .error when receives focus
-    $('.error').on('focus', function () {
-      $(this).removeClass('error');
-    });
+    errorField('.error');
 
     // Verification of support autofocus
-    if (!('autofocus' in document.createElement('input'))) {
-      $('.autofocus').focus();
-    }
+    autoFocus('.autofocus');
+
+    // Scroll To Top
+    scrollToTop('.scroll-top');
+
+    // Smooth scrolling to anchor links
+    scrollToAnchorLinks('.nav-menu');
+
+    // Universal JavaScript for blocks with tabs
+    tabs('.fk-tabs', '.fk-tabs-list', '.fk-tab-item');
+
+    // JS for working with accordion
+    fk_accordion('.fk-accordion', '.fk-accordion-switch', 'js-opened');
 
     // Modernizr support
     if (Modernizr) {
       console.log('Library Modernizr connected');
     } else {
       console.log('Library Modernizr is not connected');
-    }
-
-    // Scroll To Top
-    if (scroll_top.length) {
-      scroll_top.on('click', function () {
-        html_body.animate({scrollTop: 0}, 'slow');
-        return false;
-      });
-    }
-
-    // Smooth scrolling to anchor links
-    nav_menu.on('click', 'a', function () {
-      var id = $(this).attr('href'),
-        top = $(id).offset().top;
-      html_body.animate({scrollTop: top}, 1000);
-      return false;
-    });
-
-    // JS for working with accordion
-    $('.fk-accordion-switch').on('click', function () {
-
-      var accordion = $('.fk-accordion'),
-        this_accordion = $(this).closest(accordion);
-
-      if (this_accordion.hasClass('js-opened')) {
-        this_accordion.removeClass('js-opened');
-      } else {
-        accordion.removeClass('js-opened');
-        this_accordion.addClass('js-opened');
-      }
-
-    });
-
-    // Universal JavaScript for blocks with tabs
-    var tabs_ul = $('.fk-tabs-list'), tabs_parent = $('.fk-tabs'), tabs_child = $('.fk-tab-item');
-
-    tabs(tabs_ul, tabs_parent, tabs_child);
-
-    function tabs(ul, parent, child) {
-      ul.on('click', 'li:not(.active)', function () {
-        $(this)
-          .addClass('active').siblings().removeClass('active')
-          .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
-      });
     }
 
     // Make something with an element when clicked beyond its borders (uncomment for use)
@@ -104,5 +58,186 @@
     });
 
   });
+
+  /**
+   * fk javascript enable
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} [element] - selected element (the default html tag)
+   */
+
+  function jsEnable(element) {
+
+    var el = element || 'html';
+
+    $(el).removeClass('no-js').addClass('js');
+
+  }
+
+  /**
+   * fk dppx value of retina display
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   */
+
+  function dppx() {
+
+    if (window.devicePixelRatio !== undefined) {
+
+      $('html').addClass(window.devicePixelRatio + 'dppx');
+
+    }
+
+  }
+
+  /**
+   * fk delete class .error with focus
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} [element] - selected element
+   * @param {string} [class_error] - class which will be removed after receiving focus
+   */
+
+  function errorField(element, class_error) {
+    var el = element || '.error', error = class_error || 'error';
+
+    $(el).on('focus', function () {
+
+      $(this).removeClass(error);
+
+    });
+
+  }
+
+  /**
+   * fk autofocus
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} element - by selected element will be added focus
+   */
+
+  function autoFocus(element) {
+    if (!('autofocus' in document.createElement('input'))) {
+      $(element).focus();
+    }
+  }
+
+  /**
+   * fk Scroll To Top
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} scroll_id - selected item to perform the a clicked
+   * @param {(number|string)} [scroll_duration] - determining how long the animation will run
+   */
+
+  function scrollToTop(scroll_id, scroll_duration) {
+
+    var el = $(scroll_id), duration = scroll_duration || 'slow';
+
+    el.on('click', function () {
+
+      $('html, body').animate({scrollTop: 0}, duration);
+
+      return false;
+
+    });
+
+  }
+
+  /**
+   * fk smooth scrolling to anchor links
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} menu_id - selected item to perform the a clicked
+   * @param {(number|string)} [scroll_duration] - determining how long the animation will run
+   */
+
+  function scrollToAnchorLinks(menu_id, scroll_duration) {
+
+    var id = $(menu_id), duration = $(scroll_duration) || 1000;
+
+    id.on('click', 'a[href*="#"]:not([href="#"])', function () {
+
+      var el = $(this).attr('href');
+
+      $('html, body').animate({scrollTop: $(el).offset().top}, duration);
+
+      return false;
+
+    });
+
+  }
+
+  /**
+   * fk preloader
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} element - selected element
+   * @param {number} [el_delay] - delay before function fadeOut is start
+   * @param {(number|string)} [el_duration] - determining how long the fadeOut will run
+   */
+
+  function preloader(element, el_delay, el_duration) {
+
+    var el = $(element),delay = el_delay || 350, duration = el_duration || 'slow';
+
+    if (el.length) {
+      el.delay(delay).fadeOut(duration);
+    }
+  }
+
+  /**
+   * fk Tabs
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} tabs_container - main container for tabs
+   * @param {string} tabs_list - ul list for each tab item
+   * @param {string} tabs_item - tab block for each li item
+   */
+
+  function tabs(tabs_container, tabs_list, tabs_item) {
+
+    var parent = $(tabs_container), ul = $(tabs_list), child = $(tabs_item);
+
+    ul.on('click', 'li:not(.active)', function () {
+
+      $(this)
+        .addClass('active').siblings().removeClass('active')
+        .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
+    });
+
+  }
+
+  /**
+   * fk accordion
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @param {string} accordion_container - container for each accordion item
+   * @param {string} accordion_switch - element for open and close accordion
+   * @param {string} [accordion_class_open] - class when accordion is opened
+   */
+
+  function fk_accordion(accordion_container, accordion_switch, accordion_class_open) {
+
+    var fk_accordion = $(accordion_container),
+      fk_switch = $(accordion_switch),
+      fk_opened = accordion_class_open || 'js-opened';
+
+    fk_switch.on('click', function () {
+
+      var el_parent = $(this).closest(fk_accordion);
+
+      if (el_parent.hasClass(fk_opened)) {
+
+        el_parent.removeClass(fk_opened);
+
+      } else {
+
+        el_parent.addClass(fk_opened).siblings().removeClass(fk_opened);
+
+      }
+
+    });
+  }
 
 }(jQuery, window.Modernizr));
