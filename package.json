@@ -4,10 +4,10 @@
   "description": "Workpieces code and structure that I use in every project",
   "main": "gulpfile.js",
   "dependencies": {
-    "bower": "^1.7.7",
+    "bower": "^1.7.8",
     "browser-sync": "^2.11.2",
     "gulp": "^3.9.1",
-    "npm-check": "^5.1.1",
+    "npm-check": "^5.1.2",
     "npm-check-updates": "^2.6.1"
   },
   "devDependencies": {
