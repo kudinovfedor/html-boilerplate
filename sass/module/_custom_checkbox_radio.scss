@@ -71,10 +71,10 @@ $dimensions-height-identical: false !default;
     width: $basic-width-custom-checkbox;
     height: $basic-height-custom-checkbox;
   }
-  @if ($dimensions-width-identical) {
+  @if not($dimensions-width-height-identical) and not($dimensions-width-identical) {
     width: $basic-width-custom-checkbox;
   }
-  @if ($dimensions-height-identical) {
+  @if not($dimensions-width-height-identical) and not($dimensions-height-identical) {
     height: $basic-height-custom-checkbox;
   }
 }
@@ -84,10 +84,10 @@ $dimensions-height-identical: false !default;
     width: $basic-width-custom-radio;
     height: $basic-height-custom-radio;
   }
-  @if ($dimensions-width-identical) {
+  @if not($dimensions-width-height-identical) and not($dimensions-width-identical) {
     width: $basic-width-custom-radio;
   }
-  @if ($dimensions-height-identical) {
+  @if not($dimensions-width-height-identical) and not($dimensions-height-identical) {
     height: $basic-height-custom-radio;
   }
 }
