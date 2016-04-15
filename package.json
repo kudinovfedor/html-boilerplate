@@ -5,10 +5,10 @@
   "main": "gulpfile.js",
   "dependencies": {
     "bower": "^1.7.9",
-    "browser-sync": "^2.11.2",
+    "browser-sync": "^2.12.3",
     "gulp": "^3.9.1",
     "npm-check": "<=4.1.4",
-    "npm-check-updates": "^2.6.1"
+    "npm-check-updates": "^2.6.2"
   },
   "devDependencies": {
     "del": "^2.2.0",

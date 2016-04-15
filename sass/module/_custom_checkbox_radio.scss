@@ -1,0 +1,93 @@
+$basic-main-custom-name: custom-input !default;
+$basic-class-custom-checkbox: custom-checkbox !default;
+$basic-class-custom-radio: custom-radio !default;
+
+$basic-width-custom-checkbox: 15px !default;
+$basic-height-custom-checkbox: 15px !default;
+$basic-width-custom-radio: 15px !default;
+$basic-height-custom-radio: 15px !default;
+
+$dimensions-width-height-identical: true !default;
+$dimensions-width-identical: false !default;
+$dimensions-height-identical: false !default;
+
+
+.#{$basic-main-custom-name} {
+  [type='checkbox'],
+  [type='radio'] {
+    position: absolute;
+    opacity: 0;
+    z-index: 1;
+  }
+
+  [type='checkbox'] {
+    + .#{$basic-class-custom-checkbox} {
+      color: #fff;
+    }
+
+    &:checked {
+      + .#{$basic-class-custom-checkbox} {
+        color: #333;
+      }
+    }
+  }
+
+  [type='radio'] {
+    + .#{$basic-class-custom-radio} {
+      color: #fff;
+    }
+
+    &:checked {
+      + .#{$basic-class-custom-radio} {
+        color: #333;
+      }
+    }
+  }
+}
+
+.#{$basic-class-custom-checkbox},
+.#{$basic-class-custom-radio} {
+  cursor: pointer;
+  display: inline-block;
+  @if ($dimensions-width-height-identical) {
+    width: $basic-width-custom-checkbox;
+    height: $basic-height-custom-checkbox;
+  }
+  @if ($dimensions-width-identical) {
+    width: $basic-width-custom-checkbox;
+  }
+  @if ($dimensions-height-identical) {
+    height: $basic-height-custom-checkbox;
+  }
+
+  &:after {
+    content: '';
+    display: none;
+  }
+}
+
+.#{$basic-class-custom-checkbox} {
+  @if not($dimensions-width-height-identical) {
+    width: $basic-width-custom-checkbox;
+    height: $basic-height-custom-checkbox;
+  }
+  @if ($dimensions-width-identical) {
+    width: $basic-width-custom-checkbox;
+  }
+  @if ($dimensions-height-identical) {
+    height: $basic-height-custom-checkbox;
+  }
+}
+
+.#{$basic-class-custom-radio} {
+  @if not($dimensions-width-height-identical) {
+    width: $basic-width-custom-radio;
+    height: $basic-height-custom-radio;
+  }
+  @if ($dimensions-width-identical) {
+    width: $basic-width-custom-radio;
+  }
+  @if ($dimensions-height-identical) {
+    height: $basic-height-custom-radio;
+  }
+}
