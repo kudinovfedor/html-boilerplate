@@ -1,93 +1,338 @@
-$basic-main-custom-name: custom-input !default;
-$basic-class-custom-checkbox: custom-checkbox !default;
-$basic-class-custom-radio: custom-radio !default;
+/* ====================================================================== */
+/* ======================  CUSTOM CHECKBOX, RADIO  ====================== */
+/* ====================================================================== */
+// Auxiliary functions
+@function identical-sizes($checkbox-size, $radio-size) {
+  @if ($checkbox-size == $radio-size) {
+    @return true
+  } @else {
+    @return false
+  }
+}
 
-$basic-width-custom-checkbox: 15px !default;
-$basic-height-custom-checkbox: 15px !default;
-$basic-width-custom-radio: 15px !default;
-$basic-height-custom-radio: 15px !default;
+// General classes
+$custom-name-container: custom-input !default;
+$custom-checkbox-class: custom-checkbox !default;
+$custom-radio-class: custom-radio !default;
 
-$dimensions-width-height-identical: true !default;
-$dimensions-width-identical: false !default;
-$dimensions-height-identical: false !default;
+// Checkbox variables
+$custom-checkbox-width: 150px !default;
+//20px
+$custom-checkbox-height: 150px !default;
+//20px
+$custom-checkbox-border-width: 2px !default;
+$custom-checkbox-border-style: solid !default;
+$custom-checkbox-border-color: #333 !default;
+$custom-checkbox-background: #ccc !default;
+$custom-checkbox-box-shadow: none !default;
+$custom-checkbox-transition: none !default;
 
+$custom-checkbox-inner-width: 100px !default;
+//10px
+$custom-checkbox-inner-height: 100px !default;
+//10px
+$custom-checkbox-inner-border-width: 2px !default;
+$custom-checkbox-inner-border-style: solid !default;
+$custom-checkbox-inner-border-color: #333 !default;
+$custom-checkbox-inner-background: #333 !default;
+$custom-checkbox-inner-box-shadow: none !default;
+$custom-checkbox-inner-transition: none !default;
 
-.#{$basic-main-custom-name} {
+// square or circle or number (for example 5px) - not string
+// square => [border-radius: 0]
+// circle => [border-radius: 50%]
+// 5px => [border-radius: 5px]
+$custom-checkbox-shape: square !default;
+// [border-radius: 0]
+$custom-checkbox-inner-shape: $custom-checkbox-shape !default;
+
+// Radio variables
+$custom-radio-width: 150px !default;
+//20px
+$custom-radio-height: 150px !default;
+//20px
+$custom-radio-border-width: 2px !default;
+$custom-radio-border-style: solid !default;
+$custom-radio-border-color: #333 !default;
+$custom-radio-background: #ccc !default;
+$custom-radio-box-shadow: none !default;
+$custom-radio-transition: none !default;
+
+$custom-radio-inner-width: 100px !default;
+//10px
+$custom-radio-inner-height: 100px !default;
+//10px
+$custom-radio-inner-border-width: 2px !default;
+$custom-radio-inner-border-style: solid !default;
+$custom-radio-inner-border-color: #333 !default;
+$custom-radio-inner-background: #333 !default;
+$custom-radio-inner-box-shadow: none !default;
+$custom-radio-inner-transition: none !default;
+
+// square or circle or number (for example 5px) - not string
+// square => [border-radius: 0]
+// circle => [border-radius: 50%]
+// 5px => [border-radius: 5px]
+$custom-radio-shape: circle !default;
+// [border-radius: 50%]
+$custom-radio-inner-shape: $custom-radio-shape !default;
+
+// Auxiliary variables
+$centering-indoor-units: false !default;
+$smart-centering-indoor-units: true !default;
+
+$dimensions-width-identical: identical-sizes($custom-checkbox-width, $custom-radio-width) !default;
+$dimensions-height-identical: identical-sizes($custom-checkbox-height, $custom-radio-height) !default;
+//@debug ('container width ' + $dimensions-width-identical);
+//@debug ('container height ' + $dimensions-height-identical);
+
+$dimensions-inner-width-identical: identical-sizes($custom-checkbox-inner-width, $custom-radio-inner-width) !default;
+$dimensions-inner-height-identical: identical-sizes($custom-checkbox-inner-height, $custom-radio-inner-height) !default;
+//@debug ('container inner width ' + $dimensions-inner-width-identical);
+//@debug ('container inner height ' + $dimensions-inner-height-identical);
+
+.#{$custom-name-container} {
   [type='checkbox'],
   [type='radio'] {
+    cursor: pointer;
     position: absolute;
     opacity: 0;
-    z-index: 1;
+    z-index: -1;
+    @if ($dimensions-width-identical and $dimensions-height-identical) {
+      width: $custom-checkbox-width;
+      height: $custom-checkbox-height;
+    }
+    @if ($dimensions-width-identical) and not($dimensions-height-identical) {
+      width: $custom-checkbox-width;
+    }
+    @if ($dimensions-height-identical) and not($dimensions-width-identical) {
+      height: $custom-checkbox-height;
+    }
   }
 
   [type='checkbox'] {
-    + .#{$basic-class-custom-checkbox} {
-      color: #fff;
+    @if not($dimensions-width-identical) {
+      width: $custom-checkbox-width;
     }
-
-    &:checked {
-      + .#{$basic-class-custom-checkbox} {
-        color: #333;
-      }
+    @if not($dimensions-height-identical) {
+      height: $custom-checkbox-height;
     }
   }
 
   [type='radio'] {
-    + .#{$basic-class-custom-radio} {
-      color: #fff;
+    @if not($dimensions-width-identical) {
+      width: $custom-radio-width;
+    }
+    @if not($dimensions-height-identical) {
+      height: $custom-radio-height;
+    }
+  }
+
+  @at-root {
+    .#{$custom-checkbox-class},
+    .#{$custom-radio-class} {
+      cursor: pointer;
+      display: inline-block;
+      vertical-align: middle;
+      @if ($dimensions-width-identical and $dimensions-height-identical) {
+        width: $custom-checkbox-width;
+        height: $custom-checkbox-height;
+      }
+      @if ($dimensions-width-identical) and not($dimensions-height-identical) {
+        width: $custom-checkbox-width;
+      }
+      @if ($dimensions-height-identical) and not($dimensions-width-identical) {
+        height: $custom-checkbox-height;
+      }
+      @if ($custom-checkbox-border-width == $custom-radio-border-width and $custom-checkbox-border-style == $custom-radio-border-style and $custom-checkbox-border-color == $custom-radio-border-color) {
+        border: $custom-checkbox-border-width $custom-checkbox-border-style $custom-checkbox-border-color;
+      }
+      @if ($smart-centering-indoor-units) and ($dimensions-width-identical == $dimensions-height-identical) {
+        padding: (($custom-checkbox-width - $custom-checkbox-inner-width - ($custom-checkbox-border-width * 2)) / 2);
+      }
+      @if ($centering-indoor-units) {
+        text-align: center;
+      }
+      @if ($custom-checkbox-background == $custom-radio-background) {
+        background: $custom-checkbox-background;
+      }
+      @if ($custom-checkbox-box-shadow == $custom-radio-box-shadow) and not($custom-checkbox-box-shadow == none) and not($custom-radio-box-shadow == none) {
+        @include box-shadow($custom-checkbox-box-shadow);
+      }
+
+      &:after {
+        content: '';
+        display: none;
+        @if ($dimensions-inner-width-identical and $dimensions-inner-height-identical) {
+          width: $custom-checkbox-inner-width;
+          height: $custom-checkbox-inner-height;
+        }
+        @if ($dimensions-inner-width-identical) and not($dimensions-inner-height-identical) {
+          width: $custom-checkbox-inner-width;
+        }
+        @if ($dimensions-inner-height-identical) and not($dimensions-inner-width-identical) {
+          height: $custom-checkbox-inner-height;
+        }
+        @if ($centering-indoor-units) {
+          margin: 0 auto;
+        }
+        @if ($custom-checkbox-inner-background == $custom-radio-inner-background) {
+          background: $custom-checkbox-inner-background;
+        }
+        @if ($custom-checkbox-inner-box-shadow == $custom-radio-inner-box-shadow) and not($custom-checkbox-inner-box-shadow == none) and not($custom-radio-inner-box-shadow == none) {
+          @include box-shadow($custom-checkbox-inner-box-shadow);
+        }
+      }
     }
 
-    &:checked {
-      + .#{$basic-class-custom-radio} {
-        color: #333;
+    @if ($custom-checkbox-shape == 'circle' and $custom-checkbox-inner-shape == 'circle' or $custom-radio-shape == 'circle' and $custom-radio-inner-shape == 'circle') {
+      %round-shape {
+        @include border-radius(50%);
+      }
+    }
+
+    .#{$custom-checkbox-class} {
+      @if not($dimensions-width-identical) {
+        width: $custom-checkbox-width;
+      }
+      @if not($dimensions-height-identical) {
+        height: $custom-checkbox-height;
+      }
+
+      @if not(($custom-checkbox-border-width == $custom-radio-border-width and $custom-checkbox-border-style == $custom-radio-border-style and $custom-checkbox-border-color == $custom-radio-border-color)) {
+        border: $custom-checkbox-border-width $custom-checkbox-border-style $custom-checkbox-border-color;
+      }
+
+      @if ($smart-centering-indoor-units) and not($dimensions-width-identical == $dimensions-height-identical) {
+        padding: (($custom-checkbox-width - $custom-checkbox-inner-width - ($custom-checkbox-border-width * 2)) / 2);
+      }
+
+      @if not($custom-checkbox-background == $custom-radio-background) {
+        background: $custom-checkbox-background;
+      }
+
+      @if ($custom-checkbox-shape == 'circle') {
+        @extend %round-shape;
+      } @else if not($custom-checkbox-shape == 'square') and not($custom-checkbox-shape == 'circle') {
+        @include border-radius($custom-checkbox-shape);
+      }
+
+      @if not($custom-checkbox-box-shadow == $custom-radio-box-shadow) and not($custom-checkbox-box-shadow == none) {
+        @include box-shadow($custom-checkbox-box-shadow);
+      }
+
+      &:after {
+        @if not($dimensions-inner-width-identical) {
+          width: $custom-checkbox-inner-width;
+        }
+        @if not($dimensions-inner-height-identical) {
+          height: $custom-checkbox-inner-height;
+        }
+        @if not($custom-checkbox-inner-background == $custom-radio-inner-background) {
+          background: $custom-checkbox-inner-background;
+        }
+        @if ($custom-checkbox-inner-shape == 'circle') {
+          @extend %round-shape;
+        }
+        @if not($custom-checkbox-inner-box-shadow == $custom-radio-inner-box-shadow) and not($custom-checkbox-inner-box-shadow == none) {
+          @include box-shadow($custom-checkbox-inner-box-shadow);
+        }
+      }
+    }
+
+    .#{$custom-radio-class} {
+      @if not($dimensions-width-identical) {
+        width: $custom-radio-width;
+      }
+      @if not($dimensions-height-identical) {
+        height: $custom-radio-height;
+      }
+
+      @if not(($custom-checkbox-border-width == $custom-radio-border-width and $custom-checkbox-border-style == $custom-radio-border-style and $custom-checkbox-border-color == $custom-radio-border-color)) {
+        border: $custom-radio-border-width $custom-radio-border-style $custom-radio-border-color;
+      }
+
+      @if ($smart-centering-indoor-units) and not($dimensions-width-identical == $dimensions-height-identical) {
+        padding: (($custom-checkbox-width - $custom-checkbox-inner-width - ($custom-checkbox-border-width * 2)) / 2);
+      }
+
+      @if not($custom-checkbox-background == $custom-radio-background) {
+        background: $custom-radio-background;
+      }
+
+      @if ($custom-radio-shape == 'circle') {
+        @extend %round-shape;
+      }
+
+      @if not($custom-checkbox-box-shadow == $custom-radio-box-shadow) and not($custom-radio-box-shadow == none) {
+        @include box-shadow($custom-radio-box-shadow);
+      }
+
+      &:after {
+        @if not($dimensions-inner-width-identical) {
+          width: $custom-radio-inner-width;
+        }
+        @if not($dimensions-inner-height-identical) {
+          height: $custom-radio-inner-height;
+        }
+        @if not($custom-checkbox-inner-background == $custom-radio-inner-background) {
+          background: $custom-radio-inner-background;
+        }
+        @if ($custom-radio-shape == 'circle') {
+          @extend %round-shape;
+        }
+        @if not($custom-checkbox-inner-box-shadow == $custom-radio-inner-box-shadow) and not($custom-radio-inner-box-shadow == none) {
+          @include box-shadow($custom-radio-inner-box-shadow);
+        }
+      }
+    }
+
+    %custom-checked {
+      &:after {
+        display: block;
+      }
+    }
+
+    %custom-disabled {
+      //cursor: default;
+      cursor: not-allowed;
+      @include opacity(.65);
+    }
+
+    [type='checkbox'] {
+      &:checked {
+        + .#{$custom-checkbox-class} {
+          &:after {
+            @extend %custom-checked;
+          }
+        }
+      }
+
+      &:disabled {
+        + .#{$custom-checkbox-class} {
+          @extend %custom-disabled;
+        }
+      }
+    }
+
+    [type='radio'] {
+      &:checked {
+        + .#{$custom-radio-class} {
+          &:after {
+            @extend %custom-checked;
+          }
+        }
+      }
+
+      &:disabled {
+        + .#{$custom-radio-class} {
+          @extend %custom-disabled;
+        }
       }
     }
   }
 }
 
-.#{$basic-class-custom-checkbox},
-.#{$basic-class-custom-radio} {
-  cursor: pointer;
-  display: inline-block;
-  @if ($dimensions-width-height-identical) {
-    width: $basic-width-custom-checkbox;
-    height: $basic-height-custom-checkbox;
-  }
-  @if ($dimensions-width-identical) {
-    width: $basic-width-custom-checkbox;
-  }
-  @if ($dimensions-height-identical) {
-    height: $basic-height-custom-checkbox;
-  }
-
-  &:after {
-    content: '';
-    display: none;
-  }
-}
-
-.#{$basic-class-custom-checkbox} {
-  @if not($dimensions-width-height-identical) {
-    width: $basic-width-custom-checkbox;
-    height: $basic-height-custom-checkbox;
-  }
-  @if not($dimensions-width-height-identical) and not($dimensions-width-identical) {
-    width: $basic-width-custom-checkbox;
-  }
-  @if not($dimensions-width-height-identical) and not($dimensions-height-identical) {
-    height: $basic-height-custom-checkbox;
-  }
-}
-
-.#{$basic-class-custom-radio} {
-  @if not($dimensions-width-height-identical) {
-    width: $basic-width-custom-radio;
-    height: $basic-height-custom-radio;
-  }
-  @if not($dimensions-width-height-identical) and not($dimensions-width-identical) {
-    width: $basic-width-custom-radio;
-  }
-  @if not($dimensions-width-height-identical) and not($dimensions-height-identical) {
-    height: $basic-height-custom-radio;
-  }
-}
+/* ====================================================================== */
+/* ====================  END CUSTOM CHECKBOX, RADIO  ==================== */
+/* ====================================================================== */
