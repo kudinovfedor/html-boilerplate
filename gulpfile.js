@@ -184,7 +184,7 @@ gulp.task('jade', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     //.pipe(jade_lint())
     .pipe(jade(config.jade))
-    .pipe(notify({title: 'Success', message: 'Compiling jade in html is successfully completed!', onLast: true}))
+    //.pipe(notify({title: 'Success', message: 'Compiling jade in html is successfully completed!', onLast: true}))
     .pipe(gulp.dest('./'))
     .pipe(browserSync.stream());
 });
@@ -194,7 +194,7 @@ gulp.task('compass', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(scsslint(config.scsslint))
     .pipe(compass(config.compass))
-    .pipe(notify({title: 'Success', message: 'Compiling sass in css is successfully completed!', onLast: true}))
+    //.pipe(notify({title: 'Success', message: 'Compiling sass in css is successfully completed!', onLast: true}))
     .pipe(gulp.dest('css/'))
     //.pipe(reporter.printSummary)
     .pipe(browserSync.stream());
@@ -210,7 +210,7 @@ gulp.task('css', function () {
     .pipe(cssBase64(config.cssBase64))
     .pipe(minifycss(config.minifycss))
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify({title: 'Success', message: 'Minify css completed successfully!', onLast: true}))
+    //.pipe(notify({title: 'Success', message: 'Minify css completed successfully!', onLast: true}))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'))
     .pipe(browserSync.stream());
@@ -235,7 +235,7 @@ gulp.task('js', function () {
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
-    .pipe(notify({title: 'Success', message: 'Minify js completed successfully!', onLast: true}))
+    //.pipe(notify({title: 'Success', message: 'Minify js completed successfully!', onLast: true}))
     .pipe(gulp.dest('js/'))
     .pipe(browserSync.stream());
 });
@@ -254,7 +254,7 @@ gulp.task('html-hint', function () {
   return gulp.src(['*.html'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(htmlhint('.htmlhintrc'))
-    .pipe(notify({title: 'Success', message: 'Checking html file is successfully completed!', onLast: true}))
+    //.pipe(notify({title: 'Success', message: 'Checking html file is successfully completed!', onLast: true}))
     //.pipe(htmlhint.reporter())
     .pipe(htmlhint.reporter(html_stylish));
 });
@@ -308,7 +308,7 @@ gulp.task('css-build', function () {
     .pipe(size(config.fileSize))
     .pipe(minifycss(config.minifycss))
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify({title: 'Success', message: 'Minify css completed successfully!', onLast: true}))
+    //.pipe(notify({title: 'Success', message: 'Minify css completed successfully!', onLast: true}))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest('build/css/'));
 });
@@ -319,7 +319,7 @@ gulp.task('js-build', function () {
     .pipe(size(config.fileSize))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(notify({title: 'Success', message: 'Minify js completed successfully!', onLast: true}))
+    //.pipe(notify({title: 'Success', message: 'Minify js completed successfully!', onLast: true}))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest('build/js/'));
 });
