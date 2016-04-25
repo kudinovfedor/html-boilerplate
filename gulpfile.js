@@ -74,7 +74,7 @@ var config = {
   compass: {
     config_file: 'config.rb', require: false, environment: 'development', http_path: '/',
     css: 'css', font: 'fonts', image: 'img', javascript: 'js', sass: 'sass', style: 'expanded', relative: true,
-    comments: false, logging: true, time: true, sourcemap: false, debug: false, task: 'compile' /*watch*/
+    comments: false, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
   },
   // Config SCSS(SASS) Lint
   scsslint: {config: '.scss-lint.yml', customReport: reporter.issues},
@@ -181,14 +181,14 @@ gulp.task('compass', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('css', function () {
+gulp.task('css', ['clean-map'], function () {
   return gulp.src(['css/*.css', '!css/*.min.css'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
     //.pipe(cssShorthand()) // This plugin worked not very well
     //.pipe(autoprefixer(config.autoprefixer))
     //.pipe(cmq(config.cmd)) // Give error buffer.js:148 throw new TypeError('must start with number, buffer, array or string');
-    //.pipe(cssBase64(config.cssBase64))
+    .pipe(cssBase64(config.cssBase64))
     .pipe(minifycss(config.minifycss))
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
@@ -277,6 +277,10 @@ gulp.task('jade-watch', ['jade'], function () {
 
 gulp.task('compass-watch', ['compass'], function () {
   gulp.watch('sass/**/*.scss', ['compass']);
+});
+
+gulp.task('clean-map', function () {
+  return del(['{css,js}/*.map']);
 });
 
 gulp.task('clean', function () {
