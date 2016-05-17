@@ -36,7 +36,7 @@ relative_assets = true
 line_comments = (environment == :development) ? true : false
 
 # Set this to true to enable sourcemap output.
-sourcemap = (environment == :development) ? false : true
+sourcemap = (environment == :development) ? true : false
 
 # Can be :scss or :sass. Defaults to :scss.
 preferred_syntax = :scss

@@ -31,7 +31,7 @@ $ npm install -g npm
 $ npm install -g jade gulp bower htmlhint jshint
 
 # install npm-check npm-check-updates [optional]
-$ npm install -g npm-check npm-check-updates
+$ npm install -g npm-check-updates
 
 # install dependencies listed in package.json
 $ npm install
