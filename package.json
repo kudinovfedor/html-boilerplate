@@ -31,7 +31,7 @@
     "gulp-raster": "^0.1.0",
     "gulp-real-favicon": "^0.2.1",
     "gulp-rename": "^1.2.2",
-    "gulp-scss-lint": "^0.3.9",
+    "gulp-scss-lint": "^0.4.0",
     "gulp-scss-lint-stylish2": "^2.0.2",
     "gulp-shorthand": "^1.1.0",
     "gulp-size": "^2.1.0",
@@ -43,7 +43,7 @@
     "htmlhint-stylish": "^1.0.3",
     "jshint": "^2.9.2",
     "jshint-stylish": "^2.2.0",
-    "main-bower-files": "^2.13.0"
+    "main-bower-files": "^2.13.1"
   },
   "scripts": {
     "set-all": "npm run gem-install && npm run npm-update && npm run npm-install-g && npm run gulp-install && npm run bower-install",
