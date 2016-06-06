@@ -1,15 +1,18 @@
 //- template.jade
 - var lang = 'en'
 - var ie_classes = true
-- var twitter = true
-- var facebook = true
+- var twitter = false
+- var facebook = false
 - var favicon = true
 - var main_css_min = false
 - var ie_css_min = false
-- var selectivizr = true
+- var selectivizr = false
 - var browser_upgrade = true
 - var preloader = false
+- var pixlayout = true
 - var google_analytics = true
+- var svg_inline = false
+- var common_js_min = false
 doctype html
 if ie_classes && facebook
   <!--[if lt IE 7 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
@@ -29,127 +32,68 @@ else
   <html lang="#{lang}" class="no-js">
 head
   meta(charset='utf-8')
-  title Template
+  meta(http-equiv='x-ua-compatible', content='IE=edge, chrome=1')
+  meta(name='viewport', content='width=device-width, initial-scale=1.0, user-scalable=yes')
+  title
+    block title
+      | Template
   meta(name='description', content='')
-  meta(name='keywords', content='')
-  meta(name='author', content='')
   meta(name='robots', content='index, follow')
   //saved from url=(0014)about:internet
-  meta(http-equiv='X-UA-Compatible', content='IE=edge, chrome=1')
   meta(name='HandheldFriendly', content='true')
   meta(name='MobileOptimized', content='320')
-  meta(name='viewport', content='width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes')
   meta(name='format-detection', content='date=no, address=no, email=no, telephone=no')
   meta(name='x-rim-auto-match', content='none')
+  if favicon
+    include core/favicon
+  // Place favicon.ico in the root directory
+  link(href='favicon.ico', rel='shortcut icon')
   if twitter
-    // Twitter
-    meta(name='twitter:card', content='')
-    meta(name='twitter:site', content='')
-    meta(name='twitter:title', content='')
-    meta(name='twitter:description', content='')
-    meta(name='twitter:url', content='')
-    meta(name='twitter:image', content='')
+    include core/meta-twitter
   if facebook
-    // Facebook Open Graph protocol
-    meta(property='og:title', content='')
-    meta(property='og:description', content='')
-    meta(property='og:type', content='website')
-    meta(property='og:url', content='')
-    meta(property='og:image', content='')
-    meta(property='og:locale', content='en_US')
-    meta(property='og:site_name', content='')
-  <!--[if IE 6 ]>
-  meta(http-equiv='imagetoolbar', content='no')
-  <![endif]-->
+    include core/meta-facebook
   //- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading
   <!--[if IEMobile]>
   meta(http-equiv='cleartype', content='on')
   <![endif]-->
-  if favicon
-    link(rel='apple-touch-icon', sizes='57x57', href='img/favicon/apple-touch-icon-57x57.png')
-    link(rel='apple-touch-icon', sizes='60x60', href='img/favicon/apple-touch-icon-60x60.png')
-    link(rel='apple-touch-icon', sizes='72x72', href='img/favicon/apple-touch-icon-72x72.png')
-    link(rel='apple-touch-icon', sizes='76x76', href='img/favicon/apple-touch-icon-76x76.png')
-    link(rel='apple-touch-icon', sizes='114x114', href='img/favicon/apple-touch-icon-114x114.png')
-    link(rel='apple-touch-icon', sizes='120x120', href='img/favicon/apple-touch-icon-120x120.png')
-    link(rel='apple-touch-icon', sizes='144x144', href='img/favicon/apple-touch-icon-144x144.png')
-    link(rel='apple-touch-icon', sizes='152x152', href='img/favicon/apple-touch-icon-152x152.png')
-    link(rel='apple-touch-icon', sizes='180x180', href='img/favicon/apple-touch-icon-180x180.png')
-    link(rel='icon', type='image/png', href='img/favicon/favicon-32x32.png', sizes='32x32')
-    link(rel='icon', type='image/png', href='img/favicon/favicon-194x194.png', sizes='194x194')
-    link(rel='icon', type='image/png', href='img/favicon/favicon-96x96.png', sizes='96x96')
-    link(rel='icon', type='image/png', href='img/favicon/android-chrome-192x192.png', sizes='192x192')
-    link(rel='icon', type='image/png', href='img/favicon/favicon-16x16.png', sizes='16x16')
-    link(rel='manifest', href='img/favicon/manifest.json')
-    //- link(rel='mask-icon', href='img/favicon/safari-pinned-tab.svg', color='#ff6347') does not pass the validation
-    meta(name='mobile-web-app-capable', content='yes')
-    meta(name='application-name', content='My app')
-    meta(name='apple-mobile-web-app-capable', content='yes')
-    meta(name='apple-mobile-web-app-status-bar-style' content='black')
-    meta(name='apple-mobile-web-app-title', content='My app')
-    meta(name='msapplication-TileColor', content='#2b5797')
-    meta(name='msapplication-TileImage', content='img/favicon/mstile-144x144.png')
-    meta(name='msapplication-config', content='img/favicon/browserconfig.xml')
-    meta(name='theme-color', content='#ffffff')
-  // Place favicon.ico in the root directory
-  link(rel='shortcut icon', href='favicon.ico')
   if !main_css_min
-    link(rel='stylesheet', href='css/main.css', media='screen')
+    link(href='css/main.css', rel='stylesheet', media='all')
   else
-    link(rel='stylesheet', href='css/main.min.css', media='screen')
+    link(href='css/main.min.css', rel='stylesheet', media='all')
   <!--[if (lte IE 9)&(!IEMobile)]>
   if !ie_css_min
-    link(rel='stylesheet', href='css/ie.css', media='screen')
+    link(href='css/ie.css', rel='stylesheet', media='all')
   else
-    link(rel='stylesheet', href='css/ie.min.css', media='screen')
+    link(href='css/ie.min.css', rel='stylesheet', media='all')
   <![endif]-->
   //- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
   <!--[if (lt IE 9)&(!IEMobile)]>
   script(src='js/ie8.min.js')
   <![endif]-->
   if selectivizr
-    <!--[if (gte IE 6)&(lte IE 8)]>
-    script(src='libs/selectivizr.min.js')
-    <![endif]-->
+    include core/selectivizr
 body(itemscope=true, itemtype='http://schema.org/WebPage')
   if browser_upgrade
-    <!--[if lt IE 8]>
-    p.browserupgrade You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en" target="_blank">upgrade your browser</a>.
-    <![endif]-->
+    include core/browser-upgrade
   block content
   if preloader
-    .preloader
-  // all.min.js include device.js, modernizr.js, jquery.js libraries
+    include core/preloader
+  // Scripts queries
+  //- all.min.js include device.js, modernizr.js, jquery.js libraries
   script(src='js/all.min.js')
-  //-script(src='js/common.min.js')
 
   //-script(src='libs/device.min.js')
   //-script(src='libs/modernizr.min.js')
   //-script(src='libs/jquery.min.js')
-  script(src='js/common.js')
-  script(src='libs/jquery.pixlayout.min.js')
-  script.
-    $(function () {
-      $.pixlayout({
-        src: 'img/layout-home.jpg',
-        //src: 'img/layout-home-mob.jpg',
-        opacity: 0.6,
-        step: 1,
-        top: 0,
-        zindex: 999,
-        clip: true,
-        center: true,
-        fixed: false,
-        show: true,
-        pervious: true
-      });
-      $('#pxl_wrap').css({boxSizing: "content-box"});
-    });
+  // Custom scripts
+  if !common_js_min
+    script(src='js/common.js')
+  else
+    script(src='js/common.min.js')
+  if pixlayout
+    include core/pixlayout
   if google_analytics
-    // Google Analytics: change UA-XXXXX-X to be your site's ID.
-    script.
-      window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
-      ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
-    script(src='https://www.google-analytics.com/analytics.js', async=true, defer=true)
-  //-include include/svg
+    include core/google-analytics
+  if svg_inline
+    include core/svg-inline
 </html>

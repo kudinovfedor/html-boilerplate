@@ -1,40 +1,21 @@
 <!DOCTYPE html>
-<!--[if lt IE 7 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
-<!--[if IE 7 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
-<!--[if IE 8 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie8 lt-ie9 no-js"><![endif]-->
-<!--[if IE 9 ]><html lang="en" prefix="og: http://ogp.me/ns#" class="ie ie9 lt-ie10 no-js"><![endif]-->
-<!--[if (gte IE 10)|!(IE)]<!--><html lang="en" prefix="og: http://ogp.me/ns#" class="no-js"><!--<![endif]-->
+<!--[if lt IE 7 ]><html lang="en" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+<!--[if IE 7 ]><html lang="en" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+<!--[if IE 8 ]><html lang="en" class="ie ie8 lt-ie9 no-js"><![endif]-->
+<!--[if IE 9 ]><html lang="en" class="ie ie9 lt-ie10 no-js"><![endif]-->
+<!--[if (gte IE 10)|!(IE)]<!--><html lang="en" class="no-js"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Template</title>
+  <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>Home page</title>
   <meta name="description" content="">
-  <meta name="keywords" content="">
-  <meta name="author" content="">
   <meta name="robots" content="index, follow">
   <!--saved from url=(0014)about:internet-->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
   <meta name="HandheldFriendly" content="true">
   <meta name="MobileOptimized" content="320">
-  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=yes">
   <meta name="format-detection" content="date=no, address=no, email=no, telephone=no">
   <meta name="x-rim-auto-match" content="none">
-  <!-- Twitter-->
-  <meta name="twitter:card" content="">
-  <meta name="twitter:site" content="">
-  <meta name="twitter:title" content="">
-  <meta name="twitter:description" content="">
-  <meta name="twitter:url" content="">
-  <meta name="twitter:image" content="">
-  <!-- Facebook Open Graph protocol-->
-  <meta property="og:title" content="">
-  <meta property="og:description" content="">
-  <meta property="og:type" content="website">
-  <meta property="og:url" content="">
-  <meta property="og:image" content="">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:site_name" content=""><!--[if IE 6 ]>
-  <meta http-equiv="imagetoolbar" content="no"><![endif]--><!--[if IEMobile]>
-  <meta http-equiv="cleartype" content="on"><![endif]-->
   <link rel="apple-touch-icon" sizes="57x57" href="img/favicon/apple-touch-icon-57x57.png">
   <link rel="apple-touch-icon" sizes="60x60" href="img/favicon/apple-touch-icon-60x60.png">
   <link rel="apple-touch-icon" sizes="72x72" href="img/favicon/apple-touch-icon-72x72.png">
@@ -60,17 +41,19 @@
   <meta name="msapplication-config" content="img/favicon/browserconfig.xml">
   <meta name="theme-color" content="#ffffff">
   <!-- Place favicon.ico in the root directory-->
-  <link rel="shortcut icon" href="favicon.ico">
-  <link rel="stylesheet" href="css/main.css" media="screen"><!--[if (lte IE 9)&(!IEMobile)]>
-  <link rel="stylesheet" href="css/ie.css" media="screen"><![endif]--><!--[if (lt IE 9)&(!IEMobile)]>
-  <script src="js/ie8.min.js"></script><![endif]--><!--[if (gte IE 6)&(lte IE 8)]>
-  <script src="libs/selectivizr.min.js"></script><![endif]-->
+  <link href="favicon.ico" rel="shortcut icon"><!--[if IEMobile]>
+  <meta http-equiv="cleartype" content="on"><![endif]-->
+  <link href="css/main.css" rel="stylesheet" media="all"><!--[if (lte IE 9)&(!IEMobile)]>
+  <link href="css/ie.css" rel="stylesheet" media="all"><![endif]--><!--[if (lt IE 9)&(!IEMobile)]>
+  <script src="js/ie8.min.js"></script><![endif]-->
 </head>
 <body itemscope itemtype="http://schema.org/WebPage"><!--[if lt IE 8]>
   <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/?locale=en" target="_blank">upgrade your browser</a>.</p><![endif]-->
-  <!-- all.min.js include device.js, modernizr.js, jquery.js libraries-->
+  <!-- Scripts queries-->
   <script src="js/all.min.js"></script>
+  <!-- Custom scripts-->
   <script src="js/common.js"></script>
+  <!-- Pixel Perfect scripts-->
   <script src="libs/jquery.pixlayout.min.js"></script>
   <script>
     $(function () {
