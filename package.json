@@ -5,9 +5,9 @@
   "main": "gulpfile.js",
   "dependencies": {
     "bower": "^1.7.9",
-    "browser-sync": "^2.12.12",
+    "browser-sync": "^2.13.0",
     "gulp": "^3.9.1",
-    "npm-check-updates": "^2.6.5"
+    "npm-check-updates": "^2.6.7"
   },
   "devDependencies": {
     "del": "^2.2.0",
