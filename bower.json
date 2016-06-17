@@ -53,7 +53,13 @@
     "modernizr": "~3.3.1",
     "pixlayout": "~0.9.7",
     "respond": "~1.4.2",
-    "selectivizr": "~1.0.2"
+    "selectivizr": "~1.0.2",
+    "jquery.inputmask": "^3.3.1",
+    "jquery-validation": "^1.15.0",
+    "magnific-popup": "maginificantpopup#^1.1.0",
+    "jQuery.mmenu": "^5.6.4",
+    "select2": "select2-ng#^4.0.3",
+    "gsap": "^1.18.5"
   },
   "overrides": {
     "device.js": {
@@ -92,6 +98,37 @@
     "selectivizr": {
       "main": [
         "selectivizr.js"
+      ]
+    },
+    "jquery.inputmask": {
+      "main": [
+        "./dist/min/inputmask/inputmask.min.js"
+      ]
+    },
+    "jquery-validation": {
+      "main": [
+        "./dist/jquery.validate.min.js"
+      ]
+    },
+    "magnific-popup": {
+      "main": [
+        "./dist/jquery.magnific-popup.min.js"
+      ]
+    },
+    "jQuery.mmenu": {
+      "main": [
+        "./dist/js/jquery.mmenu.all.min.js"
+      ]
+    },
+    "select2": {
+      "main": [
+        "./dist/js/select2.min.js"
+      ]
+    },
+    "gsap": {
+      "main": [
+        "./src/minified/TweenLite.min.js",
+        "./src/minified/TweenMax.min.js"
       ]
     }
   }
