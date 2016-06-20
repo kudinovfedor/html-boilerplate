@@ -12,7 +12,7 @@
     "CSS3",
     "JS",
     "jQuery",
-    "Jade",
+    "Pug(Jade)",
     "Compass+Sass",
     "Sprites",
     "Favicon",
@@ -49,7 +49,7 @@
     "device.js": "devicejs#~0.2.7",
     "html5shiv": "~3.7.3",
     "jquery": "~1.12.4 < 2",
-    "jquery-form-styler": "jquery.form-styler#~1.7.4",
+    "jquery-form-styler": "jquery.form-styler#^1.7.6",
     "modernizr": "~3.3.1",
     "pixlayout": "~0.9.7",
     "respond": "~1.4.2",
@@ -57,9 +57,10 @@
     "jquery.inputmask": "^3.3.1",
     "jquery-validation": "^1.15.0",
     "magnific-popup": "maginificantpopup#^1.1.0",
-    "jQuery.mmenu": "^5.6.4",
+    "jQuery.mmenu": "^5.6.5",
     "select2": "select2-ng#^4.0.3",
-    "gsap": "^1.18.5"
+    "gsap": "^1.18.5",
+    "slick-carousel": "^1.6.0"
   },
   "overrides": {
     "device.js": {
@@ -102,7 +103,8 @@
     },
     "jquery.inputmask": {
       "main": [
-        "./dist/min/inputmask/inputmask.min.js"
+        "./dist/min/inputmask/inputmask.min.js",
+        "./dist/min/inputmask/jquery.inputmask.min.js"
       ]
     },
     "jquery-validation": {
@@ -123,6 +125,11 @@
     "select2": {
       "main": [
         "./dist/js/select2.min.js"
+      ]
+    },
+    "slick-carousel": {
+      "main": [
+        "./slick/slick.min.js"
       ]
     },
     "gsap": {

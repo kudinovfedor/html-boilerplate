@@ -1,10 +1,31 @@
-.git
+# IDE
+## Phpstorm project files
 .idea
+
+## Netbeans project files
+nbproject
+
+# Windows thumbnail cache
+Thumbs.db
+
+# Mac DS_Store Files
+.DS_Store
+
+# Sass cache
 .sass-cache
+
+# Bower components
 bower_components
-build
+
+# Node.js modules
 node_modules
-*.cmd
+
+# Source Maps
+*.map
+
+# Archive
 *.rar
 *.zip
-*.map
+
+# Command Promt
+*.cmd

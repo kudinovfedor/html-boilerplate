@@ -1,0 +1,19 @@
+// Pixel Perfect scripts
+script(src='libs/jquery.pixlayout.min.js')
+script.
+  $(function () {
+    $.pixlayout({
+      src: 'img/layout-home.jpg',
+      //src: 'img/layout-home-mob.jpg',
+      opacity: 0.6,
+      step: 1,
+      top: 0,
+      zindex: 999,
+      clip: true,
+      center: true,
+      fixed: false,
+      show: true,
+      pervious: true
+    });
+    $('#pxl_wrap').css({boxSizing: "content-box"});
+  });

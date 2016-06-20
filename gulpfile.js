@@ -10,13 +10,14 @@ var htmlhint = require('gulp-htmlhint');
 var html_stylish = require('htmlhint-stylish');
 // Jade
 var jade = require('gulp-jade');
-// var jade_lint = require('gulp-pug-lint');
+var pug = require('gulp-pug');
+// var pug_lint = require('gulp-pug-lint');
 // CSS
 // var cssShorthand = require('gulp-shorthand');
 // var cmq = require('gulp-combine-media-queries');
 var cssBase64 = require('gulp-css-base64');
 var autoprefixer = require('gulp-autoprefixer');
-var minifycss = require('gulp-minify-css');
+var cleancss = require('gulp-clean-css');
 // SCSS
 var compass = require('gulp-compass');
 var scsslint = require('gulp-scss-lint');
@@ -56,6 +57,7 @@ var modernizr = require('gulp-modernizr');
 var config = {
   // Config Jade
   jade: {pretty: true},
+  pug: {pretty: true},
   // Config CSS Autoprefixer
   autoprefixer: {
     browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
@@ -69,7 +71,7 @@ var config = {
     extensionsAllowed: ['.svg', '.png', '.jpg', '.gif'] /*base64:skip*/
   },
   // Config CSS minify
-  minifycss: {compatibility: 'ie7', debug: true},
+  cleancss: {compatibility: 'ie7', debug: true},
   // Config Compass + SCSS(SASS)
   compass: {
     config_file: 'config.rb', require: false, environment: 'development', http_path: '/',
@@ -85,7 +87,7 @@ var config = {
   // Config BrowserSync
   bs: {
     ui: false, server: {baseDir: './'}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
-    logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: false, online: false,
+    logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: true, online: false,
     reloadOnRestart: true, notify: true
   },
   // Config Bower
@@ -173,6 +175,15 @@ gulp.task('jade', function () {
     .pipe(browserSync.stream());
 });
 
+gulp.task('pug', function () {
+  return gulp.src(['pug/*.pug', '!pug/template.pug'])
+    .pipe(plumber({errorHandler: errorAlert}))
+    //.pipe(jade_lint())
+    .pipe(pug(config.pug))
+    .pipe(gulp.dest('./'))
+    .pipe(browserSync.stream());
+});
+
 gulp.task('compass', function () {
   return gulp.src(['sass/**/*.scss'])
     .pipe(plumber({errorHandler: errorAlert}))
@@ -189,7 +200,7 @@ gulp.task('css', ['clean-map'], function () {
     //.pipe(autoprefixer(config.autoprefixer))
     //.pipe(cmq(config.cmd)) // Give error buffer.js:148 throw new TypeError('must start with number, buffer, array or string');
     .pipe(cssBase64(config.cssBase64))
-    .pipe(minifycss(config.minifycss))
+    .pipe(cleancss(config.cleancss))
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest('css/'));
@@ -273,6 +284,10 @@ gulp.task('jshint', function () {
 
 gulp.task('jade-watch', ['jade'], function () {
   gulp.watch('jade/**/*.jade', ['jade']);
+});
+
+gulp.task('pug-watch', ['pug'], function () {
+  gulp.watch('pug/**/*.pug', ['pug']);
 });
 
 gulp.task('compass-watch', ['compass'], function () {
@@ -392,6 +407,7 @@ gulp.task('zip-all', function () {
     'fonts/**',
     'img/**',
     'jade/**',
+    'pug/**',
     'js/**',
     'libs/**',
     'sass/**',
@@ -482,6 +498,7 @@ gulp.task('check-for-favicon-update', function (done) {
 
 gulp.task('default', ['server'], function () {
   gulp.watch('jade/**/*.jade', ['jade']);
+  gulp.watch('pug/**/*.pug', ['pug']);
   gulp.watch('sass/**/*.scss', ['compass']);
   gulp.watch('img/svg/*.svg', ['svg']);
   gulp.watch('sass/**/*.scss', ['scss-lint']);
