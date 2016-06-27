@@ -258,9 +258,9 @@ gulp.task('scss-lint', function () {
 gulp.task('js-lint', function () {
   gulp.src(['js/common.js'])
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(jscs(config.jscs))
+    //.pipe(jscs(config.jscs))
     //.pipe(jscs.reporter())
-    .pipe(cs_stylish())
+    //.pipe(cs_stylish())
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(hint_stylish))
     .pipe(gulp.dest('js/'))
@@ -359,7 +359,8 @@ gulp.task('modernizr', function () {
         "svgforeignobject",
         "inlinesvg",
         "smil",
-        "textareamaxlength"
+        "textareamaxlength",
+        "touchevents"
       ],
       "options": [
         "domPrefixes",

@@ -122,9 +122,7 @@ linters:
 
   PropertySpelling:
     enabled: true
-    extra_properties: [
-      'behavior' # css3 pie
-    ]
+    extra_properties: []
 
   PropertyUnits:
     enabled: true

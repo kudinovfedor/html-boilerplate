@@ -11,10 +11,10 @@
   }
 }
 
-%clr-left {clear: left;}
-%clr-right {clear: right;}
-%clr-both {clear: both;}
-%clr-none {clear: none;}
+%clear-left {clear: left;}
+%clear-right {clear: right;}
+%clear-both {clear: both;}
+%clear-none {clear: none;}
 
 %clearfix {
   &:after {

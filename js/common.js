@@ -179,11 +179,48 @@
 
   function preloader(element, el_delay, el_duration) {
 
-    var el = $(element),delay = el_delay || 350, duration = el_duration || 'slow';
+    var el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
 
     if (el.length) {
       el.delay(delay).fadeOut(duration);
     }
+  }
+
+  /**
+   * fk-number
+   *
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   * @example
+   * fk_number('.fk-number', '.fk-number-field', '.fk-number-spin-plus', '.fk-number-spin-minus');
+   * @param {string} id - container of element
+   * @param {string} field - field with number
+   * @param {string} plus - button plus
+   * @param {string} minus - button minus
+   */
+
+  function fk_number(id, field, plus, minus) {
+    $(id).each(function () {
+      var el = $(this);
+      var fk_field = el.find(field);
+      var fk_plus = el.find(plus);
+      var fk_minus = el.find(minus);
+
+      fk_plus.on('click', function () {
+        var field_value = parseInt(fk_field.text());
+        if (field_value >= 1) {
+          field_value++;
+          fk_field.text(field_value);
+        }
+      });
+
+      fk_minus.on('click', function () {
+        var field_value = parseInt(fk_field.text());
+        if (field_value > 1) {
+          field_value--;
+          fk_field.text(field_value);
+        }
+      });
+    });
   }
 
   /**

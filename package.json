@@ -10,7 +10,7 @@
     "npm-check-updates": "^2.6.7"
   },
   "devDependencies": {
-    "del": "^2.2.0",
+    "del": "^2.2.1",
     "fs": "0.0.2",
     "gulp-autoprefixer": "^3.1.0",
     "gulp-clean-css": "^2.0.10",
@@ -21,7 +21,7 @@
     "gulp-filter": "^4.0.0",
     "gulp-htmlhint": "^0.3.1",
     "gulp-jade": "^1.1.0",
-    "gulp-jscs": "^3.0.2",
+    "gulp-jscs": "^4.0.0",
     "gulp-jscs-stylish": "^1.4.0",
     "gulp-jshint": "^2.0.1",
     "gulp-modernizr": "^1.0.0-alpha",
@@ -39,7 +39,7 @@
     "gulp-sourcemaps": "^2.0.0-alpha",
     "gulp-svgmin": "^1.2.2",
     "gulp-svgstore": "^6.0.0",
-    "gulp-uglify": "^1.5.3",
+    "gulp-uglify": "^1.5.4",
     "gulp-zip": "^3.2.0",
     "htmlhint-stylish": "^1.0.3",
     "jshint": "^2.9.2",

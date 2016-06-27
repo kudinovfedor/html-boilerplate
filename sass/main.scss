@@ -13,6 +13,10 @@
 //@import 'vendors/formstyler/formstyler-file';
 //@import 'vendors/formstyler/formstyler-number';
 
+// ion.rangeSlider CSS
+//@import 'vendors/ionrangeslider/ion.rangeSlider';
+//@import 'vendors/ionrangeslider/ion.rangeSlider.skinHTML5';
+
 //@import 'base/reset';
 @import 'base/normalize';
 //@import 'base/normalize-v4'; // [Optional]
@@ -26,6 +30,7 @@
 //@import 'layout/grid'; // [Optional]
 //@import 'module/buttons';
 //@import 'module/tabs';
+//@import 'module/fk-number'; // [Optional]
 //@import 'module/accordion';
 //@import 'module/breadcrumbs';
 //@import 'module/preloader'; // [Optional]
@@ -44,8 +49,8 @@
 //@import 'page/checkout';
 //@import 'page/contact';
 
-//@import 'module/modernizr';
-@import 'module/retina';
+//@import 'module/modernizr'; // [Optional]
+//@import 'module/retina'; // [Optional]
 
 @import 'state/state';
 //@import 'state/print'; // [Optional]

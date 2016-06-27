@@ -155,7 +155,6 @@ input[type='reset'],
 input[type='submit'] {
   -webkit-appearance: button;
   -moz-appearance: button;
-  appearance: button;
   cursor: pointer;
 }
 
@@ -190,7 +189,6 @@ input[type='number']::-webkit-outer-spin-button {
 input[type='search'] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
-  appearance: textfield;
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
@@ -200,7 +198,6 @@ input[type='search']::-webkit-search-cancel-button,
 input[type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
 }
 
 fieldset {
@@ -259,7 +256,6 @@ textarea {
   border-radius: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
-  appearance: none;
   -moz-box-shadow: none;
   -webkit-box-shadow: none;
   box-shadow: none;
@@ -287,9 +283,6 @@ textarea {
   width: device-width;
 }
 @-o-viewport {
-  width: device-width;
-}
-@viewport {
   width: device-width;
 }
 html {

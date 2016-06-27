@@ -1,8 +1,4 @@
 // VARIABLES
-$default-support-pie: false !default;
-//$pie-absolute-path: 'http://site_url/css/pie.htc' !default;
-$pie-absolute-path: 'http://test.loc/clean-html-template-8in1/css/pie.htc' !default;
-
 $prefix-for-webkit: true !default;
 $prefix-for-mozilla: true !default;
 $prefix-for-microsoft: true !default;
@@ -57,3 +53,6 @@ $p0: 0 !default;
 $p1: 10px !default;
 $p2: 20px !default;
 $p3: 30px !default;
+
+$scroll-behavior: true !default;
+$font-smoothing: true !default;

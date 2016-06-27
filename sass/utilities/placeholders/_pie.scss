@@ -1,8 +1,0 @@
-// CSS3 PIE PLACEHOLDER
-%pie {
-  @if ($default-support-pie) {
-    behavior: url($pie-absolute-path);
-    position: relative;
-    zoom: 1;
-  }
-}
