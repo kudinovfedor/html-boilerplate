@@ -45,13 +45,13 @@ head
   meta(name='format-detection', content='date=no, address=no, email=no, telephone=no')
   meta(name='x-rim-auto-match', content='none')
   if favicon
-    include core/favicon
+    include ../core/favicon
   // Place favicon.ico in the root directory
   link(href='favicon.ico', rel='shortcut icon')
   if twitter
-    include core/meta-twitter
+    include ../core/meta-twitter
   if facebook
-    include core/meta-facebook
+    include ../core/meta-facebook
   //- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading
   <!--[if IEMobile]>
   meta(http-equiv='cleartype', content='on')
@@ -71,29 +71,29 @@ head
   script(src='js/ie8.min.js')
   <![endif]-->
   if selectivizr
-    include core/selectivizr
+    include ../core/selectivizr
 body(itemscope=true, itemtype='http://schema.org/WebPage')
   if browser_upgrade
-    include core/browser-upgrade
+    include ../core/browser-upgrade
   block content
   if preloader
-    include core/preloader
+    include ../core/preloader
   // Scripts queries
   //- all.min.js include device.js, modernizr.js, jquery.js libraries
   script(src='js/all.min.js')
 
-  //-script(src='libs/device.min.js')
-  //-script(src='libs/modernizr.min.js')
-  //-script(src='libs/jquery.min.js')
+  //-script(src='js/libs/device.min.js')
+  //-script(src='js/libs/modernizr.min.js')
+  //-script(src='js/libs/jquery.min.js')
   // Custom scripts
   if !common_js_min
     script(src='js/common.js')
   else
     script(src='js/common.min.js')
   if pixlayout
-    include core/pixlayout
+    include ../core/pixlayout
   if google_analytics
-    include core/google-analytics
+    include ../core/google-analytics
   if svg_inline
-    include core/svg-inline
+    include ../core/svg-inline
 </html>

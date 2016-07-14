@@ -1,4 +1,3 @@
 @mixin filter($function: none) {
-  -webkit-filter: $function;
-  filter: $function;
+  @include prefixer(filter, $function, webkit spec);
 }

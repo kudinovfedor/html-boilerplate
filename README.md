@@ -1,4 +1,7 @@
 # Clean HTML Template 8in1
+[![Build Status](https://travis-ci.org/kudinovfedor/clean-html-template-8in1.svg?branch=master)](https://travis-ci.org/kudinovfedor/clean-html-template-8in1)
+[![Coverage Status](https://coveralls.io/repos/github/kudinovfedor/clean-html-template-8in1/badge.svg?branch=master)](https://coveralls.io/github/kudinovfedor/clean-html-template-8in1?branch=master)
+
 This project uses the Pug(Jade) for HTML, Sass + Compass for CSS, SMACSS structure with additions, Gulp - the streaming build system, Bower - package manager for the web
 #### Installation all components on OS Windows
 **[Install Ruby](http://rubyinstaller.org/downloads/)** **`v2.3.0`**<br/>

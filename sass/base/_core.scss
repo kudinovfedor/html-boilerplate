@@ -28,7 +28,7 @@ body {
 body {
   background-color: $body-bg;
   color: $body-color;
-  font: normal $base-font-size/#{$base-line-height} $base-font-family;
+  font: normal #{$fk-base-font-size}/#{$fk-base-line-height} $fk-base-font-family;
   min-width: 320px;
   overflow-x: hidden;
   position: relative;

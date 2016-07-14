@@ -42,10 +42,9 @@
   "boss": false, // true: Tolerate assignments where comparisons would be expected
   "debug": false, // true: Allow debugger statements e.g. browser breakpoints.
   "eqnull": false, // true: Tolerate use of `== null`
-  "es5": false, // true: Allow ES5 syntax (ex: getters and setters)
-  "esnext": false, // true: Allow ES.next (ES6) syntax (ex: `const`)
+  "esversion": 5, // {int} Specify the ECMAScript version to which the code must adhere.
   "moz": false, // true: Allow Mozilla specific syntax (extends and overrides esnext features)
-                // (ex: `for each`, multiple try/catch, function expression…)
+                // (ex: `for each`, multiple try/catch, function expressionâ€¦)
   "evil": false, // true: Tolerate use of `eval` and `new Function()`
   "expr": false, // true: Tolerate `ExpressionStatement` as Programs
   "funcscope": false, // true: Tolerate defining variables inside control statements
@@ -73,7 +72,7 @@
   "dojo": false, // Dojo Toolkit
   "jasmine": false, // Jasmine
   "jquery": true, // jQuery
-  "mocha": false, // Mocha
+  "mocha": true, // Mocha
   "mootools": false, // MooTools
   "node": false, // Node.js
   "nonstandard": false, // Widely adopted globals (escape, unescape, etc)
@@ -88,5 +87,7 @@
   "yui": false, // Yahoo User Interface
 
   // Custom Globals
-  "globals": {} // additional predefined global variables
+  "globals": {
+    "Modernizr": true
+  } // additional predefined global variables
 }

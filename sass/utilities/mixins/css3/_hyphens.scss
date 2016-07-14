@@ -1,6 +1,3 @@
-@mixin hyphens($hyphens: none) {
-  -webkit-hyphens: $hyphens;
-  -moz-hyphens: $hyphens;
-  -ms-hyphens: $hyphens;
-  hyphens: $hyphens;
+@mixin hyphens($value: manual) {
+  @include prefixer(hyphens, $value, webkit moz ms spec);
 }

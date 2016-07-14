@@ -11,21 +11,17 @@ fieldset {}
 
 legend {}
 
-label {
-  &:empty {
-    display: none;
-  }
-}
+label {}
 
 select,
 textarea,
-input[type='text'],
-input[type='tel'],
-input[type='url'],
-input[type='email'],
-input[type='search'],
-input[type='number'],
-input[type='password'] {
+[type='text'],
+[type='tel'],
+[type='url'],
+[type='email'],
+[type='search'],
+[type='number'],
+[type='password'] {
   border: 1px solid #ccc;
   margin-bottom: $base-margin;
   padding: 8px 10px;
@@ -33,30 +29,38 @@ input[type='password'] {
   &:hover {}
 
   &:focus {}
+
+  &:disabled {}
+
+  &.error {}
 }
 
-input[type="radio"],
-input[type="checkbox"] {
-
+[type="radio"],
+[type="checkbox"] {
   &:disabled,
   &.disabled {
     cursor: not-allowed;
   }
 }
 
+@include input-placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+}
+
 input,
 textarea {
-  @include input-placeholder {
-    color: #afafaf;
-    text-overflow: ellipsis;
-  }
-
-  &:focus {
-    @include input-placeholder {
-      color: transparent;
-      @include opacity(0);
-    }
-  }
+  //@include input-placeholder {
+  //  color: #afafaf;
+  //  text-overflow: ellipsis;
+  //}
+  //
+  //&:focus {
+  //  @include input-placeholder {
+  //    color: transparent;
+  //    @include opacity(0);
+  //  }
+  //}
 
   &.invalid,
   &:required:invalid {}
@@ -65,35 +69,30 @@ textarea {
   &:required:valid {}
 }
 
-input[type='submit'],
-button[type='submit'] {
-
+[type='submit'] {
   &:hover {}
 
   &:focus {}
+
+  &:disabled {}
 }
 
-input[type='reset'],
-input[type='button'],
-button[type='reset'],
-button[type='button'] {
-
+[type='reset'],
+[type='button'] {
   &:hover {}
 
   &:focus {}
+
+  &:disabled {}
 }
 
-input[type='file'] {}
+[type='file'] {
+  &:disabled {}
+}
 
 textarea {
   min-height: 100px;
   resize: vertical;
-}
-
-input,
-select,
-textarea {
-  &.error {}
 }
 
 select {}
