@@ -7,13 +7,13 @@
     "bower": "^1.7.9",
     "browser-sync": "^2.13.0",
     "gulp": "github:gulpjs/gulp#4.0",
-    "npm-check-updates": "^2.7.0"
+    "npm-check-updates": "^2.7.2"
   },
   "devDependencies": {
     "del": "^2.2.1",
     "fs": "0.0.2",
     "gulp-autoprefixer": "^3.1.0",
-    "gulp-clean-css": "^2.0.11",
+    "gulp-clean-css": "^2.0.12",
     "gulp-combine-media-queries": "^0.2.0",
     "gulp-compass": "^2.1.0",
     "gulp-concat": "^2.6.0",
@@ -48,9 +48,9 @@
   "scripts": {
     "coveralls": "test",
     "set-all": "npm run gem-install && npm run npm-update && npm run npm-install-g && npm run gulp-install && npm run bower-install",
-    "gem-install": "gem update && gem update --system && gem install compass scss_lint",
+    "gem-install": "gem update && npm -v && gem install compass scss_lint",
     "npm-update": "npm install -g npm",
-    "npm-install-g": "npm install -g pug gulp bower htmlhint jshint eslint npm-check-updates",
+    "npm-install-g": "npm install -g pug gulp-cli bower htmlhint jshint eslint npm-check-updates",
     "gulp-install": "npm install",
     "bower-install": "bower install && gulp libsBower && gulp ie8 && gulp modernizr && gulp all-js"
   },

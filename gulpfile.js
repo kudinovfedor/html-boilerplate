@@ -73,10 +73,13 @@ var config = {
   // Config SCSS(SASS)
   sass: {outputStyle: 'expanded', precision: 5, errLogToConsole: true, sourceComments: false},
   // Config Compass + SCSS(SASS)
+  // compass: {
+  //   config_file: 'src/config.rb', require: false, environment: 'development', http_path: '/', project_path: 'src',
+  //   css: 'css', font: 'fonts', image: 'img', javascript: 'js', sass: 'sass', style: 'expanded', relative: true,
+  //   comments: false, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
+  // },
   compass: {
-    config_file: 'config.rb', require: false, environment: 'development', http_path: '/',
-    css: 'css', font: 'fonts', image: 'img', javascript: 'js', sass: 'sass', style: 'expanded', relative: true,
-    comments: false, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
+    config_file: 'src/config.rb', sass: 'src/sass', css: 'src/css'
   },
   // Config SCSS(SASS) Lint
   scsslint: {config: '.scss-lint.yml', customReport: reporter.issues},
@@ -86,7 +89,7 @@ var config = {
     padding: 1, algorithm: 'binary-tree', cssFormat: 'scss',
     cssVarMap: function (sprite) {
       sprite.name = 's-' + sprite.name;
-    }, cssTemplate: 'scss.template.handlebars',
+    }, cssTemplate: 'src/scss.template.handlebars',
     cssOpts: {
       cssSelector: function (sprite) {
         return '.icon-' + sprite.name;
@@ -116,35 +119,35 @@ var config = {
 
 var path = {
   src: {
-    html: ['*.html'],
-    pug: ['pug/*.pug'],
-    css: ['css/*.css', '!css/*.min.css'],
-    sass: ['sass/**/*.{scss,sass}'],
-    sprite: ['img/sprite/*.*'],
-    img: ['img/**/*'],
-    svg: ['img/svg/*.svg'],
-    js: ['js/common.js']
+    html: ['src/*.html'],
+    pug: ['src/pug/*.pug'],
+    css: ['src/css/*.css', '!src/css/*.min.css'],
+    sass: ['src/sass/**/*.{scss,sass}'],
+    sprite: ['src/img/sprite/*.*'],
+    img: ['src/img/**/*'],
+    svg: ['src/img/svg/*.svg'],
+    js: ['src/js/common.js']
   },
   dest: {
-    pug: './',
-    css: 'css',
-    sass: 'css',
-    img: ['img/optimized'],
-    sprite: ['img'],
-    sprite_css: ['img'],
-    svg: 'img',
-    svgfallback: 'img/svgfallback',
-    js: 'js'
+    pug: 'src/',
+    css: 'src/css',
+    sass: 'src/css',
+    img: ['src/img/optimized'],
+    sprite: ['src/img'],
+    sprite_css: ['src/img'],
+    svg: 'src/img',
+    svgfallback: 'src/img/svgfallback',
+    js: 'src/js'
   },
   watch: {
-    html: ['*.html'],
-    pug: ['pug/**/*.pug'],
+    html: ['src/*.html'],
+    pug: ['src/pug/**/*.pug'],
     img: [],
-    sprite: ['img/sprite/*.*'],
-    svg: ['img/svg/*.svg'],
-    css: ['css/*.css', '!css/*.min.css'],
-    sass: ['sass/**/*.{scss,sass}'],
-    js: ['js/common.js']
+    sprite: ['src/img/sprite/*.*'],
+    svg: ['src/img/svg/*.svg'],
+    css: ['src/css/*.css', '!src/css/*.min.css'],
+    sass: ['src/sass/**/*.{scss,sass}'],
+    js: ['src/js/common.js']
   }
 };
 
@@ -161,7 +164,7 @@ gulp.task('server', function () {
 gulp.task('libsBower', function () {
   return gulp.src(mainBowerFiles(config.bower))
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(gulp.dest('js/libs'));
+    .pipe(gulp.dest('src/js/libs'));
 });
 
 gulp.task('svg-sprite', function () {
@@ -192,7 +195,7 @@ gulp.task('retina2dppx', function () {
 gulp.task('svg', gulp.series('svg-sprite', 'retina1dppx'/*, 'retina2dppx'*/));
 
 gulp.task('ie8', function () {
-  return gulp.src(['libs/html5shiv.min.js', 'libs/respond.min.js'])
+  return gulp.src(['js/libs/html5shiv.min.js', 'js/libs/respond.min.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     //.pipe(size(config.fileSize))
     .pipe(concat('ie8.js'))
@@ -203,7 +206,7 @@ gulp.task('ie8', function () {
 });
 
 gulp.task('all-js', function () {
-  return gulp.src(['libs/device.min.js', 'libs/modernizr.min.js', 'libs/jquery.min.js'])
+  return gulp.src(['js/libs/device.min.js', 'js/libs/modernizr.min.js', 'js/libs/jquery.min.js'])
     .pipe(plumber({errorHandler: errorAlert}))
     //.pipe(size(config.fileSize))
     .pipe(concat('all.js'))
@@ -241,7 +244,7 @@ gulp.task('sass', function () {
 
 gulp.task('compass', function () {
   return gulp.src(path.src.sass)
-    .pipe(plumber({errorHandler: errorAlert}))
+    //.pipe(plumber({errorHandler: errorAlert}))
     .pipe(compass(config.compass))
     .pipe(gulp.dest(path.dest.sass))
     .pipe(browserSync.stream());
@@ -261,7 +264,7 @@ gulp.task('css', gulp.series(clean_map, function () {
 }));
 
 gulp.task('js', function () {
-  gulp.src(path.src.js)
+  return gulp.src(path.src.js)
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
@@ -340,11 +343,11 @@ gulp.task('scss-lint-watch', gulp.parallel('scss-lint', function () {
 }));
 
 function clean_map() {
-  return del(['{css,js}/*.map']);
+  return del(['src/{css,js}/*.map']);
 }
 
 gulp.task('clean', function (cb) {
-  return del(['build'], cb);
+  return del(['dist'], cb);
 });
 
 gulp.task('modernizr', function () {
