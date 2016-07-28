@@ -73,16 +73,13 @@ var config = {
   // Config SCSS(SASS)
   sass: {outputStyle: 'expanded', precision: 5, errLogToConsole: true, sourceComments: false},
   // Config Compass + SCSS(SASS)
-  // compass: {
-  //   config_file: 'src/config.rb', require: false, environment: 'development', http_path: '/', project_path: 'src',
-  //   css: 'css', font: 'fonts', image: 'img', javascript: 'js', sass: 'sass', style: 'expanded', relative: true,
-  //   comments: false, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
-  // },
   compass: {
-    config_file: 'src/config.rb', sass: 'src/sass', css: 'src/css'
+    config_file: 'src/config.rb', require: false, environment: 'development', http_path: '/', project_path: 'src',
+    css: 'src/css', font: 'src/fonts', image: 'src/img', javascript: 'src/js', sass: 'src/sass', style: 'expanded', relative: true,
+    comments: true, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
   },
   // Config SCSS(SASS) Lint
-  scsslint: {config: '.scss-lint.yml', customReport: reporter.issues},
+  scsslint: {config: 'src/.scss-lint.yml', customReport: reporter.issues},
   // Config img
   sprite: {
     imgName: 'sprite.png', cssName: 'sprite.css', imgPath: '../img/sprite.png',
@@ -117,37 +114,40 @@ var config = {
   //filter: {restore: true, passthrough: true}
 };
 
+var src = 'src/',
+    dist = 'dist/';
+
 var path = {
   src: {
-    html: ['src/*.html'],
-    pug: ['src/pug/*.pug'],
-    css: ['src/css/*.css', '!src/css/*.min.css'],
-    sass: ['src/sass/**/*.{scss,sass}'],
-    sprite: ['src/img/sprite/*.*'],
-    img: ['src/img/**/*'],
-    svg: ['src/img/svg/*.svg'],
-    js: ['src/js/common.js']
+    html: [src+'*.html'],
+    pug: [src+'pug/*.pug'],
+    css: [src+'css/*.css', !src+'css/*.min.css'],
+    sass: [src+'sass/**/*.{scss,sass}'],
+    sprite: [src+'img/sprite/*.*'],
+    img: [src+'img/**/*'],
+    svg: [src+'img/svg/*.svg'],
+    js: [src+'js/common.js']
   },
   dest: {
-    pug: 'src/',
-    css: 'src/css',
-    sass: 'src/css',
-    img: ['src/img/optimized'],
-    sprite: ['src/img'],
-    sprite_css: ['src/img'],
-    svg: 'src/img',
-    svgfallback: 'src/img/svgfallback',
-    js: 'src/js'
+    pug: src,
+    css: src+'css',
+    sass: src+'css',
+    img: [src+'img/optimized'],
+    sprite: [src+'img'],
+    sprite_css: [src+'img'],
+    svg: src+'img',
+    svgfallback: src+'img/svgfallback',
+    js: src+'js'
   },
   watch: {
-    html: ['src/*.html'],
-    pug: ['src/pug/**/*.pug'],
+    html: [src+'*.html'],
+    pug: [src+'pug/**/*.pug'],
     img: [],
-    sprite: ['src/img/sprite/*.*'],
-    svg: ['src/img/svg/*.svg'],
-    css: ['src/css/*.css', '!src/css/*.min.css'],
-    sass: ['src/sass/**/*.{scss,sass}'],
-    js: ['src/js/common.js']
+    sprite: [src+'img/sprite/*.*'],
+    svg: [src+'img/svg/*.svg'],
+    css: [src+'css/*.css', !src+'css/*.min.css'],
+    sass: [src+'sass/**/*.{scss,sass}'],
+    js: [src+'js/common.js']
   }
 };
 

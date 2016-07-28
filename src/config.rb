@@ -33,8 +33,7 @@ output_style = (environment == :development) ? :expanded : :compressed
 relative_assets = true
 
 # To disable debugging comments that display the original location of your selectors. Uncomment:
-#line_comments = (environment == :development) ? true : false
-line_comments = false
+line_comments = (environment == :development) ? true : false
 
 # Set this to true to enable sourcemap output.
 sourcemap = (environment == :development) ? true : false

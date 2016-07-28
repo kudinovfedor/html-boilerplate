@@ -7,17 +7,17 @@
   text-shadow: none;
 }
 
-@include viewport(device-width);
-
 html {
   font-size: 100%;
   @include box-sizing(border-box);
 }
 
-*,
-*:before,
-*:after {
-  @include box-sizing(inherit);
+* {
+  &,
+  &:before,
+  &:after {
+    @include box-sizing(inherit);
+  }
 }
 
 html,

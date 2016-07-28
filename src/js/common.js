@@ -270,4 +270,4 @@
     });
   }
 
-}(jQuery, Modernizr));
+}(jQuery, window.Modernizr));

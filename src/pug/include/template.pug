@@ -13,6 +13,7 @@
 - var google_analytics = true
 - var svg_inline = false
 - var common_js_min = false
+- var cdn = true
 doctype html
 if ie_classes && facebook
   <!--[if lt IE 7 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
@@ -68,7 +69,11 @@ head
   <![endif]-->
   //- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries
   <!--[if (lt IE 9)&(!IEMobile)]>
-  script(src='js/ie8.min.js')
+  if cdn
+    script(src='https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js')
+    script(src='https://oss.maxcdn.com/respond/1.4.2/respond.min.js')
+  else
+    script(src='js/ie8.min.js')
   <![endif]-->
   if selectivizr
     include ../core/selectivizr
@@ -79,12 +84,15 @@ body(itemscope=true, itemtype='http://schema.org/WebPage')
   if preloader
     include ../core/preloader
   // Scripts queries
-  //- all.min.js include device.js, modernizr.js, jquery.js libraries
-  script(src='js/all.min.js')
+  if cdn
+    script(src='https://code.jquery.com/jquery-1.12.4.min.js')
+  else
+    //- all.min.js include device.js, modernizr.js, jquery.js libraries
+    script(src='js/all.min.js')
 
-  //-script(src='js/libs/device.min.js')
-  //-script(src='js/libs/modernizr.min.js')
-  //-script(src='js/libs/jquery.min.js')
+    //-script(src='js/libs/device.min.js')
+    //-script(src='js/libs/modernizr.min.js')
+    //-script(src='js/libs/jquery.min.js')
   // Custom scripts
   if !common_js_min
     script(src='js/common.js')
