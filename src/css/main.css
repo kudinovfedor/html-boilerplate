@@ -148,9 +148,9 @@ select {
 }
 
 button,
-html [type='button'],
-[type='reset'],
-[type='submit'] {
+html [type="button"],
+[type="reset"],
+[type="submit"] {
   -webkit-appearance: button;
   -moz-appearance: button;
   cursor: pointer;
@@ -171,20 +171,20 @@ input {
   line-height: normal;
 }
 
-[type='checkbox'],
-[type='radio'] {
+[type="checkbox"],
+[type="radio"] {
   -moz-box-sizing: border-box;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
 }
 
-[type='number']::-webkit-inner-spin-button,
-[type='number']::-webkit-outer-spin-button {
+[type="number"]::-webkit-inner-spin-button,
+[type="number"]::-webkit-outer-spin-button {
   height: auto;
 }
 
-[type='search'] {
+[type="search"] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
   -moz-box-sizing: border-box;
@@ -192,8 +192,8 @@ input {
   box-sizing: border-box;
 }
 
-[type='search']::-webkit-search-cancel-button,
-[type='search']::-webkit-search-decoration {
+[type="search"]::-webkit-search-cancel-button,
+[type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
@@ -242,13 +242,13 @@ label {
   outline: 0;
 }
 
-[type='text'],
-[type='password'],
-[type='email'],
-[type='search'],
-[type='number'],
-[type='tel'],
-[type='url'],
+[type="text"],
+[type="password"],
+[type="email"],
+[type="search"],
+[type="number"],
+[type="tel"],
+[type="url"],
 textarea {
   outline: 0;
   border-radius: 0;
@@ -377,7 +377,7 @@ a:hover {
   text-decoration: none;
 }
 
-a[href^='http'], a[href^='www.'] {
+a[href^="http"], a[href^="www."] {
   cursor: alias;
 }
 
@@ -489,13 +489,13 @@ form {
 
 select,
 textarea,
-[type='text'],
-[type='tel'],
-[type='url'],
-[type='email'],
-[type='search'],
-[type='number'],
-[type='password'] {
+[type="text"],
+[type="tel"],
+[type="url"],
+[type="email"],
+[type="search"],
+[type="number"],
+[type="password"] {
   border: 1px solid #ccc;
   margin-bottom: 10px;
   padding: 8px 10px;
@@ -533,43 +533,6 @@ textarea {
 }
 
 /* ====================  END FORMS  ==================== */
-/*
-SCSS variables are information about icon's compiled state, stored under its original file name
-
-.icon-home {
-  width: $icon-home-width;
-}
-
-The large array-like variables contain all information about a single icon
-$icon-home: x y offset_x offset_y width height total_width total_height image_path;
-
-At the bottom of this section, we provide information about the spritesheet itself
-$spritesheet: width height image $spritesheet-sprites;
-*/
-/*
-The provided mixins are intended to be used with the array-like variables
-
-.icon-home {
-  @include sprite-width($icon-home);
-}
-
-.icon-email {
-  @include sprite($icon-email);
-}
-*/
-/*
-The `sprites` mixin generates identical output to the CSS template
-  but can be overridden inside of SCSS
-
-@include sprites($spritesheet-sprites);
-*/
-.csdcsd {
-  background-image: url(../img/sprite.png);
-  background-position: -21px -17px;
-  width: 20px;
-  height: 16px;
-}
-
 /* ====================  STATE  ==================== */
 .is-visible {
   display: block;

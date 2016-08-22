@@ -65,8 +65,8 @@ a {
 
   &:focus {}
 
-  &[href^='http'],
-  &[href^='www.'] {
+  &[href^="http"],
+  &[href^="www."] {
     cursor: alias;
   }
 }

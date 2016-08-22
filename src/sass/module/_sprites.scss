@@ -5,10 +5,10 @@
 // * There are 4 types of layout - vertical, horizontal, diagonal, and smart.
 
 // * Using import...
-//$default-sprite-separator: '-';
+//$default-sprite-separator: "-";
 //$flags-layout: smart;
 //$flags-sprite-dimensions: true;
-//$flags-sprite-base-class: '.icon-sprite';
+//$flags-sprite-base-class: ".icon-sprite";
 //$flags-spacing: 1px;
 //$disable-magic-sprite-selectors:true;
 //@import "flags/*.png";

@@ -1,5 +1,5 @@
 @mixin transform-origin($origin-x: 50%, $origin-y: 50%, $origin-z: null) {
-  $origin: unquote('');
+  $origin: unquote("");
 
   @if $origin-x or $origin-y or $origin-z {
     @if $origin-x {

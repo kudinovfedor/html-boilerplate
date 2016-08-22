@@ -14,14 +14,14 @@ $preloader-size: 10px;
   $size: $preloader-size;
   $bg-color: #000;
   display: block; // If to use tag span
-  background: rgba($bg-color, .95) url('../img/spin.gif') center center no-repeat;
+  background: rgba($bg-color, .95) url("../img/spin.gif") center center no-repeat;
   position: fixed;
   z-index: 9998;
   @extend %corners;
 
   .lt-ie9 &,
   .no-rgba & {
-    background: $bg-color url('../img/spin.gif') center center no-repeat;
+    background: $bg-color url("../img/spin.gif") center center no-repeat;
   }
 
   .cssanimations & {
@@ -30,7 +30,7 @@ $preloader-size: 10px;
 
   &:after {
     .cssanimations & {
-      content: '';
+      content: "";
       margin: auto;
       position: absolute;
       left: round(($size * 5 / -2));

@@ -3,7 +3,7 @@
 /// @return {Bool}
 @function is-direction($value) {
   $is-keyword: index((to top, to top right, to right top, to right, to bottom right, to right bottom, to bottom, to bottom left, to left bottom, to left, to left top, to top left), $value);
-  $is-angle: type-of($value) == 'number' and index('deg' 'grad' 'turn' 'rad', unit($value));
+  $is-angle: type-of($value) == "number" and index("deg" "grad" "turn" "rad", unit($value));
 
   @return $is-keyword or $is-angle;
 }
@@ -12,7 +12,7 @@
 /// @param {Keyword | Angle} $value - Value to convert
 /// @require {function} is-direction
 /// @require {function} convert-angle
-/// @throw Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.;
+/// @throw Cannot convert `#{$value}` to legacy syntax because it doesn"t seem to be a direction.;
 @function legacy-direction($value) {
   @if is-direction($value) == false {
     @error "Cannot convert `#{$value}` to legacy syntax because it doesn't seem to be a direction.";
@@ -58,7 +58,7 @@
   background-image: -moz-linear-gradient(legacy-direction($direction), $color-stops);
   background-image: -webkit-linear-gradient(legacy-direction($direction), $color-stops);
   background-image: linear-gradient($direction, $color-stops);
-  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#{nth(nth($color-stops, 1), 1)}', endColorstr='#{nth(nth($color-stops, length($color-stops)), 1)}', GradientType=0); // IE6-9
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#{nth(nth($color-stops, 1), 1)}", endColorstr="#{nth(nth($color-stops, length($color-stops)), 1)}", GradientType=0); // IE6-9
 }
 
 //@mixin radial-gradient($color-stops, $shape: ellipse, $position: center) {

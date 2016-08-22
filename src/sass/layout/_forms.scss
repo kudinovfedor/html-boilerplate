@@ -13,13 +13,13 @@ label {}
 
 select,
 textarea,
-[type='text'],
-[type='tel'],
-[type='url'],
-[type='email'],
-[type='search'],
-[type='number'],
-[type='password'] {
+[type="text"],
+[type="tel"],
+[type="url"],
+[type="email"],
+[type="search"],
+[type="number"],
+[type="password"] {
   border: 1px solid #ccc;
   margin-bottom: $base-margin;
   padding: 8px 10px;
@@ -65,7 +65,7 @@ textarea {
   &:required:valid {}
 }
 
-[type='submit'] {
+[type="submit"] {
   &:hover {}
 
   &:focus {}
@@ -73,8 +73,8 @@ textarea {
   &:disabled {}
 }
 
-[type='reset'],
-[type='button'] {
+[type="reset"],
+[type="button"] {
   &:hover {}
 
   &:focus {}
@@ -82,7 +82,7 @@ textarea {
   &:disabled {}
 }
 
-[type='file'] {
+[type="file"] {
   &:disabled {}
 }
 

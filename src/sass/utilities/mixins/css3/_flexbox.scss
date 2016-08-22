@@ -58,7 +58,7 @@
   -ms-flex-flow: $direction-wrap;
   -webkit-flex-flow: $direction-wrap;
   flex-flow: $direction-wrap;
-  @warn 'Do not use this short record. Use flex-direction and flex-wrap';
+  @warn "Do not use this short record. Use flex-direction and flex-wrap";
 }
 
 @mixin justify-content($justify-content: flex-start) {
@@ -137,14 +137,14 @@
   -ms-flex-positive: $number;
   -webkit-flex-grow: $number;
   flex-grow: $number;
-  @warn 'If you are using a flex-grow, flex-shrink, flex-basis using a short record flex';
+  @warn "If you are using a flex-grow, flex-shrink, flex-basis using a short record flex";
 }
 
 @mixin flex-shrink($number: 1) {
   -ms-flex-negative: $number;
   -webkit-flex-shrink: $number;
   flex-shrink: $number;
-  @warn 'If you are using a flex-grow, flex-shrink, flex-basis using a short record flex';
+  @warn "If you are using a flex-grow, flex-shrink, flex-basis using a short record flex";
 }
 
 @mixin flex-basis($length: auto) {
@@ -152,7 +152,7 @@
   -ms-flex-preferred-size: $length;
   -webkit-flex-basis: $length;
   flex-basis: $length;
-  @warn 'If you are using a flex-grow, flex-shrink, flex-basis using a short record flex';
+  @warn "If you are using a flex-grow, flex-shrink, flex-basis using a short record flex";
 }
 
 @mixin flex($flex-grow: 0, $flex-shrink: null, $flex-basis: null) {
@@ -181,15 +181,15 @@
 //  @include flexbox(flex);
 //  @include flex-direction(row);
 //  @include flex-wrap(nowrap);
-//  //@include flex-flow(row nowrap); // don't use
+//  //@include flex-flow(row nowrap); // don"t use
 //  @include justify-content(flex-start);
 //  @include align-items(flex-start);
 //  @include align-content(flex-start);
 //  .flex-item {
 //    @include order(0);
-//    //@include flex-grow(0); // don't use
-//    //@include flex-shrink(1); // don't use
-//    //@include flex-basis(auto); // don't use
+//    //@include flex-grow(0); // don"t use
+//    //@include flex-shrink(1); // don"t use
+//    //@include flex-basis(auto); // don"t use
 //    @include flex(0, 1, auto); // use short notation
 //    @include align-self(auto);
 //  }

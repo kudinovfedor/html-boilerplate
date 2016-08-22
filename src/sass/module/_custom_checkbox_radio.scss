@@ -69,8 +69,8 @@ $centering-indoor-units: false !default;
 $effect-opening: show !default;
 
 .#{$custom-name-container} {
-  [type='checkbox'],
-  [type='radio'] {
+  [type="checkbox"],
+  [type="radio"] {
     position: absolute;
     @include opacity(0);
 
@@ -82,12 +82,12 @@ $effect-opening: show !default;
   }
 
   @if ($dimensions-fields-like-custom) {
-    [type='checkbox'] {
+    [type="checkbox"] {
       width: $custom-checkbox-width;
       height: $custom-checkbox-height;
     }
 
-    [type='radio'] {
+    [type="radio"] {
       width: $custom-radio-width;
       height: $custom-radio-height;
     }
@@ -102,7 +102,7 @@ $effect-opening: show !default;
       margin-right: $custom-checkbox-radio-margin-right;
 
       &:after {
-        content: '';
+        content: "";
 
         @if ($effect-opening == fadeIn) {
           display: block;
@@ -118,7 +118,7 @@ $effect-opening: show !default;
       }
     }
 
-    @if ($custom-checkbox-shape == 'circle' and $custom-checkbox-inner-shape == 'circle' or $custom-radio-shape == 'circle' and $custom-radio-inner-shape == 'circle') {
+    @if ($custom-checkbox-shape == "circle" and $custom-checkbox-inner-shape == "circle" or $custom-radio-shape == "circle" and $custom-radio-inner-shape == "circle") {
       %round-shape {
         @include border-radius(50%);
       }
@@ -148,9 +148,9 @@ $effect-opening: show !default;
         background: $custom-checkbox-background;
       }
 
-      @if ($custom-checkbox-shape == 'circle') {
+      @if ($custom-checkbox-shape == "circle") {
         @extend %round-shape;
-      } @else if not($custom-checkbox-shape == 'square') and not($custom-checkbox-shape == 'circle') {
+      } @else if not($custom-checkbox-shape == "square") and not($custom-checkbox-shape == "circle") {
         @include border-radius($custom-checkbox-shape);
       }
 
@@ -174,7 +174,7 @@ $effect-opening: show !default;
           background: $custom-checkbox-inner-background;
         }
 
-        @if ($custom-checkbox-inner-shape == 'circle') {
+        @if ($custom-checkbox-inner-shape == "circle") {
           @extend %round-shape;
         }
 
@@ -212,7 +212,7 @@ $effect-opening: show !default;
         background: $custom-radio-background;
       }
 
-      @if ($custom-radio-shape == 'circle') {
+      @if ($custom-radio-shape == "circle") {
         @extend %round-shape;
       }
 
@@ -236,7 +236,7 @@ $effect-opening: show !default;
           background: $custom-radio-inner-background;
         }
 
-        @if ($custom-radio-shape == 'circle') {
+        @if ($custom-radio-shape == "circle") {
           @extend %round-shape;
         }
 
@@ -267,7 +267,7 @@ $effect-opening: show !default;
       @include opacity(.65);
     }
 
-    [type='checkbox'] {
+    [type="checkbox"] {
       &:checked {
         + .#{$custom-checkbox-class} {
           &:after {
@@ -296,7 +296,7 @@ $effect-opening: show !default;
       }
     }
 
-    [type='radio'] {
+    [type="radio"] {
       &:checked {
         + .#{$custom-radio-class} {
           &:after {
