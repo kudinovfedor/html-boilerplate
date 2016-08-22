@@ -4,7 +4,6 @@ require 'compass/import-once/activate'
 # The environment mode. Defaults to :development, can also be :production
 # Change this to :production when ready to deploy the CSS to the live server.
 environment = :development
-# environment = :production
 
 # Set this to the root of your project when deployed:
 # The path to the project when running within the web server.

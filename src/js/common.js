@@ -14,7 +14,7 @@
   $(function () {
 
     // Variables
-    var w = $(window).width();
+    var wW = $(window).width();
 
     // If JavaScript enabled
     jsEnable('html');
@@ -57,7 +57,7 @@
 
     // The resize event occurs when the browser window changes size.
     $(window).on('resize', function () {
-      w = $(window).width();
+      wW = $(window).width();
     });
 
   });

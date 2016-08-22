@@ -43,7 +43,7 @@ var rename = require('gulp-rename');
 var notify = require('gulp-notify');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
-//var size = require('gulp-size');
+var size = require('gulp-size');
 //var filter = require('gulp-filter');
 var zip = require('gulp-zip');
 // LiveReload & Browser Syncing
@@ -75,14 +75,14 @@ var config = {
   // Config Compass + SCSS(SASS)
   compass: {
     config_file: 'src/config.rb', require: false, environment: 'development', http_path: '/', project_path: 'src',
-    css: 'src/css', font: 'src/fonts', image: 'src/img', javascript: 'src/js', sass: 'src/sass', style: 'expanded', relative: true,
-    comments: true, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
+    css: 'src/css', font: 'src/fonts', image: 'src/img', javascript: 'src/js', sass: 'src/sass', style: 'expanded',
+    relative: true, comments: true, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
   },
   // Config SCSS(SASS) Lint
   scsslint: {config: 'src/.scss-lint.yml', customReport: reporter.issues},
   // Config img
   sprite: {
-    imgName: 'sprite.png', cssName: 'sprite.css', imgPath: '../img/sprite.png',
+    imgName: 'sprite.png', cssName: '_gulp-sprite.scss', imgPath: '../img/sprite.png',
     padding: 1, algorithm: 'binary-tree', cssFormat: 'scss',
     cssVarMap: function (sprite) {
       sprite.name = 's-' + sprite.name;
@@ -99,7 +99,7 @@ var config = {
   eslint: {configFile: '.eslintrc.json'},
   // Config BrowserSync
   bs: {
-    ui: false, server: {baseDir: './'}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
+    ui: false, server: {baseDir: './src/'}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
     logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: true, online: false,
     reloadOnRestart: true, notify: true
   },
@@ -107,47 +107,66 @@ var config = {
   bower: {
     paths: {bowerDirectory: 'bower_components', bowerrc: '.bowerrc', bowerJson: 'bower.json'},
     debugging: false, checkExistence: true, includeDev: true
-  }
+  },
   // Config Gulp file size
-  //fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
+  fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
   // Config Gulp filter
   //filter: {restore: true, passthrough: true}
 };
 
 var src = 'src/',
-    dist = 'dist/';
+  dist = 'dist/';
 
 var path = {
   src: {
-    html: [src+'*.html'],
-    pug: [src+'pug/*.pug'],
-    css: [src+'css/*.css', !src+'css/*.min.css'],
-    sass: [src+'sass/**/*.{scss,sass}'],
-    sprite: [src+'img/sprite/*.*'],
-    img: [src+'img/**/*'],
-    svg: [src+'img/svg/*.svg'],
-    js: [src+'js/common.js']
+    html: [src + '*.html'],
+    pug: [src + 'pug/*.pug'],
+    css: [src + 'css/*.css', !src + 'css/*.min.css'],
+    sass: [src + 'sass/**/*.{scss,sass}'],
+    sprite: [src + 'img/sprite/*.*'],
+    img: [src + 'img/**/*'],
+    svg: [src + 'img/svg/*.svg'],
+    js: [src + 'js/common.js']
   },
   dest: {
     pug: src,
-    css: src+'css',
-    sass: src+'css',
-    img: [src+'img/optimized'],
-    sprite: [src+'img'],
-    sprite_css: [src+'img'],
-    svg: src+'img',
-    svgfallback: src+'img/svgfallback',
-    js: src+'js'
+    css: src + 'css',
+    sass: src + 'css',
+    img: src + 'img/optimized',
+    sprite: src + 'img',
+    sprite_css: src + 'sass/module',
+    svg: src + 'img',
+    svgfallback: src + 'img/svgfallback',
+    js: src + 'js'
   },
   watch: {
-    html: [src+'*.html'],
-    pug: [src+'pug/**/*.pug'],
+    html: [src + '*.html'],
+    pug: [src + 'pug/**/*.pug'],
     img: [],
-    sprite: [src+'img/sprite/*.*'],
-    svg: [src+'img/svg/*.svg'],
-    css: [src+'css/*.css', !src+'css/*.min.css'],
-    sass: [src+'sass/**/*.{scss,sass}'],
-    js: [src+'js/common.js']
+    sprite: [src + 'img/sprite/*.*'],
+    svg: [src + 'img/svg/*.svg'],
+    css: [src + 'css/*.css', !src + 'css/*.min.css'],
+    sass: [src + 'sass/**/*.{scss,sass}'],
+    js: [src + 'js/common.js']
+  },
+  dist: {
+    src: {
+      css: [src + 'css/*.css'],
+      fonts: [src + 'fonts/**/*.*'],
+      img: [src + 'img/**/*.*'],
+      js: [src + 'js/**/*.js', !src + 'js/**/jquery.pixlayout.min.js'],
+      html: [src + '*.html'],
+      other: [src + 'favicon.ico', '.htaccess'],
+      zip: [dist + '**/*.*', dist + '.htaccess']
+    },
+    dest: {
+      css: dist + 'css',
+      fonts: dist + 'fonts',
+      img: dist + 'img',
+      js: dist + 'js',
+      html: dist,
+      zip: './'
+    }
   }
 };
 
@@ -218,10 +237,10 @@ gulp.task('all-js', function () {
 
 gulp.task('sprite', function () {
   var spriteData =
-    gulp.src(path.src.sprite) // путь, откуда берем картинки для спрайта
+    gulp.src(path.src.sprite)
       .pipe(spritesmith(config.sprite));
-  spriteData.img.pipe(gulp.dest(path.dest.sprite)); // путь, куда сохраняем картинку
-  return spriteData.css.pipe(gulp.dest(path.dest.sprite_css)); // путь, куда сохраняем стили
+  spriteData.img.pipe(gulp.dest(path.dest.sprite));
+  return spriteData.css.pipe(gulp.dest(path.dest.sprite_css));
 });
 
 gulp.task('pug', function () {
@@ -244,7 +263,7 @@ gulp.task('sass', function () {
 
 gulp.task('compass', function () {
   return gulp.src(path.src.sass)
-    //.pipe(plumber({errorHandler: errorAlert}))
+  //.pipe(plumber({errorHandler: errorAlert}))
     .pipe(compass(config.compass))
     .pipe(gulp.dest(path.dest.sass))
     .pipe(browserSync.stream());
@@ -345,10 +364,6 @@ gulp.task('scss-lint-watch', gulp.parallel('scss-lint', function () {
 function clean_map() {
   return del(['src/{css,js}/*.map']);
 }
-
-gulp.task('clean', function (cb) {
-  return del(['dist'], cb);
-});
 
 gulp.task('modernizr', function () {
   gulp.src('js/common.js')
@@ -479,8 +494,8 @@ gulp.task('zip-all', function () {
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', function (done) {
   realFavicon.generateFavicon({
-    masterPicture: 'img/favicon.png', // 310x310 px
-    dest: 'img/favicon',
+    masterPicture: 'src/img/favicon.png', // 310x310 px
+    dest: 'src/img/favicon',
     iconsPath: 'img/favicon',
     design: {
       ios: {
@@ -543,6 +558,52 @@ gulp.task('check-for-favicon-update', function (done) {
     }
   });
 });
+
+// Dist tasks
+gulp.task('clean:dist', function (cb) {
+  return del(path.dist.dest.html, cb);
+});
+
+gulp.task('css:dist', function () {
+  return gulp.src(path.dist.src.css)
+    .pipe(gulp.dest(path.dist.dest.css));
+});
+
+gulp.task('fonts:dist', function () {
+  return gulp.src(path.dist.src.fonts)
+    .pipe(gulp.dest(path.dist.dest.fonts));
+});
+
+gulp.task('img:dist', function () {
+  return gulp.src(path.dist.src.img)
+    .pipe(gulp.dest(path.dist.dest.img));
+});
+
+gulp.task('js:dist', function () {
+  return gulp.src(path.dist.src.js)
+    .pipe(gulp.dest(path.dist.dest.js));
+});
+
+gulp.task('html:dist', function () {
+  return gulp.src(path.dist.src.html)
+    .pipe(gulp.dest(path.dist.dest.html));
+});
+
+gulp.task('other:dist', function () {
+  return gulp.src(path.dist.src.other)
+    .pipe(gulp.dest(path.dist.dest.html));
+});
+
+gulp.task('zip:dist', function () {
+  return gulp.src(path.dist.src.zip, {base: '.'})
+    .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(zip('dist.zip', {compress: true}))
+    .pipe(size(config.fileSize))
+    .pipe(gulp.dest(path.dist.dest.zip));
+});
+
+gulp.task('dist', gulp.series('clean:dist', gulp.parallel('css:dist', 'fonts:dist', 'img:dist', 'js:dist', 'html:dist', 'other:dist'), 'zip:dist'));
+// End Dist tasks
 
 gulp.task('default', gulp.parallel('server', function () {
   gulp.watch(path.watch.pug, gulp.series('pug'));

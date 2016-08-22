@@ -1,6 +1,4 @@
-/* ====================================================== */
 /* =======================  CORE  ======================= */
-/* ====================================================== */
 @include selection {
   background-color: #338fff;
   color: #fff;
@@ -54,5 +52,7 @@ textarea {
 }
 
 svg {
-  @include transition(fill .2s ease-in);
+  @include transition(fill .3s ease-out);
 }
+
+/* =======================  END CORE  ======================= */

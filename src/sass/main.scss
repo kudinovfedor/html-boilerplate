@@ -1,4 +1,4 @@
-@charset 'UTF-8';
+@charset "UTF-8";
 //@import 'compass/css3';
 //@import '../bower_components/compass-mixins/lib/compass';
 
@@ -27,6 +27,7 @@
 @import 'utilities/placeholders';
 
 @import 'layout/forms';
+@import 'module/gulp-sprite'; // [Optional]
 //@import 'module/custom_checkbox_radio'; // [Optional]
 //@import 'layout/grid'; // [Optional]
 //@import 'module/buttons';

@@ -1,4 +1,3 @@
-/* line 14, ../sass/ie.scss */
 .lt-ie8 .browserupgrade {
   background-color: #ccc;
   color: #000;
@@ -7,17 +6,14 @@
   text-align: center;
 }
 
-/* line 28, ../sass/ie.scss */
 .ie9 .gradient {
   filter: none;
 }
 
-/* line 36, ../sass/ie.scss */
 .ie7 img {
   -ms-interpolation-mode: bicubic;
 }
 
-/* line 57, ../sass/ie.scss */
 .lt-ie9 svg,
 .no-svg svg {
   display: none;

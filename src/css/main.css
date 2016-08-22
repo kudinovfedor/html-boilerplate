@@ -1,7 +1,4 @@
-/* ===================================================== */
 /* ====================  NORMALIZE  ==================== */
-/* ===================================================== */
-/* line 4, ../sass/base/_normalize.scss */
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -10,12 +7,10 @@ html {
   -webkit-tap-highlight-color: transparent;
 }
 
-/* line 10, ../sass/base/_normalize.scss */
 body {
   margin: 0;
 }
 
-/* line 14, ../sass/base/_normalize.scss */
 article,
 aside,
 details,
@@ -31,7 +26,6 @@ summary {
   display: block;
 }
 
-/* line 29, ../sass/base/_normalize.scss */
 audio,
 canvas,
 progress,
@@ -40,63 +34,52 @@ video {
   vertical-align: baseline;
 }
 
-/* line 37, ../sass/base/_normalize.scss */
 audio:not([controls]) {
   display: none;
   height: 0;
 }
 
-/* line 42, ../sass/base/_normalize.scss */
 [hidden],
 template {
   display: none;
 }
 
-/* line 47, ../sass/base/_normalize.scss */
 a {
   background-color: transparent;
 }
 
-/* line 51, ../sass/base/_normalize.scss */
 a:active,
 a:hover {
   outline: 0;
 }
 
-/* line 56, ../sass/base/_normalize.scss */
 abbr[title] {
   border-bottom: 1px dotted;
 }
 
-/* line 60, ../sass/base/_normalize.scss */
 b,
 strong {
   font-weight: bold;
 }
 
-/* line 65, ../sass/base/_normalize.scss */
 dfn {
   font-style: italic;
 }
 
-/* line 69, ../sass/base/_normalize.scss */
 h1 {
   font-size: 2em;
   margin: .67em 0;
 }
 
-/* line 74, ../sass/base/_normalize.scss */
 mark {
   background: #ff0;
   color: #000;
 }
 
-/* line 79, ../sass/base/_normalize.scss */
 small {
   font-size: 80%;
 }
 
-/* line 83, ../sass/base/_normalize.scss */
 sub,
 sup {
   font-size: 75%;
@@ -105,32 +88,26 @@ sup {
   vertical-align: baseline;
 }
 
-/* line 91, ../sass/base/_normalize.scss */
 sup {
   top: -.5em;
 }
 
-/* line 95, ../sass/base/_normalize.scss */
 sub {
   bottom: -.25em;
 }
 
-/* line 99, ../sass/base/_normalize.scss */
 img {
   border: 0;
 }
 
-/* line 103, ../sass/base/_normalize.scss */
 svg:not(:root) {
   overflow: hidden;
 }
 
-/* line 107, ../sass/base/_normalize.scss */
 figure {
   margin: 1em 40px;
 }
 
-/* line 111, ../sass/base/_normalize.scss */
 hr {
   -moz-box-sizing: content-box;
   -webkit-box-sizing: content-box;
@@ -138,12 +115,10 @@ hr {
   height: 0;
 }
 
-/* line 116, ../sass/base/_normalize.scss */
 pre {
   overflow: auto;
 }
 
-/* line 120, ../sass/base/_normalize.scss */
 code,
 kbd,
 pre,
@@ -152,7 +127,6 @@ samp {
   font-size: 1em;
 }
 
-/* line 128, ../sass/base/_normalize.scss */
 button,
 input,
 optgroup,
@@ -164,18 +138,15 @@ textarea {
   padding: 0;
 }
 
-/* line 139, ../sass/base/_normalize.scss */
 button {
   overflow: visible;
 }
 
-/* line 143, ../sass/base/_normalize.scss */
 button,
 select {
   text-transform: none;
 }
 
-/* line 148, ../sass/base/_normalize.scss */
 button,
 html [type='button'],
 [type='reset'],
@@ -185,25 +156,21 @@ html [type='button'],
   cursor: pointer;
 }
 
-/* line 156, ../sass/base/_normalize.scss */
 button[disabled],
 html input[disabled] {
   cursor: default;
 }
 
-/* line 161, ../sass/base/_normalize.scss */
 button::-moz-focus-inner,
 input::-moz-focus-inner {
   border: 0;
   padding: 0;
 }
 
-/* line 167, ../sass/base/_normalize.scss */
 input {
   line-height: normal;
 }
 
-/* line 171, ../sass/base/_normalize.scss */
 [type='checkbox'],
 [type='radio'] {
   -moz-box-sizing: border-box;
@@ -212,13 +179,11 @@ input {
   padding: 0;
 }
 
-/* line 177, ../sass/base/_normalize.scss */
 [type='number']::-webkit-inner-spin-button,
 [type='number']::-webkit-outer-spin-button {
   height: auto;
 }
 
-/* line 182, ../sass/base/_normalize.scss */
 [type='search'] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
@@ -227,49 +192,41 @@ input {
   box-sizing: border-box;
 }
 
-/* line 188, ../sass/base/_normalize.scss */
 [type='search']::-webkit-search-cancel-button,
 [type='search']::-webkit-search-decoration {
   -webkit-appearance: none;
   -moz-appearance: none;
 }
 
-/* line 193, ../sass/base/_normalize.scss */
 fieldset {
   border: 1px solid #c0c0c0;
   margin: 0 2px;
   padding: .35em .625em .75em;
 }
 
-/* line 200, ../sass/base/_normalize.scss */
 legend {
   border: 0;
   padding: 0;
 }
 
-/* line 205, ../sass/base/_normalize.scss */
 textarea {
   overflow: auto;
 }
 
-/* line 209, ../sass/base/_normalize.scss */
 optgroup {
   font-weight: bold;
 }
 
-/* line 213, ../sass/base/_normalize.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0;
 }
 
-/* line 218, ../sass/base/_normalize.scss */
 td,
 th {
   padding: 0;
 }
 
-/* line 224, ../sass/base/_normalize.scss */
 nav ul,
 nav li {
   list-style: none;
@@ -277,17 +234,14 @@ nav li {
   padding: 0;
 }
 
-/* line 232, ../sass/base/_normalize.scss */
 label {
   cursor: pointer;
 }
 
-/* line 236, ../sass/base/_normalize.scss */
 :focus {
   outline: 0;
 }
 
-/* line 240, ../sass/base/_normalize.scss */
 [type='text'],
 [type='password'],
 [type='email'],
@@ -305,27 +259,20 @@ textarea {
   box-shadow: none;
 }
 
-/* ========================================================= */
 /* ====================  END NORMALIZE  ==================== */
-/* ========================================================= */
-/* ====================================================== */
 /* =======================  CORE  ======================= */
-/* ====================================================== */
-/* line 11, ../sass/utilities/mixins/css3/_selection.scss */
 ::-moz-selection {
   background-color: #338fff;
   color: #fff;
   text-shadow: none;
 }
 
-/* line 15, ../sass/utilities/mixins/css3/_selection.scss */
 ::selection {
   background-color: #338fff;
   color: #fff;
   text-shadow: none;
 }
 
-/* line 10, ../sass/base/_core.scss */
 html {
   font-size: 100%;
   -moz-box-sizing: border-box;
@@ -333,22 +280,17 @@ html {
   box-sizing: border-box;
 }
 
-/* line 15, ../sass/base/_core.scss */
-*,
-*:before,
-*:after {
+*, *:before, *:after {
   -moz-box-sizing: inherit;
   -webkit-box-sizing: inherit;
   box-sizing: inherit;
 }
 
-/* line 21, ../sass/base/_core.scss */
 html,
 body {
   height: 100%;
 }
 
-/* line 26, ../sass/base/_core.scss */
 body {
   background-color: #fff;
   color: #000;
@@ -361,7 +303,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* line 42, ../sass/base/_core.scss */
 a,
 area,
 button,
@@ -375,18 +316,15 @@ textarea {
   touch-action: manipulation;
 }
 
-/* line 54, ../sass/base/_core.scss */
 svg {
-  -moz-transition: fill 0.2s ease-in;
-  -o-transition: fill 0.2s ease-in;
-  -webkit-transition: fill 0.2s ease-in;
-  transition: fill 0.2s ease-in;
+  -moz-transition: fill 0.3s ease-out;
+  -o-transition: fill 0.3s ease-out;
+  -webkit-transition: fill 0.3s ease-out;
+  transition: fill 0.3s ease-out;
 }
 
-/* ====================================================== */
+/* =======================  END CORE  ======================= */
 /* ====================  TYPOGRAPHY  ==================== */
-/* ====================================================== */
-/* line 7, ../sass/base/_typography.scss */
 h1,
 h2,
 h3,
@@ -401,147 +339,126 @@ h6 {
   margin-bottom: 10px;
 }
 
-/* line 21, ../sass/base/_typography.scss */
 h1 {
   font-size: 36px;
 }
 
-/* line 25, ../sass/base/_typography.scss */
 h2 {
   font-size: 30px;
 }
 
-/* line 29, ../sass/base/_typography.scss */
 h3 {
   font-size: 24px;
 }
 
-/* line 33, ../sass/base/_typography.scss */
 h4 {
   font-size: 18px;
 }
 
-/* line 37, ../sass/base/_typography.scss */
 h5 {
   font-size: 14px;
 }
 
-/* line 41, ../sass/base/_typography.scss */
 h6 {
   font-size: 12px;
 }
 
-/* line 47, ../sass/base/_typography.scss */
 p {
   margin-top: 0;
   margin-bottom: 10px;
 }
 
-/* line 54, ../sass/base/_typography.scss */
 a {
   color: inherit;
   text-decoration: underline;
 }
-/* line 62, ../sass/base/_typography.scss */
+
 a:hover {
   text-decoration: none;
 }
-/* line 70, ../sass/base/_typography.scss */
+
 a[href^='http'], a[href^='www.'] {
   cursor: alias;
 }
 
-/* line 76, ../sass/base/_typography.scss */
 b,
 strong {
   font-weight: bold;
 }
 
-/* line 81, ../sass/base/_typography.scss */
 i,
 em {
   font-style: italic;
 }
 
-/* line 86, ../sass/base/_typography.scss */
 blockquote {
   padding: 0 0 0 15px;
   margin: 0 0 10px;
   border-left: 5px solid #eee;
 }
 
-/* line 92, ../sass/base/_typography.scss */
 abbr,
 acronym {
   cursor: help;
   border-bottom: 1px dotted #999;
 }
 
-/* line 98, ../sass/base/_typography.scss */
 address {
   margin: 0 0 10px;
   font-style: italic;
 }
 
-/* line 105, ../sass/base/_typography.scss */
 ul,
 ol {
   margin: 0 0 10px;
   padding-left: 20px;
 }
-/* line 110, ../sass/base/_typography.scss */
+
 ul ul,
 ul ol,
 ol ul,
 ol ol {
   margin-bottom: 0;
 }
-/* line 115, ../sass/base/_typography.scss */
+
 ul li,
 ol li {
   list-style-position: inside;
 }
-/* line 119, ../sass/base/_typography.scss */
+
 ul a,
 ol a {
   color: inherit;
 }
 
-/* line 124, ../sass/base/_typography.scss */
 dl {
   margin: 0 0 10px;
 }
 
-/* line 128, ../sass/base/_typography.scss */
 dt {
   font-weight: bold;
 }
 
-/* line 132, ../sass/base/_typography.scss */
 dd {
   margin-left: 10px;
 }
 
-/* line 138, ../sass/base/_typography.scss */
 table {
   max-width: 100%;
   background-color: transparent;
   margin-bottom: 10px;
 }
 
-/* line 144, ../sass/base/_typography.scss */
 caption {
   caption-side: bottom;
   font-weight: bold;
   text-align: left;
 }
 
-/* line 150, ../sass/base/_typography.scss */
 th {
   font-weight: bold;
 }
 
-/* line 154, ../sass/base/_typography.scss */
 th,
 td {
   padding: 0;
@@ -549,7 +466,6 @@ td {
   vertical-align: middle;
 }
 
-/* line 169, ../sass/base/_typography.scss */
 img,
 video,
 object,
@@ -557,27 +473,20 @@ embed {
   max-width: 100%;
 }
 
-/* line 176, ../sass/base/_typography.scss */
 img,
 video {
   height: auto;
   vertical-align: middle;
 }
 
-/* ========================================================== */
 /* ====================  END TYPOGRAPHY  ==================== */
-/* ========================================================== */
-/* ================================================= */
 /* ====================  FORMS  ==================== */
-/* ================================================= */
-/* line 4, ../sass/layout/_forms.scss */
 form {
   max-width: 100%;
   margin-bottom: 10px;
   position: relative;
 }
 
-/* line 16, ../sass/layout/_forms.scss */
 select,
 textarea,
 [type='text'],
@@ -592,61 +501,84 @@ textarea,
   padding: 8px 10px;
 }
 
-/* line 40, ../sass/layout/_forms.scss */
 [type="radio"]:disabled, [type="radio"].disabled,
 [type="checkbox"]:disabled,
 [type="checkbox"].disabled {
   cursor: not-allowed;
 }
 
-/* line 21, ../sass/utilities/mixins/css3/_placeholder.scss */
 :-moz-placeholder {
   color: #afafaf;
   text-overflow: ellipsis;
 }
 
-/* line 21, ../sass/utilities/mixins/css3/_placeholder.scss */
 ::-moz-placeholder {
   color: #afafaf;
   text-overflow: ellipsis;
 }
 
-/* line 21, ../sass/utilities/mixins/css3/_placeholder.scss */
 :-ms-input-placeholder {
   color: #afafaf;
   text-overflow: ellipsis;
 }
 
-/* line 21, ../sass/utilities/mixins/css3/_placeholder.scss */
 ::-webkit-input-placeholder {
   color: #afafaf;
   text-overflow: ellipsis;
 }
 
-/* line 93, ../sass/layout/_forms.scss */
 textarea {
   min-height: 100px;
   resize: vertical;
 }
 
-/* ===================================================== */
 /* ====================  END FORMS  ==================== */
-/* ===================================================== */
-/* ================================================= */
+/*
+SCSS variables are information about icon's compiled state, stored under its original file name
+
+.icon-home {
+  width: $icon-home-width;
+}
+
+The large array-like variables contain all information about a single icon
+$icon-home: x y offset_x offset_y width height total_width total_height image_path;
+
+At the bottom of this section, we provide information about the spritesheet itself
+$spritesheet: width height image $spritesheet-sprites;
+*/
+/*
+The provided mixins are intended to be used with the array-like variables
+
+.icon-home {
+  @include sprite-width($icon-home);
+}
+
+.icon-email {
+  @include sprite($icon-email);
+}
+*/
+/*
+The `sprites` mixin generates identical output to the CSS template
+  but can be overridden inside of SCSS
+
+@include sprites($spritesheet-sprites);
+*/
+.csdcsd {
+  background-image: url(../img/sprite.png);
+  background-position: -21px -17px;
+  width: 20px;
+  height: 16px;
+}
+
 /* ====================  STATE  ==================== */
-/* ================================================= */
-/* line 17, ../sass/state/_state.scss */
 .is-visible {
   display: block;
 }
 
-/* line 21, ../sass/state/_state.scss */
 .is-hidden {
   display: none;
 }
 
-/* ===================================================== */
 /* ====================  END STATE  ==================== */
-/* ===================================================== */
 
 /*# sourceMappingURL=main.css.map */
