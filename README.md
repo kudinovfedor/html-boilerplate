@@ -31,9 +31,9 @@ $ gem install oily_png
 $ npm install -g npm
 
 # install Pug(Jade), Gulp, Bower, htmlhint, jshint, eslint
-$ npm install -g pug gulp bower htmlhint jshint eslint
+$ npm install -g gulp-cli pug bower htmlhint jshint eslint
 
-# install npm-check npm-check-updates [optional]
+# install npm-check-updates [optional]
 $ npm install -g npm-check-updates
 
 # install dependencies listed in package.json

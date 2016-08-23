@@ -1,5 +1,9 @@
 'use strict';
 
+// Variable
+var src = 'src/';
+var dist = 'dist/';
+
 // Gulp
 var gulp = require('gulp');
 // System
@@ -10,7 +14,7 @@ var htmlhint = require('gulp-htmlhint');
 var html_stylish = require('htmlhint-stylish');
 // Pug (Jade)
 var pug = require('gulp-pug');
-// var pug_lint = require('gulp-pug-lint');
+var pug_lint = require('gulp-pug-lint');
 // CSS
 // var cmq = require('gulp-combine-media-queries');
 var cssBase64 = require('gulp-css-base64');
@@ -27,7 +31,7 @@ var reporter = scss_stylish({errorsOnly: false});
 var spritesmith = require('gulp.spritesmith');
 // Favicon.ico
 var realFavicon = require('gulp-real-favicon');
-var FAVICON_DATA_FILE = 'faviconData.json';
+var FAVICON_DATA_FILE = src + 'faviconData.json';
 // SVG
 var svgmin = require('gulp-svgmin');
 var svgstore = require('gulp-svgstore');
@@ -44,6 +48,7 @@ var notify = require('gulp-notify');
 var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var size = require('gulp-size');
+var cache = require('gulp-cached');
 //var filter = require('gulp-filter');
 var zip = require('gulp-zip');
 // LiveReload & Browser Syncing
@@ -52,10 +57,12 @@ var browserSync = require('browser-sync').create();
 var mainBowerFiles = require('main-bower-files');
 // Modernizr
 var modernizr = require('gulp-modernizr');
+
 // Config
 var config = {
   // Config Pug (Jade)
   pug: {pretty: true},
+  pug_lint: {'extends': src + '.pug-lintrc'},
   // Config CSS Autoprefixer
   autoprefixer: {
     browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
@@ -74,19 +81,34 @@ var config = {
   sass: {outputStyle: 'expanded', precision: 5, errLogToConsole: true, sourceComments: false},
   // Config Compass + SCSS(SASS)
   compass: {
-    config_file: 'src/config.rb', require: false, environment: 'development', http_path: '/', project_path: 'src',
-    css: 'src/css', font: 'src/fonts', image: 'src/img', javascript: 'src/js', sass: 'src/sass', style: 'expanded',
-    relative: true, comments: true, logging: true, time: true, sourcemap: true, debug: false, task: 'compile' /*watch*/
+    config_file: src + 'config.rb',
+    require: false,
+    environment: 'development',
+    http_path: '/',
+    project_path: src,
+    css: src + 'css',
+    font: src + 'fonts',
+    image: src + 'img',
+    javascript: src + 'js',
+    sass: src + 'sass',
+    style: 'expanded',
+    relative: true,
+    comments: true,
+    logging: true,
+    time: true,
+    sourcemap: true,
+    debug: false,
+    task: 'compile' /*watch*/
   },
   // Config SCSS(SASS) Lint
-  scsslint: {config: 'src/.scss-lint.yml', customReport: reporter.issues},
+  scsslint: {config: src + '.scss-lint.yml', customReport: reporter.issues},
   // Config img
   sprite: {
     imgName: 'sprite.png', cssName: '_gulp-sprite.scss', imgPath: '../img/sprite.png',
     padding: 1, algorithm: 'binary-tree', cssFormat: 'scss',
     cssVarMap: function (sprite) {
       sprite.name = 's-' + sprite.name;
-    }, cssTemplate: 'src/scss.template.handlebars',
+    }, cssTemplate: src + 'scss.template.handlebars',
     cssOpts: {
       cssSelector: function (sprite) {
         return '.icon-' + sprite.name;
@@ -96,10 +118,10 @@ var config = {
   // Config JSHint
   jshint: {lookup: true, linter: 'jshint'},
   // Config ESLint
-  eslint: {configFile: '.eslintrc.json'},
+  eslint: {configFile: src + '.eslintrc.json'},
   // Config BrowserSync
   bs: {
-    ui: false, server: {baseDir: './src/'}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
+    ui: false, server: {baseDir: src}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
     logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: true, online: false,
     reloadOnRestart: true, notify: true
   },
@@ -109,24 +131,23 @@ var config = {
     debugging: false, checkExistence: true, includeDev: true
   },
   // Config Gulp file size
-  fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
+  fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true}
   // Config Gulp filter
   //filter: {restore: true, passthrough: true}
 };
-
-var src = 'src/',
-  dist = 'dist/';
 
 var path = {
   src: {
     html: [src + '*.html'],
     pug: [src + 'pug/*.pug'],
-    css: [src + 'css/*.css', !src + 'css/*.min.css'],
+    css: [src + 'css/*.css', '!' + src + 'css/*.min.css'],
     sass: [src + 'sass/**/*.{scss,sass}'],
     sprite: [src + 'img/sprite/*.*'],
     img: [src + 'img/**/*'],
     svg: [src + 'img/svg/*.svg'],
-    js: [src + 'js/common.js']
+    js: [src + 'js/common.js'],
+    ie8: [src + 'js/libs/{html5shiv,respond}.min.js'],
+    allJS: [src + 'js/libs/{device,modernizr,jquery}.min.js']
   },
   dest: {
     pug: src,
@@ -137,15 +158,16 @@ var path = {
     sprite_css: src + 'sass/module',
     svg: src + 'img',
     svgfallback: src + 'img/svgfallback',
-    js: src + 'js'
+    js: src + 'js',
+    bower: [src + 'js/libs']
   },
   watch: {
     html: [src + '*.html'],
     pug: [src + 'pug/**/*.pug'],
-    img: [],
+    img: [src + 'img/**/*'],
     sprite: [src + 'img/sprite/*.*'],
     svg: [src + 'img/svg/*.svg'],
-    css: [src + 'css/*.css', !src + 'css/*.min.css'],
+    css: [src + 'css/*.css', '!' + src + 'css/*.min.css'],
     sass: [src + 'sass/**/*.{scss,sass}'],
     js: [src + 'js/common.js']
   },
@@ -154,7 +176,7 @@ var path = {
       css: [src + 'css/*.css'],
       fonts: [src + 'fonts/**/*.*'],
       img: [src + 'img/**/*.*'],
-      js: [src + 'js/**/*.js', !src + 'js/**/jquery.pixlayout.min.js'],
+      js: [src + 'js/**/*.js', '!' + src + '/js/**/jquery.pixlayout.min.js'],
       html: [src + '*.html'],
       other: [src + 'favicon.ico', '.htaccess'],
       zip: [dist + '**/*.*', dist + '.htaccess']
@@ -183,11 +205,11 @@ gulp.task('server', function () {
 gulp.task('libsBower', function () {
   return gulp.src(mainBowerFiles(config.bower))
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(gulp.dest('src/js/libs'));
+    .pipe(gulp.dest(path.dest.bower));
 });
 
 gulp.task('svg-sprite', function () {
-  return gulp.src([path.src.svg, '!img/svg/*_hover.svg'])
+  return gulp.src([path.src.svg, !src + 'img/svg/*_hover.svg'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(svgmin({js2svg: {pretty: false}}))
     .pipe(svgstore({inlineSvg: true}))
@@ -211,27 +233,27 @@ gulp.task('retina2dppx', function () {
     .pipe(gulp.dest(path.dest.svgfallback));
 });
 
-gulp.task('svg', gulp.series('svg-sprite', 'retina1dppx'/*, 'retina2dppx'*/));
+gulp.task('svg', gulp.series('svg-sprite', gulp.parallel('retina1dppx'/*, 'retina2dppx'*/)));
 
 gulp.task('ie8', function () {
-  return gulp.src(['js/libs/html5shiv.min.js', 'js/libs/respond.min.js'])
+  return gulp.src(path.src.ie8)
     .pipe(plumber({errorHandler: errorAlert}))
-    //.pipe(size(config.fileSize))
+    .pipe(size(config.fileSize))
     .pipe(concat('ie8.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    //.pipe(size(config.fileSize))
+    .pipe(size(config.fileSize))
     .pipe(gulp.dest(path.dest.js));
 });
 
 gulp.task('all-js', function () {
-  return gulp.src(['js/libs/device.min.js', 'js/libs/modernizr.min.js', 'js/libs/jquery.min.js'])
+  return gulp.src(path.src.allJS)
     .pipe(plumber({errorHandler: errorAlert}))
-    //.pipe(size(config.fileSize))
+    .pipe(size(config.fileSize))
     .pipe(concat('all.js'))
     .pipe(rename({suffix: '.min'}))
     .pipe(uglify())
-    //.pipe(size(config.fileSize))
+    .pipe(size(config.fileSize))
     .pipe(gulp.dest(path.dest.js));
 });
 
@@ -246,7 +268,7 @@ gulp.task('sprite', function () {
 gulp.task('pug', function () {
   return gulp.src(path.src.pug)
     .pipe(plumber({errorHandler: errorAlert}))
-    //.pipe(pug_lint())
+    //.pipe(pug_lint(config.pug_lint))
     .pipe(pug(config.pug))
     .pipe(gulp.dest(path.dest.pug))
     .pipe(browserSync.stream());
@@ -263,7 +285,7 @@ gulp.task('sass', function () {
 
 gulp.task('compass', function () {
   return gulp.src(path.src.sass)
-  //.pipe(plumber({errorHandler: errorAlert}))
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(compass(config.compass))
     .pipe(gulp.dest(path.dest.sass))
     .pipe(browserSync.stream());
@@ -316,16 +338,15 @@ gulp.task('autoprefixer', function () {
 gulp.task('html-hint', function () {
   return gulp.src(path.src.html)
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(htmlhint('.htmlhintrc'))
-    //.pipe(htmlhint.reporter())
+    .pipe(htmlhint(src + '.htmlhintrc'))
     .pipe(htmlhint.reporter(html_stylish));
 });
 
 gulp.task('scss-lint', function () {
   return gulp.src(path.src.sass, {since: gulp.lastRun('scss-lint')})
     .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(cache(scsslint))
     .pipe(scsslint(config.scsslint));
-  //.pipe(reporter.printSummary);
 });
 
 gulp.task('jshint', function () {
@@ -494,8 +515,8 @@ gulp.task('zip-all', function () {
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', function (done) {
   realFavicon.generateFavicon({
-    masterPicture: 'src/img/favicon.png', // 310x310 px
-    dest: 'src/img/favicon',
+    masterPicture: src + 'img/favicon.png', // 310x310 px
+    dest: src + 'img/favicon',
     iconsPath: 'img/favicon',
     design: {
       ios: {
@@ -541,9 +562,9 @@ gulp.task('generate-favicon', function (done) {
 // this task whenever you modify a page. You can keep this task
 // as is or refactor your existing HTML pipeline.
 gulp.task('inject-favicon-markups', function () {
-  gulp.src(['TODO: List of the HTML files where to inject favicon markups'])
+  return gulp.src([src + 'favicon.html']) // List of the HTML files where to inject favicon markups
     .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
-    .pipe(gulp.dest('TODO: Path to the directory where to store the HTML files'));
+    .pipe(gulp.dest(src)); // Path to the directory where to store the HTML files
 });
 
 // Check for updates on RealFaviconGenerator (think: Apple has just
@@ -560,8 +581,8 @@ gulp.task('check-for-favicon-update', function (done) {
 });
 
 // Dist tasks
-gulp.task('clean:dist', function (cb) {
-  return del(path.dist.dest.html, cb);
+gulp.task('clean:dist', function () {
+  return del(path.dist.dest.html);
 });
 
 gulp.task('css:dist', function () {

@@ -25,7 +25,11 @@
     "Gulp",
     "Modernizr",
     "Bower",
-    "Browsersync"
+    "Browsersync",
+    "ESLint",
+    "JSHint",
+    "HTMLHint",
+    "Autoprefixer"
   ],
   "repository": {
     "type": "git",

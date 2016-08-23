@@ -13,6 +13,7 @@
     "del": "^2.2.2",
     "fs": "0.0.2",
     "gulp-autoprefixer": "^3.1.1",
+    "gulp-cached": "^1.1.0",
     "gulp-clean-css": "^2.0.12",
     "gulp-combine-media-queries": "^0.2.0",
     "gulp-compass": "^2.1.0",
@@ -50,7 +51,7 @@
     "set-all": "npm run gem-install && npm run npm-update && npm run npm-install-g && npm run gulp-install && npm run bower-install",
     "gem-install": "gem update && npm -v && gem install compass scss_lint",
     "npm-update": "npm install -g npm",
-    "npm-install-g": "npm install -g pug gulp-cli bower htmlhint jshint eslint npm-check-updates",
+    "npm-install-g": "npm install -g gulp-cli pug bower htmlhint jshint eslint npm-check-updates",
     "gulp-install": "npm install",
     "bower-install": "bower install && gulp libsBower && gulp ie8 && gulp modernizr && gulp all-js"
   },
@@ -77,7 +78,11 @@
     "Gulp",
     "Modernizr",
     "Bower",
-    "Browsersync"
+    "Browsersync",
+    "ESLint",
+    "JSHint",
+    "HTMLHint",
+    "Autoprefixer"
   ],
   "author": "Kudinov Fedor",
   "license": "MIT",
