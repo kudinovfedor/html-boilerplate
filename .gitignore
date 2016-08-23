@@ -29,3 +29,6 @@ node_modules
 
 # Command Promt
 *.cmd
+
+# Distribute
+dist/

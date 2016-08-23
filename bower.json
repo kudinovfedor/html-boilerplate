@@ -25,7 +25,11 @@
     "Gulp",
     "Modernizr",
     "Bower",
-    "Browsersync"
+    "Browsersync",
+    "ESLint",
+    "JSHint",
+    "HTMLHint",
+    "Autoprefixer"
   ],
   "repository": {
     "type": "git",
@@ -55,13 +59,14 @@
     "respond": "~1.4.2",
     "selectivizr": "~1.0.2",
     "jquery.inputmask": "^3.3.1",
-    "jquery-validation": "^1.15.0",
+    "jquery-validation": "^1.15.1",
     "magnific-popup": "maginificantpopup#^1.1.0",
-    "jQuery.mmenu": "^5.6.5",
+    "jQuery.mmenu": "^5.7.0",
     "select2": "select2-ng#^4.0.3",
-    "gsap": "^1.18.5",
     "slick-carousel": "^1.6.0",
-    "ion.rangeSlider": "ionrangeslider#^2.1.4"
+    "ion.rangeSlider": "ionrangeslider#^2.1.4",
+    "compass-mixins": "^1.0.2",
+    "jquery-migrate-official": "^1.4.1 < 3"
   },
   "overrides": {
     "device.js": {
@@ -138,11 +143,8 @@
         "./js/ion.rangeSlider.min.js"
       ]
     },
-    "gsap": {
-      "main": [
-        "./src/minified/TweenLite.min.js",
-        "./src/minified/TweenMax.min.js"
-      ]
+    "compass-mixins": {
+      "ignore": true
     }
   }
 }

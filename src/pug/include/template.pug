@@ -1,0 +1,102 @@
+//- template.jade
+- var lang = 'en'
+- var ie_classes = false
+- var twitter = false
+- var facebook = false
+- var favicon = true
+- var css_min = false
+- var ie_css_min = false
+- var selectivizr = false
+- var ie = false
+- var browser_upgrade = false
+- var preloader = false
+- var pixlayout = true
+- var google_analytics = false
+- var svg_inline = false
+- var common_js_min = false
+- var cdn = false
+doctype html
+if ie_classes && facebook
+  <!--[if lt IE 7 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 7 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 8 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 9 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie9 lt-ie10 no-js"><![endif]-->
+  <!--[if (gte IE 10)|!(IE)]<!--><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="no-js"><!--<![endif]-->
+else if ie_classes && !facebook
+  <!--[if lt IE 7 ]><html lang="#{lang}" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 7 ]><html lang="#{lang}" class="ie ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 8 ]><html lang="#{lang}" class="ie ie8 lt-ie9 no-js"><![endif]-->
+  <!--[if IE 9 ]><html lang="#{lang}" class="ie ie9 lt-ie10 no-js"><![endif]-->
+  <!--[if (gte IE 10)|!(IE)]<!--><html lang="#{lang}" class="no-js"><!--<![endif]-->
+else if !ie_classes && facebook
+  <html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="no-js">
+else
+  <html lang="#{lang}" class="no-js">
+head
+  meta(charset='UTF-8')
+  meta(http-equiv='X-UA-Compatible', content='IE=edge')
+  meta(name='viewport', content='width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+  title
+    block title
+      | Template
+  meta(name='description', content='')
+  meta(name='robots', content='index, follow')
+  //saved from url=(0014)about:internet
+  meta(name='HandheldFriendly', content='true')
+  meta(name='MobileOptimized', content='320')
+  meta(name='format-detection', content='date=no, address=no, email=no, telephone=no')
+  meta(name='x-rim-auto-match', content='none')
+  if favicon
+    include ../core/favicon
+  //- Place favicon.ico in the root directory
+  link(href='favicon.ico', rel='shortcut icon')
+  if twitter
+    include ../core/meta-twitter
+  if facebook
+    include ../core/meta-facebook
+  if ie
+    //- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading
+    <!--[if IEMobile]>
+    meta(http-equiv='cleartype', content='on')
+    <![endif]-->
+  if !css_min
+    link(href='css/main.css', rel='stylesheet', media='all')
+  else
+    link(href='css/main.min.css', rel='stylesheet', media='all')
+  if ie
+    include ../core/ie-css
+    include ../core/ie-script
+    if selectivizr
+      include ../core/selectivizr
+body(itemscope=true, itemtype='http://schema.org/WebPage')
+  if browser_upgrade
+    include ../core/browser-upgrade
+  block content
+  if preloader
+    include ../core/preloader
+  // Scripts queries
+  if cdn
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/device.js/0.2.7/device.min.js')
+    script(src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js')
+    script(src='https://code.jquery.com/jquery-1.12.4.min.js')
+    //-script(src='https://code.jquery.com/jquery-migrate-1.4.1.min.js')
+    //-script(src='https://code.jquery.com/jquery-migrate-3.0.0.min.js')
+  else
+    //- all.min.js include modernizr.js, device.js, jquery.js libraries
+    script(src='js/all.min.js')
+    //-script(src='js/libs/modernizr.min.js')
+    //-script(src='js/libs/device.min.js')
+    //-script(src='js/libs/jquery.min.js')
+  block script
+  // Custom scripts
+  if !common_js_min
+    script(src='js/common.js')
+  else
+    script(src='js/common.min.js')
+  if pixlayout
+    include ../core/pixlayout
+  if google_analytics
+    include ../core/google-analytics
+  if svg_inline
+    include ../core/svg-inline
+</html>

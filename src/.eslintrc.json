@@ -1,0 +1,98 @@
+{
+  "root": true,
+  "env": {
+    "browser": true,
+    "commonjs": true,
+    "es6": true,
+    "node": true
+  },
+  "extends": "eslint:recommended", // :all
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "globals": {
+    "jQuery": true,
+    "Modernizr": true
+  },
+  "rules": {
+    "indent": [
+      "warn",
+      2
+    ],
+    "linebreak-style": [
+      "error",
+      "windows"
+    ],
+    "quotes": [
+      "warn",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "strict": "off",
+    "no-unused-vars": "warn",
+    "no-undef": "warn",
+    "no-console": [
+      "warn",
+      {
+        "allow": [
+          "warn",
+          "error",
+          "info",
+          "log"
+        ]
+      }
+    ],
+    "no-inline-comments": "warn",
+    "require-jsdoc": [
+      "warn",
+      {
+        "require": {
+          "FunctionDeclaration": true,
+          "MethodDefinition": true,
+          "ClassDeclaration": true
+        }
+      }
+    ],
+    "valid-jsdoc": [
+      "warn",
+      {
+        "prefer": {
+          "arg": "param",
+          "argument": "param",
+          "extends": "augments",
+          "class": "constructor",
+          "return": "returns",
+          "virtual": "abstract",
+          "const": "constant",
+          "defaultvalue": "default",
+          "desc": "description",
+          "host": "external",
+          "overview": "file",
+          "fileoverview": "file",
+          "emits": "fires",
+          "func": "function",
+          "method": "function",
+          "var": "member",
+          "prop": "property",
+          "exception": "throws"
+        },
+        "preferType": {
+          "Boolean": "boolean",
+          "Number": "number",
+          "object": "Object",
+          "String": "string"
+        },
+        "requireReturn": false,
+        "requireReturnType": false,
+        "requireParamDescription": true,
+        "requireReturnDescription": true
+      }
+    ]
+  }
+}

@@ -1,0 +1,6 @@
+@mixin opacity($opacity) {
+  $value: round($opacity * 100);
+  //filter: progid:DXImageTransform.Microsoft.Alpha(opacity=#{$value});
+  filter: alpha(opacity=#{$value});
+  opacity: $opacity;
+}

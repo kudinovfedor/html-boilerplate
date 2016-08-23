@@ -1,9 +1,0 @@
-{
-  "preset": "google",
-  "requireCamelCaseOrUpperCaseIdentifiers": null,
-  "disallowMultipleVarDecl": null,
-  "disallowSpacesInAnonymousFunctionExpression": null,
-  "disallowSpacesInFunctionExpression": null,
-  "maxErrors": null,
-  "maximumLineLength": 100
-}
