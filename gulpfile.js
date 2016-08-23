@@ -49,6 +49,7 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var size = require('gulp-size');
 var cache = require('gulp-cached');
+var babel = require("gulp-babel");
 //var filter = require('gulp-filter');
 var zip = require('gulp-zip');
 // LiveReload & Browser Syncing
@@ -313,6 +314,12 @@ gulp.task('js', function () {
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
+    .pipe(gulp.dest(path.dest.js));
+});
+
+gulp.task('babel', function () {
+  return gulp.src('src/js/app.js')
+    .pipe(babel())
     .pipe(gulp.dest(path.dest.js));
 });
 
