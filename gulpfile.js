@@ -553,6 +553,7 @@ gulp.task('check-for-favicon-update', function (done) {
       throw err;
     }
   });
+  done();
 });
 
 // Distribute functions
