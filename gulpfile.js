@@ -82,23 +82,9 @@ var config = {
   sass: {outputStyle: 'expanded', precision: 5, errLogToConsole: true, sourceComments: false},
   // Config Compass + SCSS(SASS)
   compass: {
-    config_file: src + 'config.rb',
-    require: false,
-    environment: 'development',
-    http_path: '/',
-    project_path: src,
-    css: src + 'css',
-    font: src + 'fonts',
-    image: src + 'img',
-    javascript: src + 'js',
-    sass: src + 'sass',
-    style: 'expanded',
-    relative: true,
-    comments: true,
-    logging: true,
-    time: true,
-    sourcemap: true,
-    debug: false,
+    config_file: src + 'config.rb', require: false, environment: 'development', http_path: '/', project_path: src,
+    css: src + 'css', font: src + 'fonts', image: src + 'img', javascript: src + 'js', sass: src + 'sass',
+    style: 'expanded', relative: true, comments: true, logging: true, time: true, sourcemap: true, debug: false,
     task: 'compile' /*watch*/
   },
   // Config SCSS(SASS) Lint
@@ -132,7 +118,9 @@ var config = {
     debugging: false, checkExistence: true, includeDev: true
   },
   // Config Gulp file size
-  fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true}
+  fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
+  // Config Gulp zip
+  zip: {compress: true}
   // Config Gulp filter
   //filter: {restore: true, passthrough: true}
 };
@@ -148,7 +136,8 @@ var path = {
     svg: [src + 'img/svg/*.svg'],
     js: [src + 'js/common.js'],
     ie8: [src + 'js/libs/{html5shiv,respond}.min.js'],
-    allJS: [src + 'js/libs/{device,modernizr,jquery}.min.js']
+    allJS: [src + 'js/libs/{device,modernizr,jquery}.min.js'],
+    zip: ['src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
   },
   dest: {
     pug: src,
@@ -160,7 +149,8 @@ var path = {
     svg: src + 'img',
     svgfallback: src + 'img/svgfallback',
     js: src + 'js',
-    bower: [src + 'js/libs']
+    bower: [src + 'js/libs'],
+    zip: './'
   },
   watch: {
     html: [src + '*.html'],
@@ -197,6 +187,16 @@ function errorAlert(error) {
   notify.onError({title: 'Error', subtitle: 'Failure!', message: 'Check your terminal', sound: 'Sosumi'})(error); // Error Notification
   console.log(error.toString()); // Prints Error to Console
   this.emit('end'); // End function
+}
+
+function getFullDate() {
+  var d = new Date(),
+    year = d.getFullYear(),
+    month = d.getMonth() < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1,
+    date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate(),
+    hours = d.getHours() < 10 ? '0' + d.getHours() : d.getHours(),
+    minutes = d.getMinutes() < 10 ? '0' + d.getMinutes() : d.getMinutes();
+  return date + '-' + month + '-' + year + '__' + hours + '.' + minutes;
 }
 
 gulp.task('server', function () {
@@ -477,43 +477,11 @@ gulp.task('modernizr', function () {
 });
 
 gulp.task('zip', function () {
-  return gulp.src([
-    'css/**',
-    'fonts/**',
-    'img/**',
-    'js/**',
-    'libs/**',
-    '*.html',
-    '.htaccess',
-    'favicon.ico'
-  ], {base: '.'})
+  return gulp.src(path.src.zip, {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip('archive.zip', {compress: true}))
-    //.pipe(size(config.fileSize))
-    .pipe(gulp.dest('./'));
-});
-
-gulp.task('zip-all', function () {
-  return gulp.src([
-    'css/**',
-    'fonts/**',
-    'img/**',
-    'pug/**',
-    'js/**',
-    'libs/**',
-    'sass/**',
-    '!.git',
-    '!.idea',
-    '!.sass-cache',
-    '!bower_components',
-    '!node_modules',
-    '*.*',
-    '.*'
-  ], {base: '.'})
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip('archive_all.zip', {compress: true}))
-    //.pipe(size(config.fileSize))
-    .pipe(gulp.dest('./'));
+    .pipe(zip('clean-html-template-8in1(' + getFullDate() + ').zip', config.zip))
+    .pipe(size(config.fileSize))
+    .pipe(gulp.dest(path.dest.zip));
 });
 
 // Generate the icons. This task takes a few seconds to complete.
@@ -587,51 +555,51 @@ gulp.task('check-for-favicon-update', function (done) {
   });
 });
 
-// Dist tasks
-gulp.task('clean:dist', function () {
+// Distribute functions
+function cleanDist() {
   return del(path.dist.dest.html);
-});
+}
 
-gulp.task('css:dist', function () {
+function cssDist() {
   return gulp.src(path.dist.src.css)
     .pipe(gulp.dest(path.dist.dest.css));
-});
+}
 
-gulp.task('fonts:dist', function () {
+function fontsDist() {
   return gulp.src(path.dist.src.fonts)
     .pipe(gulp.dest(path.dist.dest.fonts));
-});
+}
 
-gulp.task('img:dist', function () {
+function imgDist() {
   return gulp.src(path.dist.src.img)
     .pipe(gulp.dest(path.dist.dest.img));
-});
+}
 
-gulp.task('js:dist', function () {
+function jsDist() {
   return gulp.src(path.dist.src.js)
     .pipe(gulp.dest(path.dist.dest.js));
-});
+}
 
-gulp.task('html:dist', function () {
+function htmlDist() {
   return gulp.src(path.dist.src.html)
     .pipe(gulp.dest(path.dist.dest.html));
-});
+}
 
-gulp.task('other:dist', function () {
+function otherDist() {
   return gulp.src(path.dist.src.other)
     .pipe(gulp.dest(path.dist.dest.html));
-});
+}
 
-gulp.task('zip:dist', function () {
+function zipDist() {
   return gulp.src(path.dist.src.zip, {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip('dist.zip', {compress: true}))
+    .pipe(zip('dist(' + getFullDate() + ').zip', config.zip))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest(path.dist.dest.zip));
-});
+}
+// End Distribute functions
 
-gulp.task('dist', gulp.series('clean:dist', gulp.parallel('css:dist', 'fonts:dist', 'img:dist', 'js:dist', 'html:dist', 'other:dist'), 'zip:dist'));
-// End Dist tasks
+gulp.task('dist', gulp.series(cleanDist, gulp.parallel(cssDist, fontsDist, imgDist, jsDist, htmlDist, otherDist), zipDist));
 
 gulp.task('default', gulp.parallel('server', function () {
   gulp.watch(path.watch.pug, gulp.series('pug'));
