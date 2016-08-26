@@ -32,3 +32,9 @@ node_modules
 
 # Distribute
 dist/
+
+# Coverage
+coverage/
+
+ # Misc
+npm-debug.log
