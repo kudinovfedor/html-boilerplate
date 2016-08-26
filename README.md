@@ -1,6 +1,6 @@
 # Clean HTML Template 8in1
 [![Build Status](https://travis-ci.org/kudinovfedor/clean-html-template-8in1.svg?branch=master)](https://travis-ci.org/kudinovfedor/clean-html-template-8in1)
-[![Coverage Status](https://coveralls.io/repos/github/kudinovfedor/clean-html-template-8in1/badge.svg?branch=master)](https://coveralls.io/github/kudinovfedor/clean-html-template-8in1?branch=master)
+[![Coverage Status](https://coveralls.io/repos/github/kudinovfedor/clean-html-template-8in1/badge.svg)](https://coveralls.io/github/kudinovfedor/clean-html-template-8in1)
 [![Dependency status](https://david-dm.org/kudinovfedor/clean-html-template-8in1.svg)](https://david-dm.org/kudinovfedor/clean-html-template-8in1)
 [![devDependency Status](https://david-dm.org/kudinovfedor/clean-html-template-8in1/dev-status.svg)](https://david-dm.org/kudinovfedor/clean-html-template-8in1/?type=dev)
 
