@@ -51,6 +51,7 @@
     "webpack-dev-server": "^1.15.0"
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "set-all": "npm run gem-install && npm run npm-update && npm run npm-install-g && npm run gulp-install && npm run bower-install",
     "gem-install": "gem update && gem update --system && gem install compass scss_lint",
     "npm-update": "npm install -g npm",
@@ -85,7 +86,9 @@
     "ESLint",
     "JSHint",
     "HTMLHint",
-    "Autoprefixer"
+    "Autoprefixer",
+    "Babel",
+    "Webpack"
   ],
   "author": "Kudinov Fedor",
   "license": "MIT",

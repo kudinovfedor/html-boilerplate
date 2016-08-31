@@ -29,7 +29,9 @@
     "ESLint",
     "JSHint",
     "HTMLHint",
-    "Autoprefixer"
+    "Autoprefixer",
+    "Babel",
+    "Webpack"
   ],
   "repository": {
     "type": "git",

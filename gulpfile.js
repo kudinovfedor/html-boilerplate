@@ -133,6 +133,7 @@ var path = {
     sass: [src + 'sass/**/*.{scss,sass}'],
     sprite: [src + 'img/sprite/*.*'],
     img: [src + 'img/**/*'],
+    favicon: [src + 'img/favicon'],
     svg: [src + 'img/svg/*.svg'],
     js: [src + 'js/common.js'],
     babel: [src + 'js/common.babel.js'],
@@ -150,7 +151,7 @@ var path = {
     svg: src + 'img',
     svgfallback: src + 'img/svgfallback',
     js: src + 'js',
-    bower: [src + 'js/libs'],
+    libs: [src + 'js/libs'],
     zip: './'
   },
   watch: {
@@ -208,11 +209,11 @@ gulp.task('server', function () {
 gulp.task('libsBower', function () {
   return gulp.src(mainBowerFiles(config.bower))
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(gulp.dest(path.dest.bower));
+    .pipe(gulp.dest(path.dest.libs));
 });
 
 gulp.task('svg-sprite', function () {
-  return gulp.src([path.src.svg, !src + 'img/svg/*_hover.svg'])
+  return gulp.src([path.src.svg, '!' + src + 'img/svg/*_hover.svg'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(svgmin({js2svg: {pretty: false}}))
     .pipe(svgstore({inlineSvg: true}))
@@ -294,7 +295,7 @@ gulp.task('compass', function () {
     .pipe(browserSync.stream());
 });
 
-gulp.task('css', gulp.series(clean_map, function () {
+gulp.task('css', function () {
   return gulp.src(path.src.css)
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(sourcemaps.init())
@@ -305,7 +306,7 @@ gulp.task('css', gulp.series(clean_map, function () {
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest(path.dest.css));
-}));
+});
 
 gulp.task('js', function () {
   return gulp.src(path.src.js)
@@ -313,6 +314,9 @@ gulp.task('js', function () {
     .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(hint_stylish))
+    .pipe(eslint(config.eslint))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
     .pipe(sourcemaps.write('/'))
@@ -403,12 +407,8 @@ gulp.task('scss-lint-watch', gulp.parallel('scss-lint', function () {
   gulp.watch(path.watch.sass, gulp.series('scss-lint'));
 }));
 
-function clean_map() {
-  return del(['src/{css,js}/*.map']);
-}
-
 gulp.task('modernizr', function () {
-  gulp.src('js/common.js')
+  gulp.src(path.src.js)
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(modernizr('modernizr.js', {
       "devFile": false,
@@ -487,7 +487,7 @@ gulp.task('modernizr', function () {
     }))
     .pipe(uglify())
     .pipe(rename({suffix: '.min'}))
-    .pipe(gulp.dest('libs/'));
+    .pipe(gulp.dest(path.dest.libs));
 });
 
 gulp.task('zip', function () {
@@ -504,8 +504,8 @@ gulp.task('zip', function () {
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', function (done) {
   realFavicon.generateFavicon({
-    masterPicture: src + 'img/favicon.png', // 310x310 px
-    dest: src + 'img/favicon',
+    masterPicture: path.src.favicon + '.png', // 310x310 px
+    dest: path.src.favicon.toString(),
     iconsPath: 'img/favicon',
     design: {
       ios: {
