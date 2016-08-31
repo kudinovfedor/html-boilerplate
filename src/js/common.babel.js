@@ -1,9 +1,9 @@
-(function ($, Modernizr) {
+(($, Modernizr) => {
 
-  // Mode of the modern standard
+  //Mode of the modern standard
   'use strict';
 
-  $(window).on('load', function () {
+  $(window).on('load', () => {
 
     // Preloader
     preloader('.preloader');
@@ -11,10 +11,10 @@
   });
 
   // Function to execute when the DOM is fully loaded.
-  $(function () {
+  $(() => {
 
     // Variables
-    var wW = $(window).width();
+    let wW = $(window).width();
 
     // If JavaScript enabled
     jsEnable('html');
@@ -55,12 +55,12 @@
     }
 
     // Make something with an element when clicked beyond its borders (uncomment for use)
-    //$(document).on('click', function (e) {
+    //$(document).on('click', (e) => {
     //  if (!$(e.target).closest('').length) {}
     //});
 
     // The resize event occurs when the browser window changes size.
-    $(window).on('resize', function () {
+    $(window).on('resize', () => {
 
       wW = $(window).width();
 
@@ -74,20 +74,20 @@
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} [element] - selected element (the default html tag)
    */
-  function jsEnable(element) {
+  const jsEnable = (element) => {
 
-    var el = element || 'html';
+    let el = element || 'html';
 
     $(el).removeClass('no-js').addClass('js');
 
-  }
+  };
 
   /**
    * fk dppx value of retina display
    *
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    */
-  function dppx() {
+  const dppx = () => {
 
     if (window.devicePixelRatio !== undefined) {
 
@@ -95,7 +95,7 @@
 
     }
 
-  }
+  };
 
   /**
    * fk delete class .error with focus
@@ -104,17 +104,17 @@
    * @param {string} [element] - selected element
    * @param {string} [class_error] - class which will be removed after receiving focus
    */
-  function errorField(element, class_error) {
+  const errorField = (element, class_error) => {
 
-    var el = element || '.error', error = class_error || 'error';
+    let el = element || '.error', error = class_error || 'error';
 
-    $(el).on('focus', function () {
+    $(el).on('focus', () => {
 
       $(this).removeClass(error);
 
     });
 
-  }
+  };
 
   /**
    * fk autofocus
@@ -122,7 +122,7 @@
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} element - by selected element will be added focus
    */
-  function autoFocus(element) {
+  const autoFocus = (element) => {
 
     if (!('autofocus' in document.createElement('input'))) {
 
@@ -130,7 +130,7 @@
 
     }
 
-  }
+  };
 
   /**
    * fk Scroll To Top
@@ -139,11 +139,11 @@
    * @param {string} scroll_id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration] - determining how long the animation will run
    */
-  function scrollToTop(scroll_id, scroll_duration) {
+  const scrollToTop = (scroll_id, scroll_duration) => {
 
-    var el = $(scroll_id), duration = scroll_duration || 'slow';
+    let el = $(scroll_id), duration = scroll_duration || 'slow';
 
-    el.on('click', function () {
+    el.on('click', () => {
 
       $('html, body').animate({scrollTop: 0}, duration);
 
@@ -151,7 +151,7 @@
 
     });
 
-  }
+  };
 
   /**
    * fk smooth scrolling to anchor links
@@ -160,13 +160,13 @@
    * @param {string} menu_id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration] - determining how long the animation will run
    */
-  function scrollToAnchorLinks(menu_id, scroll_duration) {
+  const scrollToAnchorLinks = (menu_id, scroll_duration) => {
 
-    var id = $(menu_id), duration = $(scroll_duration) || 1000;
+    let id = $(menu_id), duration = $(scroll_duration) || 1000;
 
-    id.on('click', 'a[href*="#"]:not([href="#"])', function () {
+    id.on('click', 'a[href*="#"]:not([href="#"])', () => {
 
-      var el = $(this).attr('href');
+      let el = $(this).attr('href');
 
       $('html, body').animate({scrollTop: $(el).offset().top}, duration);
 
@@ -174,7 +174,7 @@
 
     });
 
-  }
+  };
 
   /**
    * fk preloader
@@ -184,9 +184,9 @@
    * @param {number} [el_delay] - delay before function fadeOut is start
    * @param {(number|string)} [el_duration] - determining how long the fadeOut will run
    */
-  function preloader(element, el_delay, el_duration) {
+  const preloader = (element, el_delay, el_duration) => {
 
-    var el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
+    let el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
 
     if (el.length) {
 
@@ -194,7 +194,7 @@
 
     }
 
-  }
+  };
 
   /**
    * fk-number
@@ -207,18 +207,18 @@
    * @param {string} plus - button plus
    * @param {string} minus - button minus
    */
-  function fk_number(id, field, plus, minus) {
+  const fk_number = (id, field, plus, minus) => {
 
-    $(id).each(function () {
+    $(id).each(() => {
 
-      var el = $(this),
-        fk_field = el.find(field),
-        fk_plus = el.find(plus),
-        fk_minus = el.find(minus);
+      let el = $(this),
+          fk_field = el.find(field),
+          fk_plus = el.find(plus),
+          fk_minus = el.find(minus);
 
-      fk_plus.on('click', function () {
+      fk_plus.on('click', () => {
 
-        var field_value = parseInt(fk_field.text());
+        let field_value = parseInt(fk_field.text());
 
         if (field_value >= 1) {
 
@@ -230,9 +230,9 @@
 
       });
 
-      fk_minus.on('click', function () {
+      fk_minus.on('click', () => {
 
-        var field_value = parseInt(fk_field.text());
+        let field_value = parseInt(fk_field.text());
 
         if (field_value > 1) {
 
@@ -241,12 +241,11 @@
           fk_field.text(field_value);
 
         }
-
       });
 
     });
 
-  }
+  };
 
   /**
    * fk Tabs
@@ -256,18 +255,21 @@
    * @param {string} tabs_list - ul list for each tab item
    * @param {string} tabs_item - tab block for each li item
    */
-  function tabs(tabs_container, tabs_list, tabs_item) {
+  const tabs = (tabs_container, tabs_list, tabs_item) => {
 
-    var parent = $(tabs_container), ul = $(tabs_list), child = $(tabs_item);
+    let parent = $(tabs_container),
+        ul = $(tabs_list),
+        child = $(tabs_item);
 
-    ul.on('click', 'li:not(.active)', function () {
+    ul.on('click', 'li:not(.active)', () => {
 
       $(this)
         .addClass('active').siblings().removeClass('active')
         .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
+
     });
 
-  }
+  };
 
   /**
    * fk accordion
@@ -277,15 +279,15 @@
    * @param {string} accordion_switch - element for open and close accordion
    * @param {string} [accordion_class_open] - class when accordion is opened
    */
-  function fk_accordion(accordion_container, accordion_switch, accordion_class_open) {
+  const fk_accordion = (accordion_container, accordion_switch, accordion_class_open) => {
 
-    var fk_accordion = $(accordion_container),
-      fk_switch = $(accordion_switch),
-      fk_opened = accordion_class_open || 'js-opened';
+    let fk_accordion = $(accordion_container),
+        fk_switch = $(accordion_switch),
+        fk_opened = accordion_class_open || 'js-opened';
 
-    fk_switch.on('click', function () {
+    fk_switch.on('click', (e) => {
 
-      var el_parent = $(this).closest(fk_accordion);
+      let el_parent = $(this).closest(fk_accordion);
 
       if (el_parent.hasClass(fk_opened)) {
 
@@ -300,4 +302,4 @@
     });
   }
 
-}(jQuery, window.Modernizr));
+})(jQuery, window.Modernizr);
