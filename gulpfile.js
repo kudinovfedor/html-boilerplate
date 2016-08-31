@@ -135,6 +135,7 @@ var path = {
     img: [src + 'img/**/*'],
     svg: [src + 'img/svg/*.svg'],
     js: [src + 'js/common.js'],
+    babel: [src + 'js/common.babel.js'],
     ie8: [src + 'js/libs/{html5shiv,respond}.min.js'],
     allJS: [src + 'js/libs/{device,modernizr,jquery}.min.js'],
     zip: ['src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
@@ -160,7 +161,8 @@ var path = {
     svg: [src + 'img/svg/*.svg'],
     css: [src + 'css/*.css', '!' + src + 'css/*.min.css'],
     sass: [src + 'sass/**/*.{scss,sass}'],
-    js: [src + 'js/common.js']
+    js: [src + 'js/common.js'],
+    babel: [src + 'js/common.babel.js']
   },
   dist: {
     src: {
@@ -318,8 +320,9 @@ gulp.task('js', function () {
 });
 
 gulp.task('babel', function () {
-  return gulp.src('src/js/app.js')
+  return gulp.src(path.src.babel)
     .pipe(babel())
+    .pipe(rename({basename: 'common', suffix: '.es5'}))
     .pipe(gulp.dest(path.dest.js));
 });
 
@@ -367,6 +370,17 @@ gulp.task('jshint', function () {
 gulp.task('eslint', function () {
   return gulp.src(path.src.js)
     .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(eslint(config.eslint))
+    .pipe(eslint.format())
+    .pipe(eslint.failAfterError())
+    .pipe(browserSync.stream());
+});
+
+gulp.task('jshint-eslint', function () {
+  return gulp.src(path.src.js)
+    .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(jshint(config.jshint))
+    .pipe(jshint.reporter(hint_stylish))
     .pipe(eslint(config.eslint))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
@@ -607,7 +621,8 @@ gulp.task('default', gulp.parallel('server', function () {
   //gulp.watch(path.watch.sass, gulp.series('compass'));
   gulp.watch(path.watch.sass, gulp.series('sass'));
   gulp.watch(path.watch.sass, gulp.series('scss-lint'));
-  gulp.watch(path.watch.js, gulp.series('jshint'));
+  gulp.watch(path.watch.js, gulp.series('jshint-eslint'));
+  gulp.watch(path.watch.babel, gulp.series('babel'));
   gulp.watch(path.watch.sprite, gulp.series('sprite'));
   gulp.watch(path.watch.svg, gulp.series('svg'));
   gulp.watch(path.watch.html, gulp.series('html-hint'));
