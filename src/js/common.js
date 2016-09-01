@@ -3,18 +3,15 @@
   // Mode of the modern standard
   'use strict';
 
-  $(window).on('load', function () {
-
-    // Preloader
-    preloader('.preloader');
-
-  });
+  // Event is fired after whole content is loaded.
+  $(window).on('load', function () {});
 
   // Function to execute when the DOM is fully loaded.
   $(function () {
 
     // Variables
-    var wW = $(window).width();
+    var wW = $(window).width(),
+      preloader = new Preloader('.preloader');
 
     // If JavaScript enabled
     jsEnable('html');
@@ -71,6 +68,8 @@
   /**
    * fk javascript enable
    *
+   * @example
+   * jsEnable('html');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} [element] - selected element (the default html tag)
    */
@@ -85,6 +84,8 @@
   /**
    * fk dppx value of retina display
    *
+   * @example
+   * dppx();
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    */
   function dppx() {
@@ -100,6 +101,8 @@
   /**
    * fk delete class .error with focus
    *
+   * @example
+   * errorField('.error');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} [element] - selected element
    * @param {string} [class_error] - class which will be removed after receiving focus
@@ -119,6 +122,8 @@
   /**
    * fk autofocus
    *
+   * @example
+   * autoFocus('.autofocus');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} element - by selected element will be added focus
    */
@@ -135,6 +140,8 @@
   /**
    * fk Scroll To Top
    *
+   * @example
+   * scrollToTop('.scroll-top');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} scroll_id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration] - determining how long the animation will run
@@ -156,6 +163,8 @@
   /**
    * fk smooth scrolling to anchor links
    *
+   * @example
+   * scrollToAnchorLinks('.nav-menu');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} menu_id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration] - determining how long the animation will run
@@ -177,31 +186,48 @@
   }
 
   /**
-   * fk preloader
+   * fk Preloader
    *
+   * @example
+   * var preloader = new fk_preloader('.preloader');
+   * preloader.show();
+   * preloader.hide();
+   * @constructor
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} element - selected element
    * @param {number} [el_delay] - delay before function fadeOut is start
    * @param {(number|string)} [el_duration] - determining how long the fadeOut will run
    */
-  function preloader(element, el_delay, el_duration) {
+  function Preloader(element, el_delay, el_duration) {
+
+    if (!$(element).length) {
+
+      $('body').append('<span class="preloader"></span>');
+
+    }
 
     var el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
 
-    if (el.length) {
+    this.hide = function () {
 
       el.delay(delay).fadeOut(duration);
 
-    }
+    };
+
+    this.show = function () {
+
+      el.delay(delay).fadeIn(duration);
+
+    };
 
   }
 
   /**
    * fk-number
    *
-   * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @example
    * fk_number('.fk-number', '.fk-number-field', '.fk-number-spin-plus', '.fk-number-spin-minus');
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} id - container of element
    * @param {string} field - field with number
    * @param {string} plus - button plus
@@ -251,6 +277,8 @@
   /**
    * fk Tabs
    *
+   * @example
+   * tabs('.fk-tabs', '.fk-tabs-list', '.fk-tab-item');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} tabs_container - main container for tabs
    * @param {string} tabs_list - ul list for each tab item
@@ -272,6 +300,8 @@
   /**
    * fk accordion
    *
+   * @example
+   * fk_accordion('.fk-accordion', '.fk-accordion-switch', 'js-opened');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} accordion_container - container for each accordion item
    * @param {string} accordion_switch - element for open and close accordion

@@ -48,7 +48,7 @@
     "jshint-stylish": "^2.2.1",
     "main-bower-files": "^2.13.1",
     "webpack": "^1.13.2",
-    "webpack-dev-server": "^1.15.0"
+    "webpack-dev-server": "^1.15.1"
   },
   "scripts": {
     "set-all": "npm run gem-install && npm run npm-update && npm run npm-install-g && npm run gulp-install && npm run bower-install",
