@@ -63,7 +63,7 @@
     "jquery.inputmask": "^3.3.1",
     "jquery-validation": "^1.15.1",
     "magnific-popup": "maginificantpopup#^1.1.0",
-    "jQuery.mmenu": "^5.7.0",
+    "jQuery.mmenu": "^5.7.3",
     "select2": "select2-ng#^4.0.3",
     "slick-carousel": "^1.6.0",
     "ion.rangeSlider": "ionrangeslider#^2.1.4",
@@ -146,6 +146,9 @@
       ]
     },
     "compass-mixins": {
+      "ignore": true
+    },
+    "jquery-migrate-official": {
       "ignore": true
     }
   }

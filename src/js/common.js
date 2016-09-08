@@ -29,7 +29,7 @@
     scrollToTop('.scroll-top');
 
     // Smooth scrolling to anchor links
-    scrollToAnchorLinks('.nav-menu');
+    scrollToAnchorLinks('body');
 
     // Universal JavaScript for blocks with tabs
     tabs('.fk-tabs', '.fk-tabs-list', '.fk-tab-item');
@@ -164,16 +164,16 @@
    * fk smooth scrolling to anchor links
    *
    * @example
-   * scrollToAnchorLinks('.nav-menu');
+   * scrollToAnchorLinks('body');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} menu_id - selected item to perform the a clicked
+   * @param {string} id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration] - determining how long the animation will run
    */
-  function scrollToAnchorLinks(menu_id, scroll_duration) {
+  function scrollToAnchorLinks(id, scroll_duration) {
 
-    var id = $(menu_id), duration = $(scroll_duration) || 1000;
+    var el = $(id), duration = scroll_duration || 1000;
 
-    id.on('click', 'a[href*="#"]:not([href="#"])', function () {
+    el.on('click', 'a[href*="#"]:not([href="#"])', function () {
 
       var el = $(this).attr('href');
 

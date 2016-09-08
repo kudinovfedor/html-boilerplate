@@ -149,9 +149,9 @@ var path = {
     sprite: src + 'img',
     sprite_css: src + 'sass/module',
     svg: src + 'img',
-    svgfallback: src + 'img/svgfallback',
+    svgfallback: src + 'img/sprite',
     js: src + 'js',
-    libs: [src + 'js/libs'],
+    libs: src + 'js/libs',
     zip: './'
   },
   watch: {
@@ -169,11 +169,11 @@ var path = {
     src: {
       css: [src + 'css/*.css'],
       fonts: [src + 'fonts/**/*.*'],
-      img: [src + 'img/**/*.*'],
+      img: [src + 'img/**/*.*', '!' + src + 'img/{sprite,svg}/*.*', '!' + src + 'img/{layout-home,favicon}.{jpg,png}'],
       js: [src + 'js/**/*.js', '!' + src + '/js/**/jquery.pixlayout.min.js'],
       html: [src + '*.html'],
       other: [src + 'favicon.ico', '.htaccess'],
-      zip: [dist + '**/*.*', dist + '.htaccess']
+      zip: [dist + '**/{*,}.*']
     },
     dest: {
       css: dist + 'css',
@@ -237,7 +237,15 @@ gulp.task('retina2dppx', function () {
     .pipe(gulp.dest(path.dest.svgfallback));
 });
 
-gulp.task('svg', gulp.series('svg-sprite', gulp.parallel('retina1dppx'/*, 'retina2dppx'*/)));
+gulp.task('sprite', function () {
+  var spriteData =
+    gulp.src(path.src.sprite)
+      .pipe(spritesmith(config.sprite));
+  spriteData.img.pipe(gulp.dest(path.dest.sprite));
+  return spriteData.css.pipe(gulp.dest(path.dest.sprite_css));
+});
+
+gulp.task('svg', gulp.series('svg-sprite', gulp.parallel('retina1dppx'/*, 'retina2dppx'*/), 'sprite'));
 
 gulp.task('ie8', function () {
   return gulp.src(path.src.ie8)
@@ -261,14 +269,6 @@ gulp.task('all-js', function () {
     .pipe(gulp.dest(path.dest.js));
 });
 
-gulp.task('sprite', function () {
-  var spriteData =
-    gulp.src(path.src.sprite)
-      .pipe(spritesmith(config.sprite));
-  spriteData.img.pipe(gulp.dest(path.dest.sprite));
-  return spriteData.css.pipe(gulp.dest(path.dest.sprite_css));
-});
-
 gulp.task('pug', function () {
   return gulp.src(path.src.pug)
     .pipe(plumber({errorHandler: errorAlert}))
@@ -284,7 +284,8 @@ gulp.task('sass', function () {
     .pipe(sourcemaps.init())
     .pipe(sass(config.sass).on('error', sass.logError))
     .pipe(sourcemaps.write('/'))
-    .pipe(gulp.dest(path.dest.sass));
+    .pipe(gulp.dest(path.dest.sass))
+    .pipe(browserSync.stream());
 });
 
 gulp.task('compass', function () {

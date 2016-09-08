@@ -29,7 +29,7 @@
     scrollToTop('.scroll-top');
 
     // Smooth scrolling to anchor links
-    scrollToAnchorLinks('.nav-menu');
+    scrollToAnchorLinks('body');
 
     // Universal JavaScript for blocks with tabs
     tabs('.fk-tabs', '.fk-tabs-list', '.fk-tab-item');
@@ -166,14 +166,14 @@
    * @example
    * scrollToAnchorLinks('.nav-menu');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} menu_id - selected item to perform the a clicked
+   * @param {string} id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration] - determining how long the animation will run
    */
-  const scrollToAnchorLinks = (menu_id, scroll_duration) => {
+  const scrollToAnchorLinks = (id, scroll_duration) => {
 
-    let id = $(menu_id), duration = $(scroll_duration) || 1000;
+    let el = $(id), duration = scroll_duration || 1000;
 
-    id.on('click', 'a[href*="#"]:not([href="#"])', (e) => {
+    el.on('click', 'a[href*="#"]:not([href="#"])', (e) => {
 
       let el = $(e.target).attr('href');
 
@@ -185,42 +185,44 @@
 
   };
 
-  /**
-   * fk Preloader
-   *
-   * @example
-   * var preloader = new fk_preloader('.preloader');
-   * preloader.show();
-   * preloader.hide();
-   * @constructor
-   * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} element - selected element
-   * @param {number} [el_delay] - delay before function fadeOut is start
-   * @param {(number|string)} [el_duration] - determining how long the fadeOut will run
-   */
-  const Preloader = (element, el_delay, el_duration) => {
+  class Preloader {
+    /**
+     * fk Preloader
+     *
+     * @example
+     * var preloader = new fk_preloader('.preloader');
+     * preloader.show();
+     * preloader.hide();
+     * @constructor
+     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @param {string} element - selected element
+     * @param {number} [el_delay] - delay before function fadeOut is start
+     * @param {(number|string)} [el_duration] - determining how long the fadeOut will run
+     */
+    constructor(element, el_delay, el_duration) {
 
-    if (!$(element).length) {
+      if (!$(element).length) {
 
-      $('body').append('<span class="preloader"></span>');
+        $('body').append('<span class="preloader"></span>');
+
+      }
+
+      let el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
+
+      this.hide = () => {
+
+        el.delay(delay).fadeOut(duration);
+
+      };
+
+      this.show = () => {
+
+        el.delay(delay).fadeIn(duration);
+
+      };
 
     }
-
-    let el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
-
-    this.hide = () => {
-
-      el.delay(delay).fadeOut(duration);
-
-    };
-
-    this.show = () => {
-
-      el.delay(delay).fadeIn(duration);
-
-    };
-
-  };
+  }
 
   /**
    * fk-number
