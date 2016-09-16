@@ -88,7 +88,7 @@ var config = {
     task: 'compile' /*watch*/
   },
   // Config SCSS(SASS) Lint
-  scsslint: {config: src + '.scss-lint.yml', customReport: reporter.issues},
+  scsslint: {config: src + '.scss-lint.yml', maxBuffer: 300 * 1024, customReport: reporter.issues},
   // Config img
   sprite: {
     imgName: 'sprite.png', cssName: '_gulp-sprite.scss', imgPath: '../img/sprite.png',
@@ -108,7 +108,7 @@ var config = {
   eslint: {configFile: src + '.eslintrc.json'},
   // Config BrowserSync
   bs: {
-    ui: false, server: {baseDir: src}, port: 8080, ghostMode: {clicks: true, forms: true, scroll: true},
+    ui: false, server: {baseDir: src}, port: 8080, ghostMode: {clicks: false, forms: false, scroll: false},
     logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: true, online: false,
     reloadOnRestart: true, notify: true
   },
@@ -130,7 +130,8 @@ var path = {
     html: [src + '*.html'],
     pug: [src + 'pug/*.pug'],
     css: [src + 'css/*.css', '!' + src + 'css/*.min.css'],
-    sass: [src + 'sass/**/*.{scss,sass}'],
+    sass: [src + 'sass/**/*.scss'],
+    sassLint: [src + 'sass/**/*.scss', '!' + src + 'sass/vendors/**/*.scss'],
     sprite: [src + 'img/sprite/*.*'],
     img: [src + 'img/**/*'],
     favicon: [src + 'img/favicon'],
@@ -161,7 +162,7 @@ var path = {
     sprite: [src + 'img/sprite/*.*'],
     svg: [src + 'img/svg/*.svg'],
     css: [src + 'css/*.css', '!' + src + 'css/*.min.css'],
-    sass: [src + 'sass/**/*.{scss,sass}'],
+    sass: [src + 'sass/**/*.scss'],
     js: [src + 'js/common.js'],
     babel: [src + 'js/common.babel.js']
   },
@@ -285,7 +286,7 @@ gulp.task('sass', function () {
     .pipe(sass(config.sass).on('error', sass.logError))
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest(path.dest.sass))
-    .pipe(browserSync.stream());
+    .pipe(browserSync.stream({match: '**/*.css'}));
 });
 
 gulp.task('compass', function () {
@@ -358,7 +359,7 @@ gulp.task('html-hint', function () {
 });
 
 gulp.task('scss-lint', function () {
-  return gulp.src(path.src.sass, {since: gulp.lastRun('scss-lint')})
+  return gulp.src(path.src.sassLint, {since: gulp.lastRun('scss-lint')})
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(cache(scsslint))
     .pipe(scsslint(config.scsslint));
@@ -368,8 +369,7 @@ gulp.task('jshint', function () {
   return gulp.src(path.src.js)
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(jshint(config.jshint))
-    .pipe(jshint.reporter(hint_stylish))
-    .pipe(browserSync.stream());
+    .pipe(jshint.reporter(hint_stylish));
 });
 
 gulp.task('eslint', function () {
@@ -377,8 +377,7 @@ gulp.task('eslint', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(eslint(config.eslint))
     .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
-    .pipe(browserSync.stream());
+    .pipe(eslint.failAfterError());
 });
 
 gulp.task('jshint-eslint', function () {
@@ -513,24 +512,43 @@ gulp.task('generate-favicon', function (done) {
         pictureAspect: 'backgroundAndMargin',
         backgroundColor: '#ffffff',
         margin: '14%',
+        assets: {
+          ios6AndPriorIcons: false,
+          ios7AndLaterIcons: false,
+          precomposedIcons: false,
+          declareOnlyDefaultIcon: true
+        },
         appName: 'My app'
       },
       desktopBrowser: {},
       windows: {
-        pictureAspect: 'noChange',
-        backgroundColor: '#2b5797',
+        pictureAspect: 'whiteSilhouette',
+        backgroundColor: '#da532c',
         onConflict: 'override',
+        assets: {
+          windows80Ie10Tile: false,
+          windows10Ie11EdgeTiles: {
+            small: false,
+            medium: true,
+            big: false,
+            rectangle: false
+          }
+        },
         appName: 'My app'
       },
       androidChrome: {
-        pictureAspect: 'shadow',
+        pictureAspect: 'noChange',
         themeColor: '#ffffff',
         manifest: {
           name: 'My app',
-          display: 'browser',
+          display: 'standalone',
           orientation: 'notSet',
           onConflict: 'override',
           declared: true
+        },
+        assets: {
+          legacyIcon: false,
+          lowResolutionIcons: false
         }
       },
       safariPinnedTab: {

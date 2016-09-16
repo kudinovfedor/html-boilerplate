@@ -60,7 +60,7 @@
     "pixlayout": "~0.9.7",
     "respond": "~1.4.2",
     "selectivizr": "~1.0.2",
-    "jquery.inputmask": "^3.3.1",
+    "jquery.inputmask": "^3.3.3",
     "jquery-validation": "^1.15.1",
     "magnific-popup": "maginificantpopup#^1.1.0",
     "jQuery.mmenu": "^5.7.3",

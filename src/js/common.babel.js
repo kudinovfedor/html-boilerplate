@@ -111,7 +111,7 @@
 
     let el = element || '.error', error = class_error || 'error';
 
-    $(el).on('focus', (e) => {
+    $('body').on('focus', el, (e) => {
 
       $(e.target).removeClass(error);
 
