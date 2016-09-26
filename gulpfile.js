@@ -1,11 +1,13 @@
 'use strict';
 
 // Variable
+var projectName = 'clean-html-template-8in1';
 var src = 'src/';
 var dist = 'dist/';
 
 // Gulp
 var gulp = require('gulp');
+var gutil = require('gulp-util');
 // System
 var fs = require('fs');
 var del = require('del');
@@ -58,6 +60,8 @@ var browserSync = require('browser-sync').create();
 var mainBowerFiles = require('main-bower-files');
 // Modernizr
 var modernizr = require('gulp-modernizr');
+// FTP
+var ftp = require('vinyl-ftp');
 
 // Config
 var config = {
@@ -140,7 +144,7 @@ var path = {
     babel: [src + 'js/common.babel.js'],
     ie8: [src + 'js/libs/{html5shiv,respond}.min.js'],
     allJS: [src + 'js/libs/{device,modernizr,jquery}.min.js'],
-    zip: ['src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
+    zip: ['dist/**/{*,}.*', 'src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
   },
   dest: {
     pug: src,
@@ -493,7 +497,7 @@ gulp.task('modernizr', function () {
 gulp.task('zip', function () {
   return gulp.src(path.src.zip, {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip('clean-html-template-8in1(' + getFullDate() + ').zip', config.zip))
+    .pipe(zip(projectName + '(' + getFullDate() + ').zip', config.zip))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest(path.dest.zip));
 });
@@ -627,13 +631,27 @@ function otherDist() {
 function zipDist() {
   return gulp.src(path.dist.src.zip, {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip('dist(' + getFullDate() + ').zip', config.zip))
+    .pipe(zip(projectName + '__dist(' + getFullDate() + ').zip', config.zip))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest(path.dist.dest.zip));
 }
 // End Distribute functions
 
 gulp.task('dist', gulp.series(cleanDist, gulp.parallel(cssDist, fontsDist, imgDist, jsDist, htmlDist, otherDist), zipDist));
+
+gulp.task('deploy', gulp.series('dist', function () {
+  var ftpConnection = ftp.create({
+    host: 'localhost', // FTP host, default is localhost
+    user: 'anonymous', // FTP user, default is anonymous
+    password: 'anonymous', // FTP password, default is anonymous@
+    port: 21, // FTP port, default is 21
+    log: gutil.log, // Log function
+    parallel: 10 // Number of parallel transfers, default is 3
+  });
+  return gulp.src(path.dist.src.zip, {base: './dist', buffer: false})
+    .pipe(ftpConnection.newer('/')) // only upload newer files
+    .pipe(ftpConnection.dest('/'));
+}));
 
 gulp.task('default', gulp.parallel('server', function () {
   gulp.watch(path.watch.pug, gulp.series('pug'));
