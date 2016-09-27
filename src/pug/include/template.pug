@@ -6,7 +6,6 @@
 - var favicon = true
 - var css_min = false
 - var ie_css_min = false
-- var selectivizr = false
 - var ie = false
 - var browser_upgrade = false
 - var preloader = false
@@ -66,8 +65,6 @@ head
   if ie
     include ../core/ie-css
     include ../core/ie-script
-    if selectivizr
-      include ../core/selectivizr
 body(itemscope=true, itemtype='http://schema.org/WebPage')
   if browser_upgrade
     include ../core/browser-upgrade

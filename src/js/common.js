@@ -193,6 +193,7 @@
    * preloader.show();
    * preloader.hide();
    * @constructor
+   * @this {Preloader}
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} element - selected element
    * @param {number} [el_delay] - delay before function fadeOut is start

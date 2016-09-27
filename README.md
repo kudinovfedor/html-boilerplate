@@ -1,7 +1,7 @@
-# Clean HTML Template 8in1
-[![Build Status](https://travis-ci.org/kudinovfedor/clean-html-template-8in1.svg?branch=master)](https://travis-ci.org/kudinovfedor/clean-html-template-8in1)
-[![Dependency status](https://david-dm.org/kudinovfedor/clean-html-template-8in1.svg)](https://david-dm.org/kudinovfedor/clean-html-template-8in1)
-[![devDependency Status](https://david-dm.org/kudinovfedor/clean-html-template-8in1/dev-status.svg)](https://david-dm.org/kudinovfedor/clean-html-template-8in1/?type=dev)
+# fk-template
+[![Build Status](https://travis-ci.org/kudinovfedor/fk-template.svg?branch=master)](https://travis-ci.org/kudinovfedor/fk-template)
+[![Dependency status](https://david-dm.org/kudinovfedor/fk-template.svg)](https://david-dm.org/kudinovfedor/fk-template)
+[![devDependency Status](https://david-dm.org/kudinovfedor/fk-template/dev-status.svg)](https://david-dm.org/kudinovfedor/fk-template/?type=dev)
 
 This project uses the Pug(Jade) for HTML, Sass + Compass for CSS, SMACSS structure with additions, Gulp - the streaming build system, Bower - package manager for the web
 #### Installation all components on OS Windows

@@ -1,7 +1,7 @@
 'use strict';
 
 // Variable
-var projectName = 'clean-html-template-8in1';
+var projectName = 'fk-template';
 var src = 'src/';
 var dist = 'dist/';
 
@@ -124,7 +124,9 @@ var config = {
   // Config Gulp file size
   fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
   // Config Gulp zip
-  zip: {compress: true}
+  zip: {compress: true},
+  // Config FTP
+  ftp: JSON.parse(fs.readFileSync(src + 'ftp.json')),
   // Config Gulp filter
   //filter: {restore: true, passthrough: true}
 };
@@ -641,17 +643,21 @@ gulp.task('dist', gulp.series(cleanDist, gulp.parallel(cssDist, fontsDist, imgDi
 
 gulp.task('deploy', gulp.series('dist', function () {
   var ftpConnection = ftp.create({
-    host: 'localhost', // FTP host, default is localhost
-    user: 'anonymous', // FTP user, default is anonymous
-    password: 'anonymous', // FTP password, default is anonymous@
+    host: config.ftp.host, // FTP host, default is localhost
+    user: config.ftp.user, // FTP user, default is anonymous
+    password: config.ftp.password, // FTP password, default is anonymous@
     port: 21, // FTP port, default is 21
     log: gutil.log, // Log function
-    parallel: 10 // Number of parallel transfers, default is 3
+    parallel: 10, // Number of parallel transfers, default is 3
   });
+  // using base = '.' default is will transfer everything to /public_html correctly
+  // turn off buffering in gulp.src for best performance
   return gulp.src(path.dist.src.zip, {base: './dist', buffer: false})
-    .pipe(ftpConnection.newer('/')) // only upload newer files
-    .pipe(ftpConnection.dest('/'));
+    .pipe(ftpConnection.newer('/' + projectName)) // only upload newer files
+    .pipe(ftpConnection.dest('/' + projectName));
 }));
+
+gulp.task('build', gulp.series('deploy'));
 
 gulp.task('default', gulp.parallel('server', function () {
   gulp.watch(path.watch.pug, gulp.series('pug'));

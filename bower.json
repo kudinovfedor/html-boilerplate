@@ -1,5 +1,5 @@
 {
-  "name": "clean-html-template-8in1",
+  "name": "fk-template",
   "version": "1.0.0",
   "description": "Workpieces code and structure that I use in every project",
   "main": "gulpfile.js",
@@ -35,9 +35,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kudinovfedor/clean-html-template-8in1.git"
+    "url": "git+https://github.com/kudinovfedor/fk-template.git"
   },
-  "homepage": "https://github.com/kudinovfedor/clean-html-template-8in1",
+  "homepage": "https://github.com/kudinovfedor/fk-template",
   "moduleType": [
     "amd",
     "es6",
@@ -59,7 +59,6 @@
     "modernizr": "~3.3.1",
     "pixlayout": "~0.9.7",
     "respond": "~1.4.2",
-    "selectivizr": "~1.0.2",
     "jquery.inputmask": "^3.3.3",
     "jquery-validation": "^1.15.1",
     "magnific-popup": "maginificantpopup#^1.1.0",
@@ -102,11 +101,6 @@
     "respond": {
       "main": [
         "./dest/respond.min.js"
-      ]
-    },
-    "selectivizr": {
-      "main": [
-        "selectivizr.js"
       ]
     },
     "jquery.inputmask": {
