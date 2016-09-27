@@ -53,6 +53,11 @@
     "webpack": "^1.13.2",
     "webpack-dev-server": "^1.16.1"
   },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
   "scripts": {
     "set-all": "npm run gem-install && npm run npm-update && npm run npm-install-g && npm run gulp-install && npm run bower-install",
     "gem-install": "gem update && gem update --system && gem install compass scss_lint",
