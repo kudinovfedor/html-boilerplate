@@ -28,6 +28,8 @@
   <link href="css/main.css" rel="stylesheet" media="all">
 </head>
 <body itemscope itemtype="http://schema.org/WebPage">
+  <div class="preloader"></div>
+  <div class="is-hidden"></div>
   <!-- Scripts queries-->
   <script src="js/all.min.js"></script>
   <!-- Custom scripts-->
@@ -50,6 +52,10 @@
         pervious: true
       });
       $('#pxl_wrap').css({boxSizing: "content-box"});
+      setTimeout(function () {
+        var pxl_pic = $('.pxl_pic').find('img');
+        pxl_pic.attr({width: pxl_pic.width(), height: pxl_pic.height()});
+      }, 200);
     });
   </script>
 </body></html>

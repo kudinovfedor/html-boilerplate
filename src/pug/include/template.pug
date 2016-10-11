@@ -8,10 +8,10 @@
 - var ie_css_min = false
 - var ie = false
 - var browser_upgrade = false
-- var preloader = false
+- var preloader = true
 - var pixlayout = true
 - var google_analytics = false
-- var svg_inline = false
+- var svg_inline = true
 - var common_js_min = false
 - var cdn = false
 doctype html
@@ -71,29 +71,29 @@ body(itemscope=true, itemtype='http://schema.org/WebPage')
   block content
   if preloader
     include ../core/preloader
+  if svg_inline
+    include ../core/svg-inline
   // Scripts queries
   if cdn
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/device.js/0.2.7/device.min.js')
-    script(src='https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js')
-    script(src='https://code.jquery.com/jquery-1.12.4.min.js')
-    //-script(src='https://code.jquery.com/jquery-migrate-1.4.1.min.js')
-    //-script(src='https://code.jquery.com/jquery-migrate-3.0.0.min.js')
+    script(src='//cdnjs.cloudflare.com/ajax/libs/device.js/0.2.7/device.min.js', async=false, defer=false)
+    script(src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', async=false, defer=false)
+    script(src='//code.jquery.com/jquery-1.12.4.min.js', async=false, defer=false)
+    //-script(src='//code.jquery.com/jquery-migrate-1.4.1.min.js', async=false, defer=false)
+    //-script(src='//code.jquery.com/jquery-migrate-3.0.0.min.js', async=false, defer=false)
   else
     //- all.min.js include modernizr.js, device.js, jquery.js libraries
-    script(src='js/all.min.js')
-    //-script(src='js/libs/modernizr.min.js')
-    //-script(src='js/libs/device.min.js')
-    //-script(src='js/libs/jquery.min.js')
+    script(src='js/all.min.js', async=false, defer=false)
+    //-script(src='js/libs/modernizr.min.js', async=false, defer=false)
+    //-script(src='js/libs/device.min.js', async=false, defer=false)
+    //-script(src='js/libs/jquery.min.js', async=false, defer=false)
   block script
   // Custom scripts
   if !common_js_min
-    script(src='js/common.js')
+    script(src='js/common.js', async=false, defer=false)
   else
-    script(src='js/common.min.js')
+    script(src='js/common.min.js', async=false, defer=false)
   if pixlayout
     include ../core/pixlayout
   if google_analytics
     include ../core/google-analytics
-  if svg_inline
-    include ../core/svg-inline
 </html>

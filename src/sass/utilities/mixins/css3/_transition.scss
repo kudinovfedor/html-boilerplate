@@ -4,18 +4,18 @@ $prefixes: (moz o webkit spec);
   @include prefixer(transition, $transition, $prefixes);
 }
 
-@mixin transition-property($property: all) {
+@mixin transition-property($property...) {
   @include prefixer(transition-property, $property, $prefixes);
 }
 
-@mixin transition-duration($duration: 0s) {
+@mixin transition-duration($duration...) {
   @include prefixer(transition-duration, $duration, $prefixes);
 }
 
-@mixin transition-timing-function($timing-function: ease) {
+@mixin transition-timing-function($timing-function...) {
   @include prefixer(transition-timing-function, $timing-function, $prefixes);
 }
 
-@mixin transition-delay($delay: 0s) {
+@mixin transition-delay($delay...) {
   @include prefixer(transition-delay, $delay, $prefixes);
 }

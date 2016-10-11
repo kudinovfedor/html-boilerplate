@@ -1,16 +1,119 @@
-# Charset of files
+# Character encodings
 AddDefaultCharset utf-8
 
-AddType text/x-component .htc
-AddType video/ogg .ogv
-AddType video/mp4 .mp4
-AddType video/webm .webm
+# Media types
+<IfModule mod_mime.c>
+  AddType application/javascript .js
+  AddType application/x-javascript .js
+  AddType text/css .css
+  AddType image/svg+xml .svg .svgz
+  AddEncoding gzip .svgz
+
+  # Media files
+  AddType audio/mp4 .mp4 .f4a .f4b .m4a
+  AddType audio/ogg .oga .ogg .opus
+  AddType video/ogg .ogv
+  AddType video/mp4 .f4v .f4p .m4v .mp4
+  AddType video/webm .webm
+  AddType video/x-flv .flv
+
+  AddType image/x-icon .cur .ico
+
+  # Web fonts
+  AddType application/font-woff .woff
+  AddType application/font-woff2 .woff2
+  AddType application/vnd.ms-fontobject .eot
+  AddType application/x-font-ttf .ttc .ttf
+  AddType font/opentype .otf
+</IfModule>
 
 # Don't show a list of files in a directory
-Options -Indexes
+<IfModule mod_autoindex.c>
+  Options -Indexes
+</IfModule>
 
 # DirectoryIndex - override the default file
 DirectoryIndex index.html
+
+# Remove the header Last-Modified.
+#<IfModule mod_headers.c>
+#  Header unset Last-Modified
+#</IfModule>
+
+# Turn off the checking object tag ETag.
+<IfModule mod_headers.c>
+  <FilesMatch "\.(ico|pdf|flv|jpg|jpeg|png|gif|js|css|swf)$">
+    Header unset ETag
+    FileETag None
+ </FilesMatch>
+</IfModule>
+
+# Vary: Accept-Encoding
+#<IfModule mod_headers.c>
+#  <FilesMatch "\.(js|css|xml|gz|html)$">
+#  <FilesMatch "\.(js|css)$">
+#    Header append Vary: Accept-Encoding
+#  </FilesMatch>
+#</IfModule>
+
+# The browser cache
+<IfModule mod_expires.c>
+  <IfModule mod_headers.c>
+    Header append Cache-Control "public"
+  </IfModule>
+#  FileETag MTime Size
+  ExpiresActive On
+  ExpiresDefault "access plus 0 minutes"
+#  ExpiresByType text/html "access plus 3600 seconds"
+#  ExpiresByType application/xhtml+xml "access plus 3600 seconds"
+  ExpiresByType text/css "access plus 1 years"
+#  ExpiresByType text/javascript "access plus 1 years"
+#  ExpiresByType application/javascript "access plus 1 years"
+  ExpiresByType application/x-javascript "access plus 1 years"
+  ExpiresByType image/jpeg "access plus 1 years"
+  ExpiresByType image/png "access plus 1 years"
+#  ExpiresByType image/gif "access plus 1 years"
+  ExpiresByType image/x-icon "access plus 1 years"
+  ExpiresByType image/ico "access plus 1 years"
+#  ExpiresByType image/bmp "access plus 1 years"
+#  ExpiresByType image/svg+xml "access plus 1 years"
+#  ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+</IfModule>
+
+# Compression
+<IfModule mod_deflate.c>
+  <IfModule mod_setenvif.c>
+    <IfModule mod_headers.c>
+      SetEnvIfNoCase ^(Accept-EncodXng|X-cept-Encoding|X{15}|~{15}|-{15})$ ^((gzip|deflate)\s*,?\s*)+|[X~-]{4,13}$ HAVE_Accept-Encoding
+      RequestHeader append Accept-Encoding "gzip,deflate" env=HAVE_Accept-Encoding
+    </IfModule>
+  </IfModule>
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/html
+#    AddOutputFilterByType DEFLATE text/plain
+#    AddOutputFilterByType DEFLATE text/xml
+#    AddOutputFilterByType DEFLATE application/xml
+    AddOutputFilterByType DEFLATE text/css
+#    AddOutputFilterByType DEFLATE application/json
+#    AddOutputFilterByType DEFLATE text/javascript
+#    AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE application/x-javascript
+#    AddOutputFilterByType DEFLATE text/x-component
+#    AddOutputFilterByType DEFLATE image/jpeg image/png image/gif image/svg+xml image/x-icon
+  </IfModule>
+  <IfModule !mod_filter.c>
+    <FilesMatch "\.(css|js|x?html?)$">
+      SetOutputFilter DEFLATE
+    </FilesMatch>
+  </IfModule>
+  <IfModule mod_setenvif.c>
+    BrowserMatch ^Mozilla/4 gzip-only-text/html
+    BrowserMatch ^Mozilla/4\.0[678] no-gzip
+    BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
+  </IfModule>
+#  SetOutputFilter DEFLATE
+#  SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico|zip|gz|mp4|flv)$ no-gzip
+</IfModule>
 
 # Bad Rquest
 #ErrorDocument 400 /400.html

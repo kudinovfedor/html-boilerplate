@@ -141,7 +141,7 @@ var path = {
     sprite: [src + 'img/sprite/*.*'],
     img: [src + 'img/**/*'],
     favicon: [src + 'img/favicon'],
-    svg: [src + 'img/svg/*.svg'],
+    svg: src + 'img/svg/*.svg',
     js: [src + 'js/common.js'],
     babel: [src + 'js/common.babel.js'],
     ie8: [src + 'js/libs/{html5shiv,respond}.min.js'],
@@ -176,7 +176,7 @@ var path = {
     src: {
       css: [src + 'css/*.css'],
       fonts: [src + 'fonts/**/*.*'],
-      img: [src + 'img/**/*.*', '!' + src + 'img/{sprite,svg}/*.*', '!' + src + 'img/{layout-home,favicon}.{jpg,png}'],
+      img: [src + 'img/**/*.*', '!' + src + 'img/{sprite,svg,original}/**/*.*', '!' + src + 'img/{layout-home,favicon}.{jpg,png}'],
       js: [src + 'js/**/*.js', '!' + src + '/js/**/jquery.pixlayout.min.js'],
       html: [src + '*.html'],
       other: [src + 'favicon.ico', '.htaccess'],
@@ -657,7 +657,7 @@ gulp.task('deploy', gulp.series('dist', function () {
     .pipe(ftpConnection.dest('/' + projectName));
 }));
 
-gulp.task('build', gulp.series('deploy'));
+gulp.task('build', gulp.series('deploy', cleanDist));
 
 gulp.task('default', gulp.parallel('server', function () {
   gulp.watch(path.watch.pug, gulp.series('pug'));
