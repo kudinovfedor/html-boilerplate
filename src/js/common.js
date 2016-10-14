@@ -4,7 +4,8 @@
   'use strict';
 
   // Event is fired after whole content is loaded.
-  $(window).on('load', function () {});
+  $(window).on('load', function () {
+  });
 
   // Function to execute when the DOM is fully loaded.
   $(function () {
@@ -65,6 +66,27 @@
 
   });
 
+
+  var fkApp = {
+    /**
+     * fk javascript enable
+     *
+     * @example
+     * jsEnable('html');
+     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @param {string} [element] - selected element (the default html tag)
+     */
+    jsEnable: function (element) {
+
+      var el = element || 'html';
+
+      $(el).removeClass('no-js').addClass('js');
+
+    }
+  };
+
+  fkApp.jsEnable();
+
   /**
    * fk javascript enable
    *
@@ -111,7 +133,7 @@
 
     var el = element || '.error', error = class_error || 'error';
 
-    $('body').on('focus', el,  function () {
+    $('body').on('focus', el, function () {
 
       $(this).removeClass(error);
 

@@ -51,7 +51,7 @@ var concat = require('gulp-concat');
 var sourcemaps = require('gulp-sourcemaps');
 var size = require('gulp-size');
 var cache = require('gulp-cached');
-var babel = require("gulp-babel");
+var babel = require('gulp-babel');
 //var filter = require('gulp-filter');
 var zip = require('gulp-zip');
 // LiveReload & Browser Syncing
@@ -62,6 +62,10 @@ var mainBowerFiles = require('main-bower-files');
 var modernizr = require('gulp-modernizr');
 // FTP
 var ftp = require('vinyl-ftp');
+// Webpack
+var webpack = require('webpack');
+var gulpWebpack = require('webpack-stream');
+var webpackConfig = require('./' + src + 'webpack.config.js');
 
 // Config
 var config = {
@@ -338,7 +342,11 @@ gulp.task('babel', function () {
     .pipe(gulp.dest(path.dest.js));
 });
 
-gulp.task('build', gulp.parallel('css', 'js'));
+gulp.task('webpack', function() {
+  return gulp.src('src/js/app/entry.js')
+    .pipe(gulpWebpack({}, webpack))
+    .pipe(gulp.dest('src/js/app/'));
+});
 
 //gulp.task('img', function () {
 //  gulp.src(path.src.img)
