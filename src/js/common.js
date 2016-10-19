@@ -4,15 +4,12 @@
   'use strict';
 
   // Event is fired after whole content is loaded.
-  $(window).on('load', function () {
-  });
+  $(window).on('load', function () {});
 
   // Function to execute when the DOM is fully loaded.
   $(function () {
 
     // Variables
-    var wW = $(window).width(),
-      preloader = new Preloader('.preloader');
 
     // If JavaScript enabled
     jsEnable('html');
@@ -53,39 +50,14 @@
     }
 
     // Make something with an element when clicked beyond its borders (uncomment for use)
-    //$(document).on('click', function (e) {
-    //  if (!$(e.target).closest('').length) {}
-    //});
+    // $(document).on('click', function (e) {
+    //   if (!$(e.target).closest('').length) {}
+    // });
 
     // The resize event occurs when the browser window changes size.
-    $(window).on('resize', function () {
-
-      wW = $(window).width();
-
-    });
+    $(window).on('resize', function () {});
 
   });
-
-
-  var fkApp = {
-    /**
-     * fk javascript enable
-     *
-     * @example
-     * jsEnable('html');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
-     * @param {string} [element] - selected element (the default html tag)
-     */
-    jsEnable: function (element) {
-
-      var el = element || 'html';
-
-      $(el).removeClass('no-js').addClass('js');
-
-    }
-  };
-
-  fkApp.jsEnable();
 
   /**
    * fk javascript enable
@@ -260,10 +232,8 @@
 
     $(id).each(function () {
 
-      var el = $(this),
-        fk_field = el.find(field),
-        fk_plus = el.find(plus),
-        fk_minus = el.find(minus);
+      var el = $(this), fk_field = el.find(field),
+        fk_plus = el.find(plus), fk_minus = el.find(minus);
 
       fk_plus.on('click', function () {
 
@@ -332,8 +302,7 @@
    */
   function fk_accordion(accordion_container, accordion_switch, accordion_class_open) {
 
-    var fk_accordion = $(accordion_container),
-      fk_switch = $(accordion_switch),
+    var fk_accordion = $(accordion_container), fk_switch = $(accordion_switch),
       fk_opened = accordion_class_open || 'js-opened';
 
     fk_switch.on('click', function () {

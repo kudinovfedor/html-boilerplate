@@ -1,0 +1,19 @@
+/* ====================  PAGINATION  ==================== */
+.pagination {
+
+  li,
+  &-item {
+    display: inline-block;
+  }
+
+  a,
+  &-link {
+    text-decoration: underline;
+
+    &:hover {
+      text-decoration: none;
+    }
+  }
+}
+
+/* ==================  END PAGINATION  ================== */

@@ -20,8 +20,8 @@ textarea,
 [type="search"],
 [type="number"],
 [type="password"] {
+  width: 100%;
   border: 1px solid #ccc;
-  margin-bottom: $base-margin;
   padding: 8px 10px;
 
   &:focus {}

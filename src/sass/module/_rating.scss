@@ -1,0 +1,28 @@
+/* ====================  RATING  ==================== */
+.rating {
+  @extend %reset-list;
+
+  &,
+  &__item {
+    display: inline-block;
+    vertical-align: baseline;
+  }
+
+  &__item,
+  &__star {
+    background: none no-repeat 0 0;
+  }
+
+  &__item {
+    width: 12px;
+    background-image: image-url("");
+  }
+
+  &__star {
+    display: block;
+    width: 0;
+    height: 11px;
+    background-image: image-url("");
+  }
+}
+/* ====================  END RATING  ==================== */

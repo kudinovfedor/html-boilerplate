@@ -1,7 +1,7 @@
 /* ====================  TABS  ==================== */
 // Example tabs structure
 //<div class="fk-tabs">
-//  <ul class="fk-tabs-list">
+//  <ul class="fk-tabs-menu">
 //    <li class="active">tabs 1</li>
 //    <li>tabs 2</li>
 //    <li>tabs 3</li>
@@ -11,33 +11,38 @@
 //  <div class="fk-tab-item">Text from TABS 3</div>
 //</div>
 
-.fk-tabs-list {
-  margin: 0;
-  padding-left: 0;
-  list-style: none;
+.fk {
+  &-tabs {
 
-  li {
-    cursor: pointer;
-    display: inline-block;
-    margin-right: 5px;
-    padding: 10px;
-    font: bold 14px/1.2 "Arial", sans-serif;
-    background-color: #6f6f6f;
-    color: #fff;
-    text-decoration: none;
+    &-menu {
+      margin: 0;
+      padding-left: 0;
+      list-style: none;
 
-    &.active {
-      background-color: #555;
+      &-item {
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 5px;
+        padding: 10px;
+        font: bold 14px/1.2 "Arial", sans-serif;
+        background-color: #6f6f6f;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      &-active {
+        background-color: #555;
+      }
     }
   }
 
-}
+  &-item {
+    display: none;
 
-.fk-tab-item {
-  display: none;
-
-  &.active {
-    display: block;
+    &-active {
+      display: block;
+    }
   }
 }
+
 /* ====================  END TABS  ==================== */

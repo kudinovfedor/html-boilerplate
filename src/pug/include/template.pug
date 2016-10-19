@@ -1,19 +1,22 @@
 //- template.pug(jade)
 - var lang = 'en'
 - var ie_classes = false
+- var ie = false
 - var twitter = false
 - var facebook = false
+- var dns_prefetch = true
 - var favicon = true
-- var css_min = false
 - var ie_css_min = false
-- var ie = false
+- var google_fonts = false
+- var css_min = false
+- var js_min = false
+- var cdn = false
+- var schema_org = false
 - var browser_upgrade = false
 - var preloader = true
-- var pixlayout = true
-- var google_analytics = false
 - var svg_inline = true
-- var common_js_min = false
-- var cdn = false
+- var pixlayout = false
+- var google_analytics = false
 doctype html
 if ie_classes && facebook
   <!--[if lt IE 7 ]><html lang="#{lang}" prefix="og: http://ogp.me/ns#" class="ie ie6 lt-ie7 lt-ie8 lt-ie9 no-js"><![endif]-->
@@ -34,7 +37,7 @@ else
 head
   meta(charset='UTF-8')
   meta(http-equiv='X-UA-Compatible', content='IE=edge')
-  meta(name='viewport', content='width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+  meta(name='viewport', content='width=device-width, height=device-height, minimum-scale=1.0, initial-scale=1.0, maximum-scale=2.0, user-scalable=yes')
   title
     block title
       | Template
@@ -45,6 +48,16 @@ head
   meta(name='MobileOptimized', content='320')
   meta(name='format-detection', content='date=no, address=no, email=no, telephone=no')
   meta(name='x-rim-auto-match', content='none')
+  if dns_prefetch
+    if google_fonts
+      link(rel='dns-prefetch', href='//fonts.googleapis.com')
+      link(rel='dns-prefetch', href='//fonts.gstatic.com')
+    if cdn
+      link(rel='dns-prefetch', href='//oss.maxcdn.com')
+      link(rel='dns-prefetch', href='//cdnjs.cloudflare.com')
+      link(rel='dns-prefetch', href='//code.jquery.com')
+    if google_analytics
+      link(rel='dns-prefetch', href='//www.google-analytics.com')
   if favicon
     include ../core/favicon
   //- Place favicon.ico in the root directory
@@ -58,6 +71,8 @@ head
     <!--[if IEMobile]>
     meta(http-equiv='cleartype', content='on')
     <![endif]-->
+  if google_fonts
+    link(href='https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=cyrillic', rel='stylesheet')
   if !css_min
     link(href='css/main.css', rel='stylesheet', media='all')
   else
@@ -65,7 +80,7 @@ head
   if ie
     include ../core/ie-css
     include ../core/ie-script
-body(itemscope=true, itemtype='http://schema.org/WebPage')
+body(itemscope=!!schema_org, itemtype=schema_org ? 'http://schema.org/WebPage' : false)
   if browser_upgrade
     include ../core/browser-upgrade
   block content
@@ -73,22 +88,23 @@ body(itemscope=true, itemtype='http://schema.org/WebPage')
     include ../core/preloader
   if svg_inline
     include ../core/svg-inline
-  // Scripts queries
+  //- Scripts queries
   if cdn
-    script(src='//cdnjs.cloudflare.com/ajax/libs/device.js/0.2.7/device.min.js', async=false, defer=false)
     script(src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', async=false, defer=false)
     script(src='//code.jquery.com/jquery-1.12.4.min.js', async=false, defer=false)
     //-script(src='//code.jquery.com/jquery-migrate-1.4.1.min.js', async=false, defer=false)
     //-script(src='//code.jquery.com/jquery-migrate-3.0.0.min.js', async=false, defer=false)
+    script.
+      window.Modernizr || document.write('<script src="js/libs/modernizr.min.js"><\/script>');
+      window.jQuery || document.write('<script src="js/libs/jquery.min.js"><\/script>');
   else
-    //- all.min.js include modernizr.js, device.js, jquery.js libraries
+    //- all.min.js include modernizr.js, jquery.js libraries
     script(src='js/all.min.js', async=false, defer=false)
     //-script(src='js/libs/modernizr.min.js', async=false, defer=false)
-    //-script(src='js/libs/device.min.js', async=false, defer=false)
     //-script(src='js/libs/jquery.min.js', async=false, defer=false)
   block script
-  // Custom scripts
-  if !common_js_min
+  //- Custom scripts
+  if !js_min
     script(src='js/common.js', async=false, defer=false)
   else
     script(src='js/common.min.js', async=false, defer=false)

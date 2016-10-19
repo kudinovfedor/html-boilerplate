@@ -135,13 +135,16 @@ dd {
 // Tables
 
 table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  width: 100%;
   max-width: 100%;
   background-color: transparent;
   margin-bottom: $base-margin;
 }
 
 caption {
-  caption-side: bottom;
+  caption-side: top;
   font-weight: bold;
   text-align: left;
 }
