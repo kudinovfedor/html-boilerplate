@@ -1,4 +1,5 @@
-# fk-template
+# FK template
+[![GitHub version](https://badge.fury.io/gh/kudinovfedor%2Ffk-template.svg)](https://badge.fury.io/gh/kudinovfedor%2Ffk-template)
 [![Build Status](https://travis-ci.org/kudinovfedor/fk-template.svg?branch=master)](https://travis-ci.org/kudinovfedor/fk-template)
 [![Dependency status](https://david-dm.org/kudinovfedor/fk-template.svg)](https://david-dm.org/kudinovfedor/fk-template)
 [![devDependency Status](https://david-dm.org/kudinovfedor/fk-template/dev-status.svg)](https://david-dm.org/kudinovfedor/fk-template/?type=dev)
@@ -18,7 +19,7 @@ $ ruby dk.rb install
 **[Install Node.js](https://nodejs.org/dist/latest-v4.x/)** **`v4`**
 
 ```sh
-# install Compass, Sass, Pug(Jade), Gulp, Bower, scss_lint, htmlhint, jshint, eslint, dependencies
+# install Compass, Sass, Pug(Jade), Gulp, Bower, Browser-Sync, scss_lint, htmlhint, jshint, eslint, dependencies
 $ npm run set-all
 # IF AN ERROR OCCURS, TRY THE CODE BELOW
 
@@ -31,8 +32,8 @@ $ gem install oily_png
 # update npm
 $ npm install -g npm
 
-# install Pug(Jade), Gulp, Bower, htmlhint, jshint, eslint
-$ npm install -g gulp-cli pug bower htmlhint jshint eslint
+# install Pug(Jade), Gulp, Bower, Browser-Sync, htmlhint, jshint, eslint
+$ npm install -g gulp-cli pug-cli bower browser-sync jshint eslint htmlhint
 
 # install npm-check-updates [optional]
 $ npm install -g npm-check-updates
