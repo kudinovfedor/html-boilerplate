@@ -90,7 +90,7 @@ var config = {
   // Config CSS minify
   cleancss: {compatibility: 'ie7', debug: true},
   // Config SCSS(SASS)
-  sass: {outputStyle: 'expanded', precision: 5, errLogToConsole: true, sourceComments: false},
+  sass: {outputStyle: 'expanded', precision: 5, sourceComments: false},
   // Config Compass + SCSS(SASS)
   compass: {
     config_file: src + 'config.rb', require: false, environment: 'development', http_path: '/', project_path: src,
@@ -119,7 +119,9 @@ var config = {
   eslint: {configFile: src + '.eslintrc.json'},
   // Config BrowserSync
   bs: {
-    ui: false, server: {baseDir: src}, port: 8080, ghostMode: {clicks: false, forms: false, scroll: false},
+    server: {baseDir: src},
+    //proxy: 'hostname/' + src,
+    ui: false, port: 8080, ghostMode: {clicks: false, forms: false, scroll: false},
     logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: true, online: false,
     reloadOnRestart: true, notify: true
   },
@@ -146,7 +148,7 @@ var path = {
     sass: [src + 'sass/**/*.scss'],
     sassLint: [src + 'sass/**/*.scss', '!' + src + 'sass/vendors/**/*.scss'],
     sprite: [src + 'img/sprite/*.*'],
-    img: [src + 'img/**/*'],
+    img: [src + 'img/**/*.*'],
     favicon: [src + 'img/favicon'],
     svg: src + 'img/svg/*.svg',
     js: [src + 'js/common.js'],
@@ -171,7 +173,7 @@ var path = {
   watch: {
     html: [src + '*.html'],
     pug: [src + 'pug/**/*.pug'],
-    img: [src + 'img/**/*'],
+    img: [src + 'img/**/*.*'],
     sprite: [src + 'img/sprite/*.*'],
     svg: [src + 'img/svg/*.svg'],
     css: [src + 'css/*.css', '!' + src + 'css/*.min.css'],
@@ -186,7 +188,8 @@ var path = {
       img: [src + 'img/**/*.*', '!' + src + 'img/{sprite,svg,original}/**/*.*', '!' + src + 'img/{layout-home,favicon}.{jpg,png}'],
       js: [src + 'js/**/*.js', '!' + src + '/js/**/jquery.pixlayout.min.js'],
       html: [src + '*.html'],
-      other: [src + 'favicon.ico', '.htaccess'],
+      //other: [src + 'favicon.ico', '.htaccess'],
+      other: [src + '+(favicon|robots).+(ico|txt)', '.htaccess'],
       zip: [dist + '**/{*,}.*']
     },
     dest: {
@@ -364,17 +367,17 @@ gulp.task('webpack', function () {
 });
 
 //gulp.task('img', function () {
-//  gulp.src(path.src.img)
+//  return gulp.src(path.src.img)
 //    .pipe(plumber({errorHandler: errorAlert}))
-//    .pipe(imagemin({
+//    .pipe(cache(imagemin({
 //      optimizationLevel: 3,
 //      progressive: true
-//    }))
+//    })))
 //    .pipe(gulp.dest(path.dest.img));
 //});
 
 gulp.task('autoprefixer', function () {
-  gulp.src(['css/main.css'])
+  return gulp.src(['css/main.css'])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest(path.dest.css));
