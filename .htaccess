@@ -62,7 +62,7 @@ RewriteEngine Off
   #Header unset Last-Modified
 
   ### Vary: Accept-Encoding (for example <FilesMatch "\.(js|css|xml|gz|html)$">)
-  <FilesMatch "\.(js|css)$">
+  <FilesMatch "\.(js|css|svg)$">
     Header append Vary: Accept-Encoding
   </FilesMatch>
 
@@ -79,16 +79,16 @@ RewriteEngine Off
   #ExpiresByType text/html "access plus 3600 seconds"
   #ExpiresByType application/xhtml+xml "access plus 3600 seconds"
   ExpiresByType text/css "access plus 1 years"
-  #ExpiresByType text/javascript "access plus 1 years"
-  #ExpiresByType application/javascript "access plus 1 years"
+  ExpiresByType text/javascript "access plus 1 years"
+  ExpiresByType application/javascript "access plus 1 years"
   ExpiresByType application/x-javascript "access plus 1 years"
   ExpiresByType image/jpeg "access plus 1 years"
   ExpiresByType image/png "access plus 1 years"
-  #ExpiresByType image/gif "access plus 1 years"
+  ExpiresByType image/gif "access plus 1 years"
   ExpiresByType image/x-icon "access plus 1 years"
   ExpiresByType image/ico "access plus 1 years"
+  ExpiresByType image/svg+xml "access plus 1 years"
   #ExpiresByType image/bmp "access plus 1 years"
-  #ExpiresByType image/svg+xml "access plus 1 years"
   #ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
 </IfModule>
 
@@ -107,8 +107,8 @@ RewriteEngine Off
     #AddOutputFilterByType DEFLATE application/xml
     AddOutputFilterByType DEFLATE text/css
     #AddOutputFilterByType DEFLATE application/json
-    #AddOutputFilterByType DEFLATE text/javascript
-    #AddOutputFilterByType DEFLATE application/javascript
+    AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
     #AddOutputFilterByType DEFLATE text/x-component
     #AddOutputFilterByType DEFLATE image/jpeg image/png image/gif image/svg+xml image/x-icon

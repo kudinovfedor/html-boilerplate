@@ -113,6 +113,8 @@ var config = {
       }
     }
   },
+  // Config Uglify
+  uglify: {mangle: false, compress: false, preserveComments: 'license'},
   // Config JSHint
   jshint: {lookup: true, linter: 'jshint'},
   // Config ESLint
@@ -338,20 +340,27 @@ gulp.task('critical', function () {
     .pipe(gulp.dest(path.dest.css));
 });
 
-gulp.task('js', function () {
+gulp.task('jshint-eslint', function () {
   return gulp.src(path.src.js)
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(sourcemaps.init())
     .pipe(jshint(config.jshint))
     .pipe(jshint.reporter(hint_stylish))
     .pipe(eslint(config.eslint))
     .pipe(eslint.format())
     .pipe(eslint.failAfterError())
-    .pipe(uglify())
-    .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('/'))
-    .pipe(gulp.dest(path.dest.js));
+    .pipe(browserSync.stream());
 });
+
+gulp.task('js', gulp.series('jshint-eslint', function () {
+  return gulp.src(path.src.js)
+    .pipe(plumber({errorHandler: errorAlert}))
+    //.pipe(sourcemaps.init())
+    //.pipe(uglify()) // uncomment for good optimize js
+    .pipe(uglify(config.uglify)) // custom settings
+    .pipe(rename({suffix: '.min'}))
+    //.pipe(sourcemaps.write('/'))
+    .pipe(gulp.dest(path.dest.js));
+}));
 
 gulp.task('babel', function () {
   return gulp.src(path.src.babel)
@@ -395,32 +404,6 @@ gulp.task('scss-lint', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(cache(scsslint))
     .pipe(scsslint(config.scsslint));
-});
-
-gulp.task('jshint', function () {
-  return gulp.src(path.src.js)
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(jshint(config.jshint))
-    .pipe(jshint.reporter(hint_stylish));
-});
-
-gulp.task('eslint', function () {
-  return gulp.src(path.src.js)
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(eslint(config.eslint))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError());
-});
-
-gulp.task('jshint-eslint', function () {
-  return gulp.src(path.src.js)
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(jshint(config.jshint))
-    .pipe(jshint.reporter(hint_stylish))
-    .pipe(eslint(config.eslint))
-    .pipe(eslint.format())
-    .pipe(eslint.failAfterError())
-    .pipe(browserSync.stream());
 });
 
 gulp.task('pug-watch', gulp.parallel('pug', function () {
