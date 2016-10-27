@@ -3,6 +3,7 @@ AddDefaultCharset utf-8
 
 ### Media types
 <IfModule mod_mime.c>
+  AddType text/javascript .js
   AddType application/javascript .js
   AddType application/x-javascript .js
   AddType text/css .css
@@ -62,7 +63,7 @@ RewriteEngine Off
   #Header unset Last-Modified
 
   ### Vary: Accept-Encoding (for example <FilesMatch "\.(js|css|xml|gz|html)$">)
-  <FilesMatch "\.(js|css|svg)$">
+  <FilesMatch "\.(css|js|svg)$">
     Header append Vary: Accept-Encoding
   </FilesMatch>
 
@@ -82,14 +83,19 @@ RewriteEngine Off
   ExpiresByType text/javascript "access plus 1 years"
   ExpiresByType application/javascript "access plus 1 years"
   ExpiresByType application/x-javascript "access plus 1 years"
-  ExpiresByType image/jpeg "access plus 1 years"
-  ExpiresByType image/png "access plus 1 years"
-  ExpiresByType image/gif "access plus 1 years"
+  ExpiresByType application/json "access plus 1 years"
+  #ExpiresByType application/x-shockwave-flash "access plus 1 years"
+  ExpiresByType image/jpeg "access plus 1 month"
+  ExpiresByType image/png "access plus 1 month"
+  ExpiresByType image/gif "access plus 1 month"
   ExpiresByType image/x-icon "access plus 1 years"
   ExpiresByType image/ico "access plus 1 years"
-  ExpiresByType image/svg+xml "access plus 1 years"
-  #ExpiresByType image/bmp "access plus 1 years"
-  #ExpiresByType application/x-shockwave-flash "access plus 2592000 seconds"
+  ExpiresByType image/svg+xml "access plus 1 month"
+  ExpiresByType font/opentype "access plus 1 years"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 years"
+  ExpiresByType application/x-font-ttf "access plus 1 years"
+  ExpiresByType application/font-woff "access plus 1 years"
+  ExpiresByType application/font-woff2 "access plus 1 years"
 </IfModule>
 
 ### Compression
@@ -106,12 +112,14 @@ RewriteEngine Off
     #AddOutputFilterByType DEFLATE text/xml
     #AddOutputFilterByType DEFLATE application/xml
     AddOutputFilterByType DEFLATE text/css
-    #AddOutputFilterByType DEFLATE application/json
     AddOutputFilterByType DEFLATE text/javascript
+    AddOutputFilterByType DEFLATE application/json
     AddOutputFilterByType DEFLATE application/javascript
     AddOutputFilterByType DEFLATE application/x-javascript
-    #AddOutputFilterByType DEFLATE text/x-component
-    #AddOutputFilterByType DEFLATE image/jpeg image/png image/gif image/svg+xml image/x-icon
+    ### Images
+    #AddOutputFilterByType DEFLATE image/jpeg image/png image/gif image/x-icon image/svg+xml
+    ### Web fonts
+    #AddOutputFilterByType DEFLATE font/opentype application/vnd.ms-fontobject application/x-font-ttf application/font-woff application/font-woff2
   </IfModule>
   <IfModule !mod_filter.c>
     <FilesMatch "\.(css|js|x?html?)$">
@@ -123,19 +131,7 @@ RewriteEngine Off
     BrowserMatch ^Mozilla/4\.0[678] no-gzip
     BrowserMatch \bMSIE !no-gzip !gzip-only-text/html
   </IfModule>
-  #SetOutputFilter DEFLATE
-  #SetEnvIfNoCase Request_URI \.(?:gif|jpe?g|png|ico|zip|gz|mp4|flv)$ no-gzip
 </IfModule>
-<ifModule mod_gzip.c>
-  mod_gzip_on Yes
-  mod_gzip_dechunk Yes
-  mod_gzip_item_include file \.(html?|txt|css|js|php|pl)$
-  mod_gzip_item_include handler ^cgi-script$
-  mod_gzip_item_include mime ^text/.*
-  mod_gzip_item_include mime ^application/x-javascript.*
-  mod_gzip_item_exclude mime ^image/.*
-  mod_gzip_item_exclude rspheader ^Content-Encoding:.*gzip.*
-</ifModule>
 
 ### Bad Rquest
 #ErrorDocument 400 /400.html

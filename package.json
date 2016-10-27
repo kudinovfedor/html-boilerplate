@@ -50,7 +50,7 @@
     "npm-check-updates": "^2.8.6",
     "pug": "^2.0.0-beta6",
     "vinyl-ftp": "^0.5.0",
-    "webpack": "^1.13.2",
+    "webpack": "^1.13.3",
     "webpack-stream": "^3.2.0"
   },
   "babel": {

@@ -59,13 +59,13 @@ head
     if google_analytics
       link(rel='dns-prefetch', href='//www.google-analytics.com')
   if favicon
-    include ../core/favicon
+    include ../modules/favicon
   //- Place favicon.ico in the root directory
   link(href='favicon.ico', rel='shortcut icon')
   if twitter
-    include ../core/meta-twitter
+    include ../modules/meta-twitter
   if facebook
-    include ../core/meta-facebook
+    include ../modules/meta-facebook
   if ie
     //- Mobile IE allows us to activate ClearType technology for smoothing fonts for easy reading
     <!--[if IEMobile]>
@@ -78,16 +78,16 @@ head
   else
     link(href='css/main.min.css', rel='stylesheet', media='all')
   if ie
-    include ../core/ie-css
-    include ../core/ie-script
+    include ../modules/ie-css
+    include ../modules/ie-script
 body(itemscope=!!schema_org, itemtype=schema_org ? 'http://schema.org/WebPage' : false)
   if browser_upgrade
-    include ../core/browser-upgrade
+    include ../modules/browser-upgrade
   block content
   if preloader
-    include ../core/preloader
+    include ../modules/preloader
   if svg_inline
-    include ../core/svg-inline
+    include ../modules/svg-inline
   //- Scripts queries
   if cdn
     script(src='//cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js', async=false, defer=false)
@@ -109,7 +109,7 @@ body(itemscope=!!schema_org, itemtype=schema_org ? 'http://schema.org/WebPage' :
   else
     script(src='js/common.min.js', async=false, defer=false)
   if pixlayout
-    include ../core/pixlayout
+    include ../modules/pixlayout
   if google_analytics
-    include ../core/google-analytics
+    include ../modules/google-analytics
 </html>
