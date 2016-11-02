@@ -67,6 +67,12 @@ RewriteEngine Off
     Header append Vary: Accept-Encoding
   </FilesMatch>
 
+  ### Use this to avoid clickjacking attacks
+  Header always append X-Frame-Options SAMEORIGIN
+
+  ### Content-Security-Policy
+  #Header set Content-Security-Policy ""
+
 </IfModule>
 
 ### The browser cache

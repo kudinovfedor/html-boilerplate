@@ -10,8 +10,6 @@
   $(() => {
 
     // Variables
-    let wW = $(window).width(),
-      preloader = new Preloader('.preloader');
 
     // If JavaScript enabled
     jsEnable('html');
@@ -52,16 +50,12 @@
     }
 
     // Make something with an element when clicked beyond its borders (uncomment for use)
-    //$(document).on('click', (e) => {
-    //  if (!$(e.target).closest('').length) {}
-    //});
+    // $(document).on('click', (e) => {
+    //   if (!$(e.target).closest('').length) {}
+    // });
 
     // The resize event occurs when the browser window changes size.
-    $(window).on('resize', () => {
-
-      wW = $(window).width();
-
-    });
+    $(window).on('resize', () => {});
 
   });
 
@@ -187,43 +181,51 @@
 
   class Preloader {
     /**
-     * fk Preloader
+     * Preloader
      *
      * @example
-     * var preloader = new fk_preloader('.preloader');
+     * var preloader = new Preloader('.preloader');
      * preloader.show();
      * preloader.hide();
      * @constructor
      * @this {Preloader}
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
      * @param {string} element - selected element
-     * @param {number} [el_delay] - delay before function fadeOut is start
-     * @param {(number|string)} [el_duration] - determining how long the fadeOut will run
+     * @param {number} [delay] - delay before function fadeOut is start
+     * @param {(number|string)} [duration] - determining how long the fadeOut will run
      */
-    constructor(element, el_delay, el_duration) {
+    constructor(element, delay, duration) {
 
-      if (!$(element).length) {
+      if (!(this instanceof Preloader)) {
+
+        return new Preloader(element, delay, duration);
+
+      }
+
+      this.element = element;
+      this.delay = delay || 350;
+      this.duration = duration || 'slow';
+
+      if (!$(this.element).length) {
 
         $('body').append('<span class="preloader"></span>');
 
       }
 
-      let el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
-
-      this.hide = () => {
-
-        el.delay(delay).fadeOut(duration);
-
-      };
-
-      this.show = () => {
-
-        el.delay(delay).fadeIn(duration);
-
-      };
-
     }
   }
+
+  Preloader.prototype.hide = () => {
+
+    $(this.element).delay(this.delay).fadeOut(this.duration);
+
+  };
+
+  Preloader.prototype.show = () => {
+
+    $(this.element).delay(this.delay).fadeIn(this.duration);
+
+  };
 
   /**
    * fk-number

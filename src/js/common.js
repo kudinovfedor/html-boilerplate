@@ -10,6 +10,8 @@
   $(function () {
 
     // Variables
+    var preloader = new Preloader('.preloader');
+    preloader.show();
 
     // If JavaScript enabled
     jsEnable('html');
@@ -180,42 +182,50 @@
   }
 
   /**
-   * fk Preloader
+   * Preloader
    *
    * @example
-   * var preloader = new fk_preloader('.preloader');
+   * var preloader = new Preloader('.preloader');
    * preloader.show();
    * preloader.hide();
    * @constructor
    * @this {Preloader}
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {string} element - selected element
-   * @param {number} [el_delay] - delay before function fadeOut is start
-   * @param {(number|string)} [el_duration] - determining how long the fadeOut will run
+   * @param {number} [delay] - delay before function fadeOut is start
+   * @param {(number|string)} [duration] - determining how long the fadeOut will run
    */
-  function Preloader(element, el_delay, el_duration) {
+  function Preloader(element, delay, duration) {
 
-    if (!$(element).length) {
+    if (!(this instanceof Preloader)) {
+
+      return new Preloader(element, delay, duration);
+
+    }
+
+    this.element = element;
+    this.delay = delay || 350;
+    this.duration = duration || 'slow';
+
+    if (!$(this.element).length) {
 
       $('body').append('<span class="preloader"></span>');
 
     }
 
-    var el = $(element), delay = el_delay || 350, duration = el_duration || 'slow';
-
-    this.hide = function () {
-
-      el.delay(delay).fadeOut(duration);
-
-    };
-
-    this.show = function () {
-
-      el.delay(delay).fadeIn(duration);
-
-    };
-
   }
+
+  Preloader.prototype.hide = function () {
+
+    $(this.element).delay(this.delay).fadeOut(this.duration);
+
+  };
+
+  Preloader.prototype.show = function () {
+
+    $(this.element).delay(this.delay).fadeIn(this.duration);
+
+  };
 
   /**
    * fk-number
