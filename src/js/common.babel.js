@@ -60,12 +60,12 @@
   });
 
   /**
-   * fk javascript enable
+   * Javascript enable
    *
    * @example
    * jsEnable('html');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} [element] - selected element (the default html tag)
+   * @param {(string|Object)} [element='html'] - selected element (the default html tag)
    */
   const jsEnable = (element) => {
 
@@ -76,7 +76,7 @@
   };
 
   /**
-   * fk dppx value of retina display
+   * dppx value of retina display
    *
    * @example
    * dppx();
@@ -93,33 +93,33 @@
   };
 
   /**
-   * fk delete class .error with focus
+   * Delete class .error with focus
    *
    * @example
    * errorField('.error');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} [element] - selected element
-   * @param {string} [class_error] - class which will be removed after receiving focus
+   * @param {(string|Object)} [element='.error'] - selected element
+   * @param {string} [class_error='error'] - class which will be removed after receiving focus
    */
   const errorField = (element, class_error) => {
 
     let el = element || '.error', error = class_error || 'error';
 
-    $('body').on('focus', el, (e) => {
+    $('body').on('focus', el, function () {
 
-      $(e.target).removeClass(error);
+      $(this).removeClass(error);
 
     });
 
   };
 
   /**
-   * fk autofocus
+   * Autofocus
    *
    * @example
    * autoFocus('.autofocus');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} element - by selected element will be added focus
+   * @param {(string|Object)} element - by selected element will be added focus
    */
   const autoFocus = (element) => {
 
@@ -132,13 +132,13 @@
   };
 
   /**
-   * fk Scroll To Top
+   * Scroll To Top
    *
    * @example
    * scrollToTop('.scroll-top');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} scroll_id - selected item to perform the a clicked
-   * @param {(number|string)} [scroll_duration] - determining how long the animation will run
+   * @param {(string|Object)} scroll_id - selected item to perform the a clicked
+   * @param {(number|string)} [scroll_duration='slow'] - determining how long the animation will run
    */
   const scrollToTop = (scroll_id, scroll_duration) => {
 
@@ -155,21 +155,21 @@
   };
 
   /**
-   * fk smooth scrolling to anchor links
+   * Smooth scrolling to anchor links
    *
    * @example
    * scrollToAnchorLinks('.nav-menu');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} id - selected item to perform the a clicked
-   * @param {(number|string)} [scroll_duration] - determining how long the animation will run
+   * @param {(string|Object)} id - selected item to perform the a clicked
+   * @param {(number|string)} [scroll_duration=1000] - determining how long the animation will run
    */
   const scrollToAnchorLinks = (id, scroll_duration) => {
 
     let el = $(id), duration = scroll_duration || 1000;
 
-    el.on('click', 'a[href*="#"]:not([href="#"])', (e) => {
+    el.on('click', 'a[href*="#"]:not([href="#"])', function () {
 
-      let el = $(e.target).attr('href');
+      let el = $(this).attr('href');
 
       $('html, body').animate({scrollTop: $(el).offset().top}, duration);
 
@@ -178,7 +178,6 @@
     });
 
   };
-
   class Preloader {
     /**
      * Preloader
@@ -187,12 +186,13 @@
      * var preloader = new Preloader('.preloader');
      * preloader.show();
      * preloader.hide();
-     * @constructor
      * @this {Preloader}
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
      * @param {string} element - selected element
-     * @param {number} [delay] - delay before function fadeOut is start
-     * @param {(number|string)} [duration] - determining how long the fadeOut will run
+     * @param {number} [delay=350] - delay before function fadeOut is start
+     * @param {(number|string)} [duration='slow'] - determining how long the fadeOut will run
+     * @returns {Preloader} - return constructor width new
+     * @constructor
      */
     constructor(element, delay, duration) {
 
@@ -213,30 +213,31 @@
       }
 
     }
+
+    hide() {
+
+      $(this.element).delay(this.delay).fadeOut(this.duration);
+
+    }
+
+    show() {
+
+      $(this.element).delay(this.delay).fadeIn(this.duration);
+
+    }
+
   }
 
-  Preloader.prototype.hide = () => {
-
-    $(this.element).delay(this.delay).fadeOut(this.duration);
-
-  };
-
-  Preloader.prototype.show = () => {
-
-    $(this.element).delay(this.delay).fadeIn(this.duration);
-
-  };
-
   /**
-   * fk-number
+   * Number
    *
    * @example
    * fk_number('.fk-number', '.fk-number-field', '.fk-number-spin-plus', '.fk-number-spin-minus');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} id - container of element
-   * @param {string} field - field with number
-   * @param {string} plus - button plus
-   * @param {string} minus - button minus
+   * @param {(string|Object)} id - container of element
+   * @param {(string|Object)} field - field with number
+   * @param {(string|Object)} plus - button plus
+   * @param {(string|Object)} minus - button minus
    */
   const fk_number = (id, field, plus, minus) => {
 
@@ -279,14 +280,14 @@
   };
 
   /**
-   * fk Tabs
+   * Tabs
    *
    * @example
    * tabs('.fk-tabs', '.fk-tabs-list', '.fk-tab-item');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} tabs_container - main container for tabs
-   * @param {string} tabs_list - ul list for each tab item
-   * @param {string} tabs_item - tab block for each li item
+   * @param {(string|Object)} tabs_container - main container for tabs
+   * @param {(string|Object)} tabs_list - ul list for each tab item
+   * @param {(string|Object)} tabs_item - tab block for each li item
    */
   const tabs = (tabs_container, tabs_list, tabs_item) => {
 
@@ -294,35 +295,34 @@
       ul = $(tabs_list),
       child = $(tabs_item);
 
-    ul.on('click', 'li:not(.active)', (e) => {
+    ul.on('click', 'li:not(.active)', function () {
 
-      $(e.target)
+      $(this)
         .addClass('active').siblings().removeClass('active')
-        .closest(parent).find(child).removeClass('active').eq($(e.target).index()).addClass('active');
+        .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
 
     });
 
   };
 
   /**
-   * fk accordion
+   * Accordion
    *
    * @example
    * fk_accordion('.fk-accordion', '.fk-accordion-switch', 'js-opened');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {string} accordion_container - container for each accordion item
-   * @param {string} accordion_switch - element for open and close accordion
-   * @param {string} [accordion_class_open] - class when accordion is opened
+   * @param {(string|Object)} accordion_container - container for each accordion item
+   * @param {(string|Object)} accordion_switch - element for open and close accordion
+   * @param {string} [accordion_class_open='js-opened'] - class when accordion is opened
    */
   const fk_accordion = (accordion_container, accordion_switch, accordion_class_open) => {
 
-    let fk_accordion = $(accordion_container),
-      fk_switch = $(accordion_switch),
+    let fk_accordion = $(accordion_container), fk_switch = $(accordion_switch),
       fk_opened = accordion_class_open || 'js-opened';
 
-    fk_switch.on('click', (e) => {
+    fk_switch.on('click', function () {
 
-      let el_parent = $(e.target).closest(fk_accordion);
+      let el_parent = $(this).closest(fk_accordion);
 
       if (el_parent.hasClass(fk_opened)) {
 
