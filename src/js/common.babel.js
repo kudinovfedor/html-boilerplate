@@ -178,20 +178,19 @@
     });
 
   };
+
   class Preloader {
     /**
      * Preloader
      *
      * @example
-     * var preloader = new Preloader('.preloader');
-     * preloader.show();
-     * preloader.hide();
+     * let preloader = new Preloader('.preloader');
      * @this {Preloader}
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
      * @param {string} element - selected element
      * @param {number} [delay=350] - delay before function fadeOut is start
      * @param {(number|string)} [duration='slow'] - determining how long the fadeOut will run
-     * @returns {Preloader} - return constructor width new
+     * @returns {Preloader} - return constructor with new
      * @constructor
      */
     constructor(element, delay, duration) {
@@ -214,15 +213,35 @@
 
     }
 
+    /**
+     * Method hide
+     *
+     * @example
+     * preloader.hide();
+     * @this {Preloader}
+     * @returns {Preloader} - return this of constructor Preloader
+     */
     hide() {
 
       $(this.element).delay(this.delay).fadeOut(this.duration);
 
+      return this;
+
     }
 
+    /**
+     * Method show
+     *
+     * @example
+     * preloader.show();
+     * @this {Preloader}
+     * @returns {Preloader} - return this of constructor Preloader
+     */
     show() {
 
       $(this.element).delay(this.delay).fadeIn(this.duration);
+
+      return this;
 
     }
 

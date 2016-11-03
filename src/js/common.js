@@ -184,14 +184,12 @@
    *
    * @example
    * var preloader = new Preloader('.preloader');
-   * preloader.show();
-   * preloader.hide();
    * @this {Preloader}
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
    * @param {(string|Object)} element - selected element
    * @param {number} [delay=350] - delay before function fadeOut is start
    * @param {(number|string)} [duration='slow'] - determining how long the fadeOut will run
-   * @returns {Preloader} - return constructor width new
+   * @returns {Preloader} - return constructor with new
    * @constructor
    */
   function Preloader(element, delay, duration) {
@@ -214,15 +212,35 @@
 
   }
 
+  /**
+   * Method hide
+   *
+   * @example
+   * preloader.hide();
+   * @this {Preloader}
+   * @returns {Preloader} - return this of constructor Preloader
+   */
   Preloader.prototype.hide = function () {
 
     $(this.element).delay(this.delay).fadeOut(this.duration);
 
+    return this;
+
   };
 
+  /**
+   * Method show
+   *
+   * @example
+   * preloader.show();
+   * @this {Preloader}
+   * @returns {Preloader} - return this of constructor Preloader
+   */
   Preloader.prototype.show = function () {
 
     $(this.element).delay(this.delay).fadeIn(this.duration);
+
+    return this;
 
   };
 
