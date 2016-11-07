@@ -184,25 +184,33 @@
      * Preloader
      *
      * @example
-     * let preloader = new Preloader('.preloader');
+     * let preloader = new Preloader();
      * @this {Preloader}
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
-     * @param {string} element - selected element
-     * @param {number} [delay=350] - delay before function fadeOut is start
-     * @param {(number|string)} [duration='slow'] - determining how long the fadeOut will run
+     * @param {(number|string)} [delay=350] - delay before function fade(In|Out) is start
+     * @param {(string|number)} [duration='slow'] - determining how long the fadeOut will run
      * @returns {Preloader} - return constructor with new
      * @constructor
      */
-    constructor(element, delay, duration) {
+    constructor(delay, duration) {
 
       if (!(this instanceof Preloader)) {
 
-        return new Preloader(element, delay, duration);
+        return new Preloader(delay, duration);
 
       }
 
-      this.element = element;
+      /**
+       * @type {string}
+       */
+      this.element = '.preloader';
+      /**
+       * @type {(number|string)}
+       */
       this.delay = delay || 350;
+      /**
+       * @type {(string|number)}
+       */
       this.duration = duration || 'slow';
 
       if (!$(this.element).length) {
@@ -310,11 +318,9 @@
    */
   const tabs = (tabs_container, tabs_list, tabs_item) => {
 
-    let parent = $(tabs_container),
-      ul = $(tabs_list),
-      child = $(tabs_item);
+    let parent = $(tabs_container), list = $(tabs_list), child = $(tabs_item);
 
-    ul.on('click', 'li:not(.active)', function () {
+    list.on('click', 'li:not(.active)', function () {
 
       $(this)
         .addClass('active').siblings().removeClass('active')

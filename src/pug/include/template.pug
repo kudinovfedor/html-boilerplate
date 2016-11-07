@@ -13,7 +13,6 @@
 - var cdn = false
 - var schema_org = false
 - var browser_upgrade = false
-- var preloader = true
 - var svg_inline = true
 - var pixlayout = false
 - var google_analytics = false
@@ -84,8 +83,6 @@ body(itemscope=!!schema_org, itemtype=schema_org ? 'http://schema.org/WebPage' :
   if browser_upgrade
     include ../modules/browser-upgrade
   block content
-  if preloader
-    include ../modules/preloader
   if svg_inline
     include ../modules/svg-inline
   //- Scripts queries
