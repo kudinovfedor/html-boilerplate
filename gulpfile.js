@@ -442,6 +442,8 @@ gulp.task('modernizr', function () {
         "cssvmaxunit",
         "cssvminunit",
         "cssvwunit",
+        "csscolumns",
+        "flexbox",
         "placeholder"
       ],
       "options": [
