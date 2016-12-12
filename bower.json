@@ -58,7 +58,7 @@
     "modernizr": "~3.3.1",
     "pixlayout": "~0.9.7",
     "respond": "~1.4.2",
-    "jquery-validation": "^1.15.1",
+    "jquery-validation": "^1.16.0",
     "magnific-popup": "maginificantpopup#^1.1.0",
     "jQuery.mmenu": "^5.7.8",
     "slick-carousel": "^1.6.0",

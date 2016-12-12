@@ -640,10 +640,10 @@ gulp.task('default', gulp.parallel('server', function () {
   gulp.watch(path.watch.pug, gulp.series('pug'));
   //gulp.watch(path.watch.sass, gulp.series('compass'));
   gulp.watch(path.watch.sass, gulp.series('sass'));
-  gulp.watch(path.watch.sass, gulp.series('scss-lint'));
+  //gulp.watch(path.watch.sass, gulp.series('scss-lint'));
   gulp.watch(path.watch.js, gulp.series('jshint-eslint'));
   gulp.watch(path.watch.babel, gulp.series('babel'));
   gulp.watch(path.watch.sprite, gulp.series('img-sprite'));
   gulp.watch(path.watch.svg, gulp.series('svg'));
-  gulp.watch(path.watch.html, gulp.series('html-hint'));
+  //gulp.watch(path.watch.html, gulp.series('html-hint'));
 }));
