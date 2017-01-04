@@ -65,6 +65,10 @@ textarea {
   &:required:valid {}
 }
 
+:optional {}
+
+:required {}
+
 [type="submit"] {
   &:hover {}
 

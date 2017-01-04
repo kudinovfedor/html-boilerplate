@@ -154,7 +154,7 @@ var path = {
     favicon: [src + 'img/favicon'],
     svg: src + 'img/svg/*.svg',
     js: [src + 'js/common.js'],
-    babel: [src + 'js/common.babel.js'],
+    babel: [src + 'js/es6/**/*.js'],
     ie8: [src + 'js/libs/{html5shiv,respond}.min.js'],
     allJS: [src + 'js/libs/{modernizr,jquery}.min.js'],
     zip: ['dist/**/{*,}.*', 'src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
@@ -169,6 +169,7 @@ var path = {
     svg: src + 'img',
     svgfallback: src + 'img/sprite',
     js: src + 'js',
+    babel: src + 'js/es5',
     libs: src + 'js/libs',
     zip: './'
   },
@@ -181,7 +182,7 @@ var path = {
     css: [src + 'css/*.css', '!' + src + 'css/*.min.css'],
     sass: [src + 'sass/**/*.scss'],
     js: [src + 'js/common.js'],
-    babel: [src + 'js/common.babel.js']
+    babel: [src + 'js/es6/**/*.js']
   },
   dist: {
     src: {
@@ -364,9 +365,9 @@ gulp.task('js', gulp.series('jshint-eslint', function () {
 
 gulp.task('babel', function () {
   return gulp.src(path.src.babel)
+    .pipe(plumber({errorHandler: errorAlert}))
     .pipe(babel())
-    .pipe(rename({basename: 'common', suffix: '.es5'}))
-    .pipe(gulp.dest(path.dest.js));
+    .pipe(gulp.dest(path.dest.babel));
 });
 
 gulp.task('webpack', function () {

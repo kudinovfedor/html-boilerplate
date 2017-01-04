@@ -66,9 +66,14 @@ a {
 
   &:focus {}
 
-  &[href^="http"],
-  &[href^="www."] {
+  &[href^="http"] {
     cursor: alias;
+
+    &:empty {
+      &:before {
+        content: attr(href);
+      }
+    }
   }
 }
 

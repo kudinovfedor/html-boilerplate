@@ -42,7 +42,6 @@ head
       | Template
   meta(name='description', content='')
   meta(name='robots', content='index, follow')
-  //saved from url=(0014)about:internet
   meta(name='HandheldFriendly', content='true')
   meta(name='MobileOptimized', content='320')
   meta(name='format-detection', content='date=no, address=no, email=no, telephone=no')
@@ -103,6 +102,7 @@ body(itemscope=!!schema_org, itemtype=schema_org ? 'http://schema.org/WebPage' :
   //- Custom scripts
   if !js_min
     script(src='js/common.js', async=false, defer=false)
+    //-script(src='js/app/bundle.js', async=false, defer=false)
     //-script(src='js/common.babel.js', async=false, defer=false)
   else
     script(src='js/common.min.js', async=false, defer=false)

@@ -10,6 +10,7 @@ AddDefaultCharset utf-8
   AddType image/svg+xml .svg .svgz
   AddEncoding gzip .svgz
   AddType image/x-icon .cur .ico
+  AddType text/cache-manifest .appcache .manifest
 
   ### Media files
   AddType audio/mp4 .mp4 .f4a .f4b .m4a
@@ -36,7 +37,7 @@ AddDefaultCharset utf-8
 DirectoryIndex index.html index.php
 
 <IfModule mod_rewrite.c>
-RewriteEngine Off
+RewriteEngine On
 
 ### Redirect to HTTPS
 #RewriteCond %{HTTPS} !on
@@ -90,6 +91,7 @@ RewriteEngine Off
   ExpiresByType application/javascript "access plus 1 years"
   ExpiresByType application/x-javascript "access plus 1 years"
   ExpiresByType application/json "access plus 1 years"
+  ExpiresByType text/cache-manifest "access plus 0 seconds"
   #ExpiresByType application/x-shockwave-flash "access plus 1 years"
   ExpiresByType image/jpeg "access plus 1 month"
   ExpiresByType image/png "access plus 1 month"
