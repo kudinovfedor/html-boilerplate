@@ -54,7 +54,7 @@
   "dependencies": {
     "html5shiv": "~3.7.3",
     "jquery": "~1.12.4 < 2",
-    "jquery-form-styler": "jquery.form-styler#^1.7.6",
+    "jquery.form-styler": "^1.7.7",
     "modernizr": "~3.3.1",
     "pixlayout": "~0.9.7",
     "respond": "~1.4.2",
@@ -76,7 +76,7 @@
         "./dist/jquery.min.js"
       ]
     },
-    "jquery-form-styler": {
+    "jquery.form-styler": {
       "main": [
         "./jquery.formstyler.min.js"
       ]
