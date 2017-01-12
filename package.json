@@ -2,7 +2,7 @@
   "name": "fk-template",
   "version": "1.0.0",
   "description": "Workpieces code and structure that I use in every project",
-  "main": "gulpfile.js",
+  "main": "gulpfile.babel.js",
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.18.0",
@@ -37,13 +37,13 @@
     "gulp-scss-lint": "^0.4.0",
     "gulp-scss-lint-stylish2": "^2.0.2",
     "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^2.3.0",
+    "gulp-sourcemaps": "^2.3.1",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.0.0",
     "gulp-util": "^3.0.8",
     "gulp-zip": "^3.2.0",
-    "gulp.spritesmith": "^6.2.1",
+    "gulp.spritesmith": "^6.3.0",
     "htmlhint-stylish": "^1.0.3",
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1",
@@ -69,7 +69,8 @@
     "npm-install-g": "npm install -g gulp-cli pug-cli bower browser-sync jshint eslint npm-check-updates htmlhint",
     "gulp-install": "npm install",
     "bower-install": "bower install && gulp collect-js-files",
-    "babel": "babel src/js/es6 --out-dir src/js/es5 --watch"
+    "babel": "babel src/js/es6 --out-dir src/js/es5 --watch",
+    "update": "npm outdated"
   },
   "repository": {
     "type": "git",

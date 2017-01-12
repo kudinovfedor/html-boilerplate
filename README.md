@@ -6,7 +6,7 @@
 
 This project uses the Pug(Jade) for HTML, Sass + Compass for CSS, SMACSS structure with additions, Gulp - the streaming build system, Bower - package manager for the web
 #### Installation all components on OS Windows
-**[Install Ruby](http://rubyinstaller.org/downloads/)** **`v2.3.1`**<br/>
+**[Install Ruby](http://rubyinstaller.org/downloads/)** **`v2.3.3`**<br/>
 **[Install DevKit](http://rubyinstaller.org/downloads/)** `For use with Ruby 2.0 and above` **[optional]**<br/>
 ```sh
 $ cd C:\DevKit
@@ -16,10 +16,10 @@ $ ruby dk.rb init
 - C:/Ruby23-x64
 $ ruby dk.rb install
 ```
-**[Install Node.js](https://nodejs.org/dist/latest-v4.x/)** **`v4`**
+**[Install Node.js](https://nodejs.org/dist/latest-v6.x/)** **`v6`**
 
 ```sh
-# install Compass, Sass, Pug(Jade), Gulp, Bower, Browser-Sync, scss_lint, htmlhint, jshint, eslint, dependencies
+# install Compass, Sass, Pug(Jade), Gulp, Bower, Browser-Sync, Babel, scss_lint, htmlhint, jshint, eslint, dependencies
 $ npm run set-all
 # IF AN ERROR OCCURS, TRY THE CODE BELOW
 
@@ -32,8 +32,8 @@ $ gem install oily_png
 # update npm
 $ npm install -g npm
 
-# install Pug(Jade), Gulp, Bower, Browser-Sync, htmlhint, jshint, eslint
-$ npm install -g gulp-cli pug-cli bower browser-sync jshint eslint htmlhint
+# install Pug(Jade), Gulp, Babel, Bower, Browser-Sync, htmlhint, jshint, eslint
+$ npm install -g gulp-cli pug-cli babel-cli bower browser-sync jshint eslint htmlhint
 
 # install npm-check-updates [optional]
 $ npm install -g npm-check-updates
