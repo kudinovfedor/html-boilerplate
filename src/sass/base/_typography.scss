@@ -66,15 +66,15 @@ a {
 
   &:focus {}
 
-  &[href^="http"] {
-    cursor: alias;
-
-    &:empty {
-      &:before {
-        content: attr(href);
-      }
+  &:empty {
+    &:before {
+      content: attr(href);
     }
   }
+
+  //&[href^="http"] {
+  //  cursor: alias;
+  //}
 }
 
 b,

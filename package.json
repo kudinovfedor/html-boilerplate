@@ -6,6 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "babel-cli": "^6.18.0",
+    "babel-loader": "^6.2.10",
     "babel-preset-es2015": "^6.18.0",
     "bower": "^1.8.0",
     "browser-sync": "^2.18.6",
@@ -37,7 +38,7 @@
     "gulp-scss-lint": "^0.4.0",
     "gulp-scss-lint-stylish2": "^2.0.2",
     "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^2.3.1",
+    "gulp-sourcemaps": "^2.4.0",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.0.0",
@@ -51,7 +52,7 @@
     "npm-check-updates": "^2.8.9",
     "pug": "^2.0.0-beta6",
     "vinyl-ftp": "^0.5.0",
-    "webpack": "^1.14.0",
+    "webpack": "^2.2.0-rc.4",
     "webpack-stream": "^3.2.0"
   },
   "babel": {
@@ -70,6 +71,7 @@
     "gulp-install": "npm install",
     "bower-install": "bower install && gulp collect-js-files",
     "babel": "babel src/js/es6 --out-dir src/js/es5 --watch",
+    "webpack": "webpack --config src/webpack.config.js",
     "update": "npm outdated"
   },
   "repository": {

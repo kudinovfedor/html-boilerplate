@@ -34,12 +34,12 @@ let reporter = scss_stylish({errorsOnly: false});
 import spritesmith from 'gulp.spritesmith';
 // Favicon.ico
 import realFavicon from 'gulp-real-favicon';
-let FAVICON_DATA_FILE = `${src}/faviconData.json`;
+const FAVICON_DATA_FILE = `${src}/faviconData.json`;
 // SVG
 import svgmin from 'gulp-svgmin';
 import svgstore from 'gulp-svgstore';
 import raster from 'gulp-raster';
-// JS(jQuery)
+// JavaScript
 import jshint from 'gulp-jshint';
 import hint_stylish from 'jshint-stylish';
 import eslint from 'gulp-eslint';
@@ -55,7 +55,7 @@ import cache from 'gulp-cached';
 import babel from 'gulp-babel';
 //import filter from 'gulp-filter';
 import zip from 'gulp-zip';
-// LiveReload & Browser Syncing
+// Browsersync
 const browserSync = require('browser-sync').create();
 // Bower
 import mainBowerFiles from 'main-bower-files';
@@ -68,7 +68,6 @@ import ncu from 'npm-check-updates';
 // Webpack
 import webpack from 'webpack';
 import gulpWebpack from 'webpack-stream';
-const webpackConfig = require(`./${src}/webpack.config.js`);
 
 // Config
 const config = {
@@ -136,6 +135,8 @@ const config = {
   zip: {compress: true},
   // Config FTP
   ftp: JSON.parse(fs.readFileSync(`${src}/ftp.json`)),
+  // Config webpack
+  webpack: {output: {filename: 'bundle.js'}, devtool: 'cheap-module-source-map', watch: true}
   // Config Gulp filter
   //filter: {restore: true, passthrough: true}
 };
@@ -153,6 +154,7 @@ const path = {
     svg: `${src}/img/svg/*.svg`,
     js: [`${src}/js/common.js`],
     babel: [`${src}/js/es6/**/*.js`],
+    webpack: [`${src}/js/app.js`],
     ie8: [`${src}/js/libs/{html5shiv,respond}.min.js`],
     allJS: [`${src}/js/libs/{modernizr,jquery}.min.js`],
     zip: ['dist/**/{*,}.*', 'src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
@@ -168,6 +170,7 @@ const path = {
     svgfallback: `${src}/img/sprite`,
     js: `${src}/js`,
     babel: `${src}/js/es5`,
+    webpack: `${src}/js`,
     libs: `${src}/js/libs`,
     zip: './'
   },
@@ -369,9 +372,9 @@ gulp.task('babel', () => {
 });
 
 gulp.task('webpack', () => {
-  return gulp.src('src/js/app/entry.js')
-    .pipe(gulpWebpack({}, webpack))
-    .pipe(gulp.dest('src/js/app/'));
+  return gulp.src(path.src.webpack)
+    .pipe(gulpWebpack(config.webpack, webpack))
+    .pipe(gulp.dest(path.dest.webpack));
 });
 
 //gulp.task('img', () => {

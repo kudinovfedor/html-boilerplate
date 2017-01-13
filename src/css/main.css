@@ -378,11 +378,7 @@ a:hover {
   text-decoration: none;
 }
 
-a[href^="http"] {
-  cursor: alias;
-}
-
-a[href^="http"]:empty:before {
+a:empty:before {
   content: attr(href);
 }
 
