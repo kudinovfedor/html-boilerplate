@@ -41,7 +41,11 @@ RewriteEngine On
 
 ### Redirect to HTTPS
 #RewriteCond %{HTTPS} !on
-#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI}
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect http to https
+#RewriteCond %{HTTP:SSL} !1 [NC]
+#RewriteRule (.*) https://%{HTTP_HOST}%{REQUEST_URI} [QSA,L,R=301]
 
 ### Redirect to www
 #RewriteCond %{HTTP_HOST} !^www\. [NC]
@@ -69,12 +73,27 @@ RewriteEngine On
   </FilesMatch>
 
   ### Use this to avoid clickjacking attacks
-  Header always append X-Frame-Options SAMEORIGIN
+  Header set X-Frame-Options SAMEORIGIN
+
+  ### X-XSS-Protection
+  Header set X-XSS-Protection "1; mode=block"
+
+  ### X-Content-Type-Options
+  Header set X-Content-Type-Options "nosniff"
+
+  ### Server-side technology information
+  Header unset X-Powered-By
 
   ### Content-Security-Policy
-  #Header set Content-Security-Policy ""
+  #Header set Content-Security-Policy "default-src https: 'none'; script-src https: 'self'; style-src https: 'self'; img-src https: 'self'; frame-src 'self'; object-src 'self';"
+
+  ### HTTP Strict Transport Security
+  #Header always set Strict-Transport-Security "max-age=31536000"
 
 </IfModule>
+
+### Server software information
+ServerSignature Off
 
 ### The browser cache
 <IfModule mod_expires.c>
