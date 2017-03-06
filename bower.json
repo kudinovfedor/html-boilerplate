@@ -55,7 +55,7 @@
     "respond": "~1.4.2",
     "modernizr": "~3.3.1",
     "jquery": "~1.12.4 < 2",
-    "jquery.form-styler": "^1.7.7",
+    "jquery.form-styler": "^1.7.8",
     "jquery-validation": "^1.16.0",
     "jQuery.mmenu": "^5.7.8",
     "slick-carousel": "^1.6.0",
