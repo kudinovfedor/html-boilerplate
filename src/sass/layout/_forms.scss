@@ -5,30 +5,56 @@ form {
   position: relative;
 }
 
-fieldset {}
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 0 $base-margin;
+  padding: .35em .625em .75em;
+}
 
-legend {}
+legend { }
 
-label {}
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+@include input-placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+}
 
 select,
 textarea,
 [type="text"],
-[type="tel"],
-[type="url"],
+[type="file"],
+[type="password"],
 [type="email"],
 [type="search"],
 [type="number"],
-[type="password"] {
+[type="tel"],
+[type="url"],
+[type="date"],
+[type="month"],
+[type="week"],
+[type="time"],
+[type="datetime"],
+[type="datetime-local"] {
+  font: inherit;
   width: 100%;
-  border: 1px solid #ccc;
+  border: 1px solid #808080;
   padding: 8px 10px;
+  background-color: #fff;
+}
 
-  &:focus {}
-
-  &:disabled {}
-
-  &.error {}
+[type="date"],
+[type="month"],
+[type="week"],
+[type="time"],
+[type="datetime"],
+[type="datetime-local"] {
+  height: 37px;
 }
 
 [type="radio"],
@@ -39,66 +65,115 @@ textarea,
   }
 }
 
-@include input-placeholder {
-  color: #afafaf;
-  text-overflow: ellipsis;
-}
-
-input,
-textarea {
-  //@include input-placeholder {
-  //  color: #afafaf;
-  //  text-overflow: ellipsis;
-  //}
-  //
-  //&:focus {
-  //  @include input-placeholder {
-  //    color: transparent;
-  //    @include opacity(0);
-  //  }
-  //}
-
-  &.invalid,
-  &:required:invalid {}
-
-  &.valid,
-  &:required:valid {}
-}
-
-:optional {}
-
-:required {}
-
-[type="submit"] {
-  &:hover {}
-
-  &:focus {}
-
-  &:disabled {}
-}
-
-[type="reset"],
-[type="button"] {
-  &:hover {}
-
-  &:focus {}
-
-  &:disabled {}
-}
-
 [type="file"] {
-  &:disabled {}
+  line-height: 1.1;
+  padding: 7px 10px;
 }
+
+[type="range"] {
+  width: 100%;
+  padding: 7px 0;
+}
+
+[type="color"] {
+  padding: 3px;
+  border: 1px solid #808080;
+  background-color: transparent;
+
+  &::-webkit-color-swatch-wrapper {
+    padding: 0;
+  }
+
+  &::-webkit-color-swatch {
+    border: 0;
+  }
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  cursor: pointer;
+  border: 1px solid #808080;
+  background-color: #fff;
+  padding: 8px 10px;
+
+  &:hover { }
+
+  &:focus { }
+
+  &:disabled,
+  &.disabled { }
+}
+
+[type='image'] { }
 
 textarea {
   min-height: 100px;
+  max-height: 400px;
   resize: vertical;
 }
 
-select {}
+select { }
 
-optgroup {}
+optgroup { }
 
-option {}
+option { }
+
+.form {
+  &-row {
+    margin-bottom: 15px;
+  }
+
+  &-field {
+    font: inherit;
+    width: 100%;
+    border: 1px solid #808080;
+    padding: 8px 10px;
+    background-color: #fff;
+
+    &:hover { }
+
+    &:focus { }
+
+    &:optional {
+      //border-color: #808080;
+    }
+
+    &:required {
+      //border-color: #cd5c5c;
+    }
+
+    &:invalid {
+      //border-color: #f00;
+    }
+
+    &:valid {
+      //border-color: #008000;
+    }
+
+    &:disabled,
+    &.disabled {
+      cursor: not-allowed;
+      @include opacity(.5);
+    }
+
+    &.error {
+      //border-color: #f00;
+    }
+
+    //@include input-placeholder {
+    //  color: #afafaf;
+    //  text-overflow: ellipsis;
+    //}
+    //
+    //&:focus {
+    //  @include input-placeholder {
+    //    color: transparent;
+    //    @include opacity(0);
+    //  }
+    //}
+  }
+}
 
 /* ====================  END FORMS  ==================== */

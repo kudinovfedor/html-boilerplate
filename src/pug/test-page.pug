@@ -1,0 +1,140 @@
+extends include/template
+block title
+  | Test page
+block content
+  .container(style='padding: 20px;')
+    style.
+      .tested-form hr {
+        clear: both;
+      }
+
+      @media (min-width: 480px) {
+        .tested-form p {
+          float: left;
+          width: 49%;
+          margin: 0 .5% 15px;
+        }
+      }
+    h1 Heading h1
+    h2 Heading h2
+    h3 Heading h3
+    h4 Heading h4
+    h5 Heading h5
+    h6 Heading h6
+    hr
+    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto autem dicta earum ex expedita iure minima nam, nulla qui quibusdam quidem quisquam recusandae rem repudiandae totam? Aliquam, amet blanditiis delectus dicta dolorem doloribus dolorum ducimus harum illum, labore magnam maxime nobis provident quia quisquam quod, ratione rem reprehenderit repudiandae velit?
+    p Lorem ipsum dolor sit amet, consectetur adipisicing elit. Architecto autem dicta earum ex expedita iure minima nam, nulla qui quibusdam quidem quisquam recusandae rem repudiandae totam? Aliquam, amet blanditiis delectus dicta dolorem doloribus dolorum ducimus harum illum, labore magnam maxime nobis provident quia quisquam quod, ratione rem reprehenderit repudiandae velit?
+    hr
+    p: a(href='#', target='_blank', title='Link') Link
+    p: img(src='img/spin.gif', alt='Image', title='Image', width='40', height='40')
+    hr
+    table
+      caption Table caption
+      thead
+        tr
+          th Table thead th
+          th Table thead th
+          th Table thead th
+      tbody
+        tr
+          td Table tbody td
+          td Table tbody td
+          td Table tbody td
+      tfoot
+        tr
+          td Table tfoot td
+          td Table tfoot td
+          td Table tfoot td
+    hr
+    form.tested-form(action='#', method="post")
+      fieldset
+        legend Form legend
+        p
+          label(for='input-checkbox') Input type['checkbox']
+          input(type='checkbox', name='input-checkbox', id='input-checkbox', placeholder='Input type[checkbox]')
+        p
+          label(for='input-radio') Input type['radio']
+          input(type='radio', name='input-radio', id='input-radio', placeholder='Input type[radio]')
+        p
+          label(for='input-color') Input type['color']
+          input(type='color', name='input-color', id='input-color', placeholder='Input type[color]')
+        p
+          label(for='input-range') Input type['range']
+          input(type='range', name='input-range', id='input-range', min='0', max='10', step='2', value='6')
+      hr
+      p
+        label(for='input-text') Input type['text']
+        input(type='text', name='input-text', id='input-text', placeholder='Input type[text]')
+      p
+        label(for='input-password') Input type['password']
+        input(type='password', name='input-password', id='input-password', placeholder='Input type[password]')
+      p
+        label(for='input-date') Input type['date']
+        input(type='date', name='input-date', id='input-date', min='2015-01-01', max='2020-01-01', placeholder='Input type[date]')
+      p
+        label(for='input-datetime') Input type['datetime']
+        input(type='datetime', name='input-datetime', id='input-datetime', placeholder='Input type[datetime]')
+      p
+        label(for='input-datetime-local') Input type['datetime-local']
+        input(type='datetime-local', name='input-datetime-local', id='input-datetime-local', placeholder='Input type[datetime-local]')
+      p
+        label(for='input-email') Input type['email']
+        input(type='email', name='input-email', id='input-email', placeholder='Input type[email]')
+      p
+        label(for='input-number') Input type['number']
+        input(type='number', name='input-number', id='input-number', min='0', max='10', step='2', value='6', placeholder='6')
+      p
+        label(for='input-search') Input type['search']
+        input(type='search', name='input-search', id='input-search', placeholder='Input type[search]')
+      p
+        label(for='input-tel') Input type['tel']
+        input(type='tel', name='input-tel', id='input-tel', placeholder='Input type[tel]')
+      p
+        label(for='input-time') Input type['time']
+        input(type='time', name='input-time', id='input-time', placeholder='Input type[time]')
+      p
+        label(for='input-url') Input type['url']
+        input(type='url', name='input-url', id='input-url', placeholder='Input type[url]')
+      p
+        label(for='input-month') Input type['month']
+        input(type='month', name='input-month', id='input-month', placeholder='Input type[month]')
+      p
+        label(for='input-week') Input type['week']
+        input(type='week', name='input-week', id='input-week', placeholder='Input type[week]')
+      p
+        label(for='input-file') Input type['file']
+        input(type='file', name='input-file', id='input-file', placeholder='Input type[file]')
+      p
+        label(for='select') Select
+        select(name='select', id='select')
+          optgroup(label='Группа опций')
+            option Опция 1
+            option Опция 2
+            option Опция 3
+          option Опция 4
+          option Опция 5
+      p
+        label(for='textarea') Textarea
+        textarea(name="textarea", id="textarea", placeholder='textarea')
+      hr
+      p
+        button(type='button') Button type['button']
+        button(type='submit') Button type['submit']
+      p
+        input(type='button', value='Input type[button]')
+        input(type='reset', value='Input type[reset]')
+        input(type='submit', value='Input type[submit]')
+        input(type='image', value='Input type[image]')
+      hr
+    ul
+      li Test item
+      li Test item
+      li Test item
+      li Test item
+    ol
+      li Test item
+      li Test item
+      li Test item
+      li Test item
+    hr
+block script

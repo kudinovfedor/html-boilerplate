@@ -1,6 +1,5 @@
 @charset "UTF-8";
 //@import "compass/css3";
-//@import "../bower_components/compass-mixins/lib/compass";
 
 @import "utilities/variables";
 @import "utilities/mixins";
@@ -20,7 +19,8 @@
 
 //@import "base/reset";
 //@import "base/normalize";
-@import "base/normalize-v5"; // [Optional]
+//@import "base/normalize-v5"; // [Optional]
+@import "base/normalize-v6";
 @import "base/custom-normalize"; // [Optional FK]
 @import "base/core";
 @import "base/typography";
@@ -34,15 +34,15 @@
 @import "layout/footer";
 @import "layout/forms";
 
-//@import "module/gulp-sprite"; // [Optional]
+@import "module/gulp-sprite"; // [Optional]
 //@import "module/custom_checkbox_radio"; // [Optional]
 //@import "layout/grid"; // [Optional]
-//@import "module/buttons"; // [Optional]
-//@import "module/tabs"; // [Optional]
+@import "module/buttons"; // [Optional]
+@import "module/tabs"; // [Optional]
 //@import "module/fk-number"; // [Optional]
-//@import "module/accordion"; // [Optional]
-//@import "module/breadcrumbs"; // [Optional]
-//@import "module/pagination"; // [Optional]
+@import "module/accordion"; // [Optional]
+@import "module/breadcrumbs"; // [Optional]
+@import "module/pagination"; // [Optional]
 //@import "module/preloader"; // [Optional]
 //@import "module/rating"; // [Optional]
 //@import "module/sprites"; // [Optional]

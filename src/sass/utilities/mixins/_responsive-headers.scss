@@ -1,67 +1,35 @@
-$viewport-map: (
-  viewport-min: 480px,
-  viewport-max: 1280px
-);
-
-$basic-font-size: 16px;
-
-
-$headers-map: (
-  h1: (
-    fons-size-min: 14px,
-    font-size-max: $basic-font-size * 2,
-    font-size-fallback: 28px
-  ),
-  h2: (
-    fons-size-min: 17px,
-    font-size-max: $basic-font-size * 1.5,
-    font-size-fallback: 16px
-  ),
-  h3: (
-    fons-size-min: 16px,
-    font-size-max: $basic-font-size * 1.17,
-    font-size-fallback: 16px
-  ),
-  h4: (
-    fons-size-min: 14px,
-    font-size-max: $basic-font-size * 1,
-    font-size-fallback: 16px
-  ),
-  h5: (
-    fons-size-min: 12px,
-    font-size-max: $basic-font-size * 0.83,
-    font-size-fallback: 16px
-  ),
-  h6: (
-    fons-size-min: 10px,
-    font-size-max: $basic-font-size * 0.67,
-    font-size-fallback: 16px
-  )
-);
-
 @mixin responsive-headers() {
 
   @each $name, $value in $headers-map {
     #{$name} {
-      font-size: map_get($value, fons-size-min);
+      font-size: round(map-get($value, fons-size-min));
     }
   }
 
-  @media (min-width: map_get($viewport-map, viewport-min)) and (max-width: map_get($viewport-map, viewport-max) - 1) {
+  $viewport-min: map-get($viewport-map, viewport-min);
+  $viewport-max: map-get($viewport-map, viewport-max);
+
+  @media (min-width: $viewport-min) and (max-width: $viewport-max - 1) {
 
     @each $name, $value in $headers-map {
       #{$name} {
-        font-size: map_get($value, font-size-fallback);
-        font-size: calc-responsive-font-size(map_get($value, fons-size-min), map_get($value, font-size-max), map_get($viewport-map, viewport-min), map_get($viewport-map, viewport-max));
+
+        $fallback: map-get($value, font-size-fallback);
+
+        @if($fallback != null and $fallback != "") {
+          font-size: $fallback;
+        }
+
+        font-size: calc-responsive-font-size(map-get($value, fons-size-min), map-get($value, font-size-max), $viewport-min, $viewport-max);
       }
     }
 
   }
 
-  @media (min-width: map_get($viewport-map, viewport-max)) {
+  @media (min-width: $viewport-max) {
     @each $name, $value in $headers-map {
       #{$name} {
-        font-size: map_get($value, font-size-max);
+        font-size: round(map-get($value, font-size-max));
       }
     }
   }

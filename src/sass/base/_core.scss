@@ -6,6 +6,7 @@
 }
 
 html {
+  font-family: sans-serif;
   font-size: 100%;
   @include box-sizing(border-box);
 }
@@ -24,12 +25,13 @@ body {
 }
 
 body {
-  background-color: $body-bg;
-  color: $body-color;
-  font: normal #{$fk-base-font-size}/#{$fk-base-line-height} $fk-base-font-family;
-  min-width: 320px;
-  overflow-x: hidden;
   position: relative;
+  min-width: 320px;
+  margin: 0;
+  background-color: $body-bg;
+  font: normal #{$fk-base-font-size}/#{$fk-base-line-height} $fk-base-font-family;
+  color: $body-color;
+  overflow-x: hidden;
   @if ($scroll-behavior) {
     scroll-behavior: smooth;
   }

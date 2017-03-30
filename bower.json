@@ -57,12 +57,11 @@
     "jquery": "~1.12.4 < 2",
     "jquery.form-styler": "^1.7.8",
     "jquery-validation": "^1.16.0",
-    "jQuery.mmenu": "^5.7.8",
+    "jQuery.mmenu": "^6.0.2",
     "slick-carousel": "^1.6.0",
     "magnific-popup": "^1.1.0",
-    "ion.rangeSlider": "^2.1.6",
-    "pixlayout": "~0.9.7",
-    "compass-mixins": "^1.0.2"
+    "ion.rangeSlider": "^2.1.7",
+    "pixlayout": "~0.9.7"
   },
   "overrides": {
     "html5shiv": {
@@ -95,7 +94,7 @@
     },
     "jQuery.mmenu": {
       "main": [
-        "./dist/js/jquery.mmenu.all.min.js"
+        "./dist/jquery.mmenu.all.min.js"
       ]
     },
     "slick-carousel": {
@@ -117,9 +116,6 @@
       "main": [
         "./jquery.pixlayout.min.js"
       ]
-    },
-    "compass-mixins": {
-      "ignore": true
     }
   }
 }

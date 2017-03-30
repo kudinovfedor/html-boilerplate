@@ -1,6 +1,5 @@
-/* ====================  NORMALIZE 5  ====================== */
+/* ====================  NORMALIZE 6  ====================== */
 html {
-  font-family: sans-serif;
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   -moz-text-size-adjust: 100%;
@@ -8,27 +7,24 @@ html {
   text-size-adjust: 100%;
 }
 
-body {
-  margin: 0;
-}
-
 article,
 aside,
 footer,
 header,
 nav,
-section,
-figcaption,
-figure,
-main,
-details,
-menu {
+section {
   display: block;
 }
 
 h1 {
   font-size: 2em;
   margin: .67em 0;
+}
+
+figcaption,
+figure,
+main {
+  display: block;
 }
 
 figure {
@@ -51,10 +47,6 @@ pre {
 a {
   background-color: transparent;
   -webkit-text-decoration-skip: objects;
-}
-
-a:active, a:hover {
-  outline-width: 0;
 }
 
 abbr[title] {
@@ -132,9 +124,6 @@ input,
 optgroup,
 select,
 textarea {
-  font-family: sans-serif;
-  font-size: 100%;
-  line-height: 1.15;
   margin: 0;
 }
 
@@ -169,12 +158,6 @@ button:-moz-focusring,
 [type="reset"]:-moz-focusring,
 [type="submit"]:-moz-focusring {
   outline: 1px dotted ButtonText;
-}
-
-fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 2px;
-  padding: .35em .625em .75em;
 }
 
 legend {
@@ -217,11 +200,18 @@ textarea {
 
 [type="search"]::-webkit-search-cancel-button, [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
+  -moz-appearance: none;
 }
 
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
+  -moz-appearance: button;
   font: inherit;
+}
+
+details,
+menu {
+  display: block;
 }
 
 summary {
@@ -237,7 +227,7 @@ template,
   display: none;
 }
 
-/* ====================  END NORMALIZE 5  ==================== */
+/* ====================  END NORMALIZE 6  ==================== */
 /* ====================  CUSTOM NORMALIZE  ====================== */
 :focus {
   outline-width: 0;
@@ -274,6 +264,7 @@ textarea {
 }
 
 html {
+  font-family: sans-serif;
   font-size: 100%;
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -292,12 +283,13 @@ body {
 }
 
 body {
-  background-color: #fff;
-  color: #000;
-  font: normal 14px/1.42857 "Arial", "Helvetica", sans-serif;
-  min-width: 320px;
-  overflow-x: hidden;
   position: relative;
+  min-width: 320px;
+  margin: 0;
+  background-color: #fff;
+  font: normal 14px/1.42857 "Arial", "Helvetica", sans-serif;
+  color: #000;
+  overflow-x: hidden;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -336,36 +328,84 @@ h6 {
   font-weight: bold;
   line-height: 1.1;
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 h1 {
-  font-size: 36px;
-}
-
-h2 {
-  font-size: 30px;
-}
-
-h3 {
   font-size: 24px;
 }
 
-h4 {
-  font-size: 18px;
+h2 {
+  font-size: 20px;
 }
 
-h5 {
+h3 {
+  font-size: 16px;
+}
+
+h4 {
   font-size: 14px;
 }
 
+h5 {
+  font-size: 13px;
+}
+
 h6 {
-  font-size: 12px;
+  font-size: 11px;
+}
+
+@media (min-width: 480px) and (max-width: 1279px) {
+  h1 {
+    font-size: 30px;
+    font-size: calc(0.015 * 100vw + 16.8px);
+  }
+  h2 {
+    font-size: 25px;
+    font-size: calc(0.0125 * 100vw + 14px);
+  }
+  h3 {
+    font-size: 20px;
+    font-size: calc(0.01 * 100vw + 11.2px);
+  }
+  h4 {
+    font-size: 15px;
+    font-size: calc(0.005 * 100vw + 11.6px);
+  }
+  h5 {
+    font-size: 12px;
+    font-size: calc(0.00125 * 100vw + 12.4px);
+  }
+  h6 {
+    font-size: 10px;
+    font-size: calc(0.00125 * 100vw + 10.4px);
+  }
+}
+
+@media (min-width: 1280px) {
+  h1 {
+    font-size: 36px;
+  }
+  h2 {
+    font-size: 30px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 18px;
+  }
+  h5 {
+    font-size: 14px;
+  }
+  h6 {
+    font-size: 12px;
+  }
 }
 
 p {
   margin-top: 0;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 a {
@@ -394,7 +434,7 @@ em {
 
 blockquote {
   padding: 0 0 0 15px;
-  margin: 0 0 10px;
+  margin: 0 0 15px;
   border-left: 5px solid #eee;
 }
 
@@ -405,14 +445,20 @@ acronym {
 }
 
 address {
-  margin: 0 0 10px;
-  font-style: italic;
+  margin: 0 0 15px;
+  font-style: normal;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-bottom: 1px solid #808080;
 }
 
 ul,
 ol {
-  margin: 0 0 10px;
-  padding-left: 20px;
+  margin: 0 0 15px;
+  padding-left: 25px;
 }
 
 ul ul,
@@ -424,7 +470,7 @@ ol ol {
 
 ul li,
 ol li {
-  list-style-position: inside;
+  list-style-position: outside;
 }
 
 ul a,
@@ -433,7 +479,7 @@ ol a {
 }
 
 dl {
-  margin: 0 0 10px;
+  margin: 0 0 15px;
 }
 
 dt {
@@ -441,7 +487,7 @@ dt {
 }
 
 dd {
-  margin-left: 10px;
+  margin-left: 15px;
 }
 
 table {
@@ -450,7 +496,7 @@ table {
   width: 100%;
   max-width: 100%;
   background-color: transparent;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
 }
 
 caption {
@@ -465,7 +511,8 @@ th {
 
 th,
 td {
-  padding: 0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
   text-align: left;
   vertical-align: middle;
 }
@@ -483,6 +530,75 @@ video {
   vertical-align: middle;
 }
 
+img {
+  text-align: center;
+}
+
+img:after {
+  display: block;
+  content: "(url: " attr(src) ")";
+  padding: 2px 5px;
+  background-color: #eee;
+  text-align: center;
+  font-size: 12px;
+  min-width: 100px;
+  white-space: pre-line;
+  word-break: break-all;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-justify {
+  text-align: justify;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.text-lowercase {
+  text-transform: lowercase;
+}
+
+.text-uppercase {
+  text-transform: uppercase;
+}
+
+.text-capitalize {
+  text-transform: capitalize;
+}
+
+.image-left, .image-right, .image-center {
+  margin-bottom: 20px;
+}
+
+.image-left {
+  float: left;
+  margin: 0 20px 20px 0;
+}
+
+.image-right {
+  float: right;
+  margin: 0 0 20px 20px;
+}
+
+.image-center {
+  text-align: center;
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* ====================  END TYPOGRAPHY  ==================== */
 .container:after {
   clear: both;
@@ -496,9 +612,14 @@ video {
 /* ====================  END NAV  ==================== */
 /* ====================  MAIN  ==================== */
 .container {
-  width: 1200px;
   margin-left: auto;
   margin-right: auto;
+}
+
+@media (min-width: 1200px) {
+  .container {
+    width: 1200px;
+  }
 }
 
 .video-responsive {
@@ -527,28 +648,21 @@ video {
 /* ====================  FORMS  ==================== */
 form {
   max-width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 15px;
   position: relative;
 }
 
-select,
-textarea,
-[type="text"],
-[type="tel"],
-[type="url"],
-[type="email"],
-[type="search"],
-[type="number"],
-[type="password"] {
-  width: 100%;
-  border: 1px solid #ccc;
-  padding: 8px 10px;
+fieldset {
+  border: 1px solid #c0c0c0;
+  margin: 0 0 15px;
+  padding: .35em .625em .75em;
 }
 
-[type="radio"]:disabled, [type="radio"].disabled,
-[type="checkbox"]:disabled,
-[type="checkbox"].disabled {
-  cursor: not-allowed;
+label {
+  display: inline-block;
+  max-width: 100%;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
 
 :-moz-placeholder {
@@ -571,12 +685,279 @@ textarea,
   text-overflow: ellipsis;
 }
 
+select,
+textarea,
+[type="text"],
+[type="file"],
+[type="password"],
+[type="email"],
+[type="search"],
+[type="number"],
+[type="tel"],
+[type="url"],
+[type="date"],
+[type="month"],
+[type="week"],
+[type="time"],
+[type="datetime"],
+[type="datetime-local"] {
+  font: inherit;
+  width: 100%;
+  border: 1px solid #808080;
+  padding: 8px 10px;
+  background-color: #fff;
+}
+
+[type="date"],
+[type="month"],
+[type="week"],
+[type="time"],
+[type="datetime"],
+[type="datetime-local"] {
+  height: 37px;
+}
+
+[type="radio"]:disabled, [type="radio"].disabled,
+[type="checkbox"]:disabled,
+[type="checkbox"].disabled {
+  cursor: not-allowed;
+}
+
+[type="file"] {
+  line-height: 1.1;
+  padding: 7px 10px;
+}
+
+[type="range"] {
+  width: 100%;
+  padding: 7px 0;
+}
+
+[type="color"] {
+  padding: 3px;
+  border: 1px solid #808080;
+  background-color: transparent;
+}
+
+[type="color"]::-webkit-color-swatch-wrapper {
+  padding: 0;
+}
+
+[type="color"]::-webkit-color-swatch {
+  border: 0;
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  cursor: pointer;
+  border: 1px solid #808080;
+  background-color: #fff;
+  padding: 8px 10px;
+}
+
 textarea {
   min-height: 100px;
+  max-height: 400px;
   resize: vertical;
 }
 
+.form-row {
+  margin-bottom: 15px;
+}
+
+.form-field {
+  font: inherit;
+  width: 100%;
+  border: 1px solid #808080;
+  padding: 8px 10px;
+  background-color: #fff;
+}
+
+.form-field:disabled, .form-field.disabled {
+  cursor: not-allowed;
+  filter: alpha(opacity=50);
+  opacity: 0.5;
+}
+
 /* ====================  END FORMS  ==================== */
+/* ====================  BUTTONS  ==================== */
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+.btn-left {
+  text-align: left;
+}
+
+.btn-center {
+  text-align: center;
+}
+
+.btn-right {
+  text-align: right;
+}
+
+.btn-pull-left {
+  float: left;
+}
+
+.btn-pull-right {
+  float: right;
+}
+
+/* ====================  END BUTTONS  ==================== */
+/* ====================  TABS  ==================== */
+.fk-tabs-menu {
+  margin: 0;
+  padding-left: 0;
+  list-style: none;
+}
+
+.fk-tabs-menu-item {
+  cursor: pointer;
+  display: inline-block;
+  margin-right: 5px;
+  padding: 10px;
+  font: bold 14px/1.2 "Arial", sans-serif;
+  background-color: #6f6f6f;
+  color: #fff;
+  text-decoration: none;
+}
+
+.fk-tabs-menu-active {
+  background-color: #555;
+}
+
+.fk-item {
+  display: none;
+}
+
+.fk-item-active {
+  display: block;
+}
+
+/* ====================  END TABS  ==================== */
+/* ====================  ACCORDION  ==================== */
+.fk-accordion {
+  border-bottom: 12px solid #e9e9e9;
+  line-height: 1.2;
+  margin-bottom: 15px;
+  max-width: 100%;
+}
+
+.fk-accordion.js-opened {
+  border-bottom: 0;
+}
+
+.fk-accordion.js-opened .fk-accordion-content {
+  display: block;
+}
+
+.fk-accordion.js-opened .fk-accordion-switch {
+  background-color: #6bc15f;
+}
+
+.fk-accordion.js-opened .fk-accordion-switch:after {
+  border: 5px solid transparent;
+  border-top: 8px solid #fff;
+  bottom: 0;
+  margin-top: -4px;
+}
+
+.fk-accordion-header {
+  background-color: #f5f5f5;
+  min-height: 79px;
+  overflow: hidden;
+  padding: 15px 15px 15px 45px;
+  position: relative;
+}
+
+.fk-accordion-title {
+  color: #6bc15f;
+  display: block;
+  font-weight: bold;
+  margin-bottom: 0;
+  text-transform: uppercase;
+}
+
+.fk-accordion-desc {
+  color: #055555;
+  font-style: italic;
+  font-weight: 300;
+  margin-bottom: 0;
+  max-width: 570px;
+}
+
+.fk-accordion-switch {
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  border-radius: 50%;
+  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22) inset;
+  -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22) inset;
+  box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22) inset;
+  background-color: #ccc;
+  cursor: pointer;
+  display: block;
+  height: 52px;
+  left: -26px;
+  margin-top: -26px;
+  position: absolute;
+  top: 50%;
+  width: 52px;
+}
+
+.fk-accordion-switch:after {
+  border: 5px solid transparent;
+  border-left: 8px solid #fff;
+  border-right: 0;
+  content: "";
+  display: block;
+  height: 0;
+  margin-top: -5px;
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  width: 0;
+}
+
+.fk-accordion-content {
+  background-color: #e9e9e9;
+  display: none;
+  padding: 15px;
+}
+
+/* ====================  END ACCORDION  ==================== */
+/* ====================  BREADCRUMBS  ==================== */
+.breadcrumbs li, .breadcrumbs-item {
+  display: inline-block;
+}
+
+.breadcrumbs a, .breadcrumbs-link {
+  text-decoration: underline;
+}
+
+.breadcrumbs a:hover, .breadcrumbs-link:hover {
+  text-decoration: none;
+}
+
+/* ====================  END BREADCRUMBS  ==================== */
+/* ====================  PAGINATION  ==================== */
+.pagination li, .pagination-item {
+  display: inline-block;
+}
+
+.pagination a, .pagination-link {
+  text-decoration: underline;
+}
+
+.pagination a:hover, .pagination-link:hover {
+  text-decoration: none;
+}
+
+/* ==================  END PAGINATION  ================== */
 /* ====================  HOME PAGE  ====================== */
 /* ====================  END HOME PAGE  ==================== */
 /* ====================  CATEGORY PAGE  ==================== */

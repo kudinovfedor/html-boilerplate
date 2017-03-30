@@ -16,29 +16,7 @@ h6 {
   margin-bottom: $headings-margin-bottom;
 }
 
-h1 {
-  font-size: $font-size-h1;
-}
-
-h2 {
-  font-size: $font-size-h2;
-}
-
-h3 {
-  font-size: $font-size-h3;
-}
-
-h4 {
-  font-size: $font-size-h4;
-}
-
-h5 {
-  font-size: $font-size-h5;
-}
-
-h6 {
-  font-size: $font-size-h6;
-}
+@include responsive-headers;
 
 // Text elements
 
@@ -101,7 +79,13 @@ acronym {
 
 address {
   margin: 0 0 $base-margin;
-  font-style: italic;
+  font-style: normal;
+}
+
+hr {
+  margin: 20px 0;
+  border: 0;
+  border-bottom: 1px solid #808080;
 }
 
 // Lists
@@ -109,7 +93,7 @@ address {
 ul,
 ol {
   margin: 0 0 $base-margin;
-  padding-left: 20px;
+  padding-left: 25px;
 
   ul,
   ol {
@@ -117,7 +101,7 @@ ol {
   }
 
   li {
-    list-style-position: inside;
+    list-style-position: outside;
   }
 
   a {
@@ -160,7 +144,8 @@ th {
 
 th,
 td {
-  padding: 0;
+  border: 1px solid #ccc;
+  padding: 5px 10px;
   text-align: left;
   vertical-align: middle;
 }
@@ -184,6 +169,81 @@ img,
 video {
   height: auto;
   vertical-align: middle;
+}
+
+img {
+  text-align: center;
+
+  &:after {
+    display: block;
+    content: "(url: " attr(src) ")";
+    padding: 2px 5px;
+    background-color: #eee;
+    text-align: center;
+    font-size: 12px;
+    min-width: 100px;
+    white-space: pre-line;
+    word-break: break-all;
+  }
+}
+
+.text {
+  &-left {
+    text-align: left;
+  }
+
+  &-center {
+    text-align: center;
+  }
+
+  &-right {
+    text-align: right;
+  }
+
+  &-justify {
+    text-align: justify;
+  }
+
+  &-nowrap {
+    white-space: nowrap;
+  }
+
+  &-lowercase {
+    text-transform: lowercase;
+  }
+
+  &-uppercase {
+    text-transform: uppercase;
+  }
+
+  &-capitalize {
+    text-transform: capitalize;
+  }
+}
+
+.image {
+  &-left,
+  &-right,
+  &-center {
+    margin-bottom: 20px;
+  }
+
+  &-left {
+    float: left;
+    margin: 0 20px 20px 0;
+  }
+
+  &-right {
+    float: right;
+    margin: 0 0 20px 20px;
+  }
+
+  &-center {
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 
 /* ====================  END TYPOGRAPHY  ==================== */
