@@ -135,7 +135,11 @@ table {
 caption {
   caption-side: top;
   font-weight: bold;
-  text-align: left;
+  text-align: center;
+  padding: 5px 10px;
+  border: 1px solid #ccc;
+  border-bottom: 0;
+  font-size: 130%;
 }
 
 th {

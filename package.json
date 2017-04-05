@@ -38,7 +38,7 @@
     "gulp-scss-lint": "^0.4.0",
     "gulp-scss-lint-stylish2": "^2.0.2",
     "gulp-size": "^2.1.0",
-    "gulp-sourcemaps": "^2.5.0",
+    "gulp-sourcemaps": "^2.5.1",
     "gulp-svgmin": "^1.2.3",
     "gulp-svgstore": "^6.1.0",
     "gulp-uglify": "^2.1.2",
@@ -49,11 +49,11 @@
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1",
     "main-bower-files": "^2.13.1",
-    "npm-check-updates": "^2.10.4",
+    "npm-check-updates": "^2.10.5",
     "pug": "^2.0.0-beta11",
     "typescript": "^2.2.2",
     "vinyl-ftp": "^0.6.0",
-    "webpack": "^2.3.2",
+    "webpack": "^2.3.3",
     "webpack-stream": "^3.2.0"
   },
   "babel": {
