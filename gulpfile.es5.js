@@ -11,9 +11,6 @@ var gutil = require('gulp-util');
 // System
 var fs = require('fs');
 var del = require('del');
-// HTML
-var htmlhint = require('gulp-htmlhint');
-var html_stylish = require('htmlhint-stylish');
 // Pug (Jade)
 var pug = require('gulp-pug');
 var pug_lint = require('gulp-pug-lint');
@@ -63,8 +60,6 @@ var mainBowerFiles = require('main-bower-files');
 var modernizr = require('gulp-modernizr');
 // FTP
 var ftp = require('vinyl-ftp');
-// NCU
-var ncu = require('npm-check-updates');
 // Webpack
 var webpack = require('webpack');
 var gulpWebpack = require('webpack-stream');
@@ -226,17 +221,6 @@ gulp.task('server', function () {
   browserSync.init(config.bs);
 });
 
-gulp.task('ncu', function (done) {
-  ncu.run({
-    packageFile: 'package.json',
-    loglevel: 'silly',
-    upgrade: true
-  }).then(function (upgraded) {
-    console.log('Dependencies to upgrade: ', upgraded);
-    done();
-  });
-});
-
 gulp.task('svg-sprite', function () {
   return gulp.src([path.src.svg, '!' + src + 'img/svg/*_hover.svg'])
     .pipe(plumber({errorHandler: errorAlert}))
@@ -391,13 +375,6 @@ gulp.task('autoprefixer', function () {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest(path.dest.css));
-});
-
-gulp.task('html-hint', function () {
-  return gulp.src(path.src.html)
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(htmlhint(src + '.htmlhintrc'))
-    .pipe(htmlhint.reporter(html_stylish));
 });
 
 gulp.task('scss-lint', function () {

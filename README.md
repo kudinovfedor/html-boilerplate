@@ -19,7 +19,7 @@ $ ruby dk.rb install
 **[Install Node.js](https://nodejs.org/dist/latest-v6.x/)** **`v6`**
 
 ```sh
-# install Compass, Sass, Pug(Jade), Gulp, Bower, Browser-Sync, Babel, scss_lint, htmlhint, jshint, eslint, dependencies
+# install Compass, Sass, Pug(Jade), Gulp, Bower, Browser-Sync, Babel, scss_lint, jshint, eslint, dependencies
 $ npm run set-all
 # IF AN ERROR OCCURS, TRY THE CODE BELOW
 
@@ -32,8 +32,8 @@ $ gem install oily_png
 # update npm
 $ npm install -g npm
 
-# install Pug(Jade), Gulp, Babel, Bower, Browser-Sync, htmlhint, jshint, eslint
-$ npm install -g gulp-cli pug-cli babel-cli bower browser-sync jshint eslint htmlhint
+# install Pug(Jade), Gulp, Babel, Bower, Browser-Sync, jshint, eslint
+$ npm install -g gulp-cli pug-cli babel-cli bower browser-sync jshint eslint
 
 # install npm-check-updates [optional]
 $ npm install -g npm-check-updates

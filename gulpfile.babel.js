@@ -11,9 +11,6 @@ import gutil from 'gulp-util';
 // System
 import fs from 'fs';
 import del from 'del';
-// HTML
-import htmlhint from 'gulp-htmlhint';
-import html_stylish from 'htmlhint-stylish';
 // Pug (Jade)
 import pug from 'gulp-pug';
 //import pug_lint from 'gulp-pug-lint';
@@ -63,8 +60,6 @@ import mainBowerFiles from 'main-bower-files';
 import modernizr from 'gulp-modernizr';
 // FTP
 import ftp from 'vinyl-ftp';
-// NCU
-import ncu from 'npm-check-updates';
 // Webpack
 import webpack from 'webpack';
 import gulpWebpack from 'webpack-stream';
@@ -227,17 +222,6 @@ gulp.task('server', () => {
   browserSync.init(config.bs);
 });
 
-gulp.task('ncu', (done) => {
-  ncu.run({
-    packageFile: 'package.json',
-    loglevel: 'silly',
-    upgrade: true
-  }).then((upgraded) => {
-    console.log('Dependencies to upgrade: ', upgraded);
-    done();
-  });
-});
-
 gulp.task('svg-sprite', () => {
   return gulp.src([path.src.svg, '!' + src + 'img/svg/*_hover.svg'])
     .pipe(plumber({errorHandler: errorAlert}))
@@ -392,13 +376,6 @@ gulp.task('autoprefixer', () => {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(autoprefixer(config.autoprefixer))
     .pipe(gulp.dest(path.dest.css));
-});
-
-gulp.task('html-hint', () => {
-  return gulp.src(path.src.html)
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(htmlhint(src + '.htmlhintrc'))
-    .pipe(htmlhint.reporter(html_stylish));
 });
 
 gulp.task('scss-lint', () => {
