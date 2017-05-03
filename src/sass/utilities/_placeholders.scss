@@ -25,4 +25,13 @@
 @import "placeholders/flexbox"; // [Optional]
 
 // Reset list
-%reset-list {list-style: none; margin: 0; padding-left: 0;}
+%reset-list {
+  list-style: none;
+  margin: 0;
+  padding:0;
+}
+
+// Reset flow
+%flow-root {
+  @include flow-root;
+}

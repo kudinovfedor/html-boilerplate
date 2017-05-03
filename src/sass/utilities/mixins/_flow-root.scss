@@ -1,0 +1,9 @@
+@mixin flow-root() {
+  @supports (display: flow-root) {
+    display: flow-root;
+
+    &:after {
+      content: none;
+    }
+  }
+}

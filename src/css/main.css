@@ -557,6 +557,9 @@ img:after {
   display: table;
 }
 
+@supports (display: flow-root) {
+}
+
 /* ====================  HEADER  ==================== */
 /* ====================  END HEADER  ==================== */
 /* ====================  NAV  ==================== */
@@ -570,6 +573,7 @@ img:after {
 @media (min-width: 1200px) {
   .container {
     width: 1200px;
+    max-width: 100%;
   }
 }
 

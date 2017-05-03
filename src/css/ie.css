@@ -1,3 +1,6 @@
+@supports (display: flow-root) {
+}
+
 .lt-ie8 .browserupgrade {
   background-color: #ccc;
   color: #000;

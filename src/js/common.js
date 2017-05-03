@@ -17,6 +17,9 @@
     // dppx value of retina display
     dppx();
 
+    // If support display: flow-root
+    supportFlowRoot();
+
     // Remove class .error when receives focus
     errorField('.error');
 
@@ -87,6 +90,29 @@
     if (window.devicePixelRatio !== undefined) {
 
       $('html').addClass(window.devicePixelRatio + 'dppx');
+
+    }
+
+  }
+
+  /**
+   * Support display: flow-root
+   *
+   * @example
+   * supportFlowRoot();
+   * @author Fedor Kudinov <brothersrabbits@mail.ru>
+   */
+  function supportFlowRoot() {
+
+    var html = $('html'), support = CSS.supports('(display: flow-root)');
+
+    if (support) {
+
+      html.addClass('flow-root');
+
+    } else {
+
+      html.addClass('no-flow-root');
 
     }
 

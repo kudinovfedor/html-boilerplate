@@ -4,30 +4,17 @@
 [![Dependency status](https://david-dm.org/kudinovfedor/fk-template.svg)](https://david-dm.org/kudinovfedor/fk-template)
 [![devDependency Status](https://david-dm.org/kudinovfedor/fk-template/dev-status.svg)](https://david-dm.org/kudinovfedor/fk-template/?type=dev)
 
-This project uses the Pug(Jade) for HTML, Sass + Compass for CSS, SMACSS structure with additions, Gulp - the streaming build system, Bower - package manager for the web
+This project uses the Pug(Jade) for HTML, Sass for CSS, SMACSS structure with additions, Gulp - the streaming build system, Bower - package manager for the web
 #### Installation all components on OS Windows
-**[Install Ruby](http://rubyinstaller.org/downloads/)** **`v2.3.3`**<br/>
-**[Install DevKit](http://rubyinstaller.org/downloads/)** `For use with Ruby 2.0 and above` **[optional]**<br/>
-```sh
-$ cd C:\DevKit
-$ ruby dk.rb init
-# open C:\DevKit\config.yml
-# add this line and save:
-- C:/Ruby23-x64
-$ ruby dk.rb install
-```
 **[Install Node.js](https://nodejs.org/dist/latest-v6.x/)** **`v6`**
 
 ```sh
-# install Compass, Sass, Pug(Jade), Gulp, Bower, Browser-Sync, Babel, scss_lint, jshint, eslint, dependencies
+# install Sass, Pug(Jade), Gulp, Bower, Browser-Sync, Babel, scss_lint, jshint, eslint, dependencies
 $ npm run set-all
 # IF AN ERROR OCCURS, TRY THE CODE BELOW
 
-# install Compass, Sass, scss_lint
-$ gem update && gem update --system && gem install compass scss_lint
-
-# install oily_png (must be installed DevKit) [optional]
-$ gem install oily_png
+# install Sass, scss_lint
+$ gem update && gem update --system && gem install sass scss_lint
 
 # update npm
 $ npm install -g npm
