@@ -163,18 +163,38 @@
    * @example
    * scrollToTop('.scroll-top');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {(string|Object)} scroll_id - selected item to perform the a clicked
+   * @param {string} scroll_id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration='slow'] - determining how long the animation will run
    */
   function scrollToTop(scroll_id, scroll_duration) {
 
     var el = $(scroll_id), duration = scroll_duration || 'slow';
 
-    el.on('click', function () {
+    $(document).on('click touchend', scroll_id, function () {
 
       $('html, body').animate({scrollTop: 0}, duration);
 
       return false;
+
+    });
+
+    $(window).on('scroll', function () {
+
+      var scrollPosition = $(this).scrollTop();
+
+      if (scrollPosition > 200) {
+
+        if (!el.hasClass('is-visible')) {
+
+          el.addClass('is-visible');
+
+        }
+
+      } else {
+
+        el.removeClass('is-visible');
+
+      }
 
     });
 

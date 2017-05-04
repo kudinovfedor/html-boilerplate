@@ -72,7 +72,7 @@
    */
   const jsEnable = (element) => {
 
-    let el = element || 'html';
+    const el = element || 'html';
 
     $(el).removeClass('no-js').addClass('js');
 
@@ -104,7 +104,7 @@
    */
   const supportFlowRoot = () => {
 
-    let html = $('html'), support = CSS.supports('(display: flow-root)');
+    const html = $('html'), support = CSS.supports('(display: flow-root)');
 
     if (support) {
 
@@ -129,7 +129,7 @@
    */
   const errorField = (element, class_error) => {
 
-    let el = element || '.error', error = class_error || 'error';
+    const el = element || '.error', error = class_error || 'error';
 
     $('body').on('focus', el, function () {
 
@@ -163,18 +163,38 @@
    * @example
    * scrollToTop('.scroll-top');
    * @author Fedor Kudinov <brothersrabbits@mail.ru>
-   * @param {(string|Object)} scroll_id - selected item to perform the a clicked
+   * @param {string} scroll_id - selected item to perform the a clicked
    * @param {(number|string)} [scroll_duration='slow'] - determining how long the animation will run
    */
   const scrollToTop = (scroll_id, scroll_duration) => {
 
-    let el = $(scroll_id), duration = scroll_duration || 'slow';
+    const el = $(scroll_id), duration = scroll_duration || 'slow';
 
-    el.on('click', () => {
+    $(document).on('click touchend', scroll_id, () => {
 
       $('html, body').animate({scrollTop: 0}, duration);
 
       return false;
+
+    });
+
+    $(window).on('scroll', function () {
+
+      const scrollPosition = $(this).scrollTop();
+
+      if (scrollPosition > 200) {
+
+        if (!el.hasClass('is-visible')) {
+
+          el.addClass('is-visible');
+
+        }
+
+      } else {
+
+        el.removeClass('is-visible');
+
+      }
 
     });
 
@@ -191,11 +211,11 @@
    */
   const scrollToAnchorLinks = (id, scroll_duration) => {
 
-    let el = $(id), duration = scroll_duration || 1000;
+    const el = $(id), duration = scroll_duration || 1000;
 
     el.on('click', 'a[href*="#"]:not([href="#"])', function () {
 
-      let el = $(this).attr('href');
+      const el = $(this).attr('href');
 
       $('html, body').animate({scrollTop: $(el).offset().top}, duration);
 
@@ -296,7 +316,7 @@
 
     $(id).each((i, val) => {
 
-      let el = $(val),
+      const el = $(val),
         fk_field = el.find(field),
         fk_plus = el.find(plus),
         fk_minus = el.find(minus);
@@ -344,7 +364,7 @@
    */
   const tabs = (tabs_container, tabs_list, tabs_item) => {
 
-    let parent = $(tabs_container), list = $(tabs_list), child = $(tabs_item);
+    const parent = $(tabs_container), list = $(tabs_list), child = $(tabs_item);
 
     list.on('click', 'li:not(.active)', function () {
 
@@ -368,12 +388,12 @@
    */
   const fk_accordion = (accordion_container, accordion_switch, accordion_class_open) => {
 
-    let fk_accordion = $(accordion_container), fk_switch = $(accordion_switch),
+    const fk_accordion = $(accordion_container), fk_switch = $(accordion_switch),
       fk_opened = accordion_class_open || 'js-opened';
 
     fk_switch.on('click', function () {
 
-      let el_parent = $(this).closest(fk_accordion);
+      const el_parent = $(this).closest(fk_accordion);
 
       if (el_parent.hasClass(fk_opened)) {
 
