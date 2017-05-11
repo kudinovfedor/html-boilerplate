@@ -84,15 +84,23 @@
         <legend>Form legend</legend>
         <p>
           <label for="input-checkbox">Input type['checkbox']</label>
-          <input type="checkbox" name="input-checkbox" id="input-checkbox" placeholder="Input type[checkbox]">
+          <input type="checkbox" name="input-checkbox" id="input-checkbox">
         </p>
         <p>
           <label for="input-radio">Input type['radio']</label>
-          <input type="radio" name="input-radio" id="input-radio" placeholder="Input type[radio]">
+          <input type="radio" name="input-radio" id="input-radio">
+        </p>
+        <p>
+          <label class="custom-switcher" for="custom-input-checkbox">Custom input type['checkbox']</label>
+          <input class="custom-element" type="checkbox" name="input-checkbox" id="custom-input-checkbox"><span class="custom-checkbox"></span>
+        </p>
+        <p>
+          <label class="custom-switcher" for="custom-input-radio">Custom input type['radio']</label>
+          <input class="custom-element" type="radio" name="input-radio" id="custom-input-radio"><span class="custom-radio"></span>
         </p>
         <p>
           <label for="input-color">Input type['color']</label>
-          <input type="color" name="input-color" id="input-color" placeholder="Input type[color]">
+          <input type="color" name="input-color" id="input-color">
         </p>
         <p>
           <label for="input-range">Input type['range']</label>
@@ -159,6 +167,18 @@
       <p>
         <label for="select">Select</label>
         <select name="select" id="select">
+          <optgroup label="Группа опций">
+            <option>Опция 1</option>
+            <option>Опция 2</option>
+            <option>Опция 3</option>
+          </optgroup>
+          <option>Опция 4</option>
+          <option>Опция 5</option>
+        </select>
+      </p>
+      <p>
+        <label for="multi-select">Multi Select</label>
+        <select name="multi-select" id="multi-select" multiple>
           <optgroup label="Группа опций">
             <option>Опция 1</option>
             <option>Опция 2</option>

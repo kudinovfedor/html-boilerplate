@@ -6,12 +6,8 @@
 @import "utilities/functions";
 
 // FORMSTYLER CSS
-//@import "vendors/formstyler/formstyler-select";
-//@import "vendors/formstyler/formstyler-select-multiple";
-//@import "vendors/formstyler/formstyler-checkbox";
-//@import "vendors/formstyler/formstyler-radio";
-//@import "vendors/formstyler/formstyler-file";
-//@import "vendors/formstyler/formstyler-number";
+//@import "vendors/formstyler/formstyler";
+//@import "vendors/formstyler/formstyler.theme";
 
 // ion.rangeSlider CSS
 //@import "vendors/ionrangeslider/ion.rangeSlider";
@@ -35,7 +31,7 @@
 @import "layout/forms";
 
 @import "module/gulp-sprite"; // [Optional]
-//@import "module/custom_checkbox_radio"; // [Optional]
+@import "module/custom_checkbox_radio"; // [Optional]
 //@import "layout/grid"; // [Optional]
 @import "module/buttons"; // [Optional]
 @import "module/tabs"; // [Optional]
@@ -46,7 +42,6 @@
 @import "module/helpers"; // [Optional]
 //@import "module/preloader"; // [Optional]
 //@import "module/rating"; // [Optional]
-//@import "module/sprites"; // [Optional]
 
 @import "page/home";
 @import "page/category";

@@ -13,7 +13,6 @@ import fs from 'fs';
 import del from 'del';
 // Pug (Jade)
 import pug from 'gulp-pug';
-//import pug_lint from 'gulp-pug-lint';
 // CSS
 // import cmq from 'gulp-combine-media-queries';
 import cssBase64 from 'gulp-css-base64';
@@ -22,10 +21,9 @@ import cleancss from 'gulp-clean-css';
 const critical = require('critical').stream;
 // SCSS
 import sass from 'gulp-sass';
-import compass from 'gulp-compass';
 import scsslint from 'gulp-scss-lint';
 import scss_stylish from 'gulp-scss-lint-stylish2';
-let reporter = scss_stylish({errorsOnly: false});
+const reporter = scss_stylish({errorsOnly: false});
 // Images
 // import imagemin from 'gulp-imagemin';
 import spritesmith from 'gulp.spritesmith';
@@ -41,6 +39,7 @@ import jshint from 'gulp-jshint';
 import hint_stylish from 'jshint-stylish';
 import eslint from 'gulp-eslint';
 import uglify from 'gulp-uglify';
+import autopolyfiller from 'gulp-autopolyfiller';
 // Gulp useful plugins
 import plumber from 'gulp-plumber';
 import rename from 'gulp-rename';
@@ -50,7 +49,6 @@ import sourcemaps from 'gulp-sourcemaps';
 import size from 'gulp-size';
 import cache from 'gulp-cached';
 import babel from 'gulp-babel';
-//import filter from 'gulp-filter';
 import zip from 'gulp-zip';
 // Browsersync
 const browserSync = require('browser-sync').create();
@@ -68,7 +66,6 @@ import gulpWebpack from 'webpack-stream';
 const config = {
   // Config Pug (Jade)
   pug: {pretty: true},
-  pug_lint: {'extends': `${src}/.pug-lintrc`},
   // Config CSS Autoprefixer
   autoprefixer: {
     browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
@@ -85,13 +82,6 @@ const config = {
   cleancss: {compatibility: 'ie7', debug: true},
   // Config SCSS(SASS)
   sass: {outputStyle: 'expanded', precision: 5, sourceComments: false},
-  // Config Compass + SCSS(SASS)
-  compass: {
-    config_file: `${src}/config.rb`, require: false, environment: 'development', http_path: '/', project_path: src,
-    css: `${src}/css`, font: `${src}/fonts`, image: `${src}/img`, javascript: `${src}/js`, sass: `${src}/sass`,
-    style: 'expanded', relative: true, comments: true, logging: true, time: true, sourcemap: true, debug: false,
-    task: 'compile' /*watch*/
-  },
   // Config SCSS(SASS) Lint
   scsslint: {config: `${src}/.scss-lint.yml`, maxBuffer: 300 * 1024, customReport: reporter.issues},
   // Config img
@@ -132,24 +122,22 @@ const config = {
   ftp: JSON.parse(fs.readFileSync(`${src}/ftp.json`)),
   // Config webpack
   webpack: {output: {filename: 'bundle.js'}, devtool: 'cheap-module-source-map', watch: true}
-  // Config Gulp filter
-  //filter: {restore: true, passthrough: true}
 };
 
 const path = {
   src: {
-    html: [`${src}/*.html`],
-    pug: [`${src}/pug/*.pug`],
+    html: `${src}/*.html`,
+    pug: `${src}/pug/*.pug`,
     css: [`${src}/css/*.css`, `!${src}/css/*.min.css`],
-    sass: [`${src}/sass/**/*.scss`],
+    sass: `${src}/sass/**/*.scss`,
     sassLint: [`${src}/sass/**/*.scss`, `!${src}/sass/vendors/**/*.scss`],
-    sprite: [`${src}/img/sprite/*.*`],
-    img: [`${src}/img/**/*.*`],
-    favicon: [`${src}/img/favicon`],
+    sprite: `${src}/img/sprite/*.*`,
+    img: `${src}/img/**/*.*`,
+    favicon: `${src}/img/favicon`,
     svg: `${src}/img/svg/*.svg`,
-    js: [`${src}/js/common.js`],
-    babel: [`${src}/js/es6/**/*.js`],
-    webpack: [`${src}/js/app.js`],
+    js: `${src}/js/common.js`,
+    babel: `${src}/js/es6/**/*.js`,
+    webpack: `${src}/js/app.js`,
     ie8: [`${src}/js/libs/{html5shiv,respond}.min.js`],
     allJS: [`${src}/js/libs/{modernizr,jquery}.min.js`],
     zip: ['dist/**/{*,}.*', 'src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
@@ -170,23 +158,22 @@ const path = {
     zip: './'
   },
   watch: {
-    html: [`${src}/*.html`],
-    pug: [`${src}/pug/**/*.pug`],
-    img: [`${src}/img/**/*.*`],
-    sprite: [`${src}/img/sprite/*.*`],
-    svg: [`${src}/img/svg/*.svg`],
+    pug: `${src}/pug/**/*.pug`,
+    img: `${src}/img/**/*.*`,
+    sprite: `${src}/img/sprite/*.*`,
+    svg: `${src}/img/svg/*.svg`,
     css: [`${src}/css/*.css`, `!${src}/css/*.min.css`],
-    sass: [`${src}/sass/**/*.scss`],
-    js: [`${src}/js/common.js`],
-    babel: [`${src}/js/es6/**/*.js`]
+    sass: `${src}/sass/**/*.scss`,
+    js: `${src}/js/common.js`,
+    babel: `${src}/js/es6/**/*.js`
   },
   dist: {
     src: {
-      css: [`${src}/css/*.css`],
-      fonts: [`${src}/fonts/**/*.*`],
+      css: `${src}/css/*.css`,
+      fonts: `${src}/fonts/**/*.*`,
       img: [`${src}/img/**/*.*`, `!${src}/img/{sprite,svg,original}/**/*.*`, `!${src}/img/{layout-home,favicon}.{jpg,png}`],
       js: [`${src}/js/**/*.js`, `!${src}/js/**/jquery.pixlayout.min.js`],
-      html: [`${src}/*.html`],
+      html: `${src}/*.html`,
       other: [`${src}/+(favicon|robots).+(ico|txt)`, '.htaccess'],
       zip: [`${dist}/**/{*,}.*`]
     },
@@ -202,14 +189,13 @@ const path = {
 };
 
 const errorAlert = function (error) {
-  notify.onError({title: 'Gulp Error', subtitle: 'Failure!', message: 'Check your terminal', sound: 'Sosumi'})(error); // Error Notification
+  notify.onError({title: 'Gulp Error', subtitle: 'Failure!', message: 'Check your terminal', sound: 'Sosumi'})(error);
   gutil.log(gutil.colors.red(`Error (${error.plugin}): ${error.message}`));
-  //console.log(error);
-  this.emit('end'); // End function
+  this.emit('end');
 };
 
 const getFullDate = () => {
-  let d = new Date(),
+  const d = new Date(),
     year = d.getFullYear(),
     month = d.getMonth() < 10 ? '0' + (d.getMonth() + 1) : d.getMonth() + 1,
     date = d.getDate() < 10 ? '0' + d.getDate() : d.getDate(),
@@ -223,7 +209,7 @@ gulp.task('server', () => {
 });
 
 gulp.task('svg-sprite', () => {
-  return gulp.src([path.src.svg, '!' + src + 'img/svg/*_hover.svg'])
+  return gulp.src([path.src.svg, `!${src}img/svg/*_hover.svg`])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(svgmin({js2svg: {pretty: false}}))
     .pipe(svgstore({inlineSvg: true}))
@@ -240,7 +226,7 @@ gulp.task('svg-to-png', () => {
 });
 
 gulp.task('img-sprite', () => {
-  let spriteData =
+  const spriteData =
     gulp.src(path.src.sprite)
       .pipe(spritesmith(config.sprite));
   spriteData.img.pipe(gulp.dest(path.dest.sprite));
@@ -276,7 +262,6 @@ gulp.task('all-js', () => {
 gulp.task('pug', () => {
   return gulp.src(path.src.pug)
     .pipe(plumber({errorHandler: errorAlert}))
-    //.pipe(pug_lint(config.pug_lint))
     .pipe(pug(config.pug))
     .pipe(gulp.dest(path.dest.pug))
     .pipe(browserSync.stream());
@@ -290,14 +275,6 @@ gulp.task('sass', () => {
     .pipe(sourcemaps.write('/'))
     .pipe(gulp.dest(path.dest.sass))
     .pipe(browserSync.stream({match: '**/*.css'}));
-});
-
-gulp.task('compass', () => {
-  return gulp.src(path.src.sass)
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(compass(config.compass))
-    .pipe(gulp.dest(path.dest.sass))
-    .pipe(browserSync.stream());
 });
 
 gulp.task('css', () => {
@@ -320,7 +297,7 @@ gulp.task('critical', () => {
       base: src,
       inline: false,
       minify: true,
-      css: ['src/css/main.css']
+      css: [`${src}/css/main.css`]
     }))
     .pipe(rename({basename: 'critical', suffix: '.min'}))
     .pipe(gulp.dest(path.dest.css));
@@ -340,6 +317,7 @@ gulp.task('jshint-eslint', () => {
 gulp.task('js', gulp.series('jshint-eslint', () => {
   return gulp.src(path.src.js)
     .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(autopolyfiller('polyfills.js'))
     //.pipe(sourcemaps.init())
     //.pipe(uglify()) // uncomment for good optimize js
     .pipe(uglify(config.uglify)) // custom settings
@@ -389,16 +367,8 @@ gulp.task('pug-watch', gulp.parallel('pug', () => {
   gulp.watch(path.watch.pug, gulp.series('pug'));
 }));
 
-gulp.task('compass-watch', gulp.parallel('compass', () => {
-  gulp.watch(path.watch.sass, gulp.series('compass'));
-}));
-
 gulp.task('sass-watch', gulp.parallel('sass', () => {
   gulp.watch(path.watch.sass, gulp.series('sass'));
-}));
-
-gulp.task('scss-lint-watch', gulp.parallel('scss-lint', () => {
-  gulp.watch(path.watch.sass, gulp.series('scss-lint'));
 }));
 
 gulp.task('modernizr', () => {
@@ -451,7 +421,7 @@ gulp.task('modernizr', () => {
 gulp.task('zip', () => {
   return gulp.src(path.src.zip, {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip(projectName + '(' + getFullDate() + ').zip', config.zip))
+    .pipe(zip(`${projectName}(${getFullDate()}).zip`, config.zip))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest(path.dest.zip));
 });
@@ -583,7 +553,7 @@ const otherDist = () => {
 const zipDist = () => {
   return gulp.src(path.dist.src.zip, {base: '.'})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(zip(projectName + '__dist(' + getFullDate() + ').zip', config.zip))
+    .pipe(zip(`${projectName}__dist(${getFullDate()}).zip`, config.zip))
     .pipe(size(config.fileSize))
     .pipe(gulp.dest(path.dist.dest.zip));
 };
@@ -615,12 +585,8 @@ gulp.task('collect-js-files', gulp.series(gulp.parallel('libsBower', 'modernizr'
 
 gulp.task('default', gulp.parallel('server', () => {
   gulp.watch(path.watch.pug, gulp.series('pug'));
-  //gulp.watch(path.watch.sass, gulp.series('compass'));
   gulp.watch(path.watch.sass, gulp.series('sass'));
-  //gulp.watch(path.watch.sass, gulp.series('scss-lint'));
-  gulp.watch(path.watch.js, gulp.series('jshint-eslint'));
   gulp.watch(path.watch.babel, gulp.series('babel'));
   gulp.watch(path.watch.sprite, gulp.series('img-sprite'));
   gulp.watch(path.watch.svg, gulp.series('svg'));
-  //gulp.watch(path.watch.html, gulp.series('html-hint'));
 }));

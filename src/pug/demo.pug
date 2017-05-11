@@ -51,13 +51,21 @@ block content
         legend Form legend
         p
           label(for='input-checkbox') Input type['checkbox']
-          input(type='checkbox', name='input-checkbox', id='input-checkbox', placeholder='Input type[checkbox]')
+          input(type='checkbox', name='input-checkbox', id='input-checkbox')
         p
           label(for='input-radio') Input type['radio']
-          input(type='radio', name='input-radio', id='input-radio', placeholder='Input type[radio]')
+          input(type='radio', name='input-radio', id='input-radio')
+        p
+          label.custom-switcher(for='custom-input-checkbox') Custom input type['checkbox']
+          input.custom-element(type='checkbox', name='input-checkbox', id='custom-input-checkbox')
+          span.custom-checkbox
+        p
+          label.custom-switcher(for='custom-input-radio') Custom input type['radio']
+          input.custom-element(type='radio', name='input-radio', id='custom-input-radio')
+          span.custom-radio
         p
           label(for='input-color') Input type['color']
-          input(type='color', name='input-color', id='input-color', placeholder='Input type[color]')
+          input(type='color', name='input-color', id='input-color')
         p
           label(for='input-range') Input type['range']
           input(type='range', name='input-range', id='input-range', min='0', max='10', step='2', value='6')
@@ -114,6 +122,15 @@ block content
           option Опция 4
           option Опция 5
       p
+        label(for='multi-select') Multi Select
+        select(name='multi-select', id='multi-select', multiple)
+          optgroup(label='Группа опций')
+            option Опция 1
+            option Опция 2
+            option Опция 3
+          option Опция 4
+          option Опция 5
+      p
         label(for='textarea') Textarea
         textarea(name="textarea", id="textarea", placeholder='textarea')
       hr
@@ -139,3 +156,11 @@ block content
     hr
 block script
   //-script(src='js/libs/modernizr-custom.min.js', async=false, defer=false)
+  //-script(src='js/libs/jquery.formstyler.min.js', async=false, defer=false)
+  //-script.
+    (function($){
+      "use strict";
+      $(function() {
+        $('input, select').styler();
+      });
+    })(jQuery);
