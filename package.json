@@ -70,7 +70,8 @@
     "babel": "babel src/js/es6 --out-dir src/js/es5 --watch",
     "webpack": "webpack --config src/webpack.config.js",
     "npm-outdated": "npm outdated",
-    "yarn-outdated": "yarn outdated"
+    "yarn-outdated": "yarn outdated",
+    "node-sass": "node node_modules\/node-sass\/bin\/node-sass src\/sass\/main.scss src\/css\/main.css"
   },
   "repository": {
     "type": "git",

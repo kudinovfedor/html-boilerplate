@@ -48,70 +48,69 @@ $radio-class: 'radio' !default;
     }
   }
 
-  &-#{$switcher-class} {
-    [type="checkbox"],
-    [type="radio"],
-    .#{$custom-class}-#{$element-class} {
-      cursor: pointer;
-      position: absolute;
-      z-index: -1;
-      width: $custom-size;
-      height: $custom-size;
-      @include opacity(0);
+  &-#{$element-class},
+  &-#{$switcher-class} [type="checkbox"],
+  &-#{$switcher-class} [type="radio"] {
+    cursor: pointer;
+    position: relative;
+    vertical-align: middle;
+    width: $custom-size;
+    height: $custom-size;
+    margin-right: -$custom-size;
+    @include opacity(0);
+  }
+
+  @at-root {
+    %custom-checked {
+      display: block;
     }
 
-    @at-root {
-      %custom-checked {
-        display: block;
-      }
+    %custom-disabled {
+      @include opacity(.5);
+      cursor: not-allowed;
+    }
 
-      %custom-disabled {
-        @include opacity(.5);
-        cursor: not-allowed;
-      }
-
-      [type="checkbox"],
-      .#{$custom-class}-#{$element-class} {
-        &:checked {
-          + .#{$custom-class}-#{$checkbox-class} {
-            &:after {
-              @extend %custom-checked;
-            }
+    .#{$custom-class}-#{$element-class},
+    [type="checkbox"] {
+      &:checked {
+        + .#{$custom-class}-#{$checkbox-class} {
+          &:after {
+            @extend %custom-checked;
           }
-        }
-
-        &:disabled {
-          + .#{$custom-class}-#{$checkbox-class} {
-            @extend %custom-disabled;
-          }
-        }
-
-        &:hover,
-        &:focus {
-          + .#{$custom-class}-#{$checkbox-class} { }
         }
       }
 
-      [type="radio"],
-      .#{$custom-class}-#{$element-class} {
-        &:checked {
-          + .#{$custom-class}-#{$radio-class} {
-            &:after {
-              @extend %custom-checked;
-            }
+      &:disabled {
+        + .#{$custom-class}-#{$checkbox-class} {
+          @extend %custom-disabled;
+        }
+      }
+
+      &:hover,
+      &:focus {
+        + .#{$custom-class}-#{$checkbox-class} { }
+      }
+    }
+
+    .#{$custom-class}-#{$element-class},
+    [type="radio"] {
+      &:checked {
+        + .#{$custom-class}-#{$radio-class} {
+          &:after {
+            @extend %custom-checked;
           }
         }
+      }
 
-        &:disabled {
-          + .#{$custom-class}-#{$radio-class} {
-            @extend %custom-disabled;
-          }
+      &:disabled {
+        + .#{$custom-class}-#{$radio-class} {
+          @extend %custom-disabled;
         }
+      }
 
-        &:hover,
-        &:focus {
-          + .#{$custom-class}-#{$radio-class} { }
-        }
+      &:hover,
+      &:focus {
+        + .#{$custom-class}-#{$radio-class} { }
       }
     }
   }

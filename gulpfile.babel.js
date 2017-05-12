@@ -589,4 +589,5 @@ gulp.task('default', gulp.parallel('server', () => {
   gulp.watch(path.watch.babel, gulp.series('babel'));
   gulp.watch(path.watch.sprite, gulp.series('img-sprite'));
   gulp.watch(path.watch.svg, gulp.series('svg'));
+  gulp.watch('**/*.html').on('change', browserSync.reload);
 }));
