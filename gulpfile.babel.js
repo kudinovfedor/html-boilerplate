@@ -25,7 +25,7 @@ import scsslint from 'gulp-scss-lint';
 import scss_stylish from 'gulp-scss-lint-stylish2';
 const reporter = scss_stylish({errorsOnly: false});
 // Images
-// import imagemin from 'gulp-imagemin';
+import imagemin from 'gulp-imagemin';
 import spritesmith from 'gulp.spritesmith';
 // Favicon.ico
 import realFavicon from 'gulp-real-favicon';
@@ -47,7 +47,7 @@ import notify from 'gulp-notify';
 import concat from 'gulp-concat';
 import sourcemaps from 'gulp-sourcemaps';
 import size from 'gulp-size';
-import cache from 'gulp-cached';
+import cache from 'gulp-cache';
 import babel from 'gulp-babel';
 import zip from 'gulp-zip';
 // Browsersync
@@ -81,7 +81,7 @@ const config = {
   // Config CSS minify
   cleancss: {compatibility: 'ie7', debug: true},
   // Config SCSS(SASS)
-  sass: {outputStyle: 'expanded', precision: 5, sourceComments: false},
+  sass: {outputStyle: 'expanded', precision: 5, sourceComments: false, includePaths: [`${src}/sass/`]},
   // Config SCSS(SASS) Lint
   scsslint: {config: `${src}/.scss-lint.yml`, maxBuffer: 300 * 1024, customReport: reporter.issues},
   // Config img
@@ -132,7 +132,7 @@ const path = {
     sass: `${src}/sass/**/*.scss`,
     sassLint: [`${src}/sass/**/*.scss`, `!${src}/sass/vendors/**/*.scss`],
     sprite: `${src}/img/sprite/*.*`,
-    img: `${src}/img/**/*.*`,
+    img: [`${src}/img/**/*.+(png|jpg|jpeg|gif|svg)`, `!${src}/img/optimized/**/*.*`],
     favicon: `${src}/img/favicon`,
     svg: `${src}/img/svg/*.svg`,
     js: `${src}/js/common.js`,
@@ -158,8 +158,9 @@ const path = {
     zip: './'
   },
   watch: {
+    html: `${src}/**/*.html`,
     pug: `${src}/pug/**/*.pug`,
-    img: `${src}/img/**/*.*`,
+    img: `${src}/img/**/*.+(png|jpg|jpeg|gif|svg)`,
     sprite: `${src}/img/sprite/*.*`,
     svg: `${src}/img/svg/*.svg`,
     css: [`${src}/css/*.css`, `!${src}/css/*.min.css`],
@@ -171,7 +172,7 @@ const path = {
     src: {
       css: `${src}/css/*.css`,
       fonts: `${src}/fonts/**/*.*`,
-      img: [`${src}/img/**/*.*`, `!${src}/img/{sprite,svg,original}/**/*.*`, `!${src}/img/{layout-home,favicon}.{jpg,png}`],
+      img: [`${src}/img/**/*.+(png|jpg|gif|svg)`, `!${src}/img/{sprite,svg,original}/**/*.*`, `!${src}/img/{layout-home,favicon}.{jpg,png}`],
       js: [`${src}/js/**/*.js`, `!${src}/js/**/jquery.pixlayout.min.js`],
       html: `${src}/*.html`,
       other: [`${src}/+(favicon|robots).+(ico|txt)`, '.htaccess'],
@@ -339,15 +340,19 @@ gulp.task('webpack', () => {
     .pipe(gulp.dest(path.dest.webpack));
 });
 
-//gulp.task('img', () => {
-//  return gulp.src(path.src.img, {since: gulp.lastRun(img)})
-//    .pipe(plumber({errorHandler: errorAlert}))
-//    .pipe(cache(imagemin({
-//      optimizationLevel: 3,
-//      progressive: true
-//    })))
-//    .pipe(gulp.dest(path.dest.img));
-//});
+gulp.task('img', () => {
+ return gulp.src(path.src.img, {since: gulp.lastRun('img')})
+   .pipe(plumber({errorHandler: errorAlert}))
+   .pipe(cache(imagemin([
+     imagemin.gifsicle({interlaced: true}),
+     imagemin.jpegtran({progressive: true}),
+     imagemin.optipng({optimizationLevel: 3}),
+     imagemin.svgo({plugins: [{removeViewBox: false}]})
+   ], {
+     verbose: true
+   })))
+   .pipe(gulp.dest(path.dest.img));
+});
 
 gulp.task('autoprefixer', () => {
   return gulp.src(['css/main.css'])
@@ -365,6 +370,10 @@ gulp.task('scss-lint', () => {
 
 gulp.task('pug-watch', gulp.parallel('pug', () => {
   gulp.watch(path.watch.pug, gulp.series('pug'));
+}));
+
+gulp.task('html-watch', gulp.parallel('server',() => {
+  gulp.watch(path.watch.html).on('change', browserSync.reload);
 }));
 
 gulp.task('sass-watch', gulp.parallel('sass', () => {
@@ -589,5 +598,6 @@ gulp.task('default', gulp.parallel('server', () => {
   gulp.watch(path.watch.babel, gulp.series('babel'));
   gulp.watch(path.watch.sprite, gulp.series('img-sprite'));
   gulp.watch(path.watch.svg, gulp.series('svg'));
-  gulp.watch('**/*.html').on('change', browserSync.reload);
+  gulp.watch(path.watch.js).on('change', browserSync.reload);
+  gulp.watch(path.watch.html).on('change', browserSync.reload);
 }));
