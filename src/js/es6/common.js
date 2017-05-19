@@ -62,6 +62,9 @@
 
   });
 
+  // Variables
+  const supportsCSS = !!((window.CSS && window.CSS.supports) || window.supportsCSS || false);
+
   /**
    * Javascript enable
    *
@@ -104,15 +107,19 @@
    */
   const supportFlowRoot = () => {
 
-    const html = $('html'), support = CSS.supports('(display: flow-root)');
+    if (supportsCSS) {
 
-    if (support) {
+      const html = $('html'), isSupport = CSS.supports('(display: flow-root)');
 
-      html.addClass('flow-root');
+      if (isSupport) {
 
-    } else {
+        html.addClass('flow-root');
 
-      html.addClass('no-flow-root');
+      } else {
+
+        html.addClass('no-flow-root');
+
+      }
 
     }
 

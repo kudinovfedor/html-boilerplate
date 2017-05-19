@@ -133,7 +133,7 @@ const path = {
     sassLint: [`${src}/sass/**/*.scss`, `!${src}/sass/vendors/**/*.scss`],
     sprite: `${src}/img/sprite/*.*`,
     img: [`${src}/img/**/*.+(png|jpg|jpeg|gif|svg)`, `!${src}/img/optimized/**/*.*`],
-    favicon: `${src}/img/favicon`,
+    favicon: `${src}/img`,
     svg: `${src}/img/svg/*.svg`,
     js: `${src}/js/common.js`,
     babel: `${src}/js/es6/**/*.js`,
@@ -147,6 +147,7 @@ const path = {
     css: `${src}/css`,
     sass: `${src}/css`,
     img: `${src}/img/optimized`,
+    favicon: `${src}/img/favicon`,
     sprite: `${src}/img`,
     sprite_css: `${src}/sass/module`,
     svg: `${src}/img`,
@@ -441,8 +442,8 @@ gulp.task('zip', () => {
 // package (see the check-for-favicon-update task below).
 gulp.task('generate-favicon', (done) => {
   realFavicon.generateFavicon({
-    masterPicture: `${path.src.favicon}/.png`, // 310x310 px
-    dest: path.src.favicon.toString(),
+    masterPicture: `${path.src.favicon}/favicon.png`, // 310x310 px
+    dest: path.dest.favicon.toString(),
     iconsPath: 'img/favicon',
     design: {
       ios: {

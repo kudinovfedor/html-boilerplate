@@ -55,7 +55,7 @@
     "jquery": "~1.12.4 < 2",
     "jquery.form-styler": "^2.0.0",
     "jquery-validation": "^1.16.0",
-    "jQuery.mmenu": "^6.0.2",
+    "jQuery.mmenu": "^6.1.0",
     "slick-carousel": "^1.6.0",
     "magnific-popup": "^1.1.0",
     "ion.rangeSlider": "^2.1.7",
@@ -92,7 +92,7 @@
     },
     "jQuery.mmenu": {
       "main": [
-        "./dist/jquery.mmenu.all.min.js"
+        "./dist/jquery.mmenu.all.js"
       ]
     },
     "slick-carousel": {
