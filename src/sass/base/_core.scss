@@ -31,7 +31,6 @@ body {
   background-color: $body-bg;
   font: normal #{$fk-base-font-size}/#{$fk-base-line-height} $fk-base-font-family;
   color: $body-color;
-  overflow-x: hidden;
   @if ($scroll-behavior) {
     scroll-behavior: smooth;
   }

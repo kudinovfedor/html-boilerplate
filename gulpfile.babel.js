@@ -166,7 +166,7 @@ const path = {
     svg: `${src}/img/svg/*.svg`,
     css: [`${src}/css/*.css`, `!${src}/css/*.min.css`],
     sass: `${src}/sass/**/*.scss`,
-    js: `${src}/js/common.js`,
+    js: `${src}/**/*.js`,
     babel: `${src}/js/es6/**/*.js`
   },
   dist: {

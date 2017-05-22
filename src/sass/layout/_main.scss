@@ -1,12 +1,14 @@
 /* ====================  MAIN  ==================== */
 .container {
   @extend %clearfix;
+  padding-left: 15px;
+  padding-right: 15px;
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%;
 
   @media (min-width: 1200px) {
     width: 1200px;
-    max-width: 100%;
   }
 }
 
