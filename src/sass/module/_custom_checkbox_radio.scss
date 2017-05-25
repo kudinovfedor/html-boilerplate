@@ -1,10 +1,10 @@
 /* ======================  CUSTOM CHECKBOX, RADIO  ====================== */
 $custom-size: 14px !default;
-$custom-class: 'custom' !default;
-$switcher-class: 'switcher' !default;
-$element-class: 'element' !default;
-$checkbox-class: 'checkbox' !default;
-$radio-class: 'radio' !default;
+$custom-class: "custom" !default;
+$switcher-class: "switcher" !default;
+$element-class: "element" !default;
+$checkbox-class: "checkbox" !default;
+$radio-class: "radio" !default;
 
 .#{$custom-class} {
   &-#{$checkbox-class},

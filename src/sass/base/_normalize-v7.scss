@@ -6,6 +6,10 @@ html {
   @include text-size-adjust(100%);
 }
 
+body {
+  margin: 0;
+}
+
 article,
 aside,
 footer,
@@ -121,6 +125,9 @@ input,
 optgroup,
 select,
 textarea {
+  font-family: sans-serif;
+  font-size: 100%;
+  line-height: 1.15;
   margin: 0;
 }
 
@@ -153,6 +160,10 @@ button,
   &:-moz-focusring {
     outline: 1px dotted ButtonText;
   }
+}
+
+fieldset {
+  padding: .35em .75em .625em;
 }
 
 legend {

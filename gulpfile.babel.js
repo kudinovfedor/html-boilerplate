@@ -18,7 +18,8 @@ import pug from 'gulp-pug';
 import cssBase64 from 'gulp-css-base64';
 import autoprefixer from 'gulp-autoprefixer';
 import cleancss from 'gulp-clean-css';
-const critical = require('critical').stream;
+import gulpCritical from 'critical';
+const critical = gulpCritical.stream;
 // SCSS
 import sass from 'gulp-sass';
 import scsslint from 'gulp-scss-lint';
@@ -48,10 +49,13 @@ import concat from 'gulp-concat';
 import sourcemaps from 'gulp-sourcemaps';
 import size from 'gulp-size';
 import cache from 'gulp-cache';
+import cached from 'gulp-cached';
 import babel from 'gulp-babel';
 import zip from 'gulp-zip';
 // Browsersync
-const browserSync = require('browser-sync').create();
+import gulpBrowserSync from 'browser-sync';
+const browserSync = gulpBrowserSync.create();
+const reload = gulpBrowserSync.reload;
 // Bower
 import mainBowerFiles from 'main-bower-files';
 // Modernizr
@@ -124,6 +128,7 @@ const config = {
   webpack: {output: {filename: 'bundle.js'}, devtool: 'cheap-module-source-map', watch: true}
 };
 
+// Path
 const path = {
   src: {
     html: `${src}/*.html`,
@@ -365,7 +370,7 @@ gulp.task('autoprefixer', () => {
 gulp.task('scss-lint', () => {
   return gulp.src(path.src.sassLint, {since: gulp.lastRun('scss-lint')})
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(cache(scsslint))
+    .pipe(cached(scsslint))
     .pipe(scsslint(config.scsslint));
 });
 
@@ -374,11 +379,15 @@ gulp.task('pug-watch', gulp.parallel('pug', () => {
 }));
 
 gulp.task('html-watch', gulp.parallel('server',() => {
-  gulp.watch(path.watch.html).on('change', browserSync.reload);
+  gulp.watch(path.watch.html).on('change', reload);
 }));
 
 gulp.task('sass-watch', gulp.parallel('sass', () => {
   gulp.watch(path.watch.sass, gulp.series('sass'));
+}));
+
+gulp.task('scss-lint-watch', gulp.parallel('scss-lint', () => {
+  gulp.watch(path.watch.sass, gulp.series('scss-lint'));
 }));
 
 gulp.task('modernizr', () => {
@@ -599,6 +608,6 @@ gulp.task('default', gulp.parallel('server', () => {
   gulp.watch(path.watch.babel, gulp.series('babel'));
   gulp.watch(path.watch.sprite, gulp.series('img-sprite'));
   gulp.watch(path.watch.svg, gulp.series('svg'));
-  gulp.watch(path.watch.js).on('change', browserSync.reload);
-  gulp.watch(path.watch.html).on('change', browserSync.reload);
+  gulp.watch(path.watch.js).on('change', reload);
+  gulp.watch(path.watch.html).on('change', reload);
 }));

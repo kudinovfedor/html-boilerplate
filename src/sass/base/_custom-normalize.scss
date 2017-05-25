@@ -16,7 +16,7 @@ label {
 [type="url"],
 textarea {
   //outline: 0;
-  //border-radius: 0;
+  //@include border-radius(0;
   @include appearance(none);
   //@include box-shadow(none);
 }
