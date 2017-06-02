@@ -55,7 +55,7 @@ import zip from 'gulp-zip';
 // Browsersync
 import gulpBrowserSync from 'browser-sync';
 const browserSync = gulpBrowserSync.create();
-const reload = gulpBrowserSync.reload;
+const reload = browserSync.reload;
 // Bower
 import mainBowerFiles from 'main-bower-files';
 // Modernizr
@@ -100,7 +100,7 @@ const config = {
     }
   },
   // Config Uglify
-  uglify: {mangle: false, compress: false, preserveComments: 'license'},
+  uglify: {mangle: false, compress: false},
   // Config JSHint
   jshint: {lookup: true, linter: 'jshint'},
   // Config ESLint
@@ -608,6 +608,7 @@ gulp.task('default', gulp.parallel('server', () => {
   gulp.watch(path.watch.babel, gulp.series('babel'));
   gulp.watch(path.watch.sprite, gulp.series('img-sprite'));
   gulp.watch(path.watch.svg, gulp.series('svg'));
+  gulp.watch(path.watch.css).on('change', reload);
   gulp.watch(path.watch.js).on('change', reload);
   gulp.watch(path.watch.html).on('change', reload);
 }));
