@@ -58,7 +58,7 @@
     "jQuery.mmenu": "^6.1.0",
     "slick-carousel": "^1.6.0",
     "magnific-popup": "^1.1.0",
-    "ion.rangeSlider": "^2.1.7",
+    "ion.rangeSlider": "^2.1.8",
     "pixlayout": "~0.9.7"
   },
   "overrides": {
