@@ -67,13 +67,15 @@ RewriteEngine On
   ### Remove the header Last-Modified.
   #Header unset Last-Modified
 
-  ### Vary: Accept-Encoding (for example <FilesMatch "\.(js|css|xml|gz|html)$">)
-  <FilesMatch "\.(css|js|svg)$">
+  ### Vary: Accept-Encoding
+  <FilesMatch "\.(css|js|svg|xml|gz|html)$">
     Header append Vary: Accept-Encoding
   </FilesMatch>
 
+  Header set Vary "Accept-Encoding"
+
   ### Use this to avoid clickjacking attacks
-  Header set X-Frame-Options SAMEORIGIN
+  Header set X-Frame-Options "SAMEORIGIN"
 
   ### X-XSS-Protection
   Header set X-XSS-Protection "1; mode=block"
@@ -83,12 +85,21 @@ RewriteEngine On
 
   ### Server-side technology information
   Header unset X-Powered-By
+  #Header unset Server
+
+  ### HTTP Public Key Pinning (HPKP)
+  #Header set Public-Key-Pins "pin-sha256="; pin-sha256="; max-age=; includeSubDomains;"
+
+  ### Expect-CT
+  #Expect-CT: max-age=0; report-uri="https://scotthelme.report-uri.io/r/default/ct/reportOnly"
 
   ### Content-Security-Policy
   #Header set Content-Security-Policy "default-src https: 'none'; script-src https: 'self'; style-src https: 'self'; img-src https: 'self'; frame-src 'self'; object-src 'self';"
+  Header set Content-Security-Policy "default-src 'none'; style-src 'self' 'unsafe-inline'; font-src 'self'; img-src 'self'; script-src 'self';"
 
   ### HTTP Strict Transport Security
-  #Header always set Strict-Transport-Security "max-age=31536000"
+  #Header set Strict-Transport-Security "max-age=31536000; includeSubDomains; preload" env=HTTPS
+  #Header set Strict-Transport-Security "max-age=31536000;"
 
 </IfModule>
 
@@ -105,24 +116,24 @@ ServerSignature Off
   ExpiresDefault "access plus 0 minutes"
   #ExpiresByType text/html "access plus 3600 seconds"
   #ExpiresByType application/xhtml+xml "access plus 3600 seconds"
-  ExpiresByType text/css "access plus 1 years"
-  ExpiresByType text/javascript "access plus 1 years"
-  ExpiresByType application/javascript "access plus 1 years"
-  ExpiresByType application/x-javascript "access plus 1 years"
-  ExpiresByType application/json "access plus 1 years"
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType text/javascript "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  ExpiresByType application/json "access plus 1 month"
   ExpiresByType text/cache-manifest "access plus 0 seconds"
-  #ExpiresByType application/x-shockwave-flash "access plus 1 years"
+  #ExpiresByType application/x-shockwave-flash "access plus 1 month"
   ExpiresByType image/jpeg "access plus 1 month"
   ExpiresByType image/png "access plus 1 month"
   ExpiresByType image/gif "access plus 1 month"
-  ExpiresByType image/x-icon "access plus 1 years"
-  ExpiresByType image/ico "access plus 1 years"
+  ExpiresByType image/x-icon "access plus 1 month"
+  ExpiresByType image/ico "access plus 1 month"
   ExpiresByType image/svg+xml "access plus 1 month"
-  ExpiresByType font/opentype "access plus 1 years"
-  ExpiresByType application/vnd.ms-fontobject "access plus 1 years"
-  ExpiresByType application/x-font-ttf "access plus 1 years"
-  ExpiresByType application/font-woff "access plus 1 years"
-  ExpiresByType application/font-woff2 "access plus 1 years"
+  ExpiresByType font/opentype "access plus 1 month"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 month"
+  ExpiresByType application/x-font-ttf "access plus 1 month"
+  ExpiresByType application/font-woff "access plus 1 month"
+  ExpiresByType application/font-woff2 "access plus 1 month"
 </IfModule>
 
 ### Compression
@@ -134,22 +145,23 @@ ServerSignature Off
     </IfModule>
   </IfModule>
   <IfModule mod_filter.c>
-    AddOutputFilterByType DEFLATE text/html
-    #AddOutputFilterByType DEFLATE text/plain
-    #AddOutputFilterByType DEFLATE text/xml
-    #AddOutputFilterByType DEFLATE application/xml
-    AddOutputFilterByType DEFLATE text/css
-    AddOutputFilterByType DEFLATE text/javascript
-    AddOutputFilterByType DEFLATE application/json
-    AddOutputFilterByType DEFLATE application/javascript
-    AddOutputFilterByType DEFLATE application/x-javascript
+    AddOutputFilterByType DEFLATE text/html text/plain
+    AddOutputFilterByType DEFLATE text/xml application/xml
+    AddOutputFilterByType DEFLATE text/css text/javascript
+    AddOutputFilterByType DEFLATE application/json application/javascript application/x-javascript
     ### Images
-    #AddOutputFilterByType DEFLATE image/jpeg image/png image/gif image/x-icon image/svg+xml
+    AddOutputFilterByType DEFLATE image/jpeg image/png image/gif image/x-icon image/svg+xml
     ### Web fonts
-    #AddOutputFilterByType DEFLATE font/opentype application/vnd.ms-fontobject application/x-font-ttf application/font-woff application/font-woff2
+    AddOutputFilterByType DEFLATE font/opentype application/vnd.ms-fontobject application/x-font-ttf application/font-woff application/font-woff2
   </IfModule>
   <IfModule !mod_filter.c>
     <FilesMatch "\.(css|js|x?html?)$">
+      SetOutputFilter DEFLATE
+    </FilesMatch>
+    <FilesMatch "\.(ttf|otf|eot|woff|woff2|svg|svgz)$">
+      SetOutputFilter DEFLATE
+    </FilesMatch>
+    <FilesMatch "\.(jpg|jpeg|png|gif|ico)$">
       SetOutputFilter DEFLATE
     </FilesMatch>
   </IfModule>
@@ -196,9 +208,10 @@ ServerSignature Off
 ### Gateway Timeout
 #ErrorDocument 504 /504.html
 
-### Protection .htpasswd files
-<Files .htpasswd>
-   deny from all
-</Files>
+### Protection .htpasswd and .htaccess files
+<FilesMatch "\.(htpasswd|htaccess)$">
+  order allow,deny
+  deny from all
+</FilesMatch>
 
 #deny from all
