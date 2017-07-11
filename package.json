@@ -17,7 +17,7 @@
     "gulp-babel": "^6.1.2",
     "gulp-cache": "^0.4.6",
     "gulp-cached": "^1.1.1",
-    "gulp-clean-css": "^3.4.2",
+    "gulp-clean-css": "^3.6.0",
     "gulp-combine-media-queries": "^0.2.0",
     "gulp-compass": "^2.1.0",
     "gulp-concat": "^2.6.1",
@@ -49,7 +49,7 @@
     "pug": "^2.0.0-rc.2",
     "typescript": "^2.4.1",
     "vinyl-ftp": "^0.6.0",
-    "webpack": "^3.0.0",
+    "webpack": "^3.1.0",
     "webpack-stream": "^3.2.0"
   },
   "babel": {
