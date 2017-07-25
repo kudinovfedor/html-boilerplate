@@ -36,5 +36,8 @@ dist/
 # The original, uncompressed files
 original/
 
+# Temp folder
+tmp/
+
  # Misc
 npm-debug.log

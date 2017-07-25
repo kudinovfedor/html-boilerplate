@@ -18,6 +18,7 @@ import pug from 'gulp-pug';
 import cssBase64 from 'gulp-css-base64';
 import autoprefixer from 'gulp-autoprefixer';
 import cleancss from 'gulp-clean-css';
+import csscss from 'gulp-csscss';
 import gulpCritical from 'critical';
 const critical = gulpCritical.stream;
 // SCSS
@@ -62,9 +63,6 @@ import mainBowerFiles from 'main-bower-files';
 import modernizr from 'gulp-modernizr';
 // FTP
 import ftp from 'vinyl-ftp';
-// Webpack
-import webpack from 'webpack';
-import gulpWebpack from 'webpack-stream';
 
 // Config
 const config = {
@@ -124,8 +122,6 @@ const config = {
   zip: {compress: true},
   // Config FTP
   ftp: JSON.parse(fs.readFileSync(`${src}/ftp.json`)),
-  // Config webpack
-  webpack: {output: {filename: 'bundle.js'}, devtool: 'cheap-module-source-map', watch: true}
 };
 
 // Path
@@ -142,7 +138,6 @@ const path = {
     svg: `${src}/img/svg/*.svg`,
     js: `${src}/js/common.js`,
     babel: `${src}/js/es6/**/*.js`,
-    webpack: `${src}/js/app.js`,
     ie8: [`${src}/js/libs/{html5shiv,respond}.min.js`],
     allJS: [`${src}/js/libs/{modernizr,jquery}.min.js`],
     zip: ['dist/**/{*,}.*', 'src/**/{*,}.*', '{*,}.*', '!*.{zip,rar}', '!.{git,idea,sass-cache}', '!{bower_components,node_modules}']
@@ -159,7 +154,6 @@ const path = {
     svgfallback: `${src}/img/sprite`,
     js: `${src}/js`,
     babel: `${src}/js/es5`,
-    webpack: `${src}/js`,
     libs: `${src}/js/libs`,
     zip: './'
   },
@@ -297,6 +291,12 @@ gulp.task('css', () => {
     .pipe(gulp.dest(path.dest.css));
 });
 
+gulp.task('csscss', () => {
+  return gulp.src(path.src.css)
+    .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(csscss());
+});
+
 // Generate & Inline Critical-path CSS
 gulp.task('critical', () => {
   return gulp.src(path.src.html)
@@ -338,12 +338,6 @@ gulp.task('babel', () => {
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(babel())
     .pipe(gulp.dest(path.dest.babel));
-});
-
-gulp.task('webpack', () => {
-  return gulp.src(path.src.webpack)
-    .pipe(gulpWebpack(config.webpack, webpack))
-    .pipe(gulp.dest(path.dest.webpack));
 });
 
 gulp.task('img', () => {
@@ -388,6 +382,11 @@ gulp.task('sass-watch', gulp.parallel('sass', () => {
 
 gulp.task('scss-lint-watch', gulp.parallel('scss-lint', () => {
   gulp.watch(path.watch.sass, gulp.series('scss-lint'));
+}));
+
+gulp.task('watch', gulp.parallel('pug', 'sass', () => {
+  gulp.watch(path.watch.pug, gulp.series('pug'));
+  gulp.watch(path.watch.sass, gulp.series('sass'));
 }));
 
 gulp.task('modernizr', () => {
