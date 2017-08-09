@@ -14,7 +14,7 @@
     "gulp": "gulpjs/gulp#4.0",
     "gulp-autopolyfiller": "^1.2.1",
     "gulp-autoprefixer": "^4.0.0",
-    "gulp-babel": "^6.1.2",
+    "gulp-babel": "^7.0.0",
     "gulp-cache": "^0.4.6",
     "gulp-cached": "^1.1.1",
     "gulp-clean-css": "^3.7.0",
@@ -46,7 +46,7 @@
     "jshint": "^2.9.5",
     "jshint-stylish": "^2.2.1",
     "main-bower-files": "^2.13.1",
-    "pug": "^2.0.0-rc.2",
+    "pug": "^2.0.0-rc.3",
     "vinyl-ftp": "^0.6.0"
   },
   "babel": {
