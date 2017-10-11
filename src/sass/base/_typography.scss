@@ -45,7 +45,7 @@ a {
   &:focus {}
 
   &:empty {
-    &:before {
+    &::before {
       content: attr(href);
     }
   }
@@ -178,7 +178,7 @@ video {
 img {
   text-align: center;
 
-  &:after {
+  &::after {
     display: block;
     content: "(url: " attr(src) ")";
     padding: 2px 5px;

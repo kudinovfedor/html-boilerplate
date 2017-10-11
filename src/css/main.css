@@ -282,7 +282,7 @@ html {
   box-sizing: border-box;
 }
 
-*, *:before, *:after {
+*, *::before, *::after {
   -webkit-box-sizing: inherit;
   -moz-box-sizing: inherit;
   box-sizing: inherit;
@@ -427,7 +427,7 @@ a:hover {
   text-decoration: none;
 }
 
-a:empty:before {
+a:empty::before {
   content: attr(href);
 }
 
@@ -547,7 +547,7 @@ img {
   text-align: center;
 }
 
-img:after {
+img::after {
   display: block;
   content: "(url: " attr(src) ")";
   padding: 2px 5px;
@@ -560,7 +560,7 @@ img:after {
 }
 
 /* ====================  END TYPOGRAPHY  ==================== */
-.container:after {
+.container::after {
   clear: both;
   content: " ";
   display: table;
@@ -860,7 +860,7 @@ optgroup {
   background-color: #6bc15f;
 }
 
-.fk-accordion.js-opened .fk-accordion-switch:after {
+.fk-accordion.js-opened .fk-accordion-switch::after {
   border: 5px solid transparent;
   border-top: 8px solid #fff;
   bottom: 0;
@@ -909,7 +909,7 @@ optgroup {
   width: 52px;
 }
 
-.fk-accordion-switch:after {
+.fk-accordion-switch::after {
   border: 5px solid transparent;
   border-left: 8px solid #fff;
   border-right: 0;
@@ -1068,7 +1068,7 @@ optgroup {
   display: none;
 }
 
-.visuallyhidden {
+.visually-hidden {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -1081,7 +1081,7 @@ optgroup {
   overflow: hidden;
 }
 
-.visuallyhidden.focusable:active, .visuallyhidden.focusable:focus {
+.visually-hidden.focusable:active, .visually-hidden.focusable:focus {
   position: static;
   width: auto;
   height: auto;
@@ -1092,7 +1092,7 @@ optgroup {
   overflow: visible;
 }
 
-.visuallyhidden:not(:focus):not(:active) {
+.visually-hidden:not(:focus):not(:active) {
   position: absolute;
   width: 1px;
   height: 1px;

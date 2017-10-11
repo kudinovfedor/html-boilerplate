@@ -26,7 +26,7 @@ $preloader-size: 10px;
     background: rgba($bg-color, .95);
   }
 
-  &:after {
+  &::after {
     .cssanimations & {
       content: "";
       margin: auto;

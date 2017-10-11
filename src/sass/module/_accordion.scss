@@ -26,7 +26,7 @@
     .fk-accordion-switch {
       background-color: #6bc15f;
 
-      &:after {
+      &::after {
         border: 5px solid transparent;
         border-top: 8px solid #fff;
         bottom: 0;
@@ -73,7 +73,7 @@
   top: 50%;
   width: 52px;
 
-  &:after {
+  &::after {
     border: 5px solid transparent;
     border-left: 8px solid #fff;
     border-right: 0;

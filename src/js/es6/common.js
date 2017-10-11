@@ -237,7 +237,7 @@
      * Preloader
      *
      * @example
-     * let preloader = new Preloader();
+     * const preloader = new Preloader();
      * @this {Preloader}
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
      * @param {(number|string)} [delay=350] - delay before function fade(In|Out) is start

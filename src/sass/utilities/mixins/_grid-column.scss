@@ -1,6 +1,6 @@
 @mixin grid-column($parent-class, $child-class, $container-width-px, $number-columns, $margin-right-px, $margin-bottom-px: $margin-right-px, $unit: "percent") {
   #{$parent-class} {
-    &:after {
+    &::after {
       clear: both;
       content: "";
       display: table;

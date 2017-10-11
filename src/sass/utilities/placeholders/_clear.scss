@@ -1,12 +1,12 @@
 // CLEARFIX PLACEHOLDER
 %clr {
-  &:before,
-  &:after {
+  &::before,
+  &::after {
     content: " ";
     display: table;
   }
 
-  &:after {
+  &::after {
     clear: both;
   }
 }
@@ -17,7 +17,7 @@
 %clear-none {clear: none;}
 
 %clearfix {
-  &:after {
+  &::after {
     clear: both;
     content: " ";
     display: table;

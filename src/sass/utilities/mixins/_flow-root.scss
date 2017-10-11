@@ -2,7 +2,7 @@
   @supports (display: flow-root) {
     display: flow-root;
 
-    &:after {
+    &::after {
       content: none;
     }
   }

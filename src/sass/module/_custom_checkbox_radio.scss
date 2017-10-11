@@ -18,7 +18,7 @@ $radio-class: "radio" !default;
     border: 1px solid #a5a5a5;
     background-color: #dedede;
 
-    &:after {
+    &::after {
       content: "";
       display: none;
       width: 100%;
@@ -30,7 +30,7 @@ $radio-class: "radio" !default;
     padding: 2px;
     @include border-radius(2px);
 
-    &:after {
+    &::after {
       background-color: #424242;
     }
   }
@@ -39,11 +39,11 @@ $radio-class: "radio" !default;
     padding: 3px;
 
     &,
-    &:after {
+    &::after {
       @include border-radius(50%);
     }
 
-    &:after {
+    &::after {
       background-color: #666;
     }
   }
@@ -74,7 +74,7 @@ $radio-class: "radio" !default;
     [type="checkbox"] {
       &:checked {
         + .#{$custom-class}-#{$checkbox-class} {
-          &:after {
+          &::after {
             @extend %custom-checked;
           }
         }
@@ -96,7 +96,7 @@ $radio-class: "radio" !default;
     [type="radio"] {
       &:checked {
         + .#{$custom-class}-#{$radio-class} {
-          &:after {
+          &::after {
             @extend %custom-checked;
           }
         }

@@ -2,7 +2,7 @@
 
 (() => {
   const createTagLink = (href) => {
-    let link = document.createElement('link');
+    const link = document.createElement('link');
     link.href = href;
     link.rel = 'stylesheet';
     //link.type = 'text/css';
@@ -11,7 +11,7 @@
   };
 
   const createTagScript = (src) => {
-    let script = document.createElement('script');
+    const script = document.createElement('script');
     //script.type = 'text/javascript';
     script.src = src;
     //script.async = true;
@@ -19,7 +19,7 @@
   };
 
   const createTagStyle = (text) => {
-    let style = document.createElement('style');
+    const style = document.createElement('style');
     style.type = 'text/css';
     style.textContent = text;
     document.getElementsByTagName('head')[0].appendChild(style);
