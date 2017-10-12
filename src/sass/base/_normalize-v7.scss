@@ -1,5 +1,5 @@
-/* ====================  NORMALIZE 6  ====================== */
-//*! normalize.css v6.0.0 | MIT License | github.com/necolas/normalize.css */
+/* ====================  NORMALIZE 7  ====================== */
+// normalize.css v7 github.com/necolas/normalize.css
 
 html {
   line-height: 1.15;
@@ -50,10 +50,12 @@ a {
   -webkit-text-decoration-skip: objects;
 }
 
-abbr[title] {
-  border-bottom: 0;
-  text-decoration: underline;
-  text-decoration: underline dotted;
+abbr {
+  &[title] {
+    border-bottom: 0;
+    text-decoration: underline;
+    text-decoration: underline dotted;
+  }
 }
 
 b,
@@ -61,10 +63,12 @@ strong {
   font-weight: inherit;
 }
 
+// sass-lint:disable no-mergeable-selectors
 b,
 strong {
   font-weight: bolder;
 }
+// sass-lint:enable no-mergeable-selectors
 
 code,
 kbd,
@@ -107,17 +111,21 @@ video {
   display: inline-block;
 }
 
-audio:not([controls]) {
-  display: none;
-  height: 0;
+audio {
+  &:not([controls]) {
+    display: none;
+    height: 0;
+  }
 }
 
 img {
   border-style: none;
 }
 
-svg:not(:root) {
-  overflow: hidden;
+svg {
+  &:not(:root) {
+    overflow: hidden;
+  }
 }
 
 button,
@@ -230,4 +238,4 @@ template,
   display: none;
 }
 
-/* ====================  END NORMALIZE 6  ==================== */
+/* ====================  END NORMALIZE 7  ==================== */

@@ -13,22 +13,32 @@
     filter: none;
   }
 
-  a,
-  a:visited {
-    text-decoration: underline;
+  a {
+    &,
+    &:visited {
+      text-decoration: underline;
+    }
+
+    &[href] {
+      &::after {
+        content: " (" attr(href) ")";
+      }
+    }
+
+    &[href^="javascript:"],
+    &[href^="#"] {
+      &::after {
+        content: "";
+      }
+    }
   }
 
-  a[href]:after {
-    content: " (" attr(href) ")";
-  }
-
-  a[href^="javascript:"]:after,
-  a[href^="#"]:after {
-    content: "";
-  }
-
-  abbr[title]:after {
-    content: " (" attr(title) ")";
+  abbr {
+    &[title] {
+      &::after {
+        content: " (" attr(title) ")";
+      }
+    }
   }
 
   pre,

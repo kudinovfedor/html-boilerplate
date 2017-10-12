@@ -4,31 +4,31 @@
     top: 0;
     left: 0;
   } @else if ($position == "top center" or $position == "center top") {
+    @include transform(translate(-50%, 0));
     top: 0;
     left: 50%;
-    @include transform(translate(-50%, 0));
   } @else if ($position == "top right" or $position == "right top") {
     top: 0;
     right: 0;
   } @else if ($position == "center left" or $position == "left center") {
+    @include transform(translate(0, -50%));
     top: 50%;
     left: 0;
-    @include transform(translate(0, -50%));
   } @else if ($position == "center center") {
+    @include transform(translate(-50%, -50%));
     top: 50%;
     left: 50%;
-    @include transform(translate(-50%, -50%));
   } @else if ($position == "center right" or $position == "right center") {
+    @include transform(translate(0, -50%));
     top: 50%;
     right: 0;
-    @include transform(translate(0, -50%));
   } @else if ($position == "bottom left" or $position == "left bottom") {
     bottom: 0;
     left: 0;
   } @else if ($position == "bottom center" or $position == "center bottom") {
+    @include transform(translate(-50%, 0));
     bottom: 0;
     left: 50%;
-    @include transform(translate(-50%, 0));
   } @else if ($position == "bottom right" or $position == "right bottom") {
     bottom: 0;
     right: 0;

@@ -33,5 +33,5 @@
 
 // Reset flow
 %flow-root {
-  @include flow-root;
+  @include flow-root();
 }

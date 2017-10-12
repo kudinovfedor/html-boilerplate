@@ -16,7 +16,8 @@
 //}
 
 @mixin input-placeholder() {
-  $input-placeholder: "-moz" ":-moz" "-ms-input" /*":-ms-input"*/ ":-webkit-input";
+  // ":-ms-input"
+  $input-placeholder: "-moz" ":-moz" "-ms-input" ":-webkit-input";
   @each $placeholder in $input-placeholder {
     :#{$placeholder}-placeholder {
       @content;

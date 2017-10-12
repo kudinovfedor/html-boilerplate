@@ -4,9 +4,9 @@
 @import "utilities/functions";
 @import "utilities/placeholders";
 
-.lt-ie10 {}
+.lt-ie10 { }
 
-.lt-ie9 {}
+.lt-ie9 { }
 
 .lt-ie8 {
   .browserupgrade {
@@ -18,7 +18,7 @@
   }
 }
 
-.lt-ie7 {}
+.lt-ie7 { }
 
 .ie9 {
   // Support for full multi-stop gradients with IE9 (using SVG).
@@ -28,7 +28,7 @@
   }
 }
 
-.ie8 {}
+.ie8 { }
 
 .ie7 {
   img {
@@ -36,14 +36,14 @@
   }
 }
 
-.ie6 {}
+.ie6 { }
 
-.ie {}
+.ie { }
 
 .ie9,
 .ie8,
 .ie7,
-.ie6 {}
+.ie6 { }
 
 // .no-svg
 // SVG (basic support)

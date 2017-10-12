@@ -47,7 +47,7 @@ $preloader-size: 10px;
   }
 
 }
-
+// sass-lint:disable-all
 @include keyframes(loader) {
   $color: #fff;
   $size2: $preloader-size * 2;
@@ -68,4 +68,5 @@ $preloader-size: 10px;
     @include box-shadow($size2 0 0 rgba($color, .2), $size4 0 0 rgba($color, 1));
   }
 }
+// sass-lint:enable-all
 /* ====================  END PRELOADER  ==================== */

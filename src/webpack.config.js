@@ -1,23 +1,22 @@
 'use strict';
+const webpack = require('webpack');
+const path = require('path');
+
 module.exports = {
   entry: './src/js/app.js',
   output: {
-    path: './src/js',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
+    path: path.resolve(__dirname, 'js'),
+    pathinfo: true,
   },
   module: {
     rules: [
-      {
-        test: /\.js/,
-        exclude: /node_modules|bower_components/,
-        loader: 'babel-loader'
-      }
-    ]
+
+    ],
   },
-  devtool: 'cheap-module-source-map',
+  plugins: [
+
+  ],
+  devtool: 'source-map',
   watch: true,
-  watchOptions: {
-    aggregateTimeout: 100,
-    ignored: /node_modules|bower_components/
-  }
 };

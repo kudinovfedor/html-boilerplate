@@ -1,3 +1,10 @@
 // TEXT OVERFLOW PLACEHOLDER
-%text-overflow-ellipsis {overflow: hidden; text-overflow: ellipsis; white-space: nowrap;}
-%text-overflow-clip {text-overflow: clip;}
+%text-overflow-ellipsis {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+%text-overflow-clip {
+  text-overflow: clip;
+}

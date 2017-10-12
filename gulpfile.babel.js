@@ -4,6 +4,8 @@
 const projectName = 'fk-template';
 const src = 'src';
 const dist = 'dist';
+const favicon_data = `${src}/faviconData.json`;
+const ftp_config = JSON.parse(fs.readFileSync(`${src}/ftp.json`));
 
 // Gulp
 import gulp from 'gulp';
@@ -14,24 +16,20 @@ import del from 'del';
 // Pug (Jade)
 import pug from 'gulp-pug';
 // CSS
-// import cmq from 'gulp-combine-media-queries';
+// import gcmq from 'gulp-group-css-media-queries';
 import cssBase64 from 'gulp-css-base64';
 import autoprefixer from 'gulp-autoprefixer';
 import cleancss from 'gulp-clean-css';
-import csscss from 'gulp-csscss';
 import gulpCritical from 'critical';
 const critical = gulpCritical.stream;
 // SCSS
 import sass from 'gulp-sass';
-import scsslint from 'gulp-scss-lint';
-import scss_stylish from 'gulp-scss-lint-stylish2';
-const reporter = scss_stylish({errorsOnly: false});
+import sassLint from 'gulp-sass-lint';
 // Images
 import imagemin from 'gulp-imagemin';
 import spritesmith from 'gulp.spritesmith';
 // Favicon.ico
 import realFavicon from 'gulp-real-favicon';
-const FAVICON_DATA_FILE = `${src}/faviconData.json`;
 // SVG
 import svgmin from 'gulp-svgmin';
 import svgstore from 'gulp-svgstore';
@@ -50,7 +48,6 @@ import concat from 'gulp-concat';
 import sourcemaps from 'gulp-sourcemaps';
 import size from 'gulp-size';
 import cache from 'gulp-cache';
-import cached from 'gulp-cached';
 import babel from 'gulp-babel';
 import zip from 'gulp-zip';
 // Browsersync
@@ -73,19 +70,17 @@ const config = {
     browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
     cascade: false, add: true, remove: false
   },
-  // Config CSS Combine Media Queries
-  //cmd: {log: false, use_external: false},
   // Config CSS base64
   cssBase64: {
     baseDir: '../img/', maxWeightResource: 10 * 1024, // 10Kb
-    extensionsAllowed: ['.svg', '.png', '.jpg', '.gif'] /*base64:skip*/
+    extensionsAllowed: ['.svg', '.png', '.jpg', '.gif'] // base64:skip
   },
   // Config CSS minify
-  cleancss: {compatibility: 'ie7', debug: true},
+  cleancss: {compatibility: 'ie7', format: false, level: 1}, // format: beautify, keep-breaks; level: 0, 1, 2
   // Config SCSS(SASS)
   sass: {outputStyle: 'expanded', precision: 5, sourceComments: false, includePaths: [`${src}/sass/`]},
   // Config SCSS(SASS) Lint
-  scsslint: {config: `${src}/.scss-lint.yml`, maxBuffer: 300 * 1024, customReport: reporter.issues},
+  sassLint: {configFile: `${src}/.sass-lint.yml`},
   // Config img
   sprite: {
     imgName: 'sprite.png', cssName: '_gulp-sprite.scss', imgPath: '../img/sprite.png',
@@ -120,8 +115,6 @@ const config = {
   fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
   // Config Gulp zip
   zip: {compress: true},
-  // Config FTP
-  ftp: JSON.parse(fs.readFileSync(`${src}/ftp.json`)),
 };
 
 // Path
@@ -271,9 +264,9 @@ gulp.task('pug', () => {
 gulp.task('sass', () => {
   return gulp.src(path.src.sass)
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(sourcemaps.init())
+    //.pipe(sourcemaps.init())
     .pipe(sass(config.sass).on('error', sass.logError))
-    .pipe(sourcemaps.write('/'))
+    //.pipe(sourcemaps.write('/'))
     .pipe(gulp.dest(path.dest.sass))
     .pipe(browserSync.stream({match: '**/*.css'}));
 });
@@ -281,20 +274,14 @@ gulp.task('sass', () => {
 gulp.task('css', () => {
   return gulp.src(path.src.css)
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(sourcemaps.init())
+    //.pipe(sourcemaps.init())
     //.pipe(autoprefixer(config.autoprefixer))
-    //.pipe(cmq(config.cmd)) // Give error buffer.js:148 throw new TypeError('must start with number, buffer, array or string');
+    //.pipe(gcmq())
     .pipe(cssBase64(config.cssBase64))
     .pipe(cleancss(config.cleancss))
     .pipe(rename({suffix: '.min'}))
-    .pipe(sourcemaps.write('/'))
+    //.pipe(sourcemaps.write('/'))
     .pipe(gulp.dest(path.dest.css));
-});
-
-gulp.task('csscss', () => {
-  return gulp.src(path.src.css)
-    .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(csscss());
 });
 
 // Generate & Inline Critical-path CSS
@@ -341,17 +328,17 @@ gulp.task('babel', () => {
 });
 
 gulp.task('img', () => {
- return gulp.src(path.src.img, {since: gulp.lastRun('img')})
-   .pipe(plumber({errorHandler: errorAlert}))
-   .pipe(cache(imagemin([
-     imagemin.gifsicle({interlaced: true}),
-     imagemin.jpegtran({progressive: true}),
-     imagemin.optipng({optimizationLevel: 3}),
-     imagemin.svgo({plugins: [{removeViewBox: false}]})
-   ], {
-     verbose: true
-   })))
-   .pipe(gulp.dest(path.dest.img));
+  return gulp.src(path.src.img, {since: gulp.lastRun('img')})
+    .pipe(plumber({errorHandler: errorAlert}))
+    .pipe(cache(imagemin([
+      imagemin.gifsicle({interlaced: true}),
+      imagemin.jpegtran({progressive: true}),
+      imagemin.optipng({optimizationLevel: 3}),
+      imagemin.svgo({plugins: [{removeViewBox: false}]})
+    ], {
+      verbose: true
+    })))
+    .pipe(gulp.dest(path.dest.img));
 });
 
 gulp.task('autoprefixer', () => {
@@ -361,27 +348,28 @@ gulp.task('autoprefixer', () => {
     .pipe(gulp.dest(path.dest.css));
 });
 
-gulp.task('scss-lint', () => {
-  return gulp.src(path.src.sassLint, {since: gulp.lastRun('scss-lint')})
+gulp.task('sass-lint', () => {
+  return gulp.src(path.src.sassLint)
     .pipe(plumber({errorHandler: errorAlert}))
-    .pipe(cached(scsslint))
-    .pipe(scsslint(config.scsslint));
+    .pipe(sassLint(config.sassLint))
+    .pipe(sassLint.format())
+    .pipe(sassLint.failOnError());
 });
 
-gulp.task('pug-watch', gulp.parallel('pug', () => {
+gulp.task('pug:watch', gulp.parallel('pug', () => {
   gulp.watch(path.watch.pug, gulp.series('pug'));
 }));
 
-gulp.task('html-watch', gulp.parallel('server',() => {
+gulp.task('html:watch', gulp.parallel('server', () => {
   gulp.watch(path.watch.html).on('change', reload);
 }));
 
-gulp.task('sass-watch', gulp.parallel('sass', () => {
+gulp.task('sass:watch', gulp.parallel('sass', () => {
   gulp.watch(path.watch.sass, gulp.series('sass'));
 }));
 
-gulp.task('scss-lint-watch', gulp.parallel('scss-lint', () => {
-  gulp.watch(path.watch.sass, gulp.series('scss-lint'));
+gulp.task('sass-lint:watch', gulp.parallel('sass-lint', () => {
+  gulp.watch(path.watch.sass, gulp.series('sass-lint'));
 }));
 
 gulp.task('watch', gulp.parallel('pug', 'sass', () => {
@@ -393,42 +381,42 @@ gulp.task('modernizr', () => {
   return gulp.src(path.src.js)
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(modernizr('modernizr.js', {
-      "devFile": false,
+      'devFile': false,
       //"dest": "libs/modernizr.js",
-      "crawl": false,
-      "uglify": false,
-      "useBuffers": false,
-      "customTests": [],
-      "tests": [
-        "svg",
-        "touchevents",
-        "backdropfilter",
-        "csscalc",
-        "cssfilters",
-        "cssvhunit",
-        "cssvmaxunit",
-        "cssvminunit",
-        "cssvwunit",
-        "csscolumns",
-        "flexbox",
-        "placeholder"
+      'crawl': false,
+      'uglify': false,
+      'useBuffers': false,
+      'customTests': [],
+      'tests': [
+        'svg',
+        'touchevents',
+        'backdropfilter',
+        'csscalc',
+        'cssfilters',
+        'cssvhunit',
+        'cssvmaxunit',
+        'cssvminunit',
+        'cssvwunit',
+        'csscolumns',
+        'flexbox',
+        'placeholder'
       ],
-      "options": [
-        "domPrefixes",
-        "prefixes",
-        "addTest",
-        "atRule",
-        "hasEvent",
-        "mq",
-        "prefixed",
-        "prefixedCSS",
-        "prefixedCSSValue",
-        "testAllProps",
-        "testProp",
-        "testStyles",
+      'options': [
+        'domPrefixes',
+        'prefixes',
+        'addTest',
+        'atRule',
+        'hasEvent',
+        'mq',
+        'prefixed',
+        'prefixedCSS',
+        'prefixedCSSValue',
+        'testAllProps',
+        'testProp',
+        'testStyles',
         //"html5printshiv",
         //"html5shiv",
-        "setClasses"
+        'setClasses'
       ]
     }))
     .pipe(uglify())
@@ -506,7 +494,7 @@ gulp.task('generate-favicon', (done) => {
       scalingAlgorithm: 'Mitchell',
       errorOnImageTooSmall: false
     },
-    markupFile: FAVICON_DATA_FILE
+    markupFile: favicon_data
   }, () => {
     done();
   });
@@ -517,7 +505,7 @@ gulp.task('generate-favicon', (done) => {
 // as is or refactor your existing HTML pipeline.
 gulp.task('inject-favicon-markups', () => {
   return gulp.src(`${src}/favicon.html`) // List of the HTML files where to inject favicon markups
-    .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).favicon.html_code))
+    .pipe(realFavicon.injectFaviconMarkups(JSON.parse(fs.readFileSync(favicon_data)).favicon.html_code))
     .pipe(gulp.dest(src)); // Path to the directory where to store the HTML files
 });
 
@@ -526,7 +514,7 @@ gulp.task('inject-favicon-markups', () => {
 // Run this task from time to time. Ideally, make it part of your
 // continuous integration system.
 gulp.task('check-for-favicon-update', (done) => {
-  let currentVersion = JSON.parse(fs.readFileSync(FAVICON_DATA_FILE)).version;
+  const currentVersion = JSON.parse(fs.readFileSync(favicon_data)).version;
   realFavicon.checkForUpdates(currentVersion, (err) => {
     if (err) {
       throw err;
@@ -580,10 +568,10 @@ const zipDist = () => {
 gulp.task('dist', gulp.series(cleanDist, gulp.parallel(cssDist, fontsDist, imgDist, jsDist, htmlDist, otherDist), zipDist));
 
 gulp.task('deploy', gulp.series('dist', () => {
-  let ftpConnection = ftp.create({
-    host: config.ftp.host, // FTP host, default is localhost
-    user: config.ftp.user, // FTP user, default is anonymous
-    password: config.ftp.password, // FTP password, default is anonymous@
+  const ftpConnection = ftp.create({
+    host: ftp_config.host, // FTP host, default is localhost
+    user: ftp_config.user, // FTP user, default is anonymous
+    password: ftp_config.password, // FTP password, default is anonymous@
     port: 21, // FTP port, default is 21
     log: gutil.log, // Log function
     parallel: 10, // Number of parallel transfers, default is 3

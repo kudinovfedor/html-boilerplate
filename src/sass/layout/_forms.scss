@@ -20,7 +20,7 @@ label {
   font-weight: bold;
 }
 
-@include input-placeholder {
+@include input-placeholder() {
   color: #afafaf;
   text-overflow: ellipsis;
 }
@@ -113,7 +113,7 @@ button,
   &.disabled { }
 }
 
-[type='image'] { }
+[type="image"] { }
 
 textarea {
   min-height: 100px;

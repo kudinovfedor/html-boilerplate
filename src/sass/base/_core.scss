@@ -1,5 +1,5 @@
 /* ====================  CORE  ======================= */
-@include selection {
+@include selection() {
   background-color: #338fff;
   color: #fff;
   text-shadow: none;
@@ -28,7 +28,7 @@ body {
   position: relative;
   min-width: 320px;
   background-color: $body-bg;
-  font: normal #{$fk-base-font-size}/#{$fk-base-line-height} $fk-base-font-family;
+  font: normal #{$fk-base-font-size} / #{$fk-base-line-height} $fk-base-font-family;
   color: $body-color;
   @if ($scroll-behavior) {
     scroll-behavior: smooth;

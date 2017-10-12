@@ -49,7 +49,8 @@
     width: round(($container-width-px - (($number-columns - 1) * $margin-right-px)) / $number-columns) * 1px;
   }
 
-  &:nth-child(#{$number-columns}n), &:last-child {
+  &:nth-child(#{$number-columns}n),
+  &:last-child {
     margin-right: 0;
   }
 

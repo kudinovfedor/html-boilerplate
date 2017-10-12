@@ -1,4 +1,4 @@
-/* ====================  NORMALIZE 6  ====================== */
+/* ====================  NORMALIZE 7  ====================== */
 html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
@@ -238,7 +238,7 @@ template,
   display: none;
 }
 
-/* ====================  END NORMALIZE 6  ==================== */
+/* ====================  END NORMALIZE 7  ==================== */
 /* ====================  CUSTOM NORMALIZE  ====================== */
 :focus {
   outline-width: 0;
@@ -297,7 +297,7 @@ body {
   position: relative;
   min-width: 320px;
   background-color: #fff;
-  font: normal 14px/1.42857 "Arial", "Helvetica", sans-serif;
+  font: normal 14px / 1.42857 "Arial", "Helvetica", sans-serif;
   color: #000;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -1081,18 +1081,7 @@ optgroup {
   overflow: hidden;
 }
 
-.visually-hidden.focusable:active, .visually-hidden.focusable:focus {
-  position: static;
-  width: auto;
-  height: auto;
-  margin: 0;
-  white-space: inherit;
-  clip-path: none;
-  clip: auto;
-  overflow: visible;
-}
-
-.visually-hidden:not(:focus):not(:active) {
+.visually-hidden:not(:focus), .visually-hidden:not(:active) {
   position: absolute;
   width: 1px;
   height: 1px;
@@ -1105,8 +1094,17 @@ optgroup {
   overflow: hidden;
 }
 
+.visually-hidden.focusable:focus, .visually-hidden.focusable:active {
+  position: static;
+  width: auto;
+  height: auto;
+  margin: 0;
+  white-space: inherit;
+  clip-path: none;
+  clip: auto;
+  overflow: visible;
+}
+
 /* ====================  END STATE  ====================== */
 /* ====================  RESPONSIVE  ===================== */
 /* ====================  END RESPONSIVE  =================== */
-
-/*# sourceMappingURL=main.css.map */

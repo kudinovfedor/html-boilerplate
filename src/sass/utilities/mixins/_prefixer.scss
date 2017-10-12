@@ -5,7 +5,7 @@
   @each $prefix in $prefixes {
     @if $prefix == "webkit" {
       @if $prefix-for-webkit {
-       -#{$prefix}-#{$property}: $value;
+        -#{$prefix}-#{$property}: $value;
       }
     } @else if $prefix == "moz" {
       @if $prefix-for-mozilla {
