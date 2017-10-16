@@ -16,7 +16,7 @@ $ npm install -g npm
 $ npm run install-global
 
 # Install all dependencies listed in package.json and bower.json
-$ npm run install
+$ npm run npm-install
 
 # If you want to check and update version of package dependencies install npm-check-updates [optional]
 $ npm install -g npm-check-updates

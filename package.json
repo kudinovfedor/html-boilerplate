@@ -58,7 +58,7 @@
   "scripts": {
     "npm-update": "npm install -g npm",
     "install-global": "npm install -g gulp-cli pug-cli babel-cli webpack bower jshint eslint",
-    "install": "npm install && bower install && gulp collect-js-files",
+    "npm-install": "npm install && bower install && gulp collect-js-files",
     "npm-outdated": "npm outdated",
     "babel": "babel src/js/es6 --out-dir src/js/es5 --watch",
     "webpack": "webpack --config src/webpack.config.js",
