@@ -10,6 +10,15 @@
   $(function () {
 
     // Variables
+    var html = $('html');
+    var body = $('body');
+    var js_window = $(window);
+    var js_document = $(document);
+    var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+    var nav = $('.js-nav');
+    var blackout = $('.js-blackout');
+    var hamburger = $('.js-hamburger');
 
     // If JavaScript enabled
     jsEnable('html');
@@ -44,21 +53,29 @@
     // Modernizr support
     if (Modernizr) {
 
+      html.addClass('modernizr');
       console.info('Library Modernizr connected');
 
     } else {
 
+      html.addClass('no-modernizr');
       console.info('Library Modernizr is not connected');
 
     }
 
+    hamburger.on('click', function () {
+      hamburger.add(nav).add(blackout).toggleClass('is-active');
+    });
+
     // Make something with an element when clicked beyond its borders (uncomment for use)
-    // $(document).on('click', function (e) {
-    //   if (!$(e.target).closest('').length) {}
-    // });
+    js_document.on('click', function (event) {
+      if (!$(event.target).closest(hamburger.add(nav)).length) {
+        hamburger.add(nav).add(blackout).removeClass('is-active');
+      }
+    });
 
     // The resize event occurs when the browser window changes size.
-    $(window).on('resize', function () {});
+    js_window.on('resize', function () {});
 
   });
 
