@@ -93,20 +93,15 @@ body(itemscope=!!schema_org, itemtype=schema_org ? 'http://schema.org/WebPage' :
     //-script(src='//code.jquery.com/jquery-migrate-1.4.1.min.js', async=false, defer=false)
     //-script(src='//code.jquery.com/jquery-migrate-3.0.0.min.js', async=false, defer=false)
     script.
-      //-window.Modernizr || document.write('<script src="js/libs/modernizr.min.js"><\/script>');
       window.Modernizr || document.write('<script src="js/libs/modernizr.min.js"><\/script>');
       window.jQuery || document.write('<script src="js/libs/jquery.min.js"><\/script>');
   else
-    //- all.min.js include modernizr.js, jquery.js libraries
-    //-script(src='js/all.min.js', async=false, defer=false)
     script(src='js/libs/modernizr.min.js', async=false, defer=false)
     script(src='js/libs/jquery.min.js', async=false, defer=false)
   block script
   //- Custom scripts
   if !js_min
     script(src='js/common.js', async=false, defer=false)
-    //-script(src='js/app/bundle.js', async=false, defer=false)
-    //-script(src='js/common.babel.js', async=false, defer=false)
   else
     script(src='js/common.min.js', async=false, defer=false)
   if pixlayout

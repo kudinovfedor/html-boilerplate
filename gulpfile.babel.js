@@ -21,6 +21,7 @@ import cssBase64 from 'gulp-css-base64';
 import autoprefixer from 'gulp-autoprefixer';
 import cleancss from 'gulp-clean-css';
 import gulpCritical from 'critical';
+
 const critical = gulpCritical.stream;
 // SCSS
 import sass from 'gulp-sass';
@@ -52,10 +53,9 @@ import babel from 'gulp-babel';
 import zip from 'gulp-zip';
 // Browsersync
 import gulpBrowserSync from 'browser-sync';
+
 const browserSync = gulpBrowserSync.create();
 const reload = browserSync.reload;
-// Bower
-import mainBowerFiles from 'main-bower-files';
 // Modernizr
 import modernizr from 'gulp-modernizr';
 // FTP
@@ -105,11 +105,6 @@ const config = {
     ui: false, port: 8080, ghostMode: {clicks: false, forms: false, scroll: false},
     logLevel: 'info', logPrefix: 'BrowserSync', logFileChanges: true, online: false,
     reloadOnRestart: true, notify: true
-  },
-  // Config Bower
-  bower: {
-    paths: {bowerDirectory: 'bower_components', bowerrc: '.bowerrc', bowerJson: 'bower.json'},
-    debugging: false, checkExistence: true, includeDev: true
   },
   // Config Gulp file size
   fileSize: {title: 'The size', gzip: false, pretty: true, showFiles: true, showTotal: true},
@@ -227,8 +222,19 @@ gulp.task('img-sprite', () => {
   return spriteData.css.pipe(gulp.dest(path.dest.sprite_css));
 });
 
-gulp.task('libsBower', () => {
-  return gulp.src(mainBowerFiles(config.bower))
+gulp.task('libs', () => {
+  return gulp.src([
+    'node_modules/html5shiv/dist/html5shiv.min.js',
+    'node_modules/ion-rangeslider/js/ion.rangeSlider.min.js',
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/jquery-form-styler/dist/jquery.formstyler.min.js',
+    'node_modules/jquery-validation/dist/jquery.validate.min.js',
+    'node_modules/jquery.mmenu/dist/jquery.mmenu.all.js',
+    'node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
+    'node_modules/pixlayout/jquery.pixlayout.min.js',
+    'node_modules/respond.js/dest/respond.min.js',
+    'node_modules/slick-carousel/slick/slick.min.js',
+  ])
     .pipe(plumber({errorHandler: errorAlert}))
     .pipe(gulp.dest(path.dest.libs));
 });
@@ -587,7 +593,7 @@ gulp.task('build', gulp.series('deploy', cleanDist));
 
 gulp.task('svg', gulp.series('svg-sprite', 'svg-to-png', 'img-sprite'));
 
-gulp.task('collect-js-files', gulp.series(gulp.parallel('libsBower', 'modernizr'), gulp.parallel('ie8', 'all-js')));
+gulp.task('collect-js-files', gulp.series(gulp.parallel('libs', 'modernizr'), gulp.parallel('ie8', 'all-js')));
 
 gulp.task('default', gulp.parallel('server', () => {
   gulp.watch(path.watch.pug, gulp.series('pug'));

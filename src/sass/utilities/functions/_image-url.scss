@@ -1,3 +1,7 @@
 @function image-url($url) {
   @return url("#{$image-url-path}#{$url}");
 }
+
+@function image_url($url) {
+  @return url("#{$image-url-path}#{$url}");
+}

@@ -427,10 +427,6 @@ a:hover {
   text-decoration: none;
 }
 
-a:empty::before {
-  content: attr(href);
-}
-
 b,
 strong {
   font-weight: bold;
@@ -992,6 +988,10 @@ optgroup {
 
 .text-italic {
   font-style: italic;
+}
+
+.text-semi-bold {
+  font-weight: 600;
 }
 
 .text-bold {

@@ -29,6 +29,7 @@ node_modules
 
 # Command Promt
 *.cmd
+*.bat
 
 # Distribute
 dist/

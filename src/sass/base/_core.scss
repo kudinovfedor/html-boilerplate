@@ -12,6 +12,10 @@ html {
 }
 
 * {
+  @if ($debug) {
+    outline: 1px solid #f00;
+  }
+
   &,
   &::before,
   &::after {

@@ -44,11 +44,11 @@ a {
 
   &:focus {}
 
-  &:empty {
-    &::before {
-      content: attr(href);
-    }
-  }
+  //&:empty {
+  //  &::before {
+  //    content: attr(href);
+  //  }
+  //}
 
   //&[href^="http"] {
   //  cursor: alias;
