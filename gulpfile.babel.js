@@ -78,7 +78,7 @@ const config = {
   // Config CSS minify
   cleancss: {compatibility: 'ie7', format: false, level: 1}, // format: beautify, keep-breaks; level: 0, 1, 2
   // Config SCSS(SASS)
-  sass: {outputStyle: 'expanded', precision: 5, sourceComments: false, includePaths: [`${src}/sass/`]},
+  sass: {outputStyle: 'expanded', precision: 5, sourceComments: false, linefeed: 'crlf', includePaths: [`${src}/sass/`]},
   // Config SCSS(SASS) Lint
   sassLint: {configFile: `${src}/.sass-lint.yml`},
   // Config img
