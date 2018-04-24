@@ -63,6 +63,7 @@
     ]
   },
   "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
     "npm-update": "npm install -g npm",
     "install-global": "npm install -g gulp-cli pug-cli babel-cli jshint eslint",
     "npm-install": "npm install && gulp collect-js-files",
