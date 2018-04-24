@@ -63,7 +63,7 @@
     ]
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "yarn -v",
     "npm-update": "npm install -g npm",
     "install-global": "npm install -g gulp-cli pug-cli babel-cli jshint eslint",
     "npm-install": "npm install && gulp collect-js-files",
@@ -97,6 +97,9 @@
   ],
   "author": "Kudinov Fedor <admin@joompress.biz>",
   "license": "MIT",
+  "engines": {
+    "yarn": "1.x"
+  },
   "bugs": {
     "url": "https://github.com/kudinovfedor/fk-template/issues"
   },
