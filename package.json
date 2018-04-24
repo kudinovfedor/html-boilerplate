@@ -95,11 +95,8 @@
     "Autoprefixer",
     "Babel"
   ],
-  "author": "Kudinov Fedor",
+  "author": "Kudinov Fedor <admin@joompress.biz>",
   "license": "MIT",
-  "engines": {
-    "yarn": "1.x"
-  },
   "bugs": {
     "url": "https://github.com/kudinovfedor/fk-template/issues"
   },

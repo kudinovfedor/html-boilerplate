@@ -13,12 +13,12 @@ node_js:
   - "9"
 
 before_install:
-  - npm install -g npm@latest
+  - npm install --global npm@latest
 
 git:
   depth: 10
 
 cache:
-  yarn: true
+  yarn: false
   directories:
     - node_modules
