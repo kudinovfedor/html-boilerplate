@@ -67,11 +67,7 @@
     "npm-update": "npm install -g npm",
     "install-global": "npm install -g gulp-cli pug-cli babel-cli jshint eslint",
     "npm-install": "npm install && gulp collect-js-files",
-    "npm-outdated": "npm outdated",
-    "babel": "babel src/js/es6 --out-dir src/js/es5 --watch",
-    "yarn-install": "npm install -g yarn",
-    "yarn-outdated": "yarn outdated",
-    "ncu": "ncu && ncu -g"
+    "babel": "babel src/js/es6 --out-dir src/js/es5 --watch"
   },
   "repository": {
     "type": "git",
@@ -101,6 +97,10 @@
   ],
   "author": "Kudinov Fedor",
   "license": "MIT",
+  "engines": {
+    "node": "8.x",
+    "yarn": "1.x"
+  },
   "bugs": {
     "url": "https://github.com/kudinovfedor/fk-template/issues"
   },
