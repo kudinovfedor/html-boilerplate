@@ -10,15 +10,15 @@
  */
 const tabs = (tabs_container, tabs_list, tabs_item) => {
 
-  const parent = $(tabs_container), list = $(tabs_list), child = $(tabs_item);
+    const parent = $(tabs_container), list = $(tabs_list), child = $(tabs_item);
 
-  list.on('click', 'li:not(.active)', function () {
+    list.on('click', 'li:not(.active)', function () {
 
-    $(this)
-      .addClass('active').siblings().removeClass('active')
-      .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
+        $(this)
+            .addClass('active').siblings().removeClass('active')
+            .closest(parent).find(child).removeClass('active').eq($(this).index()).addClass('active');
 
-  });
+    });
 
 };
 

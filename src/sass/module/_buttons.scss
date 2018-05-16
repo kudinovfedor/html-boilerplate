@@ -1,65 +1,65 @@
 /* ====================  BUTTONS  ==================== */
 %btn {
-  cursor: pointer;
-  display: inline-block;
-  vertical-align: middle;
-  border: 1px solid transparent;
-  outline: 0;
-  padding: 6px 12px;
-  text-align: center;
-  text-decoration: none;
-  text-shadow: none;
-  text-transform: none;
-  white-space: nowrap;
-  font-weight: normal;
-  color: #000;
-  -webkit-tap-highlight-color: transparent;
-  @include border-radius(0);
-  @include box-shadow(none);
-  @include transition(none);
-  @include touch-action(manipulation);
-  @include user-select(none);
-
-  &:hover,
-  &:focus {
+    cursor: pointer;
+    display: inline-block;
+    vertical-align: middle;
+    border: 1px solid transparent;
+    outline: 0;
+    padding: 6px 12px;
+    text-align: center;
     text-decoration: none;
-  }
+    text-shadow: none;
+    text-transform: none;
+    white-space: nowrap;
+    font-weight: normal;
+    color: #000;
+    -webkit-tap-highlight-color: transparent;
+    @include border-radius(0);
+    @include box-shadow(none);
+    @include transition(none);
+    @include touch-action(manipulation);
+    @include user-select(none);
 
-  &:active {}
+    &:hover,
+    &:focus {
+        text-decoration: none;
+    }
 
-  &::-moz-focus-inner {
-    padding: 0;
-    border: 0;
-  }
+    &:active {}
+
+    &::-moz-focus-inner {
+        padding: 0;
+        border: 0;
+    }
 }
 
 .btn {
-  &-block {
-    display: block;
-    width: 100%;
-  }
+    &-block {
+        display: block;
+        width: 100%;
+    }
 
-  &-left {
-    text-align: left;
-  }
-
-  &-center {
-    text-align: center;
-  }
-
-  &-right {
-    text-align: right;
-  }
-
-  &-pull {
     &-left {
-      float: left;
+        text-align: left;
+    }
+
+    &-center {
+        text-align: center;
     }
 
     &-right {
-      float: right;
+        text-align: right;
     }
-  }
+
+    &-pull {
+        &-left {
+            float: left;
+        }
+
+        &-right {
+            float: right;
+        }
+    }
 }
 
 /* ====================  END BUTTONS  ==================== */

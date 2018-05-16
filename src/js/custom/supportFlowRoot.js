@@ -1,4 +1,5 @@
 const supportsCSS = !!((window.CSS && window.CSS.supports) || window.supportsCSS || false);
+
 /**
  * Support display: flow-root
  *
@@ -8,21 +9,21 @@ const supportsCSS = !!((window.CSS && window.CSS.supports) || window.supportsCSS
  */
 const supportFlowRoot = () => {
 
-  if (supportsCSS) {
+    if (supportsCSS) {
 
-    const html = $('html'), isSupport = CSS.supports('(display: flow-root)');
+        const html = $('html'), isSupport = CSS.supports('(display: flow-root)');
 
-    if (isSupport) {
+        if (isSupport) {
 
-      html.addClass('flow-root');
+            html.addClass('flow-root');
 
-    } else {
+        } else {
 
-      html.addClass('no-flow-root');
+            html.addClass('no-flow-root');
+
+        }
 
     }
-
-  }
 
 };
 

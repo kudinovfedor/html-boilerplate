@@ -1,28 +1,28 @@
 /* ====================  FORMS  ==================== */
 form {
-  max-width: 100%;
-  margin-bottom: $base-margin;
-  position: relative;
+    max-width: 100%;
+    margin-bottom: $base-margin;
+    position: relative;
 }
 
 fieldset {
-  border: 1px solid #c0c0c0;
-  margin: 0 0 $base-margin;
-  padding: .35em .75em .625em;
+    border: 1px solid #c0c0c0;
+    margin: 0 0 $base-margin;
+    padding: .35em .75em .625em;
 }
 
 legend { }
 
 label {
-  display: inline-block;
-  max-width: 100%;
-  margin-bottom: 5px;
-  font-weight: bold;
+    display: inline-block;
+    max-width: 100%;
+    margin-bottom: 5px;
+    font-weight: bold;
 }
 
 @include input-placeholder() {
-  color: #afafaf;
-  text-overflow: ellipsis;
+    color: #afafaf;
+    text-overflow: ellipsis;
 }
 
 select,
@@ -41,100 +41,6 @@ textarea,
 [type="time"],
 [type="datetime"],
 [type="datetime-local"] {
-  font: inherit;
-  width: 100%;
-  border: 1px solid #808080;
-  padding: 8px 10px;
-  background-color: transparent;
-  font-size: 14px;
-  line-height: 20px;
-}
-
-input {
-  &::-webkit-datetime-edit-fields-wrapper {
-    padding: 0;
-  }
-
-  &::-webkit-file-upload-button {
-    padding: 0 5px;
-    border: 0;
-    outline: 1px solid #808080;
-  }
-
-  &::-webkit-inner-spin-button {
-    height: auto;
-  }
-}
-
-[type="radio"],
-[type="checkbox"] {
-  &:disabled,
-  &.disabled {
-    cursor: not-allowed;
-  }
-}
-
-[type="file"] {}
-
-[type="range"] {
-  width: 100%;
-  padding: 7px 0;
-}
-
-[type="color"] {
-  max-width: 45px;
-  padding: 3px;
-  border: 1px solid #808080;
-  background-color: transparent;
-
-  &::-webkit-color-swatch-wrapper {
-    padding: 0;
-  }
-
-  &::-webkit-color-swatch {
-    border: 0;
-  }
-}
-
-button,
-[type="button"],
-[type="reset"],
-[type="submit"] {
-  cursor: pointer;
-  border: 1px solid #808080;
-  background-color: transparent;
-  padding: 8px 10px;
-
-  &:hover { }
-
-  &:focus { }
-
-  &:disabled,
-  &.disabled { }
-}
-
-[type="image"] { }
-
-textarea {
-  min-height: 100px;
-  max-height: 400px;
-  resize: vertical;
-}
-
-select { }
-
-optgroup {
-  font-style: normal;
-}
-
-option { }
-
-.form {
-  &-row {
-    margin-bottom: 15px;
-  }
-
-  &-field {
     font: inherit;
     width: 100%;
     border: 1px solid #808080;
@@ -142,79 +48,173 @@ option { }
     background-color: transparent;
     font-size: 14px;
     line-height: 20px;
+}
 
+input {
     &::-webkit-datetime-edit-fields-wrapper {
-      padding: 0;
+        padding: 0;
     }
 
     &::-webkit-file-upload-button {
-      padding: 0 5px;
-      border: 0;
-      outline: 1px solid #808080;
-      background-color: #fff;
+        padding: 0 5px;
+        border: 0;
+        outline: 1px solid #808080;
     }
 
     &::-webkit-inner-spin-button {
-      height: auto;
+        height: auto;
     }
+}
+
+[type="radio"],
+[type="checkbox"] {
+    &:disabled,
+    &.disabled {
+        cursor: not-allowed;
+    }
+}
+
+[type="file"] {}
+
+[type="range"] {
+    width: 100%;
+    padding: 7px 0;
+}
+
+[type="color"] {
+    max-width: 45px;
+    padding: 3px;
+    border: 1px solid #808080;
+    background-color: transparent;
+
+    &::-webkit-color-swatch-wrapper {
+        padding: 0;
+    }
+
+    &::-webkit-color-swatch {
+        border: 0;
+    }
+}
+
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+    cursor: pointer;
+    border: 1px solid #808080;
+    background-color: transparent;
+    padding: 8px 10px;
 
     &:hover { }
 
     &:focus { }
 
-    &:optional {
-      //border-color: #808080;
-    }
-
-    &:required {
-      //border-color: #cd5c5c;
-    }
-
-    &:invalid {
-      //border-color: #f00;
-    }
-
-    &:valid {
-      //border-color: #008000;
-    }
-
     &:disabled,
-    &.disabled {
-      cursor: not-allowed;
-      @include opacity(.5);
+    &.disabled { }
+}
+
+[type="image"] { }
+
+textarea {
+    min-height: 100px;
+    max-height: 400px;
+    resize: vertical;
+}
+
+select { }
+
+optgroup {
+    font-style: normal;
+}
+
+option { }
+
+.form {
+    &-row {
+        margin-bottom: 15px;
     }
 
-    &.error {
-      //border-color: #f00;
-    }
+    &-field {
+        font: inherit;
+        width: 100%;
+        border: 1px solid #808080;
+        padding: 8px 10px;
+        background-color: transparent;
+        font-size: 14px;
+        line-height: 20px;
 
-    //@include input-placeholder {
-    //  color: #afafaf;
-    //  text-overflow: ellipsis;
-    //}
-    //
-    //&:focus {
-    //  @include input-placeholder {
-    //    color: transparent;
-    //    @include opacity(0);
-    //  }
-    //}
-  }
+        &::-webkit-datetime-edit-fields-wrapper {
+            padding: 0;
+        }
+
+        &::-webkit-file-upload-button {
+            padding: 0 5px;
+            border: 0;
+            outline: 1px solid #808080;
+            background-color: #fff;
+        }
+
+        &::-webkit-inner-spin-button {
+            height: auto;
+        }
+
+        &:hover { }
+
+        &:focus { }
+
+        &:optional {
+            //border-color: #808080;
+        }
+
+        &:required {
+            //border-color: #cd5c5c;
+        }
+
+        &:invalid {
+            //border-color: #f00;
+        }
+
+        &:valid {
+            //border-color: #008000;
+        }
+
+        &:disabled,
+        &.disabled {
+            cursor: not-allowed;
+            @include opacity(.5);
+        }
+
+        &.error {
+            //border-color: #f00;
+        }
+
+        //@include input-placeholder {
+        //  color: #afafaf;
+        //  text-overflow: ellipsis;
+        //}
+        //
+        //&:focus {
+        //  @include input-placeholder {
+        //    color: transparent;
+        //    @include opacity(0);
+        //  }
+        //}
+    }
 }
 
 .jq {
-  &-select-multiple,
-  &-selectbox,
-  &-number,
-  &-file {
-    width: 100%;
-  }
-
-  &-number {
-    &__field {
-      width: auto;
+    &-select-multiple,
+    &-selectbox,
+    &-number,
+    &-file {
+        width: 100%;
     }
-  }
+
+    &-number {
+        &__field {
+            width: auto;
+        }
+    }
 }
 
 /* ====================  END FORMS  ==================== */

@@ -16,11 +16,11 @@
 //}
 
 @mixin input-placeholder() {
-  // ":-ms-input"
-  $input-placeholder: "-moz" ":-moz" "-ms-input" ":-webkit-input";
-  @each $placeholder in $input-placeholder {
-    :#{$placeholder}-placeholder {
-      @content;
+    // ":-ms-input"
+    $input-placeholder: "-moz" ":-moz" "-ms-input" ":-webkit-input";
+    @each $placeholder in $input-placeholder {
+        :#{$placeholder}-placeholder {
+            @content;
+        }
     }
-  }
 }

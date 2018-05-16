@@ -7,11 +7,11 @@
  */
 const dppx = () => {
 
-  if (window.devicePixelRatio !== undefined) {
+    if (window.devicePixelRatio !== undefined) {
 
-    $('html').addClass(window.devicePixelRatio + 'dppx');
+        $('html').addClass(window.devicePixelRatio + 'dppx');
 
-  }
+    }
 
 };
 

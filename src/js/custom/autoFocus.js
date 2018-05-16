@@ -8,11 +8,11 @@
  */
 const autoFocus = element => {
 
-  if (!('autofocus' in document.createElement('input'))) {
+    if (!('autofocus' in document.createElement('input'))) {
 
-    $(element).focus();
+        $(element).focus();
 
-  }
+    }
 
 };
 

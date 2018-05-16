@@ -9,13 +9,13 @@
  */
 const errorField = (element, class_error) => {
 
-  const el = element || '.error', error = class_error || 'error';
+    const el = element || '.error', error = class_error || 'error';
 
-  $('body').on('focus', el, function () {
+    $('body').on('focus', el, function () {
 
-    $(this).removeClass(error);
+        $(this).removeClass(error);
 
-  });
+    });
 
 };
 

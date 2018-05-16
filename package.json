@@ -17,31 +17,32 @@
     "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "babel-core": "^6.26.0",
-    "babel-preset-env": "^1.6.1",
-    "browser-sync": "^2.23.7",
-    "critical": "^1.2.2",
+    "@babel/core": "^7.0.0-beta.47",
+    "@babel/preset-env": "^7.0.0-beta.47",
+    "@babel/register": "^7.0.0-beta.47",
+    "browser-sync": "^2.24.4",
+    "critical": "^1.3.2",
     "del": "^3.0.0",
     "fs": "0.0.2",
     "gulp": "^4.0.0",
     "gulp-autopolyfiller": "^1.2.1",
     "gulp-autoprefixer": "^5.0.0",
-    "gulp-babel": "^7.0.1",
+    "gulp-babel": "^8.0.0-beta.2",
     "gulp-cache": "^1.0.2",
-    "gulp-clean-css": "^3.9.3",
+    "gulp-clean-css": "^3.9.4",
     "gulp-concat": "^2.6.1",
     "gulp-css-base64": "^1.3.4",
     "gulp-eslint": "^4.0.2",
     "gulp-group-css-media-queries": "^1.2.2",
     "gulp-imagemin": "^4.1.0",
     "gulp-jshint": "^2.1.0",
-    "gulp-modernizr": "^2.0.1",
+    "gulp-modernizr": "^2.0.3",
     "gulp-notify": "^3.2.0",
     "gulp-plumber": "^1.2.0",
     "gulp-pug": "^4.0.1",
     "gulp-raster": "^0.2.0",
-    "gulp-real-favicon": "^0.2.2",
-    "gulp-rename": "^1.2.2",
+    "gulp-real-favicon": "^0.3.0",
+    "gulp-rename": "^1.2.3",
     "gulp-sass": "^4.0.1",
     "gulp-sass-lint": "^1.3.4",
     "gulp-size": "^3.0.0",
@@ -59,7 +60,7 @@
   },
   "babel": {
     "presets": [
-      "env"
+      "@babel/preset-env"
     ]
   },
   "scripts": {

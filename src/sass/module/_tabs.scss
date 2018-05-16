@@ -12,37 +12,37 @@
 //</div>
 
 .fk {
-  &-tabs {
+    &-tabs {
 
-    &-menu {
-      margin: 0;
-      padding-left: 0;
-      list-style: none;
+        &-menu {
+            margin: 0;
+            padding-left: 0;
+            list-style: none;
 
-      &-item {
-        cursor: pointer;
-        display: inline-block;
-        margin-right: 5px;
-        padding: 10px;
-        font: bold 14px/1.2 "Arial", sans-serif;
-        background-color: #6f6f6f;
-        color: #fff;
-        text-decoration: none;
-      }
+            &-item {
+                cursor: pointer;
+                display: inline-block;
+                margin-right: 5px;
+                padding: 10px;
+                font: bold 14px/1.2 "Arial", sans-serif;
+                background-color: #6f6f6f;
+                color: #fff;
+                text-decoration: none;
+            }
 
-      &-active {
-        background-color: #555;
-      }
+            &-active {
+                background-color: #555;
+            }
+        }
     }
-  }
 
-  &-item {
-    display: none;
+    &-item {
+        display: none;
 
-    &-active {
-      display: block;
+        &-active {
+            display: block;
+        }
     }
-  }
 }
 
 /* ====================  END TABS  ==================== */

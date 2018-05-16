@@ -10,24 +10,24 @@
  */
 const accordion = (accordion_container, accordion_switch, accordion_class_open) => {
 
-  const _accordion = $(accordion_container), _switch = $(accordion_switch),
-    _opened = accordion_class_open || 'js-opened';
+    const _accordion = $(accordion_container), _switch = $(accordion_switch),
+        _opened = accordion_class_open || 'js-opened';
 
-  _switch.on('click', function () {
+    _switch.on('click', function () {
 
-    const el_parent = $(this).closest(_accordion);
+        const el_parent = $(this).closest(_accordion);
 
-    if (el_parent.hasClass(_opened)) {
+        if (el_parent.hasClass(_opened)) {
 
-      el_parent.removeClass(_opened);
+            el_parent.removeClass(_opened);
 
-    } else {
+        } else {
 
-      el_parent.addClass(_opened).siblings().removeClass(_opened);
+            el_parent.addClass(_opened).siblings().removeClass(_opened);
 
-    }
+        }
 
-  });
+    });
 };
 
 export default accordion;

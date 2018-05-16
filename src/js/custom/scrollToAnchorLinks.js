@@ -9,17 +9,17 @@
  */
 const scrollToAnchorLinks = (id, scroll_duration) => {
 
-  const el = $(id), duration = scroll_duration || 1000;
+    const el = $(id), duration = scroll_duration || 1000;
 
-  el.on('click', 'a[href*="#"]:not([href="#"])', function () {
+    el.on('click', 'a[href*="#"]:not([href="#"])', function () {
 
-    const el = $(this).attr('href');
+        const el = $(this).attr('href');
 
-    $('html, body').animate({scrollTop: $(el).offset().top}, duration);
+        $('html, body').animate({scrollTop: $(el).offset().top}, duration);
 
-    return false;
+        return false;
 
-  });
+    });
 
 };
 

@@ -9,35 +9,35 @@
  */
 const scrollToTop = (scroll_id, scroll_duration) => {
 
-  const el = $(scroll_id), duration = scroll_duration || 'slow';
+    const el = $(scroll_id), duration = scroll_duration || 'slow';
 
-  $(document).on('click touchend', scroll_id, () => {
+    $(document).on('click touchend', scroll_id, () => {
 
-    $('html, body').animate({scrollTop: 0}, duration);
+        $('html, body').animate({scrollTop: 0}, duration);
 
-    return false;
+        return false;
 
-  });
+    });
 
-  $(window).on('scroll', function () {
+    $(window).on('scroll', function () {
 
-    const scrollPosition = $(this).scrollTop();
+        const scrollPosition = $(this).scrollTop();
 
-    if (scrollPosition > 200) {
+        if (scrollPosition > 200) {
 
-      if (!el.hasClass('is-visible')) {
+            if (!el.hasClass('is-visible')) {
 
-        el.addClass('is-visible');
+                el.addClass('is-visible');
 
-      }
+            }
 
-    } else {
+        } else {
 
-      el.removeClass('is-visible');
+            el.removeClass('is-visible');
 
-    }
+        }
 
-  });
+    });
 
 };
 

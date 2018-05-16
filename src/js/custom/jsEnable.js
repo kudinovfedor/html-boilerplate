@@ -8,9 +8,9 @@
  */
 const jsEnable = element => {
 
-  const el = element || 'html';
+    const el = element || 'html';
 
-  $(el).removeClass('no-js').addClass('js');
+    $(el).removeClass('no-js').addClass('js');
 
 };
 

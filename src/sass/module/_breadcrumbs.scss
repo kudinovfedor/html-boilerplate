@@ -1,19 +1,19 @@
 /* ====================  BREADCRUMBS  ==================== */
 .breadcrumbs {
 
-  li,
-  &-item {
-    display: inline-block;
-  }
-
-  a,
-  &-link {
-    text-decoration: underline;
-
-    &:hover {
-      text-decoration: none;
+    li,
+    &-item {
+        display: inline-block;
     }
-  }
+
+    a,
+    &-link {
+        text-decoration: underline;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
 }
 
 // Example Microdata https://schema.org/BreadcrumbList

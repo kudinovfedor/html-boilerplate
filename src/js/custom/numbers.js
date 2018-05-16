@@ -11,41 +11,41 @@
  */
 const numbers = (id, field, plus, minus) => {
 
-  $(id).each((i, val) => {
+    $(id).each((i, val) => {
 
-    const el = $(val),
-      _field = el.find(field),
-      _plus = el.find(plus),
-      _minus = el.find(minus);
+        const el = $(val),
+            _field = el.find(field),
+            _plus = el.find(plus),
+            _minus = el.find(minus);
 
-    _plus.on('click', () => {
+        _plus.on('click', () => {
 
-      let field_value = parseInt(_field.text());
+            let field_value = parseInt(_field.text());
 
-      if (field_value >= 1) {
+            if (field_value >= 1) {
 
-        field_value++;
+                field_value++;
 
-        _field.text(field_value);
+                _field.text(field_value);
 
-      }
+            }
+
+        });
+
+        _minus.on('click', () => {
+
+            let field_value = parseInt(_field.text());
+
+            if (field_value > 1) {
+
+                field_value--;
+
+                _field.text(field_value);
+
+            }
+        });
 
     });
-
-    _minus.on('click', () => {
-
-      let field_value = parseInt(_field.text());
-
-      if (field_value > 1) {
-
-        field_value--;
-
-        _field.text(field_value);
-
-      }
-    });
-
-  });
 
 };
 

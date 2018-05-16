@@ -1049,6 +1049,10 @@ optgroup {
 /* ====================  CONTACT PAGE  ==================== */
 /* ====================  END CONTACT PAGE  ================== */
 /* ====================  STATE  ======================== */
+.is-fixed {
+  position: fixed;
+}
+
 .is-visible {
   visibility: visible;
 }

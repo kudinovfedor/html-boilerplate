@@ -1,10 +1,10 @@
 /* ====================  CUSTOM NORMALIZE  ====================== */
 :focus {
-  outline-width: 0;
+    outline-width: 0;
 }
 
 label {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 [type="text"],
@@ -15,10 +15,10 @@ label {
 [type="tel"],
 [type="url"],
 textarea {
-  //outline: 0;
-  //@include border-radius(0;
-  @include appearance(none);
-  //@include box-shadow(none);
+    //outline: 0;
+    //@include border-radius(0;
+    @include appearance(none);
+    //@include box-shadow(none);
 }
 
 /* ====================  END CUSTOM NORMALIZE  ==================== */
