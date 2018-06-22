@@ -5,11 +5,11 @@
  * errorField('.error');
  * @author Fedor Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} [element='.error'] - selected element
- * @param {string} [class_error='error'] - class which will be removed after receiving focus
+ * @param {string} [classError='error'] - class which will be removed after receiving focus
  */
-const errorField = (element, class_error) => {
+const errorField = (element, classError) => {
 
-    const el = element || '.error', error = class_error || 'error';
+    const el = element || '.error', error = classError || 'error';
 
     $('body').on('focus', el, function () {
 

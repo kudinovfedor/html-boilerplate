@@ -4,7 +4,7 @@
  * @param {string} value -
  * @returns {boolean}
  */
-export const is_string = value => {
+export const isString = value => {
 
     return (typeof value === 'string') || ((!!value && typeof value === 'object') && (Object.prototype.toString.call(value) === '[object String]'));
 
@@ -16,7 +16,7 @@ export const is_string = value => {
  * @param {object} value -
  * @returns {boolean}
  */
-export const is_object = value => {
+export const isObject = value => {
 
     return (!!value) && ((typeof value === 'function') || (typeof value === 'object'));
 

@@ -11,15 +11,13 @@
     $(function () {
 
         // Variables
-        var html = $('html');
-        var body = $('body');
-        var js_window = $(window);
-        var js_document = $(document);
-        var isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        var html = $('html'), body = $('body'),
+            jsWindow = $(window), jsDocument = $(document),
+            isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
 
-        var nav = $('.js-nav');
-        var blackout = $('.js-blackout');
-        var hamburger = $('.js-hamburger');
+        var nav = $('.js-nav'),
+            blackout = $('.js-blackout'),
+            hamburger = $('.js-hamburger');
 
         // If JavaScript enabled
         jsEnable('html');
@@ -46,10 +44,10 @@
         tabs('.fk-tabs', '.fk-tabs-list', '.fk-tab-item');
 
         // JS for working with accordion
-        fk_accordion('.fk-accordion', '.fk-accordion-switch', 'js-opened');
+        accordion('.accordion', '.accordion-switch');
 
         // Counter to increase or decrease the value
-        fk_number('.fk-number', '.fk-number-field', '.fk-number-spin-plus', '.fk-number-spin-minus');
+        number('.number', '.number-field', '.number-spin-plus', '.number-spin-minus');
 
         // Modernizr support
         if (Modernizr) {
@@ -76,14 +74,14 @@
         });
 
         // Make something with an element when clicked beyond its borders (uncomment for use)
-        js_document.on('click', function (event) {
+        jsDocument.on('click', function (event) {
             if (!$(event.target).closest(hamburger.add(nav)).length) {
                 hamburger.add(nav).add(blackout).removeClass('is-active');
             }
         });
 
         // The resize event occurs when the browser window changes size.
-        js_window.on('resize', function () {
+        jsWindow.on('resize', function () {
         });
 
     });
@@ -158,11 +156,11 @@
      * errorField('.error');
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} [element='.error'] - selected element
-     * @param {string} [class_error='error'] - class which will be removed after receiving focus
+     * @param {string} [classError='error'] - class which will be removed after receiving focus
      */
-    function errorField(element, class_error) {
+    function errorField(element, classError) {
 
-        var el = element || '.error', error = class_error || 'error';
+        var el = element || '.error', error = classError || 'error';
 
         $('body').on('focus', el, function () {
 
@@ -196,14 +194,14 @@
      * @example
      * scrollToTop('.scroll-top');
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
-     * @param {string} scroll_id - selected item to perform the a clicked
-     * @param {(number|string)} [scroll_duration='slow'] - determining how long the animation will run
+     * @param {string} scrollId - selected item to perform the a clicked
+     * @param {(number|string)} [scrollDuration='slow'] - determining how long the animation will run
      */
-    function scrollToTop(scroll_id, scroll_duration) {
+    function scrollToTop(scrollId, scrollDuration) {
 
-        var el = $(scroll_id), duration = scroll_duration || 'slow';
+        var el = $(scrollId), duration = scrollDuration || 'slow';
 
-        $(document).on('click touchend', scroll_id, function () {
+        $(document).on('click touchend', scrollId, function () {
 
             $('html, body').animate({scrollTop: 0}, duration);
 
@@ -240,11 +238,11 @@
      * scrollToAnchorLinks('body');
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} id - selected item to perform the a clicked
-     * @param {(number|string)} [scroll_duration=1000] - determining how long the animation will run
+     * @param {(number|string)} [scrollDuration=1000] - determining how long the animation will run
      */
-    function scrollToAnchorLinks(id, scroll_duration) {
+    function scrollToAnchorLinks(id, scrollDuration) {
 
-        var el = $(id), duration = scroll_duration || 1000;
+        var el = $(id), duration = scrollDuration || 1000;
 
         el.on('click', 'a[href*="#"]:not([href="#"])', function () {
 
@@ -335,43 +333,43 @@
      * Number
      *
      * @example
-     * fk_number('.fk-number', '.fk-number-field', '.fk-number-spin-plus', '.fk-number-spin-minus');
+     * number('.number', '.number-field', '.number-spin-plus', '.number-spin-minus');
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} id - container of element
      * @param {(string|Object)} field - field with number
      * @param {(string|Object)} plus - button plus
      * @param {(string|Object)} minus - button minus
      */
-    function fk_number(id, field, plus, minus) {
+    function number(id, field, plus, minus) {
 
         $(id).each(function () {
 
-            var el = $(this), fk_field = el.find(field),
-                fk_plus = el.find(plus), fk_minus = el.find(minus);
+            var el = $(this), field = el.find(field),
+                plus = el.find(plus), minus = el.find(minus);
 
-            fk_plus.on('click', function () {
+            plus.on('click', function () {
 
-                var field_value = parseInt(fk_field.text());
+                var fieldValue = parseInt(field.text());
 
-                if (field_value >= 1) {
+                if (fieldValue >= 1) {
 
-                    field_value++;
+                    fieldValue++;
 
-                    fk_field.text(field_value);
+                    field.text(fieldValue);
 
                 }
 
             });
 
-            fk_minus.on('click', function () {
+            minus.on('click', function () {
 
-                var field_value = parseInt(fk_field.text());
+                var fieldValue = parseInt(field.text());
 
-                if (field_value > 1) {
+                if (fieldValue > 1) {
 
-                    field_value--;
+                    fieldValue--;
 
-                    fk_field.text(field_value);
+                    field.text(fieldValue);
 
                 }
 
@@ -385,17 +383,17 @@
      * Tabs
      *
      * @example
-     * tabs('.fk-tabs', '.fk-tabs-list', '.fk-tab-item');
+     * tabs('.tabs', '.tabs-list', '.tab-item');
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
-     * @param {(string|Object)} tabs_container - main container for tabs
-     * @param {(string|Object)} tabs_list - ul list for each tab item
-     * @param {(string|Object)} tabs_item - tab block for each li item
+     * @param {(string|Object)} container - main container for tabs
+     * @param {(string|Object)} list - ul list for each tab item
+     * @param {(string|Object)} item - tab block for each li item
      */
-    function tabs(tabs_container, tabs_list, tabs_item) {
+    function tabs(container, list, item) {
 
-        var parent = $(tabs_container), list = $(tabs_list), child = $(tabs_item);
+        var parent = $(container), menu = $(list), child = $(item);
 
-        list.on('click', 'li:not(.active)', function () {
+        menu.on('click', 'li:not(.active)', function () {
 
             $(this)
                 .addClass('active').siblings().removeClass('active')
@@ -408,28 +406,26 @@
      * Accordion
      *
      * @example
-     * fk_accordion('.fk-accordion', '.fk-accordion-switch', 'js-opened');
+     * accordion('.accordion', '.accordion-switch');
      * @author Fedor Kudinov <brothersrabbits@mail.ru>
-     * @param {(string|Object)} accordion_container - container for each accordion item
-     * @param {(string|Object)} accordion_switch - element for open and close accordion
-     * @param {string} [accordion_class_open='js-opened'] - class when accordion is opened
+     * @param {(string|Object)} container - container for each accordion item
+     * @param {(string|Object)} trigger - element for open and close accordion
      */
-    function fk_accordion(accordion_container, accordion_switch, accordion_class_open) {
+    function accordion(container, trigger) {
 
-        var fk_accordion = $(accordion_container), fk_switch = $(accordion_switch),
-            fk_opened = accordion_class_open || 'js-opened';
+        var _container = $(container), _trigger = $(_trigger);
 
-        fk_switch.on('click', function () {
+        _trigger.on('click', function () {
 
-            var el_parent = $(this).closest(fk_accordion);
+            var parent = $(this).closest(_container);
 
-            if (el_parent.hasClass(fk_opened)) {
+            if (parent.hasClass('is-opened')) {
 
-                el_parent.removeClass(fk_opened);
+                parent.removeClass('is-opened');
 
             } else {
 
-                el_parent.addClass(fk_opened).siblings().removeClass(fk_opened);
+                parent.addClass('is-opened').siblings().removeClass('is-opened');
 
             }
 

@@ -4,14 +4,14 @@
  * @example
  * scrollToTop('.scroll-top');
  * @author Fedor Kudinov <brothersrabbits@mail.ru>
- * @param {string} scroll_id - selected item to perform the a clicked
- * @param {(number|string)} [scroll_duration='slow'] - determining how long the animation will run
+ * @param {string} scrollId - selected item to perform the a clicked
+ * @param {(number|string)} [scrollDuration='slow'] - determining how long the animation will run
  */
-const scrollToTop = (scroll_id, scroll_duration) => {
+const scrollToTop = (scrollId, scrollDuration) => {
 
-    const el = $(scroll_id), duration = scroll_duration || 'slow';
+    const el = $(scrollId), duration = scrollDuration || 'slow';
 
-    $(document).on('click touchend', scroll_id, () => {
+    $(document).on('click touchend', scrollId, () => {
 
         $('html, body').animate({scrollTop: 0}, duration);
 

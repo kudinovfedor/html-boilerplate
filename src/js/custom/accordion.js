@@ -2,28 +2,26 @@
  * Accordion
  *
  * @example
- * accordion('.fk-accordion', '.fk-accordion-switch', 'js-opened');
+ * accordion('.accordion', '.accordion-switch');
  * @author Fedor Kudinov <brothersrabbits@mail.ru>
- * @param {(string|Object)} accordion_container - container for each accordion item
- * @param {(string|Object)} accordion_switch - element for open and close accordion
- * @param {string} [accordion_class_open='js-opened'] - class when accordion is opened
+ * @param {(string|Object)} container - container for each accordion item
+ * @param {(string|Object)} trigger - element for open and close accordion
  */
-const accordion = (accordion_container, accordion_switch, accordion_class_open) => {
+const accordion = (container, trigger) => {
 
-    const _accordion = $(accordion_container), _switch = $(accordion_switch),
-        _opened = accordion_class_open || 'js-opened';
+    const _container = $(container), _trigger = $(trigger);
 
-    _switch.on('click', function () {
+    _trigger.on('click', function () {
 
-        const el_parent = $(this).closest(_accordion);
+        const parent = $(this).closest(_container);
 
-        if (el_parent.hasClass(_opened)) {
+        if (parent.hasClass('is-opened')) {
 
-            el_parent.removeClass(_opened);
+            parent.removeClass('is-opened');
 
         } else {
 
-            el_parent.addClass(_opened).siblings().removeClass(_opened);
+            parent.addClass('is-opened').siblings().removeClass('is-opened');
 
         }
 

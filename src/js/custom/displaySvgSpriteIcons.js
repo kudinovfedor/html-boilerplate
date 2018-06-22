@@ -1,16 +1,16 @@
-const display_svg_sprite_icons = (container_id, storage_name) => {
-    document.getElementById(container_id).innerHTML = JSON.parse(localStorage.getItem(storage_name));
+const displaySvgSpriteIcons = (containerId, storageName) => {
+    document.getElementById(containerId).innerHTML = JSON.parse(localStorage.getItem(storageName));
 };
 
-if (localStorage.getItem('svg_icons')) {
-    display_svg_sprite_icons('test', 'svg_icons');
+if (localStorage.getItem('svgIcons')) {
+    displaySvgSpriteIcons('test', 'svgIcons');
 } else {
     document.addEventListener('DOMContentLoaded', () => {
-        let svg_icons = '';
+        let svgIcons = '';
         Array.from(document.querySelector('.is-hidden svg').children).map(elem => {
-            svg_icons += `<svg class="svg-icon" width="30" height="30" fill="#333"><use xlink:href="#${elem.id}"></use></svg>`;
+            svgIcons += `<svg class="svg-icon" width="30" height="30" fill="#333"><use xlink:href="#${elem.id}"></use></svg>`;
         });
-        localStorage.setItem('svg_icons', JSON.stringify(svg_icons));
-        display_svg_sprite_icons('test', 'svg_icons');
+        localStorage.setItem('svgIcons', JSON.stringify(svgIcons));
+        displaySvgSpriteIcons('test', 'svgIcons');
     });
 }

@@ -2,7 +2,7 @@
  * Number
  *
  * @example
- * numbers('.fk-number', '.fk-number-field', '.fk-number-spin-plus', '.fk-number-spin-minus');
+ * numbers('.number', '.number-field', '.number-spin-plus', '.number-spin-minus');
  * @author Fedor Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} id - container of element
  * @param {(string|Object)} field - field with number
@@ -20,13 +20,13 @@ const numbers = (id, field, plus, minus) => {
 
         _plus.on('click', () => {
 
-            let field_value = parseInt(_field.text());
+            let fieldValue = parseInt(_field.text());
 
-            if (field_value >= 1) {
+            if (fieldValue >= 1) {
 
-                field_value++;
+                fieldValue++;
 
-                _field.text(field_value);
+                _field.text(fieldValue);
 
             }
 
@@ -34,13 +34,13 @@ const numbers = (id, field, plus, minus) => {
 
         _minus.on('click', () => {
 
-            let field_value = parseInt(_field.text());
+            let fieldValue = parseInt(_field.text());
 
-            if (field_value > 1) {
+            if (fieldValue > 1) {
 
-                field_value--;
+                fieldValue--;
 
-                _field.text(field_value);
+                _field.text(fieldValue);
 
             }
         });
