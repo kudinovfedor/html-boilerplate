@@ -67,7 +67,7 @@ const config = {
     pug: {pretty: true},
     // Config CSS Autoprefixer
     autoprefixer: {
-        browsers: ['Explorer >= 6', 'Edge >= 12', 'Firefox >= 2', 'Chrome >= 4', 'Safari >= 3.1', 'Opera >= 10.1', 'iOS >= 3.2', 'OperaMini >= 8', 'Android >= 2.1', 'BlackBerry >= 7', 'OperaMobile >= 12', 'ChromeAndroid >= 47', 'FirefoxAndroid >= 42', 'ExplorerMobile >= 10'],
+        browsers: ['last 5 versions'],
         cascade: false, add: true, remove: false
     },
     // Config CSS base64
@@ -79,11 +79,13 @@ const config = {
     cleancss: {compatibility: 'ie7', format: false, level: 1}, // format: beautify, keep-breaks; level: 0, 1, 2
     // Config SCSS(SASS)
     sass: {
-        outputStyle: 'expanded',
-        precision: 5,
-        sourceComments: false,
+        includePaths: [`${src}/sass/`],
+        indentType: 'space',
+        indentWidth: 2,
         linefeed: 'crlf',
-        includePaths: [`${src}/sass/`]
+        outputStyle: 'expanded', // nested, expanded, compact, compressed
+        precision: 5,
+        sourceComments: false
     },
     // Config SCSS(SASS) Lint
     sassLint: {configFile: `${src}/.sass-lint.yml`},
@@ -204,11 +206,11 @@ gulp.task('server', () => {
 });
 
 gulp.task('svg-sprite', () => {
-    return gulp.src([path.src.svg, `!${src}img/svg/*_hover.svg`])
+    return gulp.src(path.src.svg)
         .pipe(plumber({errorHandler: errorAlert}))
         .pipe(svgmin({js2svg: {pretty: false}}))
         .pipe(svgstore({inlineSvg: true}))
-        .pipe(rename({basename: 'svg', prefix: '', suffix: '-sprite', extname: '.svg'}))
+        .pipe(rename({basename: 'sprite', extname: '.svg'}))
         .pipe(gulp.dest(path.dest.svg));
 });
 
@@ -278,6 +280,7 @@ gulp.task('sass', () => {
         .pipe(plumber({errorHandler: errorAlert}))
         //.pipe(sourcemaps.init())
         .pipe(sass(config.sass).on('error', sass.logError))
+        .pipe(autoprefixer(config.autoprefixer))
         //.pipe(sourcemaps.write('/'))
         .pipe(gulp.dest(path.dest.sass))
         .pipe(browserSync.stream({match: '**/*.css'}));

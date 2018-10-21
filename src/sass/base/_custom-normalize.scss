@@ -16,9 +16,9 @@ label {
 [type="url"],
 textarea {
     //outline: 0;
-    //@include border-radius(0;
-    @include appearance(none);
-    //@include box-shadow(none);
+    border-radius: 0;
+    appearance: none;
+    box-shadow: none;
 }
 
 /* ====================  END CUSTOM NORMALIZE  ==================== */

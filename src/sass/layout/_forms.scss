@@ -11,7 +11,8 @@ fieldset {
     padding: .35em .75em .625em;
 }
 
-legend { }
+legend {
+}
 
 label {
     display: inline-block;
@@ -20,7 +21,7 @@ label {
     font-weight: bold;
 }
 
-@include input-placeholder() {
+::placeholder {
     color: #afafaf;
     text-overflow: ellipsis;
 }
@@ -74,7 +75,8 @@ input {
     }
 }
 
-[type="file"] {}
+[type="file"] {
+}
 
 [type="range"] {
     width: 100%;
@@ -105,15 +107,19 @@ button,
     background-color: transparent;
     padding: 8px 10px;
 
-    &:hover { }
+    &:hover {
+    }
 
-    &:focus { }
+    &:focus {
+    }
 
     &:disabled,
-    &.disabled { }
+    &.disabled {
+    }
 }
 
-[type="image"] { }
+[type="image"] {
+}
 
 textarea {
     min-height: 100px;
@@ -121,13 +127,15 @@ textarea {
     resize: vertical;
 }
 
-select { }
+select {
+}
 
 optgroup {
     font-style: normal;
 }
 
-option { }
+option {
+}
 
 .form {
     &-row {
@@ -158,9 +166,11 @@ option { }
             height: auto;
         }
 
-        &:hover { }
+        &:hover {
+        }
 
-        &:focus { }
+        &:focus {
+        }
 
         &:optional {
             //border-color: #808080;
@@ -181,23 +191,22 @@ option { }
         &:disabled,
         &.disabled {
             cursor: not-allowed;
-            @include opacity(.5);
+            opacity: .5;
         }
 
         &.error {
             //border-color: #f00;
         }
 
-        //@include input-placeholder {
-        //  color: #afafaf;
-        //  text-overflow: ellipsis;
+        //&::placeholder {
+        //    color: #afafaf;
+        //    text-overflow: ellipsis;
         //}
-        //
         //&:focus {
-        //  @include input-placeholder {
-        //    color: transparent;
-        //    @include opacity(0);
-        //  }
+        //    &::placeholder {
+        //        color: transparent;
+        //        opacity: 0;
+        //    }
         //}
     }
 }

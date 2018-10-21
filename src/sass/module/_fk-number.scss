@@ -33,7 +33,7 @@
         width: $spin-width;
 
         &-item {
-            @extend %cursor-pointer;
+            cursor: pointer;
             display: block;
             height: $spin-height;
             line-height: $spin-height;
@@ -55,7 +55,7 @@
             }
 
             &::after {
-                @include transform(rotate(90deg));
+                transform: rotate(90deg);
             }
 
             &:hover {

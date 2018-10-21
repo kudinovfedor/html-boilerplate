@@ -61,8 +61,8 @@
 }
 
 .fk-accordion-switch {
-    @include border-radius(50%);
-    @include box-shadow(2px 2px 4px rgba(0, 0, 0, .22) inset);
+    border-radius: 50%;
+    box-shadow: 2px 2px 4px rgba(0, 0, 0, .22) inset;
     background-color: #ccc;
     cursor: pointer;
     display: block;

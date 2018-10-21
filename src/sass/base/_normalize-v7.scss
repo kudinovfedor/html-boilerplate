@@ -3,7 +3,7 @@
 
 html {
     line-height: 1.15;
-    @include text-size-adjust(100%);
+    text-size-adjust: 100%;
 }
 
 body {
@@ -35,7 +35,7 @@ figure {
 }
 
 hr {
-    @include box-sizing(content-box);
+    box-sizing: content-box;
     height: 0;
     overflow: visible;
 }
@@ -154,7 +154,7 @@ button,
 html [type="button"],
 [type="reset"],
 [type="submit"] {
-    @include appearance(button);
+    appearance: button;
 }
 
 button,
@@ -176,7 +176,7 @@ fieldset {
 }
 
 legend {
-    @include box-sizing(border-box);
+    box-sizing: border-box;
     color: inherit;
     display: table;
     max-width: 100%;
@@ -195,7 +195,7 @@ textarea {
 
 [type="checkbox"],
 [type="radio"] {
-    @include box-sizing(border-box);
+    box-sizing: border-box;
     padding: 0;
 }
 
@@ -207,17 +207,17 @@ textarea {
 }
 
 [type="search"] {
-    @include appearance(textfield);
+    appearance: textfield;
     outline-offset: -2px;
 
     &::-webkit-search-cancel-button,
     &::-webkit-search-decoration {
-        @include appearance(none);
+        appearance: none;
     }
 }
 
 ::-webkit-file-upload-button {
-    @include appearance(button);
+    appearance: button;
     font: inherit;
 }
 

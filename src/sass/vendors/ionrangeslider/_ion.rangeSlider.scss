@@ -10,7 +10,7 @@
     position: relative;
     display: block;
     -webkit-touch-callout: none;
-    @include user-select(none);
+    user-select: none;
 }
 
 .irs-line {
@@ -157,13 +157,13 @@
 
     .lt-ie9 & {
         background: #000;
-        @include opacity(0);
+        opacity: 0;
         cursor: not-allowed;
     }
 }
 
 .irs-disabled {
-    @include opacity(.4);
+    opacity: .4;
 }
 
 .irs-hidden-input {

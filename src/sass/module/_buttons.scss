@@ -14,11 +14,11 @@
     font-weight: normal;
     color: #000;
     -webkit-tap-highlight-color: transparent;
-    @include border-radius(0);
-    @include box-shadow(none);
-    @include transition(none);
-    @include touch-action(manipulation);
-    @include user-select(none);
+    border-radius: 0;
+    box-shadow: none;
+    transition: none;
+    touch-action: manipulation;
+    user-select: none;
 
     &:hover,
     &:focus {

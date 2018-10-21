@@ -37,7 +37,6 @@ figure {
 
 hr {
   -webkit-box-sizing: content-box;
-  -moz-box-sizing: content-box;
   box-sizing: content-box;
   height: 0;
   overflow: visible;
@@ -56,6 +55,7 @@ a {
 abbr[title] {
   border-bottom: 0;
   text-decoration: underline;
+  -webkit-text-decoration: underline dotted;
   text-decoration: underline dotted;
 }
 
@@ -150,6 +150,7 @@ html [type="button"],
 [type="submit"] {
   -webkit-appearance: button;
   -moz-appearance: button;
+  appearance: button;
 }
 
 button::-moz-focus-inner,
@@ -173,7 +174,6 @@ fieldset {
 
 legend {
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   color: inherit;
   display: table;
@@ -194,7 +194,6 @@ textarea {
 [type="checkbox"],
 [type="radio"] {
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
   padding: 0;
 }
@@ -206,17 +205,18 @@ textarea {
 [type="search"] {
   -webkit-appearance: textfield;
   -moz-appearance: textfield;
+  appearance: textfield;
   outline-offset: -2px;
 }
 
 [type="search"]::-webkit-search-cancel-button, [type="search"]::-webkit-search-decoration {
   -webkit-appearance: none;
-  -moz-appearance: none;
+  appearance: none;
 }
 
 ::-webkit-file-upload-button {
   -webkit-appearance: button;
-  -moz-appearance: button;
+  appearance: button;
   font: inherit;
 }
 
@@ -256,8 +256,12 @@ label {
 [type="tel"],
 [type="url"],
 textarea {
+  border-radius: 0;
   -webkit-appearance: none;
   -moz-appearance: none;
+  appearance: none;
+  -webkit-box-shadow: none;
+  box-shadow: none;
 }
 
 /* ====================  END CUSTOM NORMALIZE  ==================== */
@@ -267,7 +271,6 @@ textarea {
   color: #fff;
   text-shadow: none;
 }
-
 ::selection {
   background-color: #338fff;
   color: #fff;
@@ -278,13 +281,11 @@ html {
   font-family: sans-serif;
   font-size: 100%;
   -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
   box-sizing: border-box;
 }
 
 *, *::before, *::after {
   -webkit-box-sizing: inherit;
-  -moz-box-sizing: inherit;
   box-sizing: inherit;
 }
 
@@ -318,10 +319,9 @@ textarea {
 }
 
 svg {
-  -moz-transition: fill 0.3s ease-out;
-  -o-transition: fill 0.3s ease-out;
-  -webkit-transition: fill 0.3s ease-out;
-  transition: fill 0.3s ease-out;
+  -webkit-transition: fill .3s ease-out;
+  -o-transition: fill .3s ease-out;
+  transition: fill .3s ease-out;
 }
 
 /* ====================  END CORE  ======================= */
@@ -624,12 +624,7 @@ label {
   font-weight: bold;
 }
 
-:-moz-placeholder {
-  color: #afafaf;
-  text-overflow: ellipsis;
-}
-
-::-moz-placeholder {
+::-webkit-input-placeholder {
   color: #afafaf;
   text-overflow: ellipsis;
 }
@@ -639,8 +634,14 @@ label {
   text-overflow: ellipsis;
 }
 
-::-webkit-input-placeholder {
+::-ms-input-placeholder {
   color: #afafaf;
+  text-overflow: ellipsis;
+}
+
+::placeholder {
+  color: #afafaf;
+  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
 
@@ -760,8 +761,7 @@ optgroup {
 
 .form-field:disabled, .form-field.disabled {
   cursor: not-allowed;
-  filter: alpha(opacity=50);
-  opacity: 0.5;
+  opacity: .5;
 }
 
 .jq-select-multiple, .jq-selectbox, .jq-number, .jq-file {
@@ -885,10 +885,7 @@ optgroup {
 }
 
 .fk-accordion-switch {
-  -webkit-border-radius: 50%;
-  -moz-border-radius: 50%;
   border-radius: 50%;
-  -moz-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22) inset;
   -webkit-box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22) inset;
   box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.22) inset;
   background-color: #ccc;
@@ -1077,6 +1074,7 @@ optgroup {
   border: 0;
   padding: 0;
   white-space: nowrap;
+  -webkit-clip-path: inset(100%);
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
@@ -1090,6 +1088,7 @@ optgroup {
   border: 0;
   padding: 0;
   white-space: nowrap;
+  -webkit-clip-path: inset(100%);
   clip-path: inset(100%);
   clip: rect(0 0 0 0);
   overflow: hidden;
@@ -1101,6 +1100,7 @@ optgroup {
   height: auto;
   margin: 0;
   white-space: inherit;
+  -webkit-clip-path: none;
   clip-path: none;
   clip: auto;
   overflow: visible;

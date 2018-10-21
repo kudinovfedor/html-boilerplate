@@ -38,7 +38,7 @@ $preloader-size: 10px;
             -webkit-border-radius: 50%;
             border-radius: 50%;
             @extend %corners;
-            @include animation(loader 1s linear infinite alternate);
+            animation: loader 1s linear infinite alternate;
         }
     }
 
@@ -49,24 +49,24 @@ $preloader-size: 10px;
 }
 
 // sass-lint:disable-all
-@include keyframes(loader) {
+@keyframes loader {
     $color: #fff;
     $size2: $preloader-size * 2;
     $size4: $preloader-size * 4;
 
     0% {
         background-color: rgba($color, 1);
-        @include box-shadow($size2 0 0 rgba($color, .2), $size4 0 0 rgba($color, .2));
+        box-shadow: $size2 0 0 rgba($color, .2), $size4 0 0 rgba($color, .2);
     }
 
     25% {
         background-color: rgba($color, .4);
-        @include box-shadow($size2 0 0 rgba($color, 1), $size4 0 0 rgba($color, .2));
+        box-shadow: $size2 0 0 rgba($color, 1), $size4 0 0 rgba($color, .2);
     }
 
     75% {
         background-color: rgba($color, .4);
-        @include box-shadow($size2 0 0 rgba($color, .2), $size4 0 0 rgba($color, 1));
+        box-shadow: $size2 0 0 rgba($color, .2), $size4 0 0 rgba($color, 1);
     }
 }
 
