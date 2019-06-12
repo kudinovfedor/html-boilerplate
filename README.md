@@ -6,7 +6,7 @@
 
 This project uses the Pug(Jade) for HTML, Sass for CSS, SMACSS structure with additions, Gulp - the streaming build system, Babel is a JavaScript compiler.
 ### Installation on Windows
-**[Install Node.js](https://nodejs.org/dist/latest-v8.x/)** **`v8`**
+**[Install Node.js](https://nodejs.org/dist/latest-dubnium/)** **`v10`**
 
 ```sh
 # Install global packages such as gulp-cli pug-cli babel-cli jshint eslint if needed
