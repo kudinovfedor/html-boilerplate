@@ -320,7 +320,6 @@ textarea {
 
 svg {
   -webkit-transition: fill .3s ease-out;
-  -o-transition: fill .3s ease-out;
   transition: fill .3s ease-out;
 }
 
@@ -629,6 +628,11 @@ label {
   text-overflow: ellipsis;
 }
 
+::-moz-placeholder {
+  color: #afafaf;
+  text-overflow: ellipsis;
+}
+
 :-ms-input-placeholder {
   color: #afafaf;
   text-overflow: ellipsis;
@@ -641,7 +645,6 @@ label {
 
 ::placeholder {
   color: #afafaf;
-  -o-text-overflow: ellipsis;
   text-overflow: ellipsis;
 }
 

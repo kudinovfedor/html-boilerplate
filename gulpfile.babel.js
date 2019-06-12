@@ -67,7 +67,7 @@ const config = {
     pug: {pretty: true},
     // Config CSS Autoprefixer
     autoprefixer: {
-        browsers: ['last 5 versions'],
+        browsers: ['last 2 versions'],
         cascade: false, add: true, remove: false
     },
     // Config CSS base64
@@ -237,7 +237,7 @@ gulp.task('libs', () => {
         'node_modules/jquery/dist/jquery.min.js',
         'node_modules/jquery-form-styler/dist/jquery.formstyler.min.js',
         'node_modules/jquery-validation/dist/jquery.validate.min.js',
-        'node_modules/jquery.mmenu/dist/jquery.mmenu.all.js',
+        'node_modules/mmenu-js/dist/mmenu.js',
         'node_modules/magnific-popup/dist/jquery.magnific-popup.min.js',
         'node_modules/pixlayout/jquery.pixlayout.min.js',
         'node_modules/respond.js/dest/respond.min.js',

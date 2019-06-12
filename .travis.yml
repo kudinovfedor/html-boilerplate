@@ -7,9 +7,7 @@ os:
   - linux
 
 node_js:
-  - "6"
-  - "8"
-  - "9"
+  - "10"
 
 before_install:
   - npm install --global npm@latest
