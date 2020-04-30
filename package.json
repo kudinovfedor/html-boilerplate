@@ -6,7 +6,7 @@
   "dependencies": {
     "html5shiv": "^3.7.3",
     "ion-rangeslider": "^2.3.0",
-    "jquery": "^3.4.1",
+    "jquery": "^3.5.0",
     "jquery-form-styler": "^2.0.2",
     "jquery-validation": "^1.19.0",
     "mmenu-js": "^8.1.1",
