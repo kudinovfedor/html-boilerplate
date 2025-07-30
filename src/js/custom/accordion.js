@@ -3,7 +3,7 @@
  *
  * @example
  * accordion('.accordion', '.accordion-switch');
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} container - container for each accordion item
  * @param {(string|Object)} trigger - element for open and close accordion
  */

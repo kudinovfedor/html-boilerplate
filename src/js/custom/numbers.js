@@ -3,7 +3,7 @@
  *
  * @example
  * numbers('.number', '.number-field', '.number-spin-plus', '.number-spin-minus');
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} id - container of element
  * @param {(string|Object)} field - field with number
  * @param {(string|Object)} plus - button plus

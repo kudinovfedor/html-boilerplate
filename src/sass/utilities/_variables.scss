@@ -63,32 +63,32 @@ $viewport-map: (
 
 $headers-map: (
     h1: (
-        fons-size-min: round($font-size-h1 * .67),
+        font-size-min: round($font-size-h1 * .67),
         font-size-max: $font-size-h1,
         font-size-fallback: round((($font-size-h1 + round($font-size-h1 * .67)) / 2))
     ),
     h2: (
-        fons-size-min: round($font-size-h2 * .67),
+        font-size-min: round($font-size-h2 * .67),
         font-size-max: $font-size-h2,
         font-size-fallback: round((($font-size-h2 + round($font-size-h2 * .67)) / 2))
     ),
     h3: (
-        fons-size-min: round($font-size-h3 * .67),
+        font-size-min: round($font-size-h3 * .67),
         font-size-max: $font-size-h3,
         font-size-fallback: round((($font-size-h3 + round($font-size-h3 * .67)) / 2))
     ),
     h4: (
-        fons-size-min: round($font-size-h4 * .8),
+        font-size-min: round($font-size-h4 * .8),
         font-size-max: $font-size-h4,
         font-size-fallback: round((($font-size-h4 + round($font-size-h4 * .67)) / 2))
     ),
     h5: (
-        fons-size-min: round($font-size-h5 * .9),
+        font-size-min: round($font-size-h5 * .9),
         font-size-max: $font-size-h5,
         font-size-fallback: round((($font-size-h5 + round($font-size-h5 * .67)) / 2))
     ),
     h6: (
-        fons-size-min: round($font-size-h6 * .95),
+        font-size-min: round($font-size-h6 * .95),
         font-size-max: $font-size-h6,
         font-size-fallback: round((($font-size-h6 + round($font-size-h6 * .67)) / 2))
     )

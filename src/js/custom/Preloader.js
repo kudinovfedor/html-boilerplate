@@ -5,7 +5,7 @@ class Preloader {
      * @example
      * const preloader = new Preloader();
      * @this {Preloader}
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(number|string)} [delay=350] - delay before function fade(In|Out) is start
      * @param {(string|number)} [duration='slow'] - determining how long the fadeOut will run
      * @returns {Preloader} - return constructor with new

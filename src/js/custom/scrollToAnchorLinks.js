@@ -3,7 +3,7 @@
  *
  * @example
  * scrollToAnchorLinks('.nav-menu');
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} id - selected item to perform the a clicked
  * @param {(number|string)} [scrollDuration=1000] - determining how long the animation will run
  */

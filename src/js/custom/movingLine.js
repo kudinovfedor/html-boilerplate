@@ -3,7 +3,7 @@
  *
  * @example
  * movingLine();
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  */
 const movingLine = () => {
     const nav = document.querySelector('.nav');
@@ -13,7 +13,7 @@ const movingLine = () => {
      *
      * @example
      * lineStyle(line, element);
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {Object} line - The line for which styles will be given
      * @param {Object} element - The element from which the style values for the line are taken
      */

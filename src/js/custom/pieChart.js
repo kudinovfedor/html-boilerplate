@@ -5,7 +5,7 @@
  *
  * @example
  * pieChart('.js-pie-chart', {size: 98, strokeWidth: 14});
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} elements - Elements in which the markup will be inserted
  * @param {Object} [options] - Object with settings
  */

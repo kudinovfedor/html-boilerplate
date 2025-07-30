@@ -3,7 +3,7 @@
  *
  * @example
  * errorField('.error');
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} [element='.error'] - selected element
  * @param {string} [classError='error'] - class which will be removed after receiving focus
  */

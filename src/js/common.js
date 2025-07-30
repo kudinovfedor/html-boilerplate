@@ -94,7 +94,7 @@
      *
      * @example
      * jsEnable('html');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} [element='html'] - selected element (the default html tag)
      */
     function jsEnable(element) {
@@ -110,7 +110,7 @@
      *
      * @example
      * dppx();
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      */
     function dppx() {
 
@@ -127,7 +127,7 @@
      *
      * @example
      * supportFlowRoot();
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      */
     function supportFlowRoot() {
 
@@ -154,7 +154,7 @@
      *
      * @example
      * errorField('.error');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} [element='.error'] - selected element
      * @param {string} [classError='error'] - class which will be removed after receiving focus
      */
@@ -175,7 +175,7 @@
      *
      * @example
      * autoFocus('.autofocus');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} element - by selected element will be added focus
      */
     function autoFocus(element) {
@@ -193,7 +193,7 @@
      *
      * @example
      * scrollToTop('.scroll-top');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {string} scrollId - selected item to perform the a clicked
      * @param {(number|string)} [scrollDuration='slow'] - determining how long the animation will run
      */
@@ -236,7 +236,7 @@
      *
      * @example
      * scrollToAnchorLinks('body');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} id - selected item to perform the a clicked
      * @param {(number|string)} [scrollDuration=1000] - determining how long the animation will run
      */
@@ -262,7 +262,7 @@
      * @example
      * var preloader = new Preloader();
      * @this {Preloader}
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(number|string)} [delay=350] - delay before function fade(In|Out) is start
      * @param {(string|number)} [duration='slow'] - determining how long the fadeOut will run
      * @returns {Preloader} - return constructor with new
@@ -334,7 +334,7 @@
      *
      * @example
      * number('.number', '.number-field', '.number-spin-plus', '.number-spin-minus');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} id - container of element
      * @param {(string|Object)} field - field with number
      * @param {(string|Object)} plus - button plus
@@ -384,7 +384,7 @@
      *
      * @example
      * tabs('.tabs', '.tabs-list', '.tab-item');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} container - main container for tabs
      * @param {(string|Object)} list - ul list for each tab item
      * @param {(string|Object)} item - tab block for each li item
@@ -407,7 +407,7 @@
      *
      * @example
      * accordion('.accordion', '.accordion-switch');
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      * @param {(string|Object)} container - container for each accordion item
      * @param {(string|Object)} trigger - element for open and close accordion
      */
@@ -437,7 +437,7 @@
      *
      * @example
      * movingLine();
-     * @author Fedor Kudinov <brothersrabbits@mail.ru>
+     * @author Fedir Kudinov <brothersrabbits@mail.ru>
      */
     function movingLine() {
         var nav = document.querySelector('.nav');
@@ -447,7 +447,7 @@
          *
          * @example
          * lineStyle(line, element);
-         * @author Fedor Kudinov <brothersrabbits@mail.ru>
+         * @author Fedir Kudinov <brothersrabbits@mail.ru>
          * @param {Object} line - The line for which styles will be given
          * @param {Object} element - The element from which the style values for the line are taken
          */

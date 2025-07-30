@@ -40,5 +40,8 @@ original/
 # Temp folder
 tmp/
 
- # Misc
+# Misc
 *.log
+
+*.min.css
+**/js/*.min.js

@@ -12,7 +12,7 @@ import gulp from 'gulp';
 import gutil from 'gulp-util';
 // System
 import fs from 'fs';
-import del from 'del';
+import {deleteSync as del} from 'del';
 // Pug (Jade)
 import pug from 'gulp-pug';
 // CSS
@@ -20,12 +20,14 @@ import pug from 'gulp-pug';
 import cssBase64 from 'gulp-css-base64';
 import autoprefixer from 'gulp-autoprefixer';
 import cleancss from 'gulp-clean-css';
-import gulpCritical from 'critical';
+// import {stream as critical} from 'critical';
 
-const critical = gulpCritical.stream;
 // SCSS
-import sass from 'gulp-sass';
+import sassPackage from 'sass';
+import gulpSass from 'gulp-sass';
 import sassLint from 'gulp-sass-lint';
+
+const sass = gulpSass(sassPackage);
 // Images
 import imagemin from 'gulp-imagemin';
 import spritesmith from 'gulp.spritesmith';

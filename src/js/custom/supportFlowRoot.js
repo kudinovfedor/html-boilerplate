@@ -5,7 +5,7 @@ const supportsCSS = !!((window.CSS && window.CSS.supports) || window.supportsCSS
  *
  * @example
  * supportFlowRoot();
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  */
 const supportFlowRoot = () => {
 

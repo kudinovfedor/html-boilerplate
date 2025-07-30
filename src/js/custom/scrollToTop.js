@@ -3,7 +3,7 @@
  *
  * @example
  * scrollToTop('.scroll-top');
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  * @param {string} scrollId - selected item to perform the a clicked
  * @param {(number|string)} [scrollDuration='slow'] - determining how long the animation will run
  */

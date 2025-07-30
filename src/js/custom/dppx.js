@@ -3,7 +3,7 @@
  *
  * @example
  * dppx();
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  */
 const dppx = () => {
 

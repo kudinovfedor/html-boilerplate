@@ -55,7 +55,7 @@
 @mixin responsive-headers() {
     @each $name, $value in $headers-map {
         #{$name} {
-            font-size: round(map-get($value, fons-size-min));
+            font-size: round(map-get($value, font-size-min));
         }
     }
 
@@ -72,7 +72,7 @@
                     font-size: $fallback;
                 }
 
-                font-size: calc-responsive-font-size(map-get($value, fons-size-min), map-get($value, font-size-max), $viewport-min, $viewport-max);
+                font-size: calc-responsive-font-size(map-get($value, font-size-min), map-get($value, font-size-max), $viewport-min, $viewport-max);
             }
         }
 

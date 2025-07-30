@@ -3,7 +3,7 @@
  *
  * @example
  * jsEnable('html');
- * @author Fedor Kudinov <brothersrabbits@mail.ru>
+ * @author Fedir Kudinov <brothersrabbits@mail.ru>
  * @param {(string|Object)} [element='html'] - selected element (the default html tag)
  */
 const jsEnable = element => {
